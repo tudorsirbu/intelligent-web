@@ -22,7 +22,7 @@ public class GetTweetByLocation {
 			// it creates a query and sets the geocode	
 			//requirement	
 			Query query= new Query("#foursquare");	
-			query.setCount(10);
+			query.setCount(100);
 //			query.setGeoCode(new GeoLocation(53.383, -1.483), 2, Query.KILOMETERS);	
 
 			//it fires the query	
@@ -39,6 +39,7 @@ public class GetTweetByLocation {
 					Matcher m = p.matcher(tweet.getText());
 					
 					while (m.find()) {
+						System.out.println(m.group());
 						fs.getLocationInformation(m.group());
 					}					
 				}
