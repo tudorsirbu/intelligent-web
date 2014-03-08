@@ -23,7 +23,7 @@ public class FourSquareTest {
 		//if it is not a 4square login url then we return!
 		if (!((url.startsWith("https://foursquare.com/"))&&(url.contains("checkin"))&&(url.contains("s=")))) 
 			return;
-		
+
 		//url now contains the full url!
 		Pattern pId = Pattern.compile(".+?checkin/(.+?)\\?s=.+", Pattern.DOTALL);
 		Matcher matche = pId.matcher(url);
@@ -69,7 +69,7 @@ public class FourSquareTest {
 			}
 		}
 		
-		return url;
+		return shortURLs;
 	}
 	
 	private String getFullURL (String shortURLs) throws IOException {
@@ -79,6 +79,7 @@ public class FourSquareTest {
 		httpURLConnection.connect();
 		final int responseCode = httpURLConnection.getResponseCode();
 		final String header = httpURLConnection.getHeaderField("Location");
+		
 		return header;
 	}
 
