@@ -19,4 +19,14 @@
     <servlet-name>MyServlet</servlet-name>
     <url-pattern>/MyServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TrackingServlet</display-name>
+    <servlet-name>TrackingServlet</servlet-name>
+    <servlet-class>servlets.TrackingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TrackingServlet</servlet-name>
+    <url-pattern>/TrackingServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
