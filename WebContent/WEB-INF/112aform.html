@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+form {
+    /* Centre form */
+    margin: 0 auto;
+    width: 500px;
+    /* Outline form*/
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+}
+form div + div {
+    margin-top: 1em;
+}
+label {
+    /* Align labels and make same size */
+    display: inline-block;
+    width: 200x;
+    text-align: right;
+}
+input {
+    /* Add same font for all input fileds */
+    font: 1em sans-serif;
+
+    /* Set all fields to same size */
+    width: 40px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    /* Field border */
+    border: 1px solid #999;
+}
+textarea{
+/* Add same font for all input fileds */
+    font: 1em sans-serif;
+
+    /* Set all fields to same size */
+    width: 250px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    /* Field border */
+    border: 1px solid #999;
+
+}
+input:focus, textarea:focus {
+    /* Highlight active */
+    border-color: #000;
+}
+textarea {
+    /* Align txt area */
+    vertical-align: top;
+
+    /* Enough room for txt */
+    height: 5em;
+
+    /* Allow resizing */
+    resize: vertical;
+}
+.button {
+    /* Set the position of the button*/
+    padding-left: 90px; /* same size as the label elements */
+}
+
+button {
+
+    margin-left: .5em;
+}
+</style>
+
+</head>
+<body>
+
+<form action="" method="post">
+    <div>
+        <label for="user_ids">User IDs:</label>
+        <textarea name="user_ids" rows="10" cols="1"></textarea>
+    </div>
+    <div>
+    	<label for="keywords">Most:<input type="number" id="keywords" /> frequent keywords</label>
+    	
+        
+    </div>
+    <div>
+        <label for="days">Last:<input type="number" id="days" /> days</label>
+        
+    </div>  
+    <div class="button">
+        <button type="submit">Search for results!</button>
+    </div>
+</form>
+
+</body>
+</html>
+
+
