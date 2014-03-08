@@ -33,7 +33,7 @@ public class FourSquareTest {
 		matche = pSig.matcher(url);
 		String sig = (matche.matches()) ? matche.group(1) : "";
 		Result<Checkin> chck = null;
-
+//Testing the push with a comment
 		try {
 			chck = fsAPI.checkin(checkInId, sig);
 		} catch (FoursquareApiException e) {
