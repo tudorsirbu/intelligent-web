@@ -8,7 +8,11 @@ import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterManager {	
 	
-	public String query(String keywords, String latitude, String longitude) {	
+	public String query(String keywords, Integer latitude, Integer longitude, Integer radius) {	
+		
+		String[] keywordsArray = keywords.split(",");
+		
+		/* Connect to twitter. */
 		Twitter twitterConnection = null;	
 		try {	
 			twitterConnection = this.init();		 	 	 	
@@ -17,47 +21,51 @@ public class TwitterManager {
 			e.printStackTrace();	
 		}
 		
-		String resultString= "";	
+		String resultString = "";	
 		FoursquareManager fs = new FoursquareManager();
-		Pattern p = Pattern.compile("\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
+		Pattern urlPattern = Pattern.compile("\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
 		
-		try {	
-			// it creates a query and sets the geocode	
-			//requirement	
-			Query query = new Query("#foursquare");	
-			query.setCount(10);
-            // query.setGeoCode(new GeoLocation(53.383, -1.483), 2, Query.KILOMETERS);	
-
-			//it fires the query	
-			QueryResult result = twitterConnection.search(query);	
-			//it cycles on the tweets	
-			List<Status> tweets = result.getTweets();
-
-			for (Status tweet:tweets) {
-				// Gets the user 		
-				User user = tweet.getUser();
-				
-				/* Only access foursquare if the user mentions it in his tweet. */
-				if (tweet.getText().toLowerCase().contains("foursquare") == true) {
-					Matcher m = p.matcher(tweet.getText());
+		try {
+			for(String keyword:keywordsArray) {
+				Query query = new Query(keyword.trim());	
+				query.setCount(10);
+				if(longitude != null && latitude != null) {
+					if(radius == null)
+						radius = 3;
 					
-					while (m.find()) {
-						System.out.println(m.group());
-						fs.getLocationInformation(m.group());
-					}					
-				}
-				
-				/* Display the tweets. */
-				Status status = user.isGeoEnabled() ? user.getStatus() : null;
-				resultString+="@" + user.getName() + " - " + tweet.getText();
-				if (status==null) {
-					resultString += " (" + user.getLocation() + ") \n";						
-				} 	
-				else {
-					String coordinates = status.getGeoLocation().getLatitude() + "," + status.getGeoLocation().getLongitude();
-					resultString += " (" + (status!=null && status.getGeoLocation() != null ? coordinates : user.getLocation()) + ") \n";						
+					query.setGeoCode(new GeoLocation(latitude, longitude), radius, Query.KILOMETERS);	
 				}
 
+				//it fires the query	
+				QueryResult result = twitterConnection.search(query);	
+				//it cycles on the tweets	
+				List<Status> tweets = result.getTweets();
+
+				for (Status tweet:tweets) {
+					// Gets the user 		
+					User user = tweet.getUser();
+
+					/* Only access foursquare if the user mentions it in his tweet. */
+					if (tweet.getText().toLowerCase().contains("foursquare") == true) {
+						Matcher m = urlPattern.matcher(tweet.getText());
+
+						while (m.find()) {
+							System.out.println(m.group());
+							fs.getLocationInformation(m.group());
+						}					
+					}
+
+					/* Display the tweets. */
+					Status status = user.isGeoEnabled() ? user.getStatus() : null;
+					resultString+="@" + user.getName() + " - " + tweet.getText();
+					if (status==null) {
+						resultString += " (" + user.getLocation() + ") \n";						
+					} 	
+					else {
+						String coordinates = status.getGeoLocation().getLatitude() + "," + status.getGeoLocation().getLongitude();
+						resultString += " (" + (status!=null && status.getGeoLocation() != null ? coordinates : user.getLocation()) + ") \n";						
+					}
+				}
 			}	
 		} 
 		catch (Exception e) {	
@@ -91,11 +99,6 @@ public class TwitterManager {
 		.setOAuthAccessTokenSecret(accessTokenSecret)	
 		.setJSONStoreEnabled(true);	
 		return (new TwitterFactory(cb.build()).getInstance());	
-	}
-	
-	public static void main(String[] args) {
-		TwitterManager tm = new TwitterManager();
-		tm.query("", "", "");
 	}
 	
 }

@@ -8,7 +8,7 @@
 <form action="TrackingServlet" method="get">
     <div>
         <label for="keyword/hashtag">Keyword/hashtag:</label>
-        <input name="keyhash" type="text" id="keyhash" class="nms"/>
+        <input name="keywords" type="text" id="keywords" class="nms"/>
     </div>
     <div>
     	<p>Geographic region:</p>
@@ -21,6 +21,10 @@
         <label for="region_long">Longitude:</label>
         <input name="region_long" type="text" id="region_long" class="geo" />
     </div>  
+    <div>
+    	<label for="radius">Radius:</label>
+        <input name="radius" type="text" id="radius" class="geo"/>
+    </div>
     <div class="button">
         <button name="submit" type="submit">Search for results!</button>
     </div>

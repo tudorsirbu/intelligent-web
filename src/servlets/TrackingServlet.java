@@ -32,16 +32,25 @@ public class TrackingServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();	
 		out.println("<h2>Results</h2>");	
 
-		String keyhash = request.getParameter("keyhash");
-		String regionLat = request.getParameter("region_lat");
-		String regionLong = request.getParameter("region_long");
+		String keywords = request.getParameter("keywords");
 		String submit = request.getParameter("submit");
+		Integer regionLat, regionLong, radius;
 		
-		if(submit != null){	
+		try {
+			regionLong = Integer.parseInt(request.getParameter("region_long"));
+			regionLat = Integer.parseInt(request.getParameter("region_lat"));
+			radius = Integer.parseInt(request.getParameter("radius"));
+		} catch (NumberFormatException e) {
+			radius = null;
+			regionLat = null;
+			regionLong = null;
+		}
+		
+		if(!keywords.trim().isEmpty()){	
 			TwitterManager tm = new TwitterManager();
-			out.println(tm.query(keyhash, regionLat, regionLong));
+			out.println(tm.query(keywords, regionLat, regionLong, radius));
 		} else {	
-			out.println("No text entered.");	
+			out.println("No keywords entered.");	
 		}	
 		out.close();	
 	}
