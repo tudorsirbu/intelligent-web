@@ -30,7 +30,7 @@ public class InvertedIndexService {
 			//  statement for query execution
 			statement = connection.createStatement();
 			// query 
-			String query = "INSERT INTO venues (`user_id`, `word_id`) values('"+ userID +"','" + wordID
+			String query = "INSERT INTO inverted_index (`user_id`, `word_id`) values('"+ userID +"','" + wordID
 					+ "','" + date + "')";
 			// Updating Table
 			statement.executeUpdate(query);          
