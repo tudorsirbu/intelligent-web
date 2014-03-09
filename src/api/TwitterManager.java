@@ -51,13 +51,12 @@ public class TwitterManager {
 				Status status = user.isGeoEnabled() ? user.getStatus() : null;
 				resultString+="@" + user.getName() + " - " + tweet.getText();
 				if (status==null) {
-					resultString += " (" + user.getLocation() + ") \n";						
+					resultString += " (" + user.getLocation() + ") <br/>";						
 				} 	
 				else {
 					String coordinates = status.getGeoLocation().getLatitude() + "," + status.getGeoLocation().getLongitude();
-					resultString += " (" + (status!=null && status.getGeoLocation() != null ? coordinates : user.getLocation()) + ") \n";						
+					resultString += " (" + (status!=null && status.getGeoLocation() != null ? coordinates : user.getLocation()) + ") <br/>";						
 				}
-
 			}	
 		} 
 		catch (Exception e) {	
@@ -68,7 +67,7 @@ public class TwitterManager {
 		
 		return resultString;	
 	}
-
+	
 	private Twitter init() throws Exception{	
 		String consumerkey = "H4VHRaf8ybmPhzzK47uQ";	
 		String consumersecret = "y6oxNsvuoauf4sPcGU45Ct5eVfryYlai5TUBU92Uxbk";	
