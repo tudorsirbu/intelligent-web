@@ -36,8 +36,8 @@ public class DatabaseConnection {
 		 
 		 try {
 			 Class.forName(driver).newInstance();
-			 connection = DriverManager.getConnection(HOST);
-			 
+			 connection = DriverManager.getConnection("jdbc:mysql://" + HOST +"/"
+					 + DATABASE + "?user=" + USERNAME + "&password="+ PASSWORD);
 		 } catch (Exception e) {
 			 System.out.println("The system could not connect to the database.");
 			 e.printStackTrace();
@@ -61,5 +61,4 @@ public class DatabaseConnection {
 			e.printStackTrace();
 		}		
 	}
-	
 }
