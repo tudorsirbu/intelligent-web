@@ -17,9 +17,9 @@ public class UserService {
 	/**
 	 * Constructor which connects to the database using the DatabaseConnection class
 	 */
-	public UserService(){
+	public UserService(Connection connection){
 		// create a connection to the database
-		connection = (new DatabaseConnection().getConnection());
+		this.connection = connection;
 	}
 	/**
 	 * The method inserts a user in the users table in the database
@@ -39,7 +39,7 @@ public class UserService {
             //  statement for query execution
             statement = connection.createStatement();
             // query 
-            String query = "INSERT INTO users (`id`, ` name`, `username`, "+
+            String query = "INSERT INTO users (`id`, `name`, `username`, "+
             "`location`, `description`, `profilePictureURL`) values('"+id+"',"
             		+ "'"+name+"','"+username+"','"+ location+"','"+ description+"','"+ profilePictureURL+"')";
             // Updating Table
