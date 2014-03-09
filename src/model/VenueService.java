@@ -13,7 +13,7 @@ public class VenueService {
 	// the connection to the database
 	Connection connection = null;
 	Statement statement = null;
-	
+
 	/**
 	 * Constructor which connects to the database using the DatabaseConnection class
 	 */
@@ -28,24 +28,24 @@ public class VenueService {
 	public void insertVenue(Venue v){
 		// venue details
 		String name = v.getVenueName();
-	
+
 		try {
-            //  statement for query execution
-            statement = connection.createStatement();
-            // query 
-            String query = "INSERT INTO venues (`name`) values('"+ name +"')";
-            // Updating Table
-            statement.executeUpdate(query);          
+			//  statement for query execution
+			statement = connection.createStatement();
+			// query 
+			String query = "INSERT INTO venues (`name`) values('"+ name +"')";
+			// Updating Table
+			statement.executeUpdate(query);          
 		}
 		catch (Exception e) {
-	            System.out.println(e.toString());
-	    } finally {
-	            try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-	    }
-		
+			System.out.println(e.toString());
+		} finally {
+			try {
+				statement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 }
