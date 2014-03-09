@@ -22,8 +22,8 @@ public class VenueService {
 		this.connection = connection;
 	}
 	/**
-	 * The method inserts a user in the users table in the database
-	 * @param user the details for the user to be inserted in the database
+	 * The method inserts a venue in the venues table in the database
+	 * @param v the Venue to be inserted in the database
 	 */
 	public void insertVenue(Venue v){
 		// venue details
@@ -33,7 +33,7 @@ public class VenueService {
             //  statement for query execution
             statement = connection.createStatement();
             // query 
-            String query = "INSERT INTO users (``name`) values('"+ name +"')";
+            String query = "INSERT INTO venues (`name`) values('"+ name +"')";
             // Updating Table
             statement.executeUpdate(query);          
 		}

@@ -13,7 +13,7 @@ public class UserService {
 	// the connection to the database
 	Connection connection = null;
 	Statement statement = null;
-	
+
 	/**
 	 * Constructor which connects to the database using the DatabaseConnection class
 	 */
@@ -33,27 +33,27 @@ public class UserService {
 		String location = user.getLocation();
 		String description = user.getDescription();
 		String profilePictureURL = user.getProfilePicURL();
-		
-		
+
+
 		try {
-            //  statement for query execution
-            statement = connection.createStatement();
-            // query 
-            String query = "INSERT INTO users (`id`, `name`, `username`, "+
-            "`location`, `description`, `profilePictureURL`) values('"+id+"',"
-            		+ "'"+name+"','"+username+"','"+ location+"','"+ description+"','"+ profilePictureURL+"')";
-            // Updating Table
-            statement.executeUpdate(query);          
+			//  statement for query execution
+			statement = connection.createStatement();
+			// query 
+			String query = "INSERT INTO users (`id`, `name`, `username`, "+
+					"`location`, `description`, `profilePictureURL`) values('"+id+"',"
+					+ "'"+name+"','"+username+"','"+ location+"','"+ description+"','"+ profilePictureURL+"')";
+			// Updating Table
+			statement.executeUpdate(query);          
 		}
 		catch (Exception e) {
-	            System.out.println(e.toString());
-	    } finally {
-	            try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-	    }
-		
+			System.out.println(e.toString());
+		} finally {
+			try {
+				statement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 }
