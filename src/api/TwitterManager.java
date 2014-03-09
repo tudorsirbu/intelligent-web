@@ -3,18 +3,20 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import twitter4j.GeoLocation;
-import twitter4j.Query;
-import twitter4j.QueryResult;
-import twitter4j.Status;
-import twitter4j.Twitter;
-import twitter4j.TwitterFactory;
-import twitter4j.User;
+import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterManager {	
 	
-	public String getSimpleTimeLine(Twitter twitter){	
+	public String query(String keywords, String latitude, String longitude) {	
+		Twitter twitterConnection = null;	
+		try {	
+			twitterConnection = this.init();		 	 	 	
+		} catch (Exception e) {	
+			System.out.println("Cannot initialise Twitter.");	
+			e.printStackTrace();	
+		}
+		
 		String resultString= "";	
 		FoursquareManager fs = new FoursquareManager();
 		Pattern p = Pattern.compile("\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
@@ -22,12 +24,12 @@ public class TwitterManager {
 		try {	
 			// it creates a query and sets the geocode	
 			//requirement	
-			Query query= new Query("#foursquare");	
+			Query query = new Query("#foursquare");	
 			query.setCount(10);
             // query.setGeoCode(new GeoLocation(53.383, -1.483), 2, Query.KILOMETERS);	
 
 			//it fires the query	
-			QueryResult result = twitter.search(query);	
+			QueryResult result = twitterConnection.search(query);	
 			//it cycles on the tweets	
 			List<Status> tweets = result.getTweets();
 
@@ -72,15 +74,16 @@ public class TwitterManager {
 		String consumersecret = "y6oxNsvuoauf4sPcGU45Ct5eVfryYlai5TUBU92Uxbk";	
 		String accesstoken = "1225017144-1l22gHEw6SpxoQQac1PmT5a3FjQnexJrMQmiFra";	
 		String accesstokensecret = "WR2I8lHSBlqVKHV1a3t3CDElHKe0sHkVl1TCLyrVnrkLS";	
+		
 		Twitter twitterConnection = initTwitter(consumerkey, 	
 				consumersecret, accesstoken, accesstokensecret);	
+		
 		return twitterConnection;	
 	}
 
-	private Twitter initTwitter(String consumerKey, String consumerSecret, 	
-			String accessToken, String accessTokenSecret) 	
+	private Twitter initTwitter(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) 	
 					throws Exception {	
-		ConfigurationBuilder cb = new ConfigurationBuilder();	
+		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)	
 		.setOAuthConsumerKey(consumerKey)	
 		.setOAuthConsumerSecret(consumerSecret)	
@@ -89,16 +92,10 @@ public class TwitterManager {
 		.setJSONStoreEnabled(true);	
 		return (new TwitterFactory(cb.build()).getInstance());	
 	}
-
-	public static void main(String[] args) {	
-		TwitterManager tt = new TwitterManager();	
-		Twitter twitterConnection = null;	
-		try {	
-			twitterConnection= tt.init();		 	 	 	
-			System.out.print(tt.getSimpleTimeLine(twitterConnection));	
-		} catch (Exception e) {	
-			System.out.println("Cannot initialise Twitter");	
-			e.printStackTrace();	
-		}	
+	
+	public static void main(String[] args) {
+		TwitterManager tm = new TwitterManager();
+		tm.query("", "", "");
 	}
+	
 }

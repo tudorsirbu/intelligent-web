@@ -11,16 +11,6 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>MyServlet</display-name>
-    <servlet-name>MyServlet</servlet-name>
-    <servlet-class>MyServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>MyServlet</servlet-name>
-    <url-pattern>/MyServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>TrackingServlet</display-name>
     <servlet-name>TrackingServlet</servlet-name>
     <servlet-class>servlets.TrackingServlet</servlet-class>
