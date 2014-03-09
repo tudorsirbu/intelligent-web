@@ -1,13 +1,23 @@
 package servlets;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import twitter4j.Status;
+import twitter4j.User;
+
+import com.google.gson.Gson;
+
+import api.FoursquareManager;
 import api.TwitterManager;
 
 /**
@@ -33,22 +43,46 @@ public class TrackingServlet extends HttpServlet {
 		out.println("<h2>Results</h2>");	
 
 		String keywords = request.getParameter("keywords");
-		String submit = request.getParameter("submit");
-		Integer regionLat, regionLong, radius;
+		String regionLat = request.getParameter("region_lat");
+		String regionLong = request.getParameter("region_long");
+		String radius = request.getParameter("radius");
 		
-		try {
-			regionLong = Integer.parseInt(request.getParameter("region_long"));
-			regionLat = Integer.parseInt(request.getParameter("region_lat"));
-			radius = Integer.parseInt(request.getParameter("radius"));
-		} catch (NumberFormatException e) {
-			radius = null;
-			regionLat = null;
-			regionLong = null;
-		}
+		String resultString = "";	
 		
+		TwitterManager tm = new TwitterManager();
+		List<Status> tweets = tm.query(keywords, regionLat, regionLong, radius);
+
 		if(!keywords.trim().isEmpty()){	
-			TwitterManager tm = new TwitterManager();
-			out.println(tm.query(keywords, regionLat, regionLong, radius));
+			FoursquareManager fs = new FoursquareManager();
+			Pattern urlPattern = Pattern.compile("\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
+			
+			for (Status tweet:tweets) {
+				// Gets the user 		
+				User user = tweet.getUser();
+
+				/* Only access foursquare if the user mentions it in his tweet. */
+				if (tweet.getText().toLowerCase().contains("foursquare") == true) {
+					Matcher m = urlPattern.matcher(tweet.getText());
+
+					while (m.find()) {
+						System.out.println(m.group());
+						fs.getLocationInformation(m.group());
+					}					
+				}
+
+				/* Display the tweets. */
+				Status status = user.isGeoEnabled() ? user.getStatus() : null;
+				resultString+="@" + user.getName() + " - " + tweet.getText();
+				if (status==null) {
+					resultString += " (" + user.getLocation() + ") \n";						
+				} 	
+				else {
+					String coordinates = status.getGeoLocation().getLatitude() + "," + status.getGeoLocation().getLongitude();
+					resultString += " (" + (status!=null && status.getGeoLocation() != null ? coordinates : user.getLocation()) + ") \n";						
+				}
+			}
+				
+			out.println(resultString);
 		} else {	
 			out.println("No keywords entered.");	
 		}	
@@ -59,7 +93,31 @@ public class TrackingServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		response.setContentType("application/json");
+		Gson gson = new Gson();
+		
+		/* Build the string containing the JSON object so that it can be parsed by gson */
+		StringBuilder sb = new StringBuilder();
+	    BufferedReader reader = request.getReader();
+	    try {
+	        String line;
+	        while ((line = reader.readLine()) != null) {
+	            sb.append(line).append('\n');
+	        }
+	    } finally {
+	        reader.close();
+	    }
+	    
+	    /* Parse the JSON object it got from the request */
+		TrackingForm tf = gson.fromJson(sb.toString(), TrackingForm.class);
+		
+		/* Get tweets according to the query parameters */
+		TwitterManager tm = new TwitterManager();
+		List<Status> tweets = tm.query(tf.getKeywords(), tf.getRegionLat(), tf.getRegionLong(), tf.getRadius());
+		
+		/* Create the response JSON */
+		String json = gson.toJson(tweets);
+		response.getWriter().write(json.toString());
 	}
 
 }

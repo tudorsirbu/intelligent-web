@@ -2,10 +2,12 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="CSS/formStyle.css">
+<script src="javascript/jquery-1.11.0.js"></script>
+<script src="javascript/script.js"></script>
 </head>
 <body>
 
-<form action="TrackingServlet" method="get">
+<form action="TrackingServlet" method="get" id="trackingForm">
     <div>
         <label for="keyword/hashtag">Keyword/hashtag:</label>
         <input name="keywords" type="text" id="keywords" class="nms"/>
@@ -29,6 +31,8 @@
         <button name="submit" type="submit">Search for results!</button>
     </div>
 </form>
+
+<div id="results"></div>
 
 </body>
 </html>

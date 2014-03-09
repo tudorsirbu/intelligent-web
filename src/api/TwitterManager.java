@@ -1,4 +1,5 @@
 package api;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,7 +9,18 @@ import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterManager {	
 	
-	public String query(String keywords, Integer latitude, Integer longitude, Integer radius) {	
+	public List<Status> query(String keywords, String latitude, String longitude, String radius) {	
+		
+		Integer latitudeNumber, longitudeNumber, radiusNumber;
+		try {
+			longitudeNumber = Integer.parseInt(longitude);
+			latitudeNumber = Integer.parseInt(latitude);
+			radiusNumber = Integer.parseInt(radius);
+		} catch (NumberFormatException e) {
+			radiusNumber = null;
+			latitudeNumber = null;
+			longitudeNumber = null;
+		}
 		
 		String[] keywordsArray = keywords.split(",");
 		
@@ -21,51 +33,23 @@ public class TwitterManager {
 			e.printStackTrace();	
 		}
 		
-		String resultString = "";	
-		FoursquareManager fs = new FoursquareManager();
-		Pattern urlPattern = Pattern.compile("\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
+		List<Status> tweets = new ArrayList<Status>();
 		
 		try {
 			for(String keyword:keywordsArray) {
 				Query query = new Query(keyword.trim());	
 				query.setCount(10);
-				if(longitude != null && latitude != null) {
-					if(radius == null)
-						radius = 3;
+				if(longitudeNumber != null && latitudeNumber != null) {
+					if(radiusNumber == null)
+						radiusNumber = 3;
 					
-					query.setGeoCode(new GeoLocation(latitude, longitude), radius, Query.KILOMETERS);	
+					query.setGeoCode(new GeoLocation(latitudeNumber, longitudeNumber), radiusNumber, Query.KILOMETERS);	
 				}
 
 				//it fires the query	
 				QueryResult result = twitterConnection.search(query);	
 				//it cycles on the tweets	
-				List<Status> tweets = result.getTweets();
-
-				for (Status tweet:tweets) {
-					// Gets the user 		
-					User user = tweet.getUser();
-
-					/* Only access foursquare if the user mentions it in his tweet. */
-					if (tweet.getText().toLowerCase().contains("foursquare") == true) {
-						Matcher m = urlPattern.matcher(tweet.getText());
-
-						while (m.find()) {
-							System.out.println(m.group());
-							fs.getLocationInformation(m.group());
-						}					
-					}
-
-					/* Display the tweets. */
-					Status status = user.isGeoEnabled() ? user.getStatus() : null;
-					resultString+="@" + user.getName() + " - " + tweet.getText();
-					if (status==null) {
-						resultString += " (" + user.getLocation() + ") \n";						
-					} 	
-					else {
-						String coordinates = status.getGeoLocation().getLatitude() + "," + status.getGeoLocation().getLongitude();
-						resultString += " (" + (status!=null && status.getGeoLocation() != null ? coordinates : user.getLocation()) + ") \n";						
-					}
-				}
+				tweets.addAll(result.getTweets());	
 			}	
 		} 
 		catch (Exception e) {	
@@ -74,7 +58,7 @@ public class TwitterManager {
 			System.exit(-1);	
 		}	
 		
-		return resultString;	
+		return tweets;	
 	}
 
 	private Twitter init() throws Exception{	
