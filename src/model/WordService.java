@@ -40,7 +40,8 @@ public class WordService {
 			ResultSet results = statement.executeQuery(query);
 
 			// go through results and whether any words have been returned
-			while(results.next())
+			results.last();
+			if(results.getRow() == 0)
 				unique = false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -66,11 +67,11 @@ public class WordService {
 			// create statement
 			statement = connection.createStatement();
 			// query the database
-			String query = "SELECT FROM words WHERE `word` = '" + word + "'";
+			String query = "SELECT * FROM words WHERE `word`='" + word + "';";
 			ResultSet results = statement.executeQuery(query);
 			// get the word 
-			while(results.next())
-				return results.getInt("id");
+			while(results.next()){
+				return results.getInt("id"); }
 			
 		} catch (SQLException e){
 			e.printStackTrace();
@@ -90,7 +91,7 @@ public class WordService {
 			// create statement
 			statement = connection.createStatement();
 			// query the database
-			String query = "SELECT FROM words WHERE `id` = '" + id + "'";
+			String query = "SELECT * FROM words WHERE `id` = '" + id + "'";
 			ResultSet results = statement.executeQuery(query);
 			// get the word 
 			while(results.next())
@@ -108,21 +109,18 @@ public class WordService {
 	 * @return true if the insert was successful and false otherwise
 	 */
 	public boolean insertWord(String word){
-		// check is the word is unique 
-		if (!isUnique(word))
-			return false;
 		// if the word is unique add it to the database
 		try {
 			//  statement for query execution
 			statement = connection.createStatement();
 			// query 
-			String query = "INSERT INTO words (`word`) values('"+ word +"')";
+			String query = "INSERT IGNORE INTO words (`word`) values ('"+ word +"')";
 			// Updating Table
 			statement.executeUpdate(query); 
 			return true;
 		}
 		catch (Exception e) {
-			System.out.println(e.toString());
+			e.printStackTrace();
 		} finally {
 			try {
 				statement.close();

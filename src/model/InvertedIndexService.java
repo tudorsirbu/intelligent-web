@@ -1,9 +1,9 @@
 package model;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 /**
  * The class handles opertation on the inverted index table.
@@ -18,25 +18,33 @@ public class InvertedIndexService {
 		this.connection = connection;
 	}
 
-	public void createIndex(String word, String userID, Date tweetDate){
+	public void createIndex(String word, String userID, Date tweetDate, int count){
 		// get the word id
 		WordService wordService = new WordService(connection);
 		int wordID = wordService.getWordId(word);
+		// if the wordID = -1 then the word is not found in the database
+		if(wordID == -1){
+			// insert the word in the db
+			wordService.insertWord(word);
+			// get the word's id
+			wordID = wordService.getWordId(word);
+		}
 		
-		// parse date to string
-		String date = tweetDate.toString();
+		// convert date to sql format
+//		java.sql.Date date = new java.sql.Date(tweetDate.getTime());
+		java.sql.Timestamp date = new java.sql.Timestamp(tweetDate.getTime());
 		
 		try {
 			//  statement for query execution
 			statement = connection.createStatement();
 			// query 
-			String query = "INSERT INTO inverted_index (`user_id`, `word_id`) values('"+ userID +"','" + wordID
-					+ "','" + date + "')";
+			String query = "INSERT INTO inverted_index (`user_id`, `word_id`, `count`, `date`) values('"+ userID +"','" + wordID
+					+ "','" + count + "','" + date + "')";
 			// Updating Table
 			statement.executeUpdate(query);          
 		}
 		catch (Exception e) {
-			System.out.println(e.toString());
+			e.printStackTrace();
 		} finally {
 			try {
 				statement.close();
