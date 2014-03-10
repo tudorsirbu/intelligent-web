@@ -15,7 +15,7 @@ public class MiniStatus {
 		User u = status.getUser();
 		
 		
-		this.profileImageUrl = u.getMiniProfileImageURL();
+		this.profileImageUrl = u.getProfileImageURL();
 		this.name = u.getName();
 		this.screenName = u.getScreenName();
 		this.text = status.getText();
