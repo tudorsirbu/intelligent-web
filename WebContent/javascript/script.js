@@ -1,5 +1,7 @@
 $(document).ready(function() {
 	
+	$("#results").hide(0);
+	
 	$("#trackingForm").submit(function( event ) {
 		
 		var obj = {};
@@ -25,9 +27,17 @@ $(document).ready(function() {
 	});
 });
 
+
 function displayTweets(data) {
+	$("#results").show(0);
 	$("#results").empty();
 	$.each(data, function( key, tweet ) {
-		$("#results").append("<div><img src='"+ tweet.user.profileImageUrl +"' /> @" + tweet.user.name + " - " + tweet.text + "</div>");
+		var div = "<div class='tweet'>";
+		div += "<img src='"+ tweet.user.profileImageUrl +"' />";
+		div += "<strong class='title'>" + tweet.user.name + "</strong>";
+		div += "<span class='screen_name'> @" + tweet.user.screenName + "</span>";
+		div += "<p class='text'>" + tweet.text + "</p>";
+		div += "</div>";	
+		$("#results").append(div);
 	});
 }

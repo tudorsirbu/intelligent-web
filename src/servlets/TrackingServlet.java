@@ -94,6 +94,7 @@ public class TrackingServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
 		Gson gson = new Gson();
 		
 		/* Build the string containing the JSON object so that it can be parsed by gson */

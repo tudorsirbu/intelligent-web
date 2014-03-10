@@ -1,4 +1,13 @@
+* {
+	font-family: "Lucida Grande";
+}
+
+body {
+	background-color: #8ec1da;
+}
+
 form {
+	background-color: #fff;
     /* Centre form */
     margin: 0 auto;
     width: 500px;
@@ -89,4 +98,68 @@ textarea {
 button {
 
     margin-left: .5em;
+}
+
+#results {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid #e1e8ed;
+	border-botton: 0;
+	margin-top: 20px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+.tweet {
+	background-color: #f5f8fa;
+	padding: 5px 10px;
+	clear: both;
+	border-bottom: 1px solid #e1e8ed;
+	min-height: 60px;
+}
+
+.tweet:first-child {
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-topright: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.tweet:last-child {
+	-webkit-border-bottom-right-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+.tweet:hover {
+	background-color: #fff;
+}
+
+.tweet img {
+	float: left;
+	padding: 5px 10px;
+}
+
+.tweet > .title {
+	margin-top: 5px;
+	font-weight: bold;
+	color: #292f33;
+	display: inline-block;
+}
+
+.tweet > .screen_name {
+	color: #999;	
+	font-size: 13px;
+}
+
+.tweet > p.text {
+	font-size: 14px;
+	margin: 0;
 }
