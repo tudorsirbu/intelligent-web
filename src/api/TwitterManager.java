@@ -41,8 +41,8 @@ public class TwitterManager {
 				query.setCount(10);
 				if(longitudeNumber != null && latitudeNumber != null) {
 					if(radiusNumber == null)
+						
 						radiusNumber = 3;
-					
 					query.setGeoCode(new GeoLocation(latitudeNumber, longitudeNumber), radiusNumber, Query.KILOMETERS);	
 				}
 
@@ -83,6 +83,30 @@ public class TwitterManager {
 		.setOAuthAccessTokenSecret(accessTokenSecret)	
 		.setJSONStoreEnabled(true);	
 		return (new TwitterFactory(cb.build()).getInstance());	
+	}
+
+	public List<Status> retweetsForStatus(String statusId) {
+		
+		long statusIdNumber = Long.parseLong(statusId);
+		List<Status> retweets = new ArrayList<Status>();
+
+		/* Connect to twitter. */
+		Twitter twitterConnection = null;	
+		try {	
+			twitterConnection = this.init();		 	 	 	
+		} catch (Exception e) {	
+			System.out.println("Cannot initialise Twitter.");	
+			e.printStackTrace();	
+		}
+		
+		try {
+			System.out.println("##################" +  statusIdNumber);
+			retweets = twitterConnection.getRetweets(statusIdNumber);
+
+		} catch (TwitterException e) {
+			e.printStackTrace();
+		}
+		return retweets;
 	}
 	
 }
