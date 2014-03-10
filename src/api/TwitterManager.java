@@ -1,14 +1,20 @@
 package api;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import model.DatabaseConnection;
+import model.InvertedIndexService;
 import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterManager {	
 	
-	public String query(String keywords, Integer latitude, Integer longitude, Integer radius) {	
+	public List<Status> query(String keywords, Integer latitude, Integer longitude, Integer radius) {	
 		
 		String[] keywordsArray = keywords.split(",");
 		
@@ -41,31 +47,7 @@ public class TwitterManager {
 				//it cycles on the tweets	
 				List<Status> tweets = result.getTweets();
 
-				for (Status tweet:tweets) {
-					// Gets the user 		
-					User user = tweet.getUser();
-
-					/* Only access foursquare if the user mentions it in his tweet. */
-					if (tweet.getText().toLowerCase().contains("foursquare") == true) {
-						Matcher m = urlPattern.matcher(tweet.getText());
-
-						while (m.find()) {
-							System.out.println(m.group());
-							fs.getLocationInformation(m.group());
-						}					
-					}
-
-					/* Display the tweets. */
-					Status status = user.isGeoEnabled() ? user.getStatus() : null;
-					resultString+="@" + user.getName() + " - " + tweet.getText();
-					if (status==null) {
-						resultString += " (" + user.getLocation() + ") \n";						
-					} 	
-					else {
-						String coordinates = status.getGeoLocation().getLatitude() + "," + status.getGeoLocation().getLongitude();
-						resultString += " (" + (status!=null && status.getGeoLocation() != null ? coordinates : user.getLocation()) + ") \n";						
-					}
-				}
+				return tweets;
 			}	
 		} 
 		catch (Exception e) {	
@@ -74,7 +56,7 @@ public class TwitterManager {
 			System.exit(-1);	
 		}	
 		
-		return resultString;	
+		return null;	
 	}
 
 	private Twitter init() throws Exception{	
@@ -100,5 +82,4 @@ public class TwitterManager {
 		.setJSONStoreEnabled(true);	
 		return (new TwitterFactory(cb.build()).getInstance());	
 	}
-	
 }
