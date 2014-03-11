@@ -19,4 +19,14 @@
     <servlet-name>TrackingServlet</servlet-name>
     <url-pattern>/TrackingServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RetweetsServlet</display-name>
+    <servlet-name>RetweetsServlet</servlet-name>
+    <servlet-class>servlets.RetweetsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RetweetsServlet</servlet-name>
+    <url-pattern>/RetweetsServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

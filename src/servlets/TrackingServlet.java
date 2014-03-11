@@ -3,6 +3,7 @@ package servlets;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -116,8 +117,17 @@ public class TrackingServlet extends HttpServlet {
 		TwitterManager tm = new TwitterManager();
 		List<Status> tweets = tm.query(tf.getKeywords(), tf.getRegionLat(), tf.getRegionLong(), tf.getRadius());
 		
+		for (Status t:tweets) {
+			System.out.println(t.getText()+" "+t.getId());
+		}
+		
+		List<MiniStatus> processedTweets = new ArrayList<MiniStatus>();
+		for (Status t:tweets) {
+			processedTweets.add(new MiniStatus(t));
+		}
+		
 		/* Create the response JSON */
-		String json = gson.toJson(tweets);
+		String json = gson.toJson(processedTweets);
 		response.getWriter().write(json.toString());
 	}
 

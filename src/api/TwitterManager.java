@@ -46,7 +46,7 @@ public class TwitterManager {
 		try {
 			for(String keyword:keywordsArray) {
 				Query query = new Query(keyword.trim());	
-				query.setCount(10);
+				query.setCount(100);
 				if(longitudeNumber != null && latitudeNumber != null) {
 					if(radiusNumber == null)
 						
@@ -98,25 +98,24 @@ public class TwitterManager {
 	public List<Status> retweetsForStatus(String statusId) {
 
 		long statusIdNumber = Long.parseLong(statusId);
-		List<Status> retweets = new ArrayList<Status>();
+		List<Status> retweets = null;
 
 		/* Connect to twitter. */
 		Twitter twitterConnection = null;	
 		try {	
 			twitterConnection = this.init();		 	 	 	
-		} catch (Exception e) {	
-			System.out.println("Cannot initialise Twitter.");	
-			e.printStackTrace();	
-		}
-
-		
-		try {
-			System.out.println("##################" +  statusIdNumber);
+			
+			System.out.println("################## aici" +  statusIdNumber);
 			retweets = twitterConnection.getRetweets(statusIdNumber);
-
+			
 		} catch (TwitterException e) {
 			e.printStackTrace();
-		}
+		} catch (Exception e) {	
+			System.out.println("Cannot initialise Twitter.");	
+			e.printStackTrace();
+		} 
+		
+		System.out.println(retweets);
 		
 		return retweets;
 	}

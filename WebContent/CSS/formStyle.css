@@ -112,12 +112,34 @@ button {
 	border-radius: 10px;
 }
 
-.tweet {
+.extended_tweet {
+	background-color: #000;
+}
+
+.tweet, .retweet {
 	background-color: #f5f8fa;
 	padding: 5px 10px;
 	clear: both;
-	border-bottom: 1px solid #e1e8ed;
 	min-height: 60px;
+}
+
+.tweet {
+	border-bottom: 1px solid #e1e8ed;
+}
+
+.retweet {
+	border-left: 1px solid #e1e8ed;
+	margin-left: 60px;
+}
+
+.tweet a, .retweet a {
+	color: #999;
+	text-decoration: none;
+	font-size: 12px;
+}
+
+.tweet a:hover, .retweet a:hover {
+	color: #0084B4 solid #e1e8ed;
 }
 
 .tweet:first-child {
@@ -138,28 +160,28 @@ button {
 	border-bottom-left-radius: 10px;
 }
 
-.tweet:hover {
+.tweet:hover, .retweet:hover {
 	background-color: #fff;
 }
 
-.tweet img {
+.tweet img, .retweet img {
 	float: left;
 	padding: 5px 10px;
 }
 
-.tweet > .title {
+.tweet > .title, .retweet > .title {
 	margin-top: 5px;
 	font-weight: bold;
 	color: #292f33;
 	display: inline-block;
 }
 
-.tweet > .screen_name {
+.tweet > .screen_name, .retweet > .screen_name {
 	color: #999;	
 	font-size: 13px;
 }
 
-.tweet > p.text {
+.tweet > p.text, .retweet > p.text {
 	font-size: 14px;
 	margin: 0;
 }

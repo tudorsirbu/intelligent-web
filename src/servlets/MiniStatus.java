@@ -14,12 +14,18 @@ public class MiniStatus {
 		// get the user
 		User u = status.getUser();
 		
-		
 		this.profileImageUrl = u.getProfileImageURL();
 		this.name = u.getName();
 		this.screenName = u.getScreenName();
-		this.text = status.getText();
-		this.retweetCount = String.valueOf(status.getRetweetCount());
+		if(status.isRetweet()) {
+			this.text = "RT " + status.getRetweetedStatus().getText();
+		}
+		else
+			this.text = status.getText();
+		if(!status.isRetweet())
+			this.retweetCount = String.valueOf(status.getRetweetCount());
+		else 
+			this.retweetCount = "0";
 	}
 
 	public String getProfileImageUrl() {
