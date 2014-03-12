@@ -122,6 +122,7 @@ public class TwitterManager {
 	}
 	//Returns the string of venues the user visited in the last x days
 	public String getVenues(String userID, Integer days){
+		String venues=null;
 
 		/* Connect to twitter. */
 		Twitter twitterC = null;	
@@ -160,10 +161,27 @@ public class TwitterManager {
 		}
 		//Go through statusses and if they contain a foursqauare checkin the get the name of the venue
 		//and add it to the responseString
+		FoursquareManager fm = new FoursquareManager();
+		for(Status status : sortedStatusses){
+			String url = extractURL(status);
+			String name = fm.getVenueName(url);
+			if(name!=null)
+				venues+=name+"/n";	
+		}
 		
 		
+		return venues;
+	}
+	
+	
+	//Extracts the url from a status
+	public String extractURL(Status status){
+		String stsTxt = status.getText();
+		Pattern pURL = Pattern.compile("\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]", Pattern.DOTALL);
+		Matcher matcher = pURL.matcher(stsTxt);
+		String url = (matcher.matches()) ? matcher.group(1) : "";
+		return url;
 		
-		return null;
 	}
 
 		/**

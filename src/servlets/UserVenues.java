@@ -40,8 +40,13 @@ public class UserVenues extends HttpServlet {
 		if(submit != null){	
 			
 			TwitterManager tm = new TwitterManager();
-			if(days!=0)
-			out.println(tm.getVenues(userID, days));
+			
+			if(days!=0){
+				if(tm.getVenues(userID, days)!=null)
+					out.println(tm.getVenues(userID, days));
+				else
+					out.println();		
+			}
 			else
 				out.println();
 		} else {	
