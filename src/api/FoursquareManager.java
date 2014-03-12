@@ -105,9 +105,7 @@ public class FoursquareManager {
 			}
 
 			Checkin cc = checkin.getResult();
-			CompactUser user= cc.getUser();
 			CompactVenue venue= cc.getVenue();
-			Location loc= venue.getLocation();
 			venueName = venue.getName();
 
 		}

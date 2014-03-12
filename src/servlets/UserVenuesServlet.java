@@ -4,23 +4,24 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import api.FoursquareManager;
 import api.TwitterManager;
 
 /**
- * Servlet implementation class TrackingServlet
+ * Servlet implementation class UserVenuesServlet
  */
-public class UserVenues extends HttpServlet {
+@WebServlet("/UserVenuesServlet")
+public class UserVenuesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserVenues() {
+    public UserVenuesServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +34,7 @@ public class UserVenues extends HttpServlet {
 		PrintWriter out = response.getWriter();	
 		out.println("<h2>Results</h2>");	
 
-		String userID = request.getParameter("user_id");
+		Long userID = Long.parseLong(request.getParameter("user_id"));
 		Integer days = Integer.parseInt(request.getParameter("days"));
 		String submit = request.getParameter("submit");
 		
@@ -45,10 +46,10 @@ public class UserVenues extends HttpServlet {
 				if(tm.getVenues(userID, days)!=null)
 					out.println(tm.getVenues(userID, days));
 				else
-					out.println();		
+					out.println("Cant get the venues for that user!");		
 			}
 			else
-				out.println();
+				out.println("Days cant be 0 just yet");
 		} else {	
 			out.println("No text entered.");	
 		}	
