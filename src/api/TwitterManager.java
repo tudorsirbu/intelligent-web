@@ -1,5 +1,6 @@
 package api;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -49,7 +50,7 @@ public class TwitterManager {
 				query.setCount(100);
 				if(longitudeNumber != null && latitudeNumber != null) {
 					if(radiusNumber == null)
-						
+
 						radiusNumber = 3;
 
 					query.setGeoCode(new GeoLocation(latitudeNumber, longitudeNumber), radiusNumber, Query.KILOMETERS);	
@@ -104,134 +105,179 @@ public class TwitterManager {
 		Twitter twitterConnection = null;	
 		try {	
 			twitterConnection = this.init();		 	 	 	
-			
+
 			System.out.println("################## aici" +  statusIdNumber);
 			retweets = twitterConnection.getRetweets(statusIdNumber);
-			
+
 		} catch (TwitterException e) {
 			e.printStackTrace();
 		} catch (Exception e) {	
 			System.out.println("Cannot initialise Twitter.");	
 			e.printStackTrace();
 		} 
-		
+
 		System.out.println(retweets);
-		
+
 		return retweets;
 	}
+	//Returns the string of venues the user visited in the last x days
+	public String getVenues(String userID, Integer days){
 
-	/**
-	 * The method gets the tweets for the provided ids and indexes them
-	 * @param twitter the twitter api connection
-	 * @param ids the ids of the users that are being queried 
-	 */
-	public void usersQuery(long[] ids){
-		// for each user id
-		for(long id : ids){
-			// get the user's statuses 
-			ResponseList<Status> statuses = getTweets(id);
-
-			// index each status
-			for(Status status : statuses){
-				// create inveted index
-				createInvertedIndex(status);
-			}
-		}
-	}
-
-	/**
-	 * The method retrieves all the statuses of a user
-	 * @param twitter the twitter connection to the api
-	 * @param id the id of the user for which the statuses are retrieved
-	 * @return the retrieved statuses
-	 */
-	public ResponseList<Status> getTweets(long id){
-		// connect to twitter
-		Twitter twitter = null;	
+		/* Connect to twitter. */
+		Twitter twitterC = null;	
 		try {	
-			twitter = this.init();		 	 	 	
+			twitterC = this.init();		 	 	 		
+		} catch (TwitterException e) {
+			e.printStackTrace();
 		} catch (Exception e) {	
 			System.out.println("Cannot initialise Twitter.");	
-			e.printStackTrace();	
-		}
+			e.printStackTrace();
+		} 
 
 		// list of statuses
 		ResponseList<Status> statuses = null;
 
 		// get the user's timeline
 		try {
-			statuses = twitter.getUserTimeline(id, new Paging(1,100));
+			statuses = twitterC.getUserTimeline(userID, new Paging(1,100));
 		} catch (TwitterException e) {
-			System.out.println("Could not retrieve user's (" + id + ") timeline.");
+			System.out.println("Could not retrieve user's (" + userID + ") timeline.");
 			e.printStackTrace();
 		}
-
-		return statuses;
+		
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.DAY_OF_MONTH, -days);
+		Date daysAgo = new Date(c.getTimeInMillis());
+		
+		ResponseList<Status> sortedStatusses = null;
+		//Sort the statusses according to how old they need to be #days
+		for(Status status : statuses){
+			//Create a list with only the statuses from #days ago
+			Date statusDate = new Date();
+			statusDate = status.getCreatedAt();
+			if(statusDate.compareTo(daysAgo)>=0)
+				sortedStatusses.add(status);
+		}
+		//Go through statusses and if they contain a foursqauare checkin the get the name of the venue
+		//and add it to the responseString
+		
+		
+		
+		return null;
 	}
-	
-	/**
-	 * The method performs an inverted index on a provided status
-	 * @param status the status to be indexed
-	 */
-	public void createInvertedIndex(Status status) {
-		// get the text of the status
-		String statusText = status.getText();
 
-		// get the date of the status
-		Date date = status.getCreatedAt();
+		/**
+		 * The method gets the tweets for the provided ids and indexes them
+		 * @param twitter the twitter api connection
+		 * @param ids the ids of the users that are being queried 
+		 */
+		public void usersQuery(long[] ids){
+			// for each user id
+			for(long id : ids){
+				// get the user's statuses 
+				ResponseList<Status> statuses = getTweets(id);
 
-		// get the user id
-		String userID = Long.toString(((status.getUser()).getId()));
-
-		// remove hashtags
-		statusText = statusText.replaceAll("#\\w", "");
-
-		// remove all user calls (@username)
-		statusText = statusText.replaceAll("@\\w", "");
-
-		// remove URLs
-		statusText = statusText.replaceAll("\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]", "");
-
-		// remove the RTs
-		statusText= statusText.replaceAll("\\bRT\\b", "");
-
-		// split the string into words
-		String[] tweetWords = statusText.split(" ");
-
-		// use HashMap to count how many times a word appears in a tweet
-		HashMap<String, Integer> words = new HashMap<String,Integer>();
-
-		// count # of appearances of a word in a tweet
-		for(String word:tweetWords){
-			if(words.get(word) == null)
-				words.put(word, 1);
-			else{
-				int count = words.get(word) + 1;
-				words.remove(word);
-				words.put(word, count);
-			}		
+				// index each status
+				for(Status status : statuses){
+					// create inveted index
+					createInvertedIndex(status);
+				}
+			}
 		}
 
-		// iterator used to go through the HashMap
-		java.util.Iterator<Entry<String, Integer>> i =  words.entrySet().iterator();
+		/**
+		 * The method retrieves all the statuses of a user
+		 * @param twitter the twitter connection to the api
+		 * @param id the id of the user for which the statuses are retrieved
+		 * @return the retrieved statuses
+		 */
+		public ResponseList<Status> getTweets(long id){
+			// connect to twitter
+			Twitter twitter = null;	
+			try {	
+				twitter = this.init();		 	 	 	
+			} catch (Exception e) {	
+				System.out.println("Cannot initialise Twitter.");	
+				e.printStackTrace();	
+			}
 
-		while(((QueryResult) i).hasNext()){
-			Map.Entry<String, Integer> pairs = (Map.Entry) i.next();
+			// list of statuses
+			ResponseList<Status> statuses = null;
 
-			// get the word and bring it to lowercase
-			String word = pairs.getKey().toLowerCase();
+			// get the user's timeline
+			try {
+				statuses = twitter.getUserTimeline(id, new Paging(1,100));
+			} catch (TwitterException e) {
+				System.out.println("Could not retrieve user's (" + id + ") timeline.");
+				e.printStackTrace();
+			}
 
-			// get the word count
-			int count = pairs.getValue();
+			return statuses;
+		}
 
-			// open a connection to the database
-			DatabaseConnection db = new DatabaseConnection();
+		/**
+		 * The method performs an inverted index on a provided status
+		 * @param status the status to be indexed
+		 */
+		public void createInvertedIndex(Status status) {
+			// get the text of the status
+			String statusText = status.getText();
 
-			// create a service for the inverted_index table
-			InvertedIndexService index = new InvertedIndexService(db.getConnection());
+			// get the date of the status
+			Date date = status.getCreatedAt();
 
-			// create the inverted index
-			index.createIndex(word, userID, date, count);
+			// get the user id
+			String userID = Long.toString(((status.getUser()).getId()));
+
+			// remove hashtags
+			statusText = statusText.replaceAll("#\\w", "");
+
+			// remove all user calls (@username)
+			statusText = statusText.replaceAll("@\\w", "");
+
+			// remove URLs
+			statusText = statusText.replaceAll("\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]", "");
+
+			// remove the RTs
+			statusText= statusText.replaceAll("\\bRT\\b", "");
+
+			// split the string into words
+			String[] tweetWords = statusText.split(" ");
+
+			// use HashMap to count how many times a word appears in a tweet
+			HashMap<String, Integer> words = new HashMap<String,Integer>();
+
+			// count # of appearances of a word in a tweet
+			for(String word:tweetWords){
+				if(words.get(word) == null)
+					words.put(word, 1);
+				else{
+					int count = words.get(word) + 1;
+					words.remove(word);
+					words.put(word, count);
+				}		
+			}
+
+			// iterator used to go through the HashMap
+			java.util.Iterator<Entry<String, Integer>> i =  words.entrySet().iterator();
+
+			while(((QueryResult) i).hasNext()){
+				Map.Entry<String, Integer> pairs = (Map.Entry) i.next();
+
+				// get the word and bring it to lowercase
+				String word = pairs.getKey().toLowerCase();
+
+				// get the word count
+				int count = pairs.getValue();
+
+				// open a connection to the database
+				DatabaseConnection db = new DatabaseConnection();
+
+				// create a service for the inverted_index table
+				InvertedIndexService index = new InvertedIndexService(db.getConnection());
+
+				// create the inverted index
+				index.createIndex(word, userID, date, count);
+			}
 		}
 	}
-}
