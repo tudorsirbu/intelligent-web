@@ -170,7 +170,7 @@ public class TwitterManager {
 				
 				String name = fm.getVenueName(url);
 				if(name!=null)
-					venues+="NU DE AICI "+name+"<br />";
+					venues+=name+"<br />";
 			}	
 		}
 		return venues;

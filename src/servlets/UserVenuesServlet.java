@@ -1,19 +1,13 @@
 package servlets;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import twitter4j.Status;
-
-import com.google.gson.Gson;
 
 import api.TwitterManager;
 
@@ -36,36 +30,32 @@ public class UserVenuesServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();	
+		out.println("<h2>Results</h2>");	
+
+		Long userID = Long.parseLong(request.getParameter("user_id"));
+		Integer days = Integer.parseInt(request.getParameter("days"));
+		String submit = request.getParameter("submit");
 		
-		// TODO Auto-generated method stub
-				response.setContentType("application/json");
-				response.setCharacterEncoding("UTF-8");
-				Gson gson = new Gson();
-				
-				/* Build the string containing the JSON object so that it can be parsed by gson */
-				StringBuilder sb = new StringBuilder();
-			    BufferedReader reader = request.getReader();
-			    try {
-			        String line;
-			        while ((line = reader.readLine()) != null) {
-			            sb.append(line).append('\n');
-			        }
-			    } finally {
-			        reader.close();
-			    }
-			    
-			    /* Parse the JSON object it got from the request */
-				UserVenuesForm tf = gson.fromJson(sb.toString(), UserVenuesForm.class);
-				
-				/* Get tweets according to the query parameters */
-				TwitterManager tm = new TwitterManager();
-				String responseStr = tm.getVenues(tf.getId(), tf.getDays());
-				
-				/* Create the response JSON */
-				String json = gson.toJson(responseStr);
-				response.getWriter().write(json.toString());
+		if(submit != null){	
+			
+			TwitterManager tm = new TwitterManager();
+			
+			if(days!=0){
+				if(tm.getVenues(userID, days)!=null)
+					out.println(tm.getVenues(userID, days));
+				else
+					out.println("Cant get the venues for that user!");		
 			}
-	
+			else
+				out.println("Days cant be 0 for now!!");
+		} else {	
+			out.println("No text entered.");	
+		}	
+		out.close();
+		
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
