@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import servlets.util.MiniStatus;
+import servlets.util.TrackingForm;
 import twitter4j.Status;
 import twitter4j.User;
 
@@ -20,6 +22,8 @@ import com.google.gson.Gson;
 
 import api.FoursquareManager;
 import api.TwitterManager;
+
+import servlets.util.*;
 
 /**
  * Servlet implementation class TrackingServlet
@@ -99,16 +103,7 @@ public class TrackingServlet extends HttpServlet {
 		Gson gson = new Gson();
 		
 		/* Build the string containing the JSON object so that it can be parsed by gson */
-		StringBuilder sb = new StringBuilder();
-	    BufferedReader reader = request.getReader();
-	    try {
-	        String line;
-	        while ((line = reader.readLine()) != null) {
-	            sb.append(line).append('\n');
-	        }
-	    } finally {
-	        reader.close();
-	    }
+		StringBuilder sb = Util.jsonRequestToString(request);
 	    
 	    /* Parse the JSON object it got from the request */
 		TrackingForm tf = gson.fromJson(sb.toString(), TrackingForm.class);

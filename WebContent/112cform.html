@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link rel="stylesheet" type="text/css" href="CSS/reset.css">
 <link rel="stylesheet" type="text/css" href="CSS/formStyle.css">
+
+<script src="javascript/jquery-1.11.0.js"></script>
+<script src="javascript/script.js"></script>
 </head>
 <body>
 
-<form action="" method="get">
-    <div>
-        <label for="name_location">Name of location:</label>
-        <input type="text" id="name_location" class="nms"/>
-    </div>
-     <div>
-    	<p>Coordinates of location</p>
-    </div>
-    <div>
-    	<label for="region_lat">Latitude:</label>
-        <input name="region_lat" type="text" id="location_lat" class="geo"/>
-    </div>
-    <div>
-        <label for="region_long">Longitude:</label>
-        <input name="region_long" type="text" id="location_long" class="geo" />
-    </div>
-    <div>
-    	<label for="days">Currently being visited or has been visited in the last:<input name="days" type="number" id="days" class="nmb"/> days</label>   
-    </div> 
-    <div class="button">
-        <button name="submit" type="submit">Search for results!</button>
-    </div>
-</form>
+<form action="" method="get" id="byVenueForm">
+		<div>
+			<label for="location_name">Name of location:</label> <input
+				type="text" id="location_name" class="nms" />
+		</div>
+		<div>
+			<p>Coordinates of location</p>
+		</div>
+		<div>
+			<label for="location_lat">Latitude:</label> <input name="location_lat"
+				type="text" id="location_lat" class="geo" />
+		</div>
+		<div>
+			<label for="location_long">Longitude:</label> <input name="location_long"
+				type="text" id="location_long" class="geo" />
+		</div>
+		<div>
+			<label for="days">Currently being visited or has been visited
+				in the last: <input name="days" type="number" id="days" class="nmb" /> days
+			</label>
+		</div>
+		<div class="button">
+			<button name="submit" type="submit">Search for results!</button>
+		</div>
+	</form>
 
 </body>
 </html>

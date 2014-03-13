@@ -1,28 +1,39 @@
 package api;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import javax.swing.text.html.HTMLDocument.Iterator;
-
+import fi.foyt.foursquare.api.entities.CompactVenue;
 import model.DatabaseConnection;
 import model.InvertedIndexService;
-import twitter4j.*;
+import twitter4j.GeoLocation;
+import twitter4j.Paging;
+import twitter4j.Query;
+import twitter4j.QueryResult;
+import twitter4j.ResponseList;
+import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.User;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterManager {	
 
 	public List<Status> query(String keywords, String latitude, String longitude, String radius) {	
-
-		Integer latitudeNumber, longitudeNumber, radiusNumber;
+		
+		Integer radiusNumber;
+		Double latitudeNumber, longitudeNumber;
 		try {
-			longitudeNumber = Integer.parseInt(longitude);
-			latitudeNumber = Integer.parseInt(latitude);
+			longitudeNumber = Double.parseDouble(longitude);
+			latitudeNumber = Double.parseDouble(latitude);
 			radiusNumber = Integer.parseInt(radius);
 		} catch (NumberFormatException e) {
 			radiusNumber = null;
@@ -70,6 +81,67 @@ public class TwitterManager {
 		return tweets;	
 	}
 
+	public HashSet<User> queryByLocation(String locationName, String locationLat, String locationLong, String days) {	
+
+		Integer daysNumber;
+		Double latitudeNumber, longitudeNumber; 
+		try {
+			longitudeNumber = Double.parseDouble(locationLong);
+			latitudeNumber = Double.parseDouble(locationLat);
+			daysNumber = Integer.parseInt(days);
+		} catch (NumberFormatException e) {
+			daysNumber = null;
+			latitudeNumber = null;
+			longitudeNumber = null;
+		}
+
+		/* Connect to twitter. */
+		Twitter twitterConnection = null;	
+		try {	
+			twitterConnection = this.init();		 	 	 	
+		} catch (Exception e) {	
+			System.out.println("Cannot initialise Twitter.");	
+			e.printStackTrace();	
+		}
+
+		List<Status> tweets = new ArrayList<Status>();
+		HashSet<User> users = new HashSet<>();
+		
+		try { 
+			if (latitudeNumber != null && longitudeNumber != null) {
+				Query query = new Query();	
+				query.setCount(100);
+				query.setGeoCode(new GeoLocation(latitudeNumber, longitudeNumber), 3, Query.KILOMETERS);				
+				
+				if(daysNumber > 0) {
+					Calendar calendar = Calendar.getInstance();
+					calendar.add(Calendar.DAY_OF_MONTH, -daysNumber);
+					SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
+					query.setSince(format.format(calendar.getTime()));
+				}
+				
+				//it fires the query	
+				QueryResult result = twitterConnection.search(query);	
+				//it cycles on the tweets	
+				tweets.addAll(result.getTweets());	
+				
+				System.out.println(tweets.size());
+				
+				for (Status tweet:tweets) {
+					users.add(tweet.getUser());
+				}
+			}
+		} 
+		catch (Exception e) {	
+			e.printStackTrace(); 	
+			System.out.println("Failed to search tweets:" + e.getMessage());	
+			System.exit(-1);	
+		}	
+
+		return users;	
+	}
+
+	
 	private Twitter init() throws Exception{	
 		String consumerkey = "H4VHRaf8ybmPhzzK47uQ";	
 		String consumersecret = "y6oxNsvuoauf4sPcGU45Ct5eVfryYlai5TUBU92Uxbk";	

@@ -1,4 +1,4 @@
-package servlets;
+package servlets.util;
 import twitter4j.*;
 public class MiniStatus {
 	private String profileImageUrl;

@@ -1,4 +1,4 @@
-package servlets;
+package servlets.util;
 
 public class TrackingForm {
 

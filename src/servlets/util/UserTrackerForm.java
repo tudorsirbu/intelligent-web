@@ -1,4 +1,4 @@
-package servlets;
+package servlets.util;
 /**
  * The class stores the information collected from a form completion
  * @author tudorsirbu

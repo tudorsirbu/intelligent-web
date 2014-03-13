@@ -29,4 +29,14 @@
     <servlet-name>RetweetsServlet</servlet-name>
     <url-pattern>/RetweetsServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ByVenueServlet</display-name>
+    <servlet-name>ByVenueServlet</servlet-name>
+    <servlet-class>servlets.ByVenueServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ByVenueServlet</servlet-name>
+    <url-pattern>/ByVenueServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

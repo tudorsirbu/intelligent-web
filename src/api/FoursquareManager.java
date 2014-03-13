@@ -2,16 +2,27 @@ package api;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import fi.foyt.foursquare.api.*;
-import fi.foyt.foursquare.api.entities.*;
+import twitter4j.User;
+import fi.foyt.foursquare.api.FoursquareApi;
+import fi.foyt.foursquare.api.FoursquareApiException;
+import fi.foyt.foursquare.api.Result;
+import fi.foyt.foursquare.api.entities.Checkin;
+import fi.foyt.foursquare.api.entities.CompactUser;
+import fi.foyt.foursquare.api.entities.CompactVenue;
+import fi.foyt.foursquare.api.entities.CompleteTip;
+import fi.foyt.foursquare.api.entities.Location;
+import fi.foyt.foursquare.api.entities.VenuesSearchResult;
 
 public class FoursquareManager {
 
-	public void getLocationInformation(String shortURLs) {
-		
+	private FoursquareApi init() {
 		String clientID = "JRIYO5DDJ43NBLDNNU3PH1URI0RQ4ZA3TTHEDPFDPYOC2C5L";
 		String clientSecret = "QUIFUD44KU22UDMZUD0FQFRPWH21I2H4Y1J3CSWISUWOMZ1R";
 		String redirectUrl = "http://www.sheffield.ac.uk";
@@ -19,6 +30,13 @@ public class FoursquareManager {
 
 		FoursquareApi fsAPI = new FoursquareApi(clientID, clientSecret, redirectUrl);
 		fsAPI.setoAuthToken(accessToken);
+		
+		return fsAPI;
+	}
+	
+	public void getLocationInformation(String shortURLs) {
+		
+		FoursquareApi fsAPI = this.init();
 		String url = expandUrl(shortURLs);
 
 		//if it is not a 4square login url then we return!
@@ -73,6 +91,65 @@ public class FoursquareManager {
 			System.out.println(tip.getResult().getText());
 
 		}
+	}
+	
+	public HashSet<CompactUser> queryByLocation(String locationName, String locationLat, String locationLong, String days) {
+		/* 
+		 * 
+		 * https://developer.foursquare.com/docs/checkins/recent
+		 * 
+		 */
+		
+		FoursquareApi fs = this.init();
+		HashSet<CompactUser> users = new HashSet<CompactUser>();
+		
+		try {
+			Result<Checkin[]> result = fs.checkinsRecent(locationLat + "," + locationLong, 100, (long) 5);
+			
+			Map<String, String> searchParameters = new HashMap<String, String>();
+			searchParameters.put("ll", "53, -1");
+			
+			if (result.getMeta().getCode() == 200) {
+				Checkin[] checkins = result.getResult();
+				System.out.println("INTRU AICI!");
+				for (Checkin checkin : checkins) {
+					System.out.println(checkin.getId());
+					users.add(checkin.getUser());
+				}
+			}
+		} catch (FoursquareApiException e) {
+			e.printStackTrace();
+		}
+		
+		return users;
+	}
+	
+	public CompactVenue[] getVenues(String location) {
+		/* 
+		 * 
+		 * https://developer.foursquare.com/docs/venues/search 
+		 * 
+		 */
+		FoursquareApi fs = this.init();
+		
+		try {
+			String[] splittedLocation = location.split(",");
+			
+			Map<String, String> searchParams = new HashMap<String, String>();
+			searchParams.put("query", splittedLocation[0].trim());
+			searchParams.put("near", splittedLocation[1].trim());	
+			
+			Result<VenuesSearchResult> result = fs.venuesSearch(searchParams);
+			System.out.println(result.getMeta().getCode());
+			if (result.getMeta().getCode() == 200) {
+				return result.getResult().getVenues();
+			}
+			
+		} catch (FoursquareApiException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 	private String expandUrl(String shortURLs) {
