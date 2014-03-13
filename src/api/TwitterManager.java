@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import fi.foyt.foursquare.api.entities.CompactVenue;
 import model.DatabaseConnection;
@@ -60,7 +62,7 @@ public class TwitterManager {
 				query.setCount(100);
 				if(longitudeNumber != null && latitudeNumber != null) {
 					if(radiusNumber == null)
-						
+
 						radiusNumber = 3;
 
 					query.setGeoCode(new GeoLocation(latitudeNumber, longitudeNumber), radiusNumber, Query.KILOMETERS);	
@@ -176,20 +178,94 @@ public class TwitterManager {
 		Twitter twitterConnection = null;	
 		try {	
 			twitterConnection = this.init();		 	 	 	
-			
+
 			System.out.println("################## aici" +  statusIdNumber);
 			retweets = twitterConnection.getRetweets(statusIdNumber);
-			
+
 		} catch (TwitterException e) {
 			e.printStackTrace();
 		} catch (Exception e) {	
 			System.out.println("Cannot initialise Twitter.");	
 			e.printStackTrace();
 		} 
-		
+
 		System.out.println(retweets);
-		
+
 		return retweets;
+	}
+	//Returns the string of venues the user visited in the last x days
+	public String getVenues(Long userID, Integer days){
+		String venues=null;
+
+		/* Connect to twitter. */
+		Twitter twitterC = null;	
+		try {	
+			twitterC = this.init();		 	 	 		
+		} catch (TwitterException e) {
+			e.printStackTrace();
+		} catch (Exception e) {	
+			System.out.println("Cannot initialise Twitter.");	
+			e.printStackTrace();
+		} 
+
+		// list of statuses
+		ResponseList<Status> statuses = null;
+
+		// get the user's timeline
+		try {
+			statuses = twitterC.getUserTimeline(userID, new Paging(1,100));
+		} catch (TwitterException e) {
+			System.out.println("Could not retrieve user's (" + userID + ") timeline.");
+			e.printStackTrace();
+		}
+
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.DAY_OF_MONTH, -days);
+		Date daysAgo = new Date(c.getTimeInMillis());
+		List<Status> sts = new ArrayList<Status>();
+		//Sort the statusses according to how old they need to be #days
+		for(Status status : statuses){
+			//Create a list with only the statuses from #days ago
+			Date statusDate = new Date();
+			statusDate = status.getCreatedAt();
+			if(statusDate.compareTo(daysAgo)>=0){
+				sts.add(status);
+			}
+
+		}
+		//Go through statusses and if they contain a foursqauare checkin the get the name of the venue
+		//and add it to the responseString
+		FoursquareManager fm = new FoursquareManager();
+		for(Status status : sts){
+			ArrayList<String> urls = new ArrayList<String>();
+			urls = extractURL(status);
+			for(String url : urls){
+				
+				String name = fm.getVenueName(url);
+				if(name!=null)
+					venues+=name+"<br />";
+			}	
+		}
+		return venues;
+	}
+
+	//Pull all links from status
+	public ArrayList<String> extractURL(Status status) {
+		ArrayList<String> links = new ArrayList<String>();
+		String text = status.getText();
+		
+		String regex = "\\(?\\b(http://|www[.])[-A-Za-z0-9+&@#/%?=~_()|!:,.;]*[-A-Za-z0-9+&@#/%=~_()|]";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(text);
+		while(m.find()) {
+			String urlStr = m.group();
+			if (urlStr.startsWith("(") && urlStr.endsWith(")"))
+			{
+				urlStr = urlStr.substring(1, urlStr.length() - 1);
+			}
+			links.add(urlStr);
+		}
+		return links;
 	}
 
 	/**
@@ -240,7 +316,7 @@ public class TwitterManager {
 
 		return statuses;
 	}
-	
+
 	/**
 	 * The method performs an inverted index on a provided status
 	 * @param status the status to be indexed
