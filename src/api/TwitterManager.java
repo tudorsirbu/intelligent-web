@@ -462,6 +462,4 @@ public class TwitterManager {
 		}
 		return links;
 	}
-
-	
 }
