@@ -1,9 +1,11 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  * The class handles all the operations on the words table
@@ -20,6 +22,27 @@ public class WordService {
 	public WordService(Connection connection){
 		this.connection = connection;
 	}
+	
+	/**
+	 * The method retrieved the stop list as an array list of strings.
+	 * @return ArrayList<String> containing the stop list words
+	 */
+	public ArrayList<String> getStopList(){
+		ArrayList<String> stopList = new ArrayList<String>();
+		try {
+			statement = connection.createStatement();
+			String query = "SELECT word FROM words WHERE indexed = 0";
+			ResultSet results = statement.executeQuery(query);
+			while(results.next())
+				stopList.add(results.getString("word"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return stopList;
+	}
+	
 	/**
 	 * The method checks whether a given word is unique
 	 * @param word the word which is checked for uniqueness
@@ -32,12 +55,11 @@ public class WordService {
 
 		try {
 			// create statement
-			statement = connection.createStatement();
-
-			String query = "SELECT * FROM words";
-
+			String query = "SELECT * FROM words WHERE `word`='?'";
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, word);
 			// query the database
-			ResultSet results = statement.executeQuery(query);
+			ResultSet results = preparedStatement.executeQuery(query);
 
 			// go through results and whether any words have been returned
 			results.last();
@@ -114,7 +136,7 @@ public class WordService {
 			//  statement for query execution
 			statement = connection.createStatement();
 			// query 
-			String query = "INSERT IGNORE INTO words (`word`) values ('"+ word +"')";
+			String query = "INSERT IGNORE INTO words (`word`, `indexed`) values ('"+ word +"', '1')";
 			// Updating Table
 			statement.executeUpdate(query); 
 			return true;
