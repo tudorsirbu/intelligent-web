@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.DatabaseConnection;
+import model.UserService;
 import servlets.util.MiniStatus;
 import servlets.util.TrackingForm;
 import twitter4j.Status;
@@ -22,7 +24,6 @@ import com.google.gson.Gson;
 
 import api.FoursquareManager;
 import api.TwitterManager;
-
 import servlets.util.*;
 
 /**
@@ -119,6 +120,10 @@ public class TrackingServlet extends HttpServlet {
 		List<MiniStatus> processedTweets = new ArrayList<MiniStatus>();
 		for (Status t:tweets) {
 			processedTweets.add(new MiniStatus(t));
+			
+			UserService us = new UserService(new DatabaseConnection().getConnection());
+			User user = t.getUser();
+			us.insertUser(new model.User(String.valueOf(user.getId()), user.getName(), user.getScreenName(), user.getLocation(), user.getDescription(), user.getProfileImageURL(), null));
 		}
 		
 		/* Create the response JSON */

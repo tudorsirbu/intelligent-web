@@ -39,4 +39,14 @@
     <servlet-name>ByVenueServlet</servlet-name>
     <url-pattern>/ByVenueServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UsersServlet</display-name>
+    <servlet-name>UsersServlet</servlet-name>
+    <servlet-class>servlets.UsersServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UsersServlet</servlet-name>
+    <url-pattern>/UsersServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

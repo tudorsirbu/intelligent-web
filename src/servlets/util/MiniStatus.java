@@ -6,6 +6,7 @@ public class MiniStatus {
 	private String screenName;
 	private String text;
 	private String id;
+	private long user_id;
 	private String retweetCount;
 	
 	public MiniStatus(Status status){
@@ -17,6 +18,7 @@ public class MiniStatus {
 		this.profileImageUrl = u.getProfileImageURL();
 		this.name = u.getName();
 		this.screenName = u.getScreenName();
+		this.user_id = u.getId();
 		if(status.isRetweet()) {
 			this.text = "RT " + status.getRetweetedStatus().getText();
 		}
@@ -27,6 +29,19 @@ public class MiniStatus {
 		else 
 			this.retweetCount = "0";
 	}
+
+	
+	public long getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(long user_id) {
+		this.user_id = user_id;
+	}
+
+
+
+
 
 	public String getProfileImageUrl() {
 		return profileImageUrl;

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="CSS/reset.css">
+<link rel="stylesheet" type="text/css" href="CSS/formStyle.css">
+<link rel="stylesheet" type="text/css" href="CSS/jquery-ui-1.10.4.custom.min.css">
+
+<script src="javascript/jquery-1.11.0.js"></script>
+<script src="javascript/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="javascript/script.js"></script>
+</head>
+<body>
+
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Tracking</a></li>
+    <li><a href="#tabs-2">112a</a></li>
+    <li><a href="#tabs-3">112b</a></li>
+    <li><a href="#tabs-4">112c</a></li>
+  </ul>
+  <div id="tabs-1">
+	<form action="TrackingServlet" method="get" id="trackingForm">
+	    <div>
+	        <label for="keyword/hashtag">Keyword/hashtag:</label>
+	        <input name="keywords" type="text" id="keywords" class="nms" value="#IntelligentWebCOM3504" />
+	    </div>
+	    <div>
+	    	<p>Geographic region:</p>
+	    </div>
+	    <div>
+	    	<label for="region_lat">Latitude:</label>
+	        <input name="region_lat" type="text" id="region_lat" class="geo"/>
+	    </div>
+	    <div>
+	        <label for="region_long">Longitude:</label>
+	        <input name="region_long" type="text" id="region_long" class="geo" />
+	    </div>  
+	    <div>
+	    	<label for="radius">Radius:</label>
+	        <input name="radius" type="text" id="radius" class="geo"/>
+	    </div>
+	    <div class="button">
+	        <button name="submit" type="submit">Search for results!</button>
+	    </div>
+	</form>  	
+  </div>
+  <div id="tabs-2">
+  	<form action="" method="get">
+	    <div>
+	        <label for="user_ids">User IDs:</label>
+	        <textarea name="user_ids" rows="10" cols="1"></textarea>
+	    </div>
+	    <div>
+	    	<label for="keywords">Most:<input name="keywords" type="number" id="keywords" class="nmb" /> frequent keywords</label>   
+	    </div>
+	    <div>
+	        <label for="days">Last:<input name="days" type="number" id="days" class="nmb"/> days</label>
+	        
+	    </div>  
+	    <div class="button">
+	        <button name="submit" type="submit">Search for results!</button>
+	    </div>
+	</form>
+  </div>
+  <div id="tabs-3">
+	<form action="UserVenuesServlet" method="get" >
+	    <div>
+	        <label for="user_id">User ID:</label>
+	        <input name="user_id" type="text" id="user_id" class="nms" />
+	    </div>
+	    <div>
+	    	<label for="days">Points of interest the user has visited in the last:<input name="days" type="number" id="days" class="nmb"/> days</label>   
+	    </div> 
+	    <div class="button">
+	        <button name="submit" type="submit">Search for results!</button>
+	    </div>
+	</form>
+  </div>
+  <div id="tabs-4">
+	<form action="" method="get" id="byVenueForm">
+		<div>
+			<label for="location_name">Name of location:</label> <input
+				type="text" id="location_name" class="nms" />
+		</div>
+		<div>
+			<p>Coordinates of location</p>
+		</div>
+		<div>
+			<label for="location_lat">Latitude:</label> <input
+				name="location_lat" type="text" id="location_lat" class="geo" />
+		</div>
+		<div>
+			<label for="location_long">Longitude:</label> <input
+				name="location_long" type="text" id="location_long" class="geo" />
+		</div>
+		<div>
+			<label for="days">Currently being visited or has been visited
+				in the last: <input name="days" type="number" id="days" class="nmb" />
+				days
+			</label>
+		</div>
+		<div class="button">
+			<button name="submit" type="submit">Search for results!</button>
+		</div>
+	</form>
+  </div>
+</div>
+
+<div id="results"></div>
+
+</body>
+</html>

@@ -26,10 +26,10 @@ public class UserService {
 	
 	public User getUser(String id){
 		try {
-			String query = "SELECT * FROM users  WHERE `id`='?'";
+			String query = "SELECT * FROM users WHERE id = ?";
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setInt(1, Integer.parseInt(id));
-			ResultSet results = preparedStatement.executeQuery(query);
+			preparedStatement.setLong(1, Long.parseLong(id));
+			ResultSet results = preparedStatement.executeQuery();
 			while(results.next()){
 				String name = results.getString("name");
 				String username = results.getString("username");
@@ -58,27 +58,27 @@ public class UserService {
 		String description = user.getDescription();
 		String profilePictureURL = user.getProfilePicURL();
 
-
 		try {
 			//  statement for query execution
-			statement = connection.createStatement();
+			this.statement = this.connection.createStatement();
 			// query 
 			String query = "INSERT INTO users (`id`, `name`, `username`, "+
 					"`location`, `description`, `profilePictureURL`) values('"+id+"',"
 					+ "'"+name+"','"+username+"','"+ location+"','"+ description+"','"+ profilePictureURL+"')";
+			
+			System.out.println(query);
 			// Updating Table
-			statement.executeUpdate(query);          
+			this.statement.executeUpdate(query);          
 		}
 		catch (Exception e) {
 			System.out.println(e.toString());
 		} finally {
 			try {
-				statement.close();
+				this.statement.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-
 	}
 	
 	/**

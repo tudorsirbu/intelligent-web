@@ -169,11 +169,12 @@ button {
 	padding: 5px 10px;
 }
 
-.tweet > .title, .retweet > .title {
+.tweet > a.title, .retweet > a.title {
 	margin-top: 5px;
 	font-weight: bold;
 	color: #292f33;
 	display: inline-block;
+	font-size: 14px;
 }
 
 .tweet > .screen_name, .retweet > .screen_name {
@@ -184,4 +185,11 @@ button {
 .tweet > p.text, .retweet > p.text {
 	font-size: 14px;
 	margin: 0;
+}
+
+#tabs {
+	margin-left: auto;
+	margin-right: auto;
+	width: 600px;
+	margin-top:20px;
 }

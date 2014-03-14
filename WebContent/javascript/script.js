@@ -47,6 +47,8 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+	$( "#tabs" ).tabs();
 
 //$("#results").hide(0);
 //$("#userVenuesForm").submit(function( event ) {
@@ -80,7 +82,7 @@ function displayTweets(data) {
 	$.each(data, function( key, tweet ) {
 		var div = "<div class='tweet'>";
 		div += "<img src='"+ tweet.profileImageUrl +"' />";
-		div += "<strong class='title'>" + tweet.name + "</strong>";
+		div += "<a href='UsersServlet?user_id="+ tweet.user_id +"' class='title'>" + tweet.name + "</a>";
 		div += "<span class='screen_name'> @" + tweet.screenName + "</span>";
 		div += "<p class='text'>" + tweet.text + "</p>";
 		div += "<a href='" + tweet.id + "' class='get_retweets'>" + tweet.retweetCount + " retweets</a>";
