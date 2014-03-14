@@ -48,29 +48,47 @@ $(document).ready(function() {
 		});
 	});
 	
-	$( "#tabs" ).tabs();
+	$("#tabs").tabs();
 
-//$("#results").hide(0);
-//$("#userVenuesForm").submit(function( event ) {
+	$(".get_tweets").click(function(event) {
+		event.preventDefault();
 		
-	//	var obj = {};
-	//	obj.userID = $("#user_id").val();
-	//	obj.days = $("#days").val();
+		var data = JSON.stringify($(this).attr("href"));
+		console.log(data);
 		
-	//	var data = JSON.stringify(obj);
-		
-	//	$.ajax({
-	//		type: "post",
-		//	dataType: "json",
-		//	url: "UserVenuesServlet",
-		//	data: data,
-		//	success: function(tweets) {
-			//	console.log(tweets);
-			//	displayTweets(tweets);
-		//	}
-	//});
-		//event.preventDefault();
-//	});
+		$.ajax({
+			type: "post",
+			dataType: "json",
+			url: "UsersServlet",
+			data: data,
+			success: function(tweets) {
+				console.log(tweets);
+				displayTweets(tweets);
+			}
+		});
+	});
+	
+	//$("#results").hide(0);
+	//$("#userVenuesForm").submit(function( event ) {
+			
+		//	var obj = {};
+		//	obj.userID = $("#user_id").val();
+		//	obj.days = $("#days").val();
+			
+		//	var data = JSON.stringify(obj);
+			
+		//	$.ajax({
+		//		type: "post",
+			//	dataType: "json",
+			//	url: "UserVenuesServlet",
+			//	data: data,
+			//	success: function(tweets) {
+				//	console.log(tweets);
+				//	displayTweets(tweets);
+			//	}
+		//});
+			//event.preventDefault();
+	//	});
 
 	
 

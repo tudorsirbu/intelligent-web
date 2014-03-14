@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import servlets.util.MiniStatus;
+import servlets.util.Util;
 import twitter4j.Status;
 import api.TwitterManager;
 
@@ -45,16 +46,7 @@ public class RetweetsServlet extends HttpServlet {
 		Gson gson = new Gson();
 		
 		/* Build the string containing the JSON object so that it can be parsed by gson */
-		StringBuilder sb = new StringBuilder();
-	    BufferedReader reader = request.getReader();
-	    try {
-	        String line;
-	        while ((line = reader.readLine()) != null) {
-	            sb.append(line).append('\n');
-	        }
-	    } finally {
-	        reader.close();
-	    }
+		StringBuilder sb = Util.jsonRequestToString(request);
 	    
 	    /* Parse the JSON object it got from the request */
 		String statusId = gson.fromJson(sb.toString(), String.class);
