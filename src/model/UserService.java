@@ -28,7 +28,7 @@ public class UserService {
 		try {
 			String query = "SELECT * FROM users  WHERE `id`='?'";
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, id);
+			preparedStatement.setInt(1, Integer.parseInt(id));
 			ResultSet results = preparedStatement.executeQuery(query);
 			while(results.next()){
 				String name = results.getString("name");
