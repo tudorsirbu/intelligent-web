@@ -26,10 +26,11 @@ public class UserService {
 	
 	public User getUser(String id){
 		try {
-			String query = "SELECT * FROM users  WHERE `id`='?'";
+			String query = "SELECT * FROM users WHERE id = ?";
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, id);
-			ResultSet results = preparedStatement.executeQuery(query);
+			preparedStatement.setLong(1, Long.parseLong(id));
+			
+			ResultSet results = preparedStatement.executeQuery();
 			while(results.next()){
 				String name = results.getString("name");
 				String username = results.getString("username");
