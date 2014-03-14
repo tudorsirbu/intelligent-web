@@ -1,5 +1,6 @@
 package api;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.Map.Entry;
 import model.DatabaseConnection;
 import model.InvertedIndexService;
 import model.UserService;
+import model.WordService;
 import twitter4j.*;
 import util.Remover;
 
@@ -112,23 +114,29 @@ public class DiscussionsTracker {
 		// iterator used to go through the HashMap
 		java.util.Iterator<Entry<String, Integer>> i =  words.entrySet().iterator();
 
-		while(((QueryResult) i).hasNext()){
+		while(i.hasNext()){
 			Map.Entry<String, Integer> pairs = (Map.Entry) i.next();
 
 			// get the word and bring it to lowercase
 			String word = pairs.getKey().toLowerCase();
-
-			// get the word count
-			int count = pairs.getValue();
-
-			// open a connection to the database
-			DatabaseConnection db = new DatabaseConnection();
-
-			// create a service for the inverted_index table
-			InvertedIndexService index = new InvertedIndexService(db.getConnection());
-
-			// create the inverted index
-			index.createIndex(word, userID, date, count);
+			
+			// get the stop list	
+			WordService wordService = new WordService(new DatabaseConnection().getConnection());
+			ArrayList<String> stopList = wordService.getStopList();
+			
+			if (!stopList.contains(word) && !word.trim().isEmpty()){
+				// get the word count
+				int count = pairs.getValue();
+	
+				// open a connection to the database
+				DatabaseConnection db = new DatabaseConnection();
+	
+				// create a service for the inverted_index table
+				InvertedIndexService index = new InvertedIndexService(db.getConnection());
+	
+				// create the inverted index
+				index.createIndex(word, userID, date, count);
+			}
 		}
 	}
 
