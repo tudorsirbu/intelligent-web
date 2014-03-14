@@ -38,7 +38,7 @@ public class InvertedIndexService {
 			//  statement for query execution
 			statement = connection.createStatement();
 			// query 
-			String query = "INSERT INTO inverted_index (`user_id`, `word_id`, `count`, `date`) values('"+ userID +"','" + wordID
+			String query = "INSERT IGNORE INTO inverted_index (`user_id`, `word_id`, `count`, `date`) values('"+ userID +"','" + wordID
 					+ "','" + count + "','" + date + "')";
 			// Updating Table
 			statement.executeUpdate(query);          
