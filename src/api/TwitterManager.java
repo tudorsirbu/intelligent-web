@@ -202,7 +202,14 @@ public class TwitterManager {
 
 		return retweets;
 	}
-	//Returns the string of venues the user visited in the last x days
+	/**
+	 * The method gets the venues the give user has visited in the last given days
+	 * @param userID the id of the user to get the venues for
+	 * @param days the number of days to go back
+	 * @param twitterC the connection to the twitter api
+	 * @param statuses the statuses of the user
+	 * @venues the string containg all the venues the user has visited
+	 */
 	public String getVenues(Long userID, Integer days){
 		String venues=null;
 
@@ -242,8 +249,7 @@ public class TwitterManager {
 			}
 
 		}
-		//Go through statusses and if they contain a foursqauare checkin the get the name of the venue
-		//and add it to the responseString
+		
 		FoursquareManager fm = new FoursquareManager();
 		for(Status status : sts){
 			ArrayList<String> urls = new ArrayList<String>();
@@ -257,10 +263,16 @@ public class TwitterManager {
 		}
 		return venues;
 	}
-	
+	/**
+	 * The method initialises the connection to twitter stream api
+	 * @param userID the id of the user to listen for
+	 * @param cb the configuration builder
+	 * @param fq the filter query that will enable us to listen for the given users
+	 */
 	public void initConfiguration(long[] userID){
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)
+		.setJSONStoreEnabled(true)
 		.setOAuthConsumerKey("H4VHRaf8ybmPhzzK47uQ")
 		.setOAuthConsumerSecret("y6oxNsvuoauf4sPcGU45Ct5eVfryYlai5TUBU92Uxbk");
 
@@ -418,11 +430,21 @@ public class TwitterManager {
 		@Override
 		public void onStallWarning(StallWarning arg0) {
 			// TODO Auto-generated method stub
-
+			
 		}
+
+		
 	};
 
-	//Pull all links from status
+	/**
+	 * The method extracts all urls from a Status object
+	 * @param status the status to extract the urls from
+	 * @param links the list all the found links will be put in
+	 * @param text the text of the given status
+	 * @param p the compiled pattern that identifies a url
+	 * @param m the matcher that matches the text agains the pattern
+	 * @param urlStr the string that contains the found url to be put in the list
+	 */
 	public ArrayList<String> extractURL(Status status) {
 		ArrayList<String> links = new ArrayList<String>();
 		String text = status.getText();
