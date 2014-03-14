@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import api.TwitterManager;
+import api.TwitterUserVenuesStream;
 
 /**
  * Servlet implementation class UserVenuesServlet
@@ -41,6 +42,8 @@ public class UserVenuesServlet extends HttpServlet {
 		if(submit != null){	
 			
 			TwitterManager tm = new TwitterManager();
+			TwitterUserVenuesStream td = new TwitterUserVenuesStream();
+
 			
 			if(days!=0){
 				if(tm.getVenues(userID, days)!=null)
@@ -48,8 +51,12 @@ public class UserVenuesServlet extends HttpServlet {
 				else
 					out.println("Cant get the venues for that user!");		
 			}
-			else
-				out.println("Days cant be 0 for now!!");
+			else{
+
+				long [] list = new long[1];
+				list[0]=userID;
+				td.initConfiguration(list);
+			}
 		} else {	
 			out.println("No text entered.");	
 		}	
