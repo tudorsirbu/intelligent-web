@@ -15,20 +15,29 @@ import java.util.regex.Pattern;
 import fi.foyt.foursquare.api.entities.CompactVenue;
 import model.DatabaseConnection;
 import model.InvertedIndexService;
+import twitter4j.DirectMessage;
+import twitter4j.FilterQuery;
 import twitter4j.GeoLocation;
 import twitter4j.Paging;
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.ResponseList;
+import twitter4j.StallWarning;
 import twitter4j.Status;
+import twitter4j.StatusDeletionNotice;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
+import twitter4j.TwitterStream;
+import twitter4j.TwitterStreamFactory;
 import twitter4j.User;
+import twitter4j.UserList;
+import twitter4j.UserStreamListener;
+import twitter4j.auth.AccessToken;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterManager {	
-
+	private TwitterStream twitterStream;
 	public List<Status> query(String keywords, String latitude, String longitude, String radius) {	
 		
 		Integer radiusNumber;
@@ -193,7 +202,14 @@ public class TwitterManager {
 
 		return retweets;
 	}
-	//Returns the string of venues the user visited in the last x days
+	/**
+	 * The method gets the venues the give user has visited in the last given days
+	 * @param userID the id of the user to get the venues for
+	 * @param days the number of days to go back
+	 * @param twitterC the connection to the twitter api
+	 * @param statuses the statuses of the user
+	 * @venues the string containg all the venues the user has visited
+	 */
 	public String getVenues(Long userID, Integer days){
 		String venues=null;
 
@@ -233,8 +249,7 @@ public class TwitterManager {
 			}
 
 		}
-		//Go through statusses and if they contain a foursqauare checkin the get the name of the venue
-		//and add it to the responseString
+		
 		FoursquareManager fm = new FoursquareManager();
 		for(Status status : sts){
 			ArrayList<String> urls = new ArrayList<String>();
@@ -248,8 +263,188 @@ public class TwitterManager {
 		}
 		return venues;
 	}
+	/**
+	 * The method initialises the connection to twitter stream api
+	 * @param userID the id of the user to listen for
+	 * @param cb the configuration builder
+	 * @param fq the filter query that will enable us to listen for the given users
+	 */
+	public void initConfiguration(long[] userID){
+		ConfigurationBuilder cb = new ConfigurationBuilder();
+		cb.setDebugEnabled(true)
+		.setJSONStoreEnabled(true)
+		.setOAuthConsumerKey("H4VHRaf8ybmPhzzK47uQ")
+		.setOAuthConsumerSecret("y6oxNsvuoauf4sPcGU45Ct5eVfryYlai5TUBU92Uxbk");
 
-	//Pull all links from status
+		TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
+		twitterStream = twitterStreamFactory.getInstance(new AccessToken("1225017144-1l22gHEw6SpxoQQac1PmT5a3FjQnexJrMQmiFra", "WR2I8lHSBlqVKHV1a3t3CDElHKe0sHkVl1TCLyrVnrkLS"));
+		twitterStream.addListener(userStreamListener);
+
+		FilterQuery fq = new FilterQuery();
+
+		fq.follow(userID);
+		twitterStream.filter(fq);
+	}
+	
+	UserStreamListener userStreamListener = new UserStreamListener() {
+
+		@Override
+		public void onException(Exception arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onTrackLimitationNotice(int arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onStatus(Status status) {
+			// TODO Auto-generated method stub
+			FoursquareManager fm = new FoursquareManager();
+			TwitterManager tm = new TwitterManager();
+			ArrayList<String> urls = new ArrayList<String>();
+			urls = tm.extractURL(status);
+			for(String url : urls){
+				String name = fm.getVenueName(url);
+				if(name!=null)
+					System.out.println(name);
+			}
+
+			
+		}
+
+
+		@Override
+		public void onScrubGeo(long arg0, long arg1) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onDeletionNotice(StatusDeletionNotice arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onUserProfileUpdate(User arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onUserListUpdate(User arg0, UserList arg1) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onUserListUnsubscription(User arg0, User arg1, UserList arg2) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onUserListSubscription(User arg0, User arg1, UserList arg2) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onUserListMemberDeletion(User arg0, User arg1, UserList arg2) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onUserListMemberAddition(User arg0, User arg1, UserList arg2) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onUserListDeletion(User arg0, UserList arg1) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onUserListCreation(User arg0, UserList arg1) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onUnfavorite(User arg0, User arg1, Status arg2) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onUnblock(User arg0, User arg1) {
+			// TODO Auto-generated method stub
+
+		}
+
+
+
+		@Override
+		public void onFriendList(long[] arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onFollow(User arg0, User arg1) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onFavorite(User arg0, User arg1, Status arg2) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onDirectMessage(DirectMessage message) {
+			// TODO Auto-generated method stub
+			System.out.println(message.getText());
+		}
+
+		@Override
+		public void onDeletionNotice(long arg0, long arg1) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onBlock(User arg0, User arg1) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onStallWarning(StallWarning arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		
+	};
+
+	/**
+	 * The method extracts all urls from a Status object
+	 * @param status the status to extract the urls from
+	 * @param links the list all the found links will be put in
+	 * @param text the text of the given status
+	 * @param p the compiled pattern that identifies a url
+	 * @param m the matcher that matches the text agains the pattern
+	 * @param urlStr the string that contains the found url to be put in the list
+	 */
 	public ArrayList<String> extractURL(Status status) {
 		ArrayList<String> links = new ArrayList<String>();
 		String text = status.getText();
