@@ -34,26 +34,26 @@ public class UserService {
 		String description = user.getDescription();
 		String profilePictureURL = user.getProfilePicURL();
 
-
 		try {
 			//  statement for query execution
-			statement = connection.createStatement();
+			this.statement = this.connection.createStatement();
 			// query 
 			String query = "INSERT INTO users (`id`, `name`, `username`, "+
 					"`location`, `description`, `profilePictureURL`) values('"+id+"',"
 					+ "'"+name+"','"+username+"','"+ location+"','"+ description+"','"+ profilePictureURL+"')";
+			
+			System.out.println(query);
 			// Updating Table
-			statement.executeUpdate(query);          
+			this.statement.executeUpdate(query);          
 		}
 		catch (Exception e) {
 			System.out.println(e.toString());
 		} finally {
 			try {
-				statement.close();
+				this.statement.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-
 	}
 }
