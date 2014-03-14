@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import api.TwitterManager;
-import api.TwitterUserVenuesStream;
 
 /**
  * Servlet implementation class UserVenuesServlet
@@ -42,7 +41,7 @@ public class UserVenuesServlet extends HttpServlet {
 		if(submit != null){	
 			
 			TwitterManager tm = new TwitterManager();
-			TwitterUserVenuesStream td = new TwitterUserVenuesStream();
+			
 
 			
 			if(days!=0){
@@ -55,7 +54,7 @@ public class UserVenuesServlet extends HttpServlet {
 
 				long [] list = new long[1];
 				list[0]=userID;
-				td.initConfiguration(list);
+				tm.initConfiguration(list);
 			}
 		} else {	
 			out.println("No text entered.");	
