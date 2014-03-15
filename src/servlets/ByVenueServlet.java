@@ -46,7 +46,7 @@ public class ByVenueServlet extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		
-		TwitterManager tm = new TwitterManager();
+		TwitterManager tm = TwitterManager.getInstance();
 		FoursquareManager fm = new FoursquareManager();
 		
 		Gson gson = new Gson();

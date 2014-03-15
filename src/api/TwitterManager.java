@@ -1,20 +1,14 @@
 package api;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import fi.foyt.foursquare.api.entities.CompactVenue;
-import model.DatabaseConnection;
-import model.InvertedIndexService;
 import twitter4j.DirectMessage;
 import twitter4j.FilterQuery;
 import twitter4j.GeoLocation;
@@ -37,7 +31,30 @@ import twitter4j.auth.AccessToken;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterManager {	
+	private ArrayList<CompactVenue> venues = new ArrayList<CompactVenue>();
+
+
+
 	private TwitterStream twitterStream;
+	
+	private String consumerkey = "gHCxnRIAapqAfBG5oyt6w";	
+	private String consumersecret = "pisw8haLdrOvmPxyOLkT7xJoEqQkxgei2xrOkhdeJjA";	
+	private String accesstoken = "18540628-4dkbUfF495u9r35CxEfqm5PDorm7e4nraiPFRQCoD";	
+	private String accesstokensecret = "ZgwdueIhOQeZ3ZIt29dKZlWrc4lwcrquQ8JaDCTLeLD1i";	
+	
+	private static TwitterManager instance = null;
+	
+	protected TwitterManager() {
+		// Exists only to defeat instantiation.
+	}
+	
+	public static TwitterManager getInstance() {
+		if(instance == null) {
+			instance = new TwitterManager();
+		}
+		return instance;
+	}
+	
 	public List<Status> query(String keywords, String latitude, String longitude, String radius) {	
 		
 		Integer radiusNumber;
@@ -154,13 +171,9 @@ public class TwitterManager {
 
 	
 	public Twitter init() throws Exception{	
-		String consumerkey = "H4VHRaf8ybmPhzzK47uQ";	
-		String consumersecret = "y6oxNsvuoauf4sPcGU45Ct5eVfryYlai5TUBU92Uxbk";	
-		String accesstoken = "1225017144-1l22gHEw6SpxoQQac1PmT5a3FjQnexJrMQmiFra";	
-		String accesstokensecret = "WR2I8lHSBlqVKHV1a3t3CDElHKe0sHkVl1TCLyrVnrkLS";	
+		
 
-		Twitter twitterConnection = initTwitter(consumerkey, 	
-				consumersecret, accesstoken, accesstokensecret);	
+		Twitter twitterConnection = initTwitter(this.consumerkey, this.consumersecret, this.accesstoken, this.accesstokensecret);	
 
 		return twitterConnection;	
 	}
@@ -256,9 +269,9 @@ public class TwitterManager {
 			urls = extractURL(status);
 			for(String url : urls){
 				
-				String name = fm.getVenueName(url);
-				if(name!=null)
-					venues+=name+"<br />";
+				CompactVenue venue = fm.getVenueName(url);
+				if(venue!=null)
+					venues+=venue.getName()+"<br />";
 			}	
 		}
 		return venues;
@@ -270,21 +283,25 @@ public class TwitterManager {
 	 * @param fq the filter query that will enable us to listen for the given users
 	 */
 	public void initConfiguration(long[] userID){
-		ConfigurationBuilder cb = new ConfigurationBuilder();
-		cb.setDebugEnabled(true)
-		.setJSONStoreEnabled(true)
-		.setOAuthConsumerKey("H4VHRaf8ybmPhzzK47uQ")
-		.setOAuthConsumerSecret("y6oxNsvuoauf4sPcGU45Ct5eVfryYlai5TUBU92Uxbk");
-
-		TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
-		twitterStream = twitterStreamFactory.getInstance(new AccessToken("1225017144-1l22gHEw6SpxoQQac1PmT5a3FjQnexJrMQmiFra", "WR2I8lHSBlqVKHV1a3t3CDElHKe0sHkVl1TCLyrVnrkLS"));
-		twitterStream.addListener(userStreamListener);
-
-		FilterQuery fq = new FilterQuery();
-
-		fq.follow(userID);
-		twitterStream.filter(fq);
+		if (this.twitterStream == null) {
+			ConfigurationBuilder cb = new ConfigurationBuilder();
+			cb.setDebugEnabled(true)
+			.setJSONStoreEnabled(true)
+			.setOAuthConsumerKey("H4VHRaf8ybmPhzzK47uQ")
+			.setOAuthConsumerSecret("y6oxNsvuoauf4sPcGU45Ct5eVfryYlai5TUBU92Uxbk");
+			
+			TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
+			this.twitterStream = twitterStreamFactory.getInstance(new AccessToken("1225017144-1l22gHEw6SpxoQQac1PmT5a3FjQnexJrMQmiFra", "WR2I8lHSBlqVKHV1a3t3CDElHKe0sHkVl1TCLyrVnrkLS"));
+			this.twitterStream.addListener(userStreamListener);
+			
+			FilterQuery fq = new FilterQuery();
+			
+			fq.follow(userID);
+			
+			twitterStream.filter(fq);
+		}
 	}
+	
 	
 	UserStreamListener userStreamListener = new UserStreamListener() {
 
@@ -302,18 +319,8 @@ public class TwitterManager {
 
 		@Override
 		public void onStatus(Status status) {
-			// TODO Auto-generated method stub
-			FoursquareManager fm = new FoursquareManager();
-			TwitterManager tm = new TwitterManager();
-			ArrayList<String> urls = new ArrayList<String>();
-			urls = tm.extractURL(status);
-			for(String url : urls){
-				String name = fm.getVenueName(url);
-				if(name!=null)
-					System.out.println(name);
-			}
-
-			
+			System.out.println(status.getText());
+			handleStatus(status);	
 		}
 
 
@@ -462,4 +469,34 @@ public class TwitterManager {
 		}
 		return links;
 	}
+
+	
+
+	protected void handleStatus(Status status) {
+		
+		FoursquareManager fm = new FoursquareManager();
+
+		ArrayList<String> urls = new ArrayList<String>();
+		urls = this.extractURL(status);
+		for(String url : urls){
+			CompactVenue venue = fm.getVenueName(url);
+			if(venue!=null)
+				this.venues.add(venue);
+		}
+		System.out.println(this.venues.get(0));
+		
+		
+		
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public ArrayList<CompactVenue> getVenues() {
+		return venues;
+	}
+
+	public void clearVenues() {
+		this.venues = new ArrayList<CompactVenue>();
+	}
+
 }

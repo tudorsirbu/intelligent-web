@@ -77,7 +77,6 @@ public class UserTrackerServlet extends HttpServlet {
 		InvertedIndexService s = new InvertedIndexService(db.getConnection());
 		HashMap<User,HashMap<String,Integer>> map = s.getKeywords(this.toLongArray(form.getUserIds()), form.getDaysSince(), form.getKeywords());
 
-
 		/* Create the response JSON */
 		String json = gson.toJson(map);
 		response.getWriter().write(json.toString());
