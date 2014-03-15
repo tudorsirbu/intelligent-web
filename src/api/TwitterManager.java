@@ -37,6 +37,7 @@ import twitter4j.auth.AccessToken;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterManager {	
+	private ArrayList<String> venueNames = new ArrayList<String>();
 	private TwitterStream twitterStream;
 	public List<Status> query(String keywords, String latitude, String longitude, String radius) {	
 		
@@ -283,6 +284,7 @@ public class TwitterManager {
 		FilterQuery fq = new FilterQuery();
 
 		fq.follow(userID);
+
 		twitterStream.filter(fq);
 	}
 	
@@ -302,18 +304,7 @@ public class TwitterManager {
 
 		@Override
 		public void onStatus(Status status) {
-			// TODO Auto-generated method stub
-			FoursquareManager fm = new FoursquareManager();
-			TwitterManager tm = new TwitterManager();
-			ArrayList<String> urls = new ArrayList<String>();
-			urls = tm.extractURL(status);
-			for(String url : urls){
-				String name = fm.getVenueName(url);
-				if(name!=null)
-					System.out.println(name);
-			}
-
-			
+			handleStatus(status);	
 		}
 
 
@@ -461,5 +452,27 @@ public class TwitterManager {
 			links.add(urlStr);
 		}
 		return links;
+	}
+
+	public ArrayList<String> getVenueNames() {
+		return venueNames;
+	}
+
+	protected void handleStatus(Status status) {
+		
+		FoursquareManager fm = new FoursquareManager();
+		TwitterManager tm = new TwitterManager();
+		ArrayList<String> urls = new ArrayList<String>();
+		urls = tm.extractURL(status);
+		for(String url : urls){
+			String name = fm.getVenueName(url);
+			if(name!=null)
+				venueNames.add(name);
+		}
+		
+		
+		
+		// TODO Auto-generated method stub
+		
 	}
 }
