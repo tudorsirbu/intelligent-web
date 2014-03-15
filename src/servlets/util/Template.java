@@ -15,9 +15,11 @@ public class Template {
 
 	public void initHead() {
 		this.head += "<title>" + this.title + "</title>";
-		this.head += "<link rel=\"stylesheet\" type=\"text/css\" href=\"CSS/formStyle.css\">";
 		this.head += "<link rel=\"stylesheet\" type=\"text/css\" href=\"CSS/reset.css\">";
+		this.head += "<link rel=\"stylesheet\" type=\"text/css\" href=\"CSS/formStyle.css\">";
+		this.head += "<link rel=\"stylesheet\" type=\"text/css\" href=\"CSS/jquery-ui-1.10.4.custom.min.css\">";
 		this.head += "<script src=\"javascript/jquery-1.11.0.js\"></script>";
+		this.head += "<script src=\"javascript/jquery-ui-1.10.4.custom.min.js\"></script>";
 		this.head += "<script src=\"javascript/script.js\"></script>";
 	}
 	
