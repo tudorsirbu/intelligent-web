@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import fi.foyt.foursquare.api.entities.CompactVenue;
 import twitter4j.DirectMessage;
 import twitter4j.FilterQuery;
 import twitter4j.GeoLocation;
@@ -30,7 +31,10 @@ import twitter4j.auth.AccessToken;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterManager {	
-	private ArrayList<String> venueNames = new ArrayList<String>();
+	private ArrayList<CompactVenue> venues = new ArrayList<CompactVenue>();
+
+
+
 	private TwitterStream twitterStream;
 	
 	private String consumerkey = "gHCxnRIAapqAfBG5oyt6w";	
@@ -265,9 +269,9 @@ public class TwitterManager {
 			urls = extractURL(status);
 			for(String url : urls){
 				
-				String name = fm.getVenueName(url);
-				if(name!=null)
-					venues+=name+"<br />";
+				CompactVenue venue = fm.getVenueName(url);
+				if(venue!=null)
+					venues+=venue.getName()+"<br />";
 			}	
 		}
 		return venues;
@@ -466,9 +470,7 @@ public class TwitterManager {
 		return links;
 	}
 
-	public ArrayList<String> getVenueNames() {
-		return venueNames;
-	}
+	
 
 	protected void handleStatus(Status status) {
 		
@@ -477,16 +479,24 @@ public class TwitterManager {
 		ArrayList<String> urls = new ArrayList<String>();
 		urls = this.extractURL(status);
 		for(String url : urls){
-			String name = fm.getVenueName(url);
-			if(name!=null)
-				this.venueNames.add(name);
+			CompactVenue venue = fm.getVenueName(url);
+			if(venue!=null)
+				this.venues.add(venue);
 		}
-		System.out.println(this.venueNames.get(0));
+		System.out.println(this.venues.get(0));
 		
 		
 		
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public ArrayList<CompactVenue> getVenues() {
+		return venues;
+	}
+
+	public void clearVenues() {
+		this.venues = new ArrayList<CompactVenue>();
 	}
 
 }

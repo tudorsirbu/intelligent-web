@@ -23,6 +23,7 @@ import twitter4j.User;
 
 import com.google.gson.Gson;
 
+import fi.foyt.foursquare.api.entities.CompactVenue;
 import api.TwitterManager;
 
 /**
@@ -98,10 +99,13 @@ public class UserVenuesServlet extends HttpServlet {
 			long[] idList = {uvf.getUserId()};
 			
 			tm.initConfiguration(idList);
-			ArrayList<String> venues = tm.getVenueNames();
+			ArrayList<CompactVenue> venues = tm.getVenues();
+			
 			
 			/* Create the response JSON */
 			String json = gson.toJson(venues);
+			
+			tm.clearVenues();
 			response.getWriter().write(json);
 		} catch (Exception e) {
 			System.out.println("No input yet.");

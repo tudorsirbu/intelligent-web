@@ -40,7 +40,7 @@ $(document).ready(function() {
 			url: "UserVenuesServlet",
 			data: data,
 			success: function(data){
-				console.log(data);
+				
 				connectionEstablished = true;
 			}
 		});
@@ -53,6 +53,7 @@ $(document).ready(function() {
 					url: "UserVenuesServlet",
 					data: data,
 					success: function(data){
+						displayVenueStream(data);
 						console.log(data);
 					}
 				});
@@ -177,6 +178,20 @@ function displayTweets(data) {
 			}
 		});
 		
+	});
+}
+
+function displayVenueStream(data) {
+	$("#results").show(0);
+	$("#results").empty();
+	$.each(data, function( key, venue ) {
+		var div = "<div class='venues'>";
+		div += "<span class='screen_name'>" + venue.name + "</span>";
+		div += "<p class='text'>" + venue.categories + "</p>";
+		div += "<p class='text'>" + venue.url + "</p>";
+		div += "<p class='text'>" + venue.url + "</p>";
+		div += "</div>";	
+		$("#results").append(div);
 	});
 }
 
