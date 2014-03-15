@@ -1,5 +1,7 @@
 package api;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -49,11 +51,19 @@ public class DiscussionsTracker {
 				// create inveted index
 				createInvertedIndex(status);
 			}
-			
+			// connect to the dabase
+			Connection connection = new DatabaseConnection().getConnection();
 			// add the user to the database
-			UserService userService = new UserService(new DatabaseConnection().getConnection());
+			UserService userService = new UserService(connection);
 			// get the user details from a status and insert it in the database
 			userService.insertUser(statuses.get(0).getUser());
+			// close the databse connection 
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -95,7 +105,7 @@ public class DiscussionsTracker {
 		remover.removeAll();
 
 		// split the string into words
-		String[] tweetWords = remover.getText().split(" ");
+		String[] tweetWords = remover.getText().toLowerCase().split(" ");
 
 		// use HashMap to count how many times a word appears in a tweet
 		HashMap<String, Integer> words = new HashMap<String,Integer>();
@@ -113,23 +123,22 @@ public class DiscussionsTracker {
 
 		// iterator used to go through the HashMap
 		java.util.Iterator<Entry<String, Integer>> i =  words.entrySet().iterator();
-
+		// open a connection to the database
+		DatabaseConnection db = new DatabaseConnection();
 		while(i.hasNext()){
+			
 			Map.Entry<String, Integer> pairs = (Map.Entry) i.next();
 
 			// get the word and bring it to lowercase
 			String word = pairs.getKey().toLowerCase();
 			
 			// get the stop list	
-			WordService wordService = new WordService(new DatabaseConnection().getConnection());
+			WordService wordService = new WordService(db.getConnection());
 			ArrayList<String> stopList = wordService.getStopList();
 			
-			if (!stopList.contains(word) && !word.trim().isEmpty()){
+			if (!isInStopList(word, stopList) && !word.trim().isEmpty()){
 				// get the word count
 				int count = pairs.getValue();
-	
-				// open a connection to the database
-				DatabaseConnection db = new DatabaseConnection();
 	
 				// create a service for the inverted_index table
 				InvertedIndexService index = new InvertedIndexService(db.getConnection());
@@ -138,7 +147,16 @@ public class DiscussionsTracker {
 				index.createIndex(word, userID, date, count);
 			}
 		}
+		// close the database connection
+		db.disconnect();
 	}
-
+	
+	private boolean isInStopList(String word, ArrayList<String> stopListWords){
+		for(String w : stopListWords){
+			if(w.equalsIgnoreCase(word))
+				return true;
+		}
+		return false;
+	}
 
 }

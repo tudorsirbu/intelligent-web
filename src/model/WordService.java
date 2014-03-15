@@ -102,6 +102,25 @@ public class WordService {
 		return -1;
 	}
 	
+	public boolean isIndexable(String word){
+		try{
+			// create statement
+			statement = connection.createStatement();
+			// query the database
+			String query = "SELECT * FROM words WHERE `word`='" + word + "';";
+			ResultSet results = statement.executeQuery(query);
+			// get the word 
+			while(results.next()){
+				if(results.getInt("indexed") == 1)
+					return true;
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
 	
 	/**
 	 * The method searches for a word by its id

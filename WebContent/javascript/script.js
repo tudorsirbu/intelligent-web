@@ -25,28 +25,29 @@ $(document).ready(function() {
 		event.preventDefault();
 	});
 	
-	$("#byVenueForm").submit(function( event ) {
+	$("#discussionsTrackerForm").submit(function( event ) {
 		event.preventDefault();
-
+		
 		var obj = {};
-		obj.locationName = $("#location_name").val();
-		obj.locationLat = $("#location_lat").val();
-		obj.locationLong = $("#location_long").val();
-		obj.days = $("#days").val();
+		obj.keywords = $("#keywords").val();
+		obj.daysSince = $("#days_since").val();
+		obj.userIds = $("#user_ids").val();
 		
 		var data = JSON.stringify(obj);
-		console.log(data);
 		
 		$.ajax({
 			type: "post",
 			dataType: "json",
-			url: "ByVenueServlet",
+			url: "UserTrackerServlet",
 			data: data,
 			success: function(data) {
 				console.log(data);
 			}
 		});
+		
 	});
+	
+
 	
 	$( "#tabs" ).tabs();
 
