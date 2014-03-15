@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import fi.foyt.foursquare.api.entities.CompactVenue;
+import fi.foyt.foursquare.api.entities.CompleteVenue;
 import twitter4j.DirectMessage;
 import twitter4j.FilterQuery;
 import twitter4j.GeoLocation;
@@ -479,7 +480,7 @@ public class TwitterManager {
 		ArrayList<String> urls = new ArrayList<String>();
 		urls = this.extractURL(status);
 		for(String url : urls){
-			CompactVenue venue = fm.getVenueName(url);
+			CompleteVenue venue = fm.getVenueName(url);
 			if(venue!=null)
 				this.venues.add(venue);
 		}
