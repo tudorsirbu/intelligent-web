@@ -186,7 +186,7 @@ function displayVenueStream(data) {
 	$("#results").show(0);
 	$("#results").empty();
 	$.each(data, function( key, venue ) {
-		var div = "<div class='venues'>";
+		var div = "<div class='tweet'>";
 		div += "<span class='screen_name'>" + venue.name + "</span>";
 		div += "<p class='text'>" + venue.categories + "</p>";
 		div += "<p class='text'>" + venue.url + "</p>";
