@@ -32,7 +32,7 @@ $(document).ready(function() {
 		obj.locationName = $("#location_name").val();
 		obj.locationLat = $("#location_lat").val();
 		obj.locationLong = $("#location_long").val();
-		obj.days = $("#days").val();
+		obj.days = $("#days_since").val();
 		
 		var data = JSON.stringify(obj);
 		console.log(data);
@@ -140,17 +140,3 @@ function displayTweets(data) {
 		
 	});
 }
-
-//function display_retweets(retweets, afterDiv) {
-//	$.each(retweets, function(_, retweet) {
-//		var div = "<div class='retweet'>";
-//		div += "<img src='"+ retweet.profileImageUrl +"' />";
-//		div += "<strong class='title'>" + retweet.name + "</strong>";
-//		div += "<span class='screen_name'> @" + retweet.screenName + "</span>";
-//		div += "<p class='text'>" + retweet.text + "</p>";
-//		div += "</div>";	
-//		console.log(div);
-//		console.log(afterDiv);
-//		afterDiv.after(div);
-//	});
-//}
