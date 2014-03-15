@@ -8,24 +8,17 @@ public class UserVenuesForm {
 	/* Form fields */
 	
 	// the id of the user
-	private long id;
+	private long userId;
 	
 	// the days 
 	private int days;
-	
-	public UserVenuesForm(Long userID, int days){
-		this.id = userID;
-		this.days = days;
-		
-		
-	}
-	
-	public long getId() {
-		return id;
+
+	public long getUserId() {
+		return userId;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
 	public int getDays() {
@@ -35,7 +28,13 @@ public class UserVenuesForm {
 	public void setDays(int days) {
 		this.days = days;
 	}
+
+	@Override
+	public String toString() {
+		return "UserVenuesForm [userId=" + userId + ", days=" + days + "]";
+	}
 	
+
 	
 	
 }

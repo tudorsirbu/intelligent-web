@@ -25,29 +25,68 @@ $(document).ready(function() {
 		event.preventDefault();
 	});
 	
-	$("#byVenueForm").submit(function( event ) {
-		event.preventDefault();
 
+	$("#userVenuesForm").submit(function( event ) {
 		var obj = {};
-		obj.locationName = $("#location_name").val();
-		obj.locationLat = $("#location_lat").val();
-		obj.locationLong = $("#location_long").val();
+		obj.userId = $("#user_id").val();
 		obj.days = $("#days_since").val();
 		
 		var data = JSON.stringify(obj);
 		console.log(data);
+		var connectionEstablished = false;
+	
+		$.ajax({
+			type: "post",
+			dataType: "json",
+			url: "UserVenuesServlet",
+			data: data,
+			success: function(data){
+				
+				connectionEstablished = true;
+			}
+		});
+		
+		setInterval(function() {	
+			if(connectionEstablished == true) {
+				$.ajax({
+					type: "post",
+					dataType: "json",
+					url: "UserVenuesServlet",
+					data: data,
+					success: function(data){
+						displayVenueStream(data);
+						console.log(data);
+					}
+				});
+			}
+		}, 5000);
+		
+		event.preventDefault();
+	});
+	
+	$("#discussionsTrackerForm").submit(function( event ) {
+		event.preventDefault();
+		
+		var obj = {};
+		obj.keywords = $("#keywords").val();
+		obj.daysSince = $("#days_since").val();
+		obj.userIds = $("#user_ids").val();
+		
+		var data = JSON.stringify(obj);
 		
 		$.ajax({
 			type: "post",
 			dataType: "json",
-			url: "ByVenueServlet",
+			url: "UserTrackerServlet",
 			data: data,
 			success: function(data) {
 				console.log(data);
 			}
 		});
+		
 	});
 	
+
 	$("#tabs").tabs();
 
 	$(".get_tweets").click(function(event) {
@@ -67,6 +106,8 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+	
 	
 	//$("#results").hide(0);
 	//$("#userVenuesForm").submit(function( event ) {
@@ -140,3 +181,31 @@ function displayTweets(data) {
 		
 	});
 }
+
+function displayVenueStream(data) {
+	$("#results").show(0);
+	$("#results").empty();
+	$.each(data, function( key, venue ) {
+		var div = "<div class='tweet'>";
+		div += "<span class='screen_name'>" + venue.name + "</span>";
+		div += "<p class='text'>" + venue.categories + "</p>";
+		div += "<p class='text'>" + venue.url + "</p>";
+		div += "<p class='text'>" + venue.url + "</p>";
+		div += "</div>";	
+		$("#results").append(div);
+	});
+}
+
+//function display_retweets(retweets, afterDiv) {
+//	$.each(retweets, function(_, retweet) {
+//		var div = "<div class='retweet'>";
+//		div += "<img src='"+ retweet.profileImageUrl +"' />";
+//		div += "<strong class='title'>" + retweet.name + "</strong>";
+//		div += "<span class='screen_name'> @" + retweet.screenName + "</span>";
+//		div += "<p class='text'>" + retweet.text + "</p>";
+//		div += "</div>";	
+//		console.log(div);
+//		console.log(afterDiv);
+//		afterDiv.after(div);
+//	});
+//}

@@ -52,7 +52,7 @@ public class RetweetsServlet extends HttpServlet {
 		String statusId = gson.fromJson(sb.toString(), String.class);
 		
 		/* Get tweets according to the query parameters */
-		TwitterManager tm = new TwitterManager();
+		TwitterManager tm = TwitterManager.getInstance();
 		List<Status> retweets = tm.retweetsForStatus(statusId);
 		
 		System.out.println(retweets);

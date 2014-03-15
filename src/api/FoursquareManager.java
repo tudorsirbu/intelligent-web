@@ -153,17 +153,11 @@ public class FoursquareManager {
 		return null;
 	}
 	
-	public String getVenueName(String shortURLs){
+	public CompactVenue getVenueName(String shortURLs){
 
-		String clientID = "JRIYO5DDJ43NBLDNNU3PH1URI0RQ4ZA3TTHEDPFDPYOC2C5L";
-		String clientSecret = "QUIFUD44KU22UDMZUD0FQFRPWH21I2H4Y1J3CSWISUWOMZ1R";
-		String redirectUrl = "http://www.sheffield.ac.uk";
-		String accessToken = "5PJGTZWVP2QR1BK3LJHVLDYPQVFURSTUA1GGN0V3ZI2NBXIT";
-
-		FoursquareApi fsAPI = new FoursquareApi(clientID, clientSecret, redirectUrl);
-		fsAPI.setoAuthToken(accessToken);
+		FoursquareApi fsAPI = this.init();
 		String url = expandUrl(shortURLs);
-		String venueName = null;
+		CompactVenue venue = null;
 
 		//if it is not a 4square login url then we return!
 		if (url.startsWith("https://foursquare.com/") && url.contains("checkin") && url.contains("s=")) {
@@ -183,8 +177,9 @@ public class FoursquareManager {
 			}
 
 			Checkin cc = checkin.getResult();
-			CompactVenue venue= cc.getVenue();
-			venueName = venue.getName();
+			venue= cc.getVenue();
+			
+			
 
 		}
 		else if (url.startsWith("https://foursquare.com/item/")) {
@@ -211,7 +206,7 @@ public class FoursquareManager {
 			System.out.println(tip.getResult().getText());
 
 		}
-		return venueName;
+		return venue;
 
 	}
 

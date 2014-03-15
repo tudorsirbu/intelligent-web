@@ -62,7 +62,7 @@ public class UserService {
 			//  statement for query execution
 			this.statement = this.connection.createStatement();
 			// query 
-			String query = "INSERT INTO users (`id`, `name`, `username`, "+
+			String query = "INSERT IGNORE INTO users (`id`, `name`, `username`, "+
 					"`location`, `description`, `profilePictureURL`) values('"+id+"',"
 					+ "'"+name+"','"+username+"','"+ location+"','"+ description+"','"+ profilePictureURL+"')";
 			
@@ -72,6 +72,7 @@ public class UserService {
 		}
 		catch (Exception e) {
 			System.out.println(e.toString());
+			e.printStackTrace();
 		} finally {
 			try {
 				this.statement.close();
@@ -87,7 +88,7 @@ public class UserService {
 	 */
 	public void insertUser(twitter4j.User user){
 		// user details
-		String id = String.valueOf(user.getId());
+		long id = user.getId();
 		String name = user.getName();
 		String username= user.getScreenName();
 		String location = user.getLocation();
@@ -99,7 +100,7 @@ public class UserService {
 			//  statement for query execution
 			statement = connection.createStatement();
 			// query 
-			String query = "INSERT INTO users (`id`, `name`, `username`, "+
+			String query = "INSERT IGNORE INTO users (`id`, `name`, `username`, "+
 					"`location`, `description`, `profilePictureURL`) values('"+id+"',"
 					+ "'"+name+"','"+username+"','"+ location+"','"+ description+"','"+ profilePictureURL+"')";
 			// Updating Table
@@ -107,6 +108,7 @@ public class UserService {
 		}
 		catch (Exception e) {
 			System.out.println(e.toString());
+			e.printStackTrace();
 		} finally {
 			try {
 				statement.close();

@@ -1,27 +1,41 @@
 package api;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
-import twitter4j.Status;
-import twitter4j.Twitter;
+import model.DatabaseConnection;
+import model.InvertedIndexService;
+import model.User;
 
 public class Test {
 	public static void main(String[] args){
-		TwitterManager tm = new TwitterManager();
-		try {
-			Twitter twitter = tm.init();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		List<Status> statuses = tm.query("#IntelligentWebCOM3504", "", "", "");
-		Status status = null;
-		for(Status s:statuses){
-			status = s; break; }
 		DiscussionsTracker dT = new DiscussionsTracker();
-		System.out.println(status.getText());
-		dT.createInvertedIndex(status);
+		long[] ids = new long[]{18540628, 2379054998L, 1225017144L, 74147350 };
+		dT.usersQuery(ids);	    
 		
+		DatabaseConnection db = new DatabaseConnection();
+		InvertedIndexService in = new InvertedIndexService(db.getConnection());
+		
+		HashMap<User,HashMap<String,Integer>> map = in.getKeywords(ids, 1 , 3);
+		Iterator i = map.entrySet().iterator();
+		while(i.hasNext()){
+			Map.Entry pairs = (Map.Entry)i.next();
+			User u = (User) pairs.getKey();
+			
+			System.out.println("************ " + u.getName() + " ************");
+			
+			HashMap<String,Integer> keywords = map.get(u);
+			System.out.println(keywords);
+			
+//			Iterator j = keywords.entrySet().iterator();
+//			while(j.hasNext()){
+//				Map.Entry pair = (Map.Entry) j.next();
+//				System.out.println(pair.getKey() + " ---- " + pair.getValue());
+//			}
+//			
+			System.out.println("************************************************"); 
+		}
+		db.disconnect();
 	}
 }
