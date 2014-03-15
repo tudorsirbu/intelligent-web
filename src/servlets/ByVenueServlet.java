@@ -56,13 +56,13 @@ public class ByVenueServlet extends HttpServlet {
 		ByVenueForm form = gson.fromJson(sb.toString(), ByVenueForm.class);
 		System.out.println(form);
 		
-//		HashSet<User> twitterUsers = tm.queryByLocation(form.getLocationName(), form.getLocationLat(), form.getLocationLong(), form.getDays());		
-		HashSet<CompactUser> fsUsers = fm.queryByLocation(form.getLocationName(), form.getLocationLat(), form.getLocationLong(), form.getDays());
+		HashSet<User> twitterUsers = tm.queryByLocation(form.getLocationName(), form.getLocationLat(), form.getLocationLong(), form.getDays());		
+//		HashSet<CompactUser> fsUsers = fm.queryByLocation(form.getLocationName(), form.getLocationLat(), form.getLocationLong(), form.getDays());
 		
-		System.out.println(fsUsers.size());
+//		System.out.println(fsUsers.size());
 		
 		/* Create the response JSON */
-		String json = gson.toJson(fsUsers);
+		String json = gson.toJson(twitterUsers);
 		response.getWriter().write(json.toString());
 	}
 

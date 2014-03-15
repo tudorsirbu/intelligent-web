@@ -8,58 +8,36 @@ public class UserTrackerForm {
 	/* Form fields */
 	
 	// the ids of the users
-	private long[] ids;
+	private String userIds;
 	
 	// number of most frequent keywords
-	private int keywordsCount;
+	private int keywords;
 	
 	// number of days
-	private int lastDays;
-	
-	public UserTrackerForm(String ids, int keywordsCount, int lastDays){
-		this.lastDays = lastDays;
-		this.keywordsCount = keywordsCount;
-		
-	}
-	
-	/**
-	 * The method converts a strings of ids separated through commas
-	 * into an array of longs and sets it to the local variable ids.
-	 * @param ids the string with ids separated by commas
-	 */
-	public void convertToIds(String ids){
-		// split the string
-		String[] idsArray = ids.split(",");
-		
-		// for each string id
-		for(int i=0; i<idsArray.length; i++){
-			// convert it to long type and add it to the array
-			this.ids[i] = Long.parseLong(idsArray[i]);
-		}
+	private int daysSince;
+
+	public String getUserIds() {
+		return userIds;
 	}
 
-	public long[] getIds() {
-		return ids;
+	public void setUserIds(String userIds) {
+		this.userIds = userIds;
 	}
 
-	public void setIds(long[] ids) {
-		this.ids = ids;
+	public int getKeywords() {
+		return keywords;
 	}
 
-	public int getKeywordsCount() {
-		return keywordsCount;
+	public void setKeywords(int keywords) {
+		this.keywords = keywords;
 	}
 
-	public void setKeywordsCount(int keywordsCount) {
-		this.keywordsCount = keywordsCount;
+	public int getDaysSince() {
+		return daysSince;
 	}
 
-	public int getLastDays() {
-		return lastDays;
-	}
-
-	public void setLastDays(int lastDays) {
-		this.lastDays = lastDays;
+	public void setDaysSince(int daysSince) {
+		this.daysSince = daysSince;
 	}
 	
 	
