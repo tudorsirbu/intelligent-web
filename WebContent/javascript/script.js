@@ -25,25 +25,40 @@ $(document).ready(function() {
 		event.preventDefault();
 	});
 	
-$("#userVenuesForm").submit(function( event ) {
-		
+	$("#userVenuesForm").submit(function( event ) {
 		var obj = {};
-		obj.userID = $("#user_id").val();
-		obj.days = $("#days").val();
-		
+		obj.userId = $("#user_id").val();
+		obj.days = $("#days_since").val();
 		
 		var data = JSON.stringify(obj);
-		
+		console.log(data);
+		var connectionEstablished = false;
+	
 		$.ajax({
 			type: "post",
 			dataType: "json",
 			url: "UserVenuesServlet",
 			data: data,
-			success: function(tweets) {
-				console.log(tweets);
-				displayTweets(tweets);
+			success: function(data){
+				console.log(data);
+				connectionEstablished = true;
 			}
 		});
+		
+		setInterval(function() {	
+			if(connectionEstablished == true) {
+				$.ajax({
+					type: "post",
+					dataType: "json",
+					url: "UserVenuesServlet",
+					data: data,
+					success: function(data){
+						console.log(data);
+					}
+				});
+			}
+		}, 5000);
+		
 		event.preventDefault();
 	});
 	
@@ -89,6 +104,8 @@ $("#userVenuesForm").submit(function( event ) {
 			}
 		});
 	});
+	
+	
 	
 	//$("#results").hide(0);
 	//$("#userVenuesForm").submit(function( event ) {

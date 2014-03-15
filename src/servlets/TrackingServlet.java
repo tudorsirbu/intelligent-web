@@ -55,7 +55,7 @@ public class TrackingServlet extends HttpServlet {
 		
 		String resultString = "";	
 		
-		TwitterManager tm = new TwitterManager();
+		TwitterManager tm = TwitterManager.getInstance();
 		List<Status> tweets = tm.query(keywords, regionLat, regionLong, radius);
 
 		if(!keywords.trim().isEmpty()){	
@@ -110,7 +110,7 @@ public class TrackingServlet extends HttpServlet {
 		TrackingForm tf = gson.fromJson(sb.toString(), TrackingForm.class);
 		
 		/* Get tweets according to the query parameters */
-		TwitterManager tm = new TwitterManager();
+		TwitterManager tm = TwitterManager.getInstance();
 		List<Status> tweets = tm.query(tf.getKeywords(), tf.getRegionLat(), tf.getRegionLong(), tf.getRadius());
 		
 		for (Status t:tweets) {
