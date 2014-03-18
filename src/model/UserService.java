@@ -23,7 +23,7 @@ public class UserService {
 		// create a connection to the database
 		this.connection = connection;
 	}
-	
+
 	public User getUser(String id){
 		try {
 			String query = "SELECT * FROM users WHERE id = ?";
@@ -44,7 +44,7 @@ public class UserService {
 		}	
 		return null;
 	}
-		
+
 	/**
 	 * The method inserts a user in the users table in the database
 	 * @param user the details for the user to be inserted in the database
@@ -59,16 +59,20 @@ public class UserService {
 		String profilePictureURL = user.getProfilePicURL();
 
 		try {
-			//  statement for query execution
-			this.statement = this.connection.createStatement();
 			// query 
 			String query = "INSERT IGNORE INTO users (`id`, `name`, `username`, "+
-					"`location`, `description`, `profilePictureURL`) values('"+id+"',"
-					+ "'"+name+"','"+username+"','"+ location+"','"+ description+"','"+ profilePictureURL+"')";
-			
-			System.out.println(query);
+					"`location`, `description`, `profilePictureURL`) values(?,?,?,?,?,?)";
+			//  statement for query execution
+			PreparedStatement preparedStatement = this.connection.prepareStatement(query);
+			preparedStatement.setString(1, id);
+			preparedStatement.setString(2, name);
+			preparedStatement.setString(3, username);
+			preparedStatement.setString(4, location);
+			preparedStatement.setString(5, description);
+			preparedStatement.setString(6, profilePictureURL);
+
 			// Updating Table
-			this.statement.executeUpdate(query);          
+			preparedStatement.executeUpdate();         
 		}
 		catch (Exception e) {
 			System.out.println(e.toString());
@@ -81,7 +85,7 @@ public class UserService {
 			}
 		}
 	}
-	
+
 	/**
 	 * The method inserts a user in the users table in the database
 	 * @param user the details for the user to be inserted in the database
@@ -97,14 +101,20 @@ public class UserService {
 
 
 		try {
-			//  statement for query execution
-			statement = connection.createStatement();
 			// query 
 			String query = "INSERT IGNORE INTO users (`id`, `name`, `username`, "+
-					"`location`, `description`, `profilePictureURL`) values('"+id+"',"
-					+ "'"+name+"','"+username+"','"+ location+"','"+ description+"','"+ profilePictureURL+"')";
+					"`location`, `description`, `profilePictureURL`) values(?,?,?,?,?,?)";
+			//  statement for query execution
+			PreparedStatement preparedStatement = this.connection.prepareStatement(query);
+			preparedStatement.setLong(1, id);
+			preparedStatement.setString(2, name);
+			preparedStatement.setString(3, username);
+			preparedStatement.setString(4, location);
+			preparedStatement.setString(5, description);
+			preparedStatement.setString(6, profilePictureURL);
+
 			// Updating Table
-			statement.executeUpdate(query);          
+			preparedStatement.executeUpdate();  
 		}
 		catch (Exception e) {
 			System.out.println(e.toString());
