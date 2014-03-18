@@ -81,6 +81,7 @@ $(document).ready(function() {
 			data: data,
 			success: function(data) {
 				console.log(data);
+//				displayKeywords(data);
 			}
 		});
 		
