@@ -186,6 +186,7 @@ function displayVenueStream(data) {
 	$("#results").show(0);
 	$("#results").empty();
 	$.each(data, function( key, venue ) {
+		if(data){
 		var div = "<div class='tweet'>";
 		div += "<span class='screen_name'>" + venue.name + "</span>";
 		div += "<img src='"+ venue.profileImageUrl +"' />";
@@ -194,6 +195,7 @@ function displayVenueStream(data) {
 		div += "<p class='text'>" + venue.url + "</p>";
 		div += "</div>";	
 		$("#results").append(div);
+		}
 	});
 }
 
