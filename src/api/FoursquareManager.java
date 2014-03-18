@@ -17,6 +17,7 @@ import fi.foyt.foursquare.api.entities.Checkin;
 import fi.foyt.foursquare.api.entities.CompactUser;
 import fi.foyt.foursquare.api.entities.CompactVenue;
 import fi.foyt.foursquare.api.entities.CompleteTip;
+import fi.foyt.foursquare.api.entities.CompleteVenue;
 import fi.foyt.foursquare.api.entities.Location;
 import fi.foyt.foursquare.api.entities.VenuesSearchResult;
 
@@ -153,11 +154,11 @@ public class FoursquareManager {
 		return null;
 	}
 	
-	public CompactVenue getVenueName(String shortURLs){
+	public CompleteVenue getVenueName(String shortURLs){
 
 		FoursquareApi fsAPI = this.init();
 		String url = expandUrl(shortURLs);
-		CompactVenue venue = null;
+		CompleteVenue venue = null;
 
 		//if it is not a 4square login url then we return!
 		if (url.startsWith("https://foursquare.com/") && url.contains("checkin") && url.contains("s=")) {
@@ -177,7 +178,7 @@ public class FoursquareManager {
 			}
 
 			Checkin cc = checkin.getResult();
-			venue= cc.getVenue();
+			venue= (CompleteVenue) cc.getVenue();
 			
 			
 
