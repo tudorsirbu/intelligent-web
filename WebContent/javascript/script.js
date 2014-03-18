@@ -108,6 +108,28 @@ $(document).ready(function() {
 		});
 	});
 	
+	$("#byVenueForm").submit(function( event ) {
+		event.preventDefault();
+
+		var obj = {};
+		obj.locationName = $("#location_name").val();
+		obj.locationLat = $("#location_lat").val();
+		obj.locationLong = $("#location_long").val();
+		obj.days = $("#days").val();
+
+		var data = JSON.stringify(obj);
+		console.log(data);
+
+		$.ajax({
+			type: "post",
+			dataType: "json",
+			url: "ByVenueServlet",
+			data: data,
+			success: function(data) {
+				console.log(data);
+			}
+		});
+	});
 	
 	
 	//$("#results").hide(0);

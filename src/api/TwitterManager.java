@@ -140,7 +140,7 @@ public class TwitterManager {
 			if (latitudeNumber != null && longitudeNumber != null) {
 				Query query = new Query();	
 				query.setCount(100);
-				query.setGeoCode(new GeoLocation(latitudeNumber, longitudeNumber), 3, Query.KILOMETERS);				
+				query.setGeoCode(new GeoLocation(latitudeNumber, longitudeNumber), 1, Query.KILOMETERS);				
 				
 				if(daysNumber > 0) {
 					Calendar calendar = Calendar.getInstance();
@@ -170,6 +170,44 @@ public class TwitterManager {
 		return users;	
 	}
 
+	public HashSet<User> findFoursquareUsers() {
+		
+		String[] keywordsArray = {"#foursquare", "foursquare"};
+
+		/* Connect to twitter. */
+		Twitter twitterConnection = null;	
+		try {	
+			twitterConnection = this.init();		 	 	 	
+		} catch (Exception e) {	
+			System.out.println("Cannot initialise Twitter.");	
+			e.printStackTrace();	
+		}
+
+		List<Status> tweets = new ArrayList<Status>();
+		HashSet<User> users = new HashSet<User>();
+
+		try {
+			for(String keyword:keywordsArray) {
+				Query query = new Query(keyword.trim());	
+				query.setCount(100);
+
+				//it fires the query	
+				QueryResult result = twitterConnection.search(query);	
+				//it cycles on the tweets	
+				for (Status tweet:result.getTweets()) {
+					users.add(tweet.getUser());
+				}
+
+			}	
+		} 
+		catch (Exception e) {	
+			e.printStackTrace(); 	
+			System.out.println("Failed to search tweets:" + e.getMessage());	
+			System.exit(-1);	
+		}
+		
+		return users;
+	}
 	
 	public Twitter init() throws Exception{	
 		
