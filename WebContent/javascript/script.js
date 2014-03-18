@@ -27,6 +27,7 @@ $(document).ready(function() {
 	
 
 	$("#userVenuesForm").submit(function( event ) {
+		initiateResults();
 		var obj = {};
 		obj.userId = $("#user_id").val();
 		obj.days = $("#days_since").val();
@@ -181,10 +182,12 @@ function displayTweets(data) {
 		
 	});
 }
-
-function displayVenueStream(data) {
+function iniateResults(){
 	$("#results").show(0);
 	$("#results").empty();
+}
+
+function displayVenueStream(data) {
 	$.each(data, function( key, venue ) {
 		if(data){
 		var div = "<div class='tweet'>";
