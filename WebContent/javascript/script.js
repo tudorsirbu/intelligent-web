@@ -270,7 +270,7 @@ function getPhoto(venue){
 	if(venue.photos.groups.length()!=0){
 		console.log("Tralala are poze");
 	}
-
+}
 //function display_retweets(retweets, afterDiv) {
 //	$.each(retweets, function(_, retweet) {
 //		var div = "<div class='retweet'>";
