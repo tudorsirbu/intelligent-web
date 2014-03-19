@@ -113,7 +113,7 @@ button {
 	border-radius: 10px;
 	background: #FFF;
 }
-#results img { width: 30% ; height: auto ; }
+#venues img { }
 
 #loader {
 	width: 1000px;
@@ -163,8 +163,9 @@ button {
 	background-color: #fff;
 }
 .venues img{
-	float: left;
-	padding: 5px 10px
+	width: 20% ;
+	height: auto ;
+	padding: 3px 3px
 }
 .venues > a:title{
 	margin-top: 5px;

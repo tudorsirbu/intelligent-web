@@ -263,7 +263,7 @@ public class TwitterManager {
 	 * @param statuses the statuses of the user
 	 * @venues the string containg all the venues the user has visited
 	 */
-	public Result<CompleteVenue> getVenues(Long userID, Integer days){
+	public Result<CompleteVenue> getVenuesSince(Long userID, Integer days){
 		Result<CompleteVenue> venues = null;
 		/* Connect to twitter. */
 		Twitter twitterC = null;	
@@ -307,9 +307,11 @@ public class TwitterManager {
 			ArrayList<String> urls = new ArrayList<String>();
 			urls = extractURL(status);
 			for(String url : urls){
+				Result<CompleteVenue> currentVenue = fm.getVenueName(url);
+				if(currentVenue != null)
+					this.venues.add(currentVenue.getResult());
+			}
 				
-				venues = fm.getVenueName(url);
-			}	
 		}
 		return venues;
 	}

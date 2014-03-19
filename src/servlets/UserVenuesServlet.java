@@ -23,6 +23,7 @@ import twitter4j.User;
 
 import com.google.gson.Gson;
 
+import fi.foyt.foursquare.api.Result;
 import fi.foyt.foursquare.api.entities.CompactVenue;
 import fi.foyt.foursquare.api.entities.CompleteVenue;
 import api.TwitterManager;
@@ -46,34 +47,6 @@ public class UserVenuesServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();	
-		out.println("<h2>Results</h2>");	
-
-		Long userID = Long.parseLong(request.getParameter("user_id"));
-		Integer days = Integer.parseInt(request.getParameter("days_since"));
-		String submit = request.getParameter("submit");
-		
-		if(submit != null){	
-			
-			TwitterManager tm = TwitterManager.getInstance();
-			
-			if(days!=0){
-				if(tm.getVenues(userID, days)!=null)
-					out.println(tm.getVenues(userID, days));
-				else
-					out.println("Cant get the venues for that user!");		
-			}
-			else{
-
-				long [] list = new long[1];
-				list[0]=userID;
-				tm.initConfiguration(list);
-			}
-		} else {	
-			out.println("No text entered.");	
-		}	
-		out.close();
 		
 	}
 
@@ -84,7 +57,9 @@ public class UserVenuesServlet extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		Gson gson = new Gson();
-
+		
+		
+		
 		/* Build the string containing the JSON object so that it can be parsed by gson */
 		StringBuilder sb = Util.jsonRequestToString(request);
 		
@@ -98,15 +73,26 @@ public class UserVenuesServlet extends HttpServlet {
 			TwitterManager tm = TwitterManager.getInstance();
 			
 			long[] idList = {uvf.getUserId()};
-			
-			tm.initConfiguration(idList);
-			ArrayList<CompleteVenue> venues = tm.getVenues();
-			
+			Long userID = uvf.getUserId();
+			int days = uvf.getDays();
+			System.out.println(days);
+			if(days!=0){
+				Result<CompleteVenue> venues= tm.getVenuesSince(userID, days);
+				String json = gson.toJson(venues);
+				tm.clearVenues();
+				response.getWriter().write(json);
+			} 
+			else{
+				tm.initConfiguration(idList);
+				ArrayList<CompleteVenue> venuesStreamed= tm.getVenues();
+				 String json = gson.toJson(venuesStreamed);
+				 tm.clearVenues();
+				 response.getWriter().write(json);
+			}
+				
 			/* Create the response JSON */
-			String json = gson.toJson(venues);
 			
-			tm.clearVenues();
-			response.getWriter().write(json);
+			
 		} catch (Exception e) {
 			System.out.println("No input yet.");
 			e.printStackTrace();

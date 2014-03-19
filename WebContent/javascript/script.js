@@ -34,35 +34,53 @@ $(document).ready(function() {
 		var data = JSON.stringify(obj);
 		console.log(data);
 		var connectionEstablished = false;
+		if(obj.days==0){
+			$.ajax({
+				type: "post",
+				dataType: "json",
+				url: "UserVenuesServlet",
+				data: data,
+				success: function(data){
+
+					console.log(data);
+					connectionEstablished = true;
+				}
+			});
+
+			setInterval(function() {	
+				if(connectionEstablished == true) {
+					$.ajax({
+						type: "post",
+						dataType: "json",
+						url: "UserVenuesServlet",
+						data: data,
+						success: function(data){
+							displayVenueStream(data);
+							console.log(data);
+						}
+					});
+				}
+			}, 5000);
+
+		}else{
+			var data = JSON.stringify(obj);
+			console.log(data);
+			$.ajax({
+				type: "post",
+				dataType: "json",
+				url: "UserVenuesServlet",
+				data: data,
+				success: function(data) {
+					console.log(data);
+					displayVenues(data);
+				}
+			});
+
+
+		}
 
 
 
-		$.ajax({
-			type: "post",
-			dataType: "json",
-			url: "UserVenuesServlet",
-			data: data,
-			success: function(data){
-
-				console.log(data);
-				connectionEstablished = true;
-			}
-		});
-
-		setInterval(function() {	
-			if(connectionEstablished == true) {
-				$.ajax({
-					type: "post",
-					dataType: "json",
-					url: "UserVenuesServlet",
-					data: data,
-					success: function(data){
-						displayVenueStream(data);
-						console.log(data);
-					}
-				});
-			}
-		}, 5000);
 
 		event.preventDefault();
 	});
@@ -208,7 +226,28 @@ function displayTweets(data) {
 	});
 }
 
+function displayVenues(data){
+	$(".bubblingG").hide();
+	$("#results").show(0);
+	$.each(data, function( key, venue ) {
+			
+			$photoGroups = venue.photos.groups;
+			var div = "<div class='venues'>";
+			div += "<span class='venues_name'>" + venue.name + "</span><br/>";
+			if($photoGroups[1].length!=0)
+				$.each($photoGroups[1].items,function(key,value){
+					div += "<img src='"+ value.url +"' />";
+				});
+			div += "<br/><p class='text'>" + venue.categories + "</p>";
+			div += "<p class='text'>" + venue.url + "</p>";
+			div += "</div>";	
+			$("#results").append(div);
 
+		
+	});
+	
+	
+}
 
 function displayVenueStream(data) {
 	$.each(data, function( key, venue ) {
@@ -217,26 +256,12 @@ function displayVenueStream(data) {
 			$("#results").show(0);
 			$photoGroups = venue.photos.groups;
 			var div = "<div class='venues'>";
-			div += "<span class='venues_name'>" + venue.name + "</span>";
-			div += "<img src='"+ $photoGroups[1].items[0].url +"' />";
-			div += "<img src='"+ $photoGroups[1].items[1].url+"' />";
-			div += "<img src='"+ $photoGroups[1].items[2].url +"' />";
-			div += "<img src='"+ $photoGroups[1].items[3].url +"' />";
-			div += "<img src='"+ $photoGroups[1].items[4].url +"' />";
-			div += "<img src='"+ $photoGroups[1].items[5].url +"' />";
-			
-			//if($photoGroups.length>1){
-
-			//if($photoGroups[1].items.length>0)
-			//$.each($photoGroups[1].items,function(key,value){
-			//	return div += "<img src='"+ value.url +"' />";
-			//});
-
-			//console.log("Tralala are poze");
-			//return "";
-			//}
-
-			div += "<p class='text'>" + venue.categories + "</p>";
+			div += "<span class='venues_name'>" + venue.name + "</span><br/>";
+			if($photoGroups[1].length!=0)
+				$.each($photoGroups[1].items,function(key,value){
+					div += "<img src='"+ value.url +"' />";
+				});
+			div += "<br/><p class='text'>" + venue.categories + "</p>";
 			div += "<p class='text'>" + venue.url + "</p>";
 			div += "</div>";	
 			$("#results").prepend(div);
@@ -244,6 +269,7 @@ function displayVenueStream(data) {
 		}
 	});
 }
+
 
 function displayKeywords(data){
 	// remove any previous results displayed
