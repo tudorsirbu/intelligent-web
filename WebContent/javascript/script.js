@@ -69,12 +69,12 @@ $(document).ready(function() {
 		event.preventDefault();
 		
 		var obj = {};
-		obj.keywords = $("#keywords").val();
+		obj.keywords = $("#no_keywords").val();
 		obj.daysSince = $("#days_since").val();
 		obj.userIds = $("#user_ids").val();
 		
 		var data = JSON.stringify(obj);
-		
+		console.log(data);
 		$.ajax({
 			type: "post",
 			dataType: "json",
@@ -82,6 +82,7 @@ $(document).ready(function() {
 			data: data,
 			success: function(data) {
 				console.log(data);
+//				console.log(data[0].name);
 //				displayKeywords(data);
 			}
 		});
