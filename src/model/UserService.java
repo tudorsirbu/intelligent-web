@@ -77,12 +77,6 @@ public class UserService {
 		catch (Exception e) {
 			System.out.println(e.toString());
 			e.printStackTrace();
-		} finally {
-			try {
-				this.statement.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 
@@ -119,13 +113,6 @@ public class UserService {
 		catch (Exception e) {
 			System.out.println(e.toString());
 			e.printStackTrace();
-		} finally {
-			try {
-				statement.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
-
 	}
 }
