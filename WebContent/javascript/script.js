@@ -82,8 +82,7 @@ $(document).ready(function() {
 			data: data,
 			success: function(data) {
 				console.log(data);
-//				console.log(data[0].name);
-//				displayKeywords(data);
+				displayKeywords(data);
 			}
 		});
 		
@@ -223,6 +222,42 @@ function displayVenueStream(data) {
 		$("#results").prepend(div);
 		}
 	});
+}
+
+function displayKeywords(data){
+	// remove any previous results displayed
+	$("#results").empty();
+	// add a table to display results
+	$("#results").prepend("<table id=\"keywordsTable\">");
+	
+	// create table header
+	var keywords = data[0].keywords;
+	var header = "<tr>";
+	header += "<th>Twitter username</th>";
+	$.each(keywords, function(key,value){
+		header += "<th>" + key + "</th>";
+	}); 
+	header += "<th>Total</th>";
+	header += "</tr>";
+	
+	// add table head
+	$("#keywordsTable").prepend(header);
+	$.each(data,function(key, value){
+		if(data){
+			console.log(value.username);
+			var row = "<tr>";
+			row += "<td>" + value.username + "</td>";
+			var total = 0;
+			$.each(value.keywords, function(key,value){
+				total += value;
+				row += "<td>" + value + "</td>";
+			});
+			row += "<td>" + total + "</td>";
+			row += "</tr>";
+			$("#keywordsTable").append(row);
+		};
+	});
+	$("#results").show(0);
 }
 
 //function display_retweets(retweets, afterDiv) {
