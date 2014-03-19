@@ -101,6 +101,7 @@ button {
 }
 
 #results {
+	
 	width: 1000px;
 	margin-left: auto;
 	margin-right: auto;
@@ -112,6 +113,7 @@ button {
 	border-radius: 10px;
 	background: #FFF;
 }
+#results img { width: 30% ; height: auto ; }
 
 #loader {
 	width: 1000px;
