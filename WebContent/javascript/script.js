@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	
 	$("#results").hide(0);
-	
+	$(".bubblingG").hide();
 	$("#trackingForm").submit(function( event ) {
 		
 		var obj = {};
@@ -27,10 +27,10 @@ $(document).ready(function() {
 	
 
 	$("#userVenuesForm").submit(function( event ) {
-		initiateResults();
+		$(".bubblingG").show();
 		var obj = {};
 		obj.userId = $("#user_id").val();
-		obj.days = $("#days_since").val();
+		obj.days = $("#days_last_visited").val();
 		
 		var data = JSON.stringify(obj);
 		console.log(data);
@@ -42,11 +42,12 @@ $(document).ready(function() {
 			url: "UserVenuesServlet",
 			data: data,
 			success: function(data){
-				
+			
+				console.log(data);
 				connectionEstablished = true;
 			}
 		});
-		
+			
 		setInterval(function() {	
 			if(connectionEstablished == true) {
 				$.ajax({
@@ -210,9 +211,12 @@ function initiateResults(){
 	$("#results").empty();
 }
 
+
 function displayVenueStream(data) {
 	$.each(data, function( key, venue ) {
 		if(data){
+		$(".bubblingG").hide();
+		initiateResults();
 		var div = "<div class='venues'>";
 		div += "<span class='venues_name'>" + venue.name + "</span>";
 		div += "<img src='"+ venue.photos +"' />";
@@ -220,6 +224,7 @@ function displayVenueStream(data) {
 		div += "<p class='text'>" + venue.url + "</p>";
 		div += "</div>";	
 		$("#results").prepend(div);
+		getPhoto(venue);
 		}
 	});
 }
@@ -258,7 +263,13 @@ function displayKeywords(data){
 		};
 	});
 	$("#results").show(0);
+
 }
+
+function getPhoto(venue){
+	if(venue.photos.groups.length()!=0){
+		console.log("Tralala are poze");
+	}
 
 //function display_retweets(retweets, afterDiv) {
 //	$.each(retweets, function(_, retweet) {
