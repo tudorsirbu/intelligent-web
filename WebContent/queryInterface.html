@@ -47,16 +47,16 @@
 	</form>  	
   </div>
   <div id="tabs-2">
-  	<form action="" method="get">
+  	<form action="" method="get" id="discussionsTrackerForm">
 	    <div>
 	        <label for="user_ids">User IDs:</label>
-	        <textarea name="user_ids" rows="10" cols="1"></textarea>
+	        <textarea name="user_ids" rows="10" cols="1" id="user_ids"></textarea>
 	    </div>
 	    <div>
-	    	<label for="keywords">Most:<input name="keywords" type="number" id="keywords" class="nmb" /> frequent keywords</label>   
+	    	<label for="keywords">Most:<input name="no_keywords" type="number" id="no_keywords" class="nmb" /> frequent keywords</label>   
 	    </div>
 	    <div>
-	        <label for="days">Last:<input name="days" type="number" id="days" class="nmb"/> days</label>
+	        <label for="days">Last:<input name="days_since" type="number" id="days_since" class="nmb"/> days</label>
 	        
 	    </div>  
 	    <div class="button">

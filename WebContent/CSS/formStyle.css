@@ -111,6 +111,57 @@ button {
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 }
+.venues{
+	background-color: #f5f8fa;
+	padding: 5px 10px;
+	clear: both;
+	min-height: 60px;
+	border-bottom: 1px solid #e1e8ed;
+	
+}
+
+.venues a{
+	color: #999;
+	text-decoration: none;
+	font-size: 12px;
+}
+.venues a:hover{
+	color: #0084B4 solid #e1e8ed;
+}
+.venues:first-child{
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-topright: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+.venues:last-child{
+	-webkit-border-bottom-right-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+.venues:hover{
+	background-color: #fff;
+}
+.venues img{
+	float: left;
+	padding: 5px 10px
+}
+.venues > a:title{
+	margin-top: 5px;
+	font-weight: bold;
+	color: #292f33;
+	display: inline-block;
+	font-size: 14px;
+}
+.venues > p.text{
+	font-size: 14px;
+	margin: 0;
+}
 
 .extended_tweet {
 	background-color: #000;

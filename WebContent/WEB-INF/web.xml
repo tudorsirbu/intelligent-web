@@ -59,4 +59,14 @@
     <servlet-name>UserVenuesServlet</servlet-name>
     <url-pattern>/UserVenuesServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserTrackerServlet</display-name>
+    <servlet-name>UserTrackerServlet</servlet-name>
+    <servlet-class>servlets.UserTrackerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserTrackerServlet</servlet-name>
+    <url-pattern>/UserTrackerServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
