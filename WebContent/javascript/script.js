@@ -214,13 +214,12 @@ function displayVenueStream(data) {
 	$.each(data, function( key, venue ) {
 		if(data){
 		var div = "<div class='venues'>";
-		div += "<span class='screen_name'>" + venue.name + "</span>";
-		div += "<img src='"+ venue.profileImageUrl +"' />";
+		div += "<span class='venues_name'>" + venue.name + "</span>";
+		div += "<img src='"+ venue.photos +"' />";
 		div += "<p class='text'>" + venue.categories + "</p>";
 		div += "<p class='text'>" + venue.url + "</p>";
-		div += "<p class='text'>" + venue.url + "</p>";
 		div += "</div>";	
-		$("#results").append(div);
+		$("#results").prepend(div);
 		}
 	});
 }

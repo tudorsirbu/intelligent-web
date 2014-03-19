@@ -178,6 +178,7 @@ public class FoursquareManager {
 			}
 
 			Checkin cc = checkin.getResult();
+			
 			venue= (CompleteVenue) cc.getVenue();
 			
 			
