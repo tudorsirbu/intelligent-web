@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import fi.foyt.foursquare.api.Result;
 import fi.foyt.foursquare.api.entities.CompactVenue;
 import fi.foyt.foursquare.api.entities.CompleteVenue;
 import twitter4j.DirectMessage;
@@ -32,7 +33,7 @@ import twitter4j.auth.AccessToken;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterManager {	
-	private ArrayList<CompactVenue> venues = new ArrayList<CompactVenue>();
+	private ArrayList<CompleteVenue> venues = new ArrayList<CompleteVenue>();
 
 
 
@@ -262,9 +263,8 @@ public class TwitterManager {
 	 * @param statuses the statuses of the user
 	 * @venues the string containg all the venues the user has visited
 	 */
-	public String getVenues(Long userID, Integer days){
-		String venues=null;
-
+	public Result<CompleteVenue> getVenues(Long userID, Integer days){
+		Result<CompleteVenue> venues = null;
 		/* Connect to twitter. */
 		Twitter twitterC = null;	
 		try {	
@@ -308,9 +308,7 @@ public class TwitterManager {
 			urls = extractURL(status);
 			for(String url : urls){
 				
-				CompleteVenue venue = fm.getVenueName(url);
-				if(venue!=null)
-					venues+=venue.getName()+"<br />";
+				venues = fm.getVenueName(url);
 			}	
 		}
 		return venues;
@@ -518,24 +516,21 @@ public class TwitterManager {
 		ArrayList<String> urls = new ArrayList<String>();
 		urls = this.extractURL(status);
 		for(String url : urls){
-			CompleteVenue venue = fm.getVenueName(url);
-			if(venue!=null)
-				this.venues.add(venue);
+			Result<CompleteVenue> currentVenue = fm.getVenueName(url);
+			if(currentVenue != null)
+				this.venues.add(currentVenue.getResult());
 		}
 		System.out.println(this.venues.get(0));
-		
-		
-		
-		// TODO Auto-generated method stub
+
 		
 	}
 	
-	public ArrayList<CompactVenue> getVenues() {
+	public ArrayList<CompleteVenue> getVenues() {
 		return venues;
 	}
 
 	public void clearVenues() {
-		this.venues = new ArrayList<CompactVenue>();
+		this.venues = new ArrayList<CompleteVenue>();
 	}
 
 }
