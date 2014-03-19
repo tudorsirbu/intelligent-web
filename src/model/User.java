@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class User {
 	
@@ -12,6 +13,7 @@ public class User {
 	private String description;
 	private String profilePicURL;
 	private ArrayList<User> friends;
+	private HashMap<String,Integer> keywords = new HashMap<String,Integer>();
 	
 	/**
 	 * Constructor
@@ -31,6 +33,18 @@ public class User {
 		this.description = description;
 		this.profilePicURL = profilePicURL;
 		this.friends = friends;
+	}
+	
+	public User(String id, String name, String username, String location, String description,
+			String profilePicURL, ArrayList<User> friends, HashMap<String,Integer> keywords) {
+		this.id = id;
+		this.name = name;
+		this.username = username;
+		this.location = location;
+		this.description = description;
+		this.profilePicURL = profilePicURL;
+		this.friends = friends;
+		this.keywords = keywords;
 	}
 	
 	/* 
@@ -93,6 +107,14 @@ public class User {
 		this.friends = friends;
 	}
 
+	public HashMap<String, Integer> getKeywords() {
+		return keywords;
+	}
+
+	public void setKeywords(HashMap<String, Integer> keywords) {
+		this.keywords = keywords;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -116,5 +138,14 @@ public class User {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", username=" + username
+				+ ", location=" + location + ", description=" + description
+				+ ", profilePicURL=" + profilePicURL + ", friends=" + friends
+				+ "]";
 	}	
+	
 }
