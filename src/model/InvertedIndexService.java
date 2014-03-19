@@ -4,9 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Calendar;
-
 import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * The class handles opertation on the inverted index table.
@@ -56,9 +57,15 @@ public class InvertedIndexService {
 		}
 	}
 
-	public HashMap<User,HashMap<String,Integer>> getKeywords(long[] ids, int days, int noKeywords){
+	public ArrayList<User> getKeywords(long[] ids, int days, int noKeywords){
 		// the returned hashmap containing for each user a hashmap of the top keywords
-		HashMap<User,HashMap<String,Integer>> top = new HashMap<User,HashMap<String,Integer>>();
+		HashSet<User> top = new HashSet<User>();
+
+		// keep track of the top keywords
+		ArrayList<String> topKeywords = new ArrayList<String>();
+
+		// get the users
+		ArrayList<User> users = new UserService(connection).getUsers(ids); 
 
 		// compute date
 		Calendar c = Calendar.getInstance();
@@ -81,40 +88,65 @@ public class InvertedIndexService {
 					+ "INNER JOIN words ON words.id = inverted_index.word_id "
 					+ "WHERE (DATE(inverted_index.date) BETWEEN '" + date + "' AND CURDATE()) "
 					+ "AND inverted_index.user_id in (" + user_ids + ") "
-					+ "GROUP BY users.id, words.word "
+					+ "GROUP BY words.word, users.id "
 					+ "ORDER BY sumCount DESC";
 			ResultSet results = statement.executeQuery(query);
 			while(results.next()){
-				// create a new user
+				// get the keyword
+				String keyword = results.getString("word");
+
+				// get the user who has used this keyword
 				String id = results.getString("id");
 				String name = results.getString("name");
 				String username = results.getString("username");
 				String location = results.getString("location");
 				String description = results.getString("description");
 				String profilePictureURL = results.getString("profilePictureURL");
-				User u = new User(id, name, username, location, description, profilePictureURL, null);
+				User rowUser = new User(id, name, username, location, description, profilePictureURL, null);
 
-				// check if the user already has a map of keywords
-				HashMap<String,Integer> keywords = top.get(u);
-				if(keywords == null){
-					keywords = new HashMap<String,Integer>();
-				}
-				if(keywords.size() <= noKeywords){
-					String word = results.getString("word");
-					int count = results.getInt("sumCount");
-					keywords.put(word, count);
-					top.put(u,keywords);
-				}
-				
+				// if the keyword is in the top
+				if(topKeywords.contains(keyword)){
+					// get the user's current top count
+					HashMap<String, Integer> keywords = this.getUser(users, rowUser).getKeywords();
+					int keywordCount = keywords.get(keyword) + results.getInt("sumCount");
+					keywords.put(keyword, keywordCount);
+
+					// add the keywords to the user
+					// u.setKeywords(keywords);
+
+					// add the user to the users list
+					// users.add(u);
+				} else if(topKeywords.size() < noKeywords){
+					// add the keyword to the top
+					topKeywords.add(keyword);
+
+					// for each user, make the keyword 
+					for(User u:users){
+						HashMap<String, Integer> keywords = u.getKeywords();
+						// add the new keyword to the map
+						keywords.put(keyword, 0);
+					}
+
+					// update this row's user keyword count for this keyword
+					HashMap<String, Integer> keywords = rowUser.getKeywords();
+					keywords.put(keyword, results.getInt("sumCount"));
+
+				}		
 			}
-
-
 		} catch (SQLException e) {
 			System.out.println("The inverted indexing fetching failed. Check your InvertedIndexService code.");
 			e.printStackTrace();
 		}	
 
-		return top;
+		return users;
+	}
+
+	private User getUser(ArrayList<User> users, User searchedUser){
+		for(User user: users)
+			if(user.equals(searchedUser))
+				return user;
+
+		return null;
 	}
 
 }

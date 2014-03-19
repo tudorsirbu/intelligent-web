@@ -2,7 +2,9 @@ package servlets;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -74,11 +76,11 @@ public class UserTrackerServlet extends HttpServlet {
 
 		// get data from db
 		DatabaseConnection db = new DatabaseConnection();
-		InvertedIndexService s = new InvertedIndexService(db.getConnection());
-		HashMap<User,HashMap<String,Integer>> map = s.getKeywords(this.toLongArray(form.getUserIds()), form.getDaysSince(), form.getKeywords());
+		InvertedIndexService invertedIndexService = new InvertedIndexService(db.getConnection());
+		ArrayList<User> users = invertedIndexService.getKeywords(this.toLongArray(form.getUserIds()), form.getDaysSince(), form.getKeywords());
 
 		/* Create the response JSON */
-		String json = gson.toJson(map);
+		String json = gson.toJson(users);
 		response.getWriter().write(json.toString());
 
 		// close db connection
@@ -94,7 +96,7 @@ public class UserTrackerServlet extends HttpServlet {
 		// for each string id
 		for(int i=0; i<idsArray.length; i++){
 			// convert it to long type and add it to the array
-			user_ids[i] = Long.parseLong(idsArray[i]);
+			user_ids[i] = Long.parseLong(idsArray[i].trim());
 		}
 		return user_ids;
 	}

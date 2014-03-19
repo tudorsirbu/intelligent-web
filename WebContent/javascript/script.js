@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	
 	$("#results").hide(0);
-	
+	$(".bubblingG").hide();
 	$("#trackingForm").submit(function( event ) {
 		
 		var obj = {};
@@ -27,10 +27,10 @@ $(document).ready(function() {
 	
 
 	$("#userVenuesForm").submit(function( event ) {
-		initiateResults();
+		$(".bubblingG").show();
 		var obj = {};
 		obj.userId = $("#user_id").val();
-		obj.days = $("#days_since").val();
+		obj.days = $("#days_last_visited").val();
 		
 		var data = JSON.stringify(obj);
 		console.log(data);
@@ -42,11 +42,12 @@ $(document).ready(function() {
 			url: "UserVenuesServlet",
 			data: data,
 			success: function(data){
-				
+			
+				console.log(data);
 				connectionEstablished = true;
 			}
 		});
-		
+			
 		setInterval(function() {	
 			if(connectionEstablished == true) {
 				$.ajax({
@@ -82,8 +83,7 @@ $(document).ready(function() {
 			data: data,
 			success: function(data) {
 				console.log(data);
-//				console.log(data[0].name);
-//				displayKeywords(data);
+				displayKeywords(data);
 			}
 		});
 		
@@ -213,20 +213,72 @@ function initiateResults(){
 	$("#results").empty();
 }
 
+
 function displayVenueStream(data) {
 	$.each(data, function( key, venue ) {
 		if(data){
+		$(".bubblingG").hide();
+		initiateResults();
 		var div = "<div class='venues'>";
 		div += "<span class='venues_name'>" + venue.name + "</span>";
-		div += "<img src='"+ venue.photos +"' />";
+		div += "<img src='"+ getPhoto(venue) +"' />";
 		div += "<p class='text'>" + venue.categories + "</p>";
 		div += "<p class='text'>" + venue.url + "</p>";
 		div += "</div>";	
 		$("#results").prepend(div);
+		
 		}
 	});
 }
 
+function displayKeywords(data){
+	// remove any previous results displayed
+	$("#results").empty();
+	// add a table to display results
+	$("#results").prepend("<table id=\"keywordsTable\">");
+	
+	// create table header
+	var keywords = data[0].keywords;
+	var header = "<tr>";
+	header += "<th>Twitter username</th>";
+	$.each(keywords, function(key,value){
+		header += "<th>" + key + "</th>";
+	}); 
+	header += "<th>Total</th>";
+	header += "</tr>";
+	
+	// add table head
+	$("#keywordsTable").prepend(header);
+	$.each(data,function(key, value){
+		if(data){
+			console.log(value.username);
+			var row = "<tr>";
+			row += "<td>" + value.username + "</td>";
+			var total = 0;
+			$.each(value.keywords, function(key,value){
+				total += value;
+				row += "<td>" + value + "</td>";
+			});
+			row += "<td>" + total + "</td>";
+			row += "</tr>";
+			$("#keywordsTable").append(row);
+		};
+	});
+	$("#results").show(0);
+
+}
+
+function getPhoto(venue){
+	$photoGroups = venue.photos.groups;
+	if($photoGroups.length>1){
+		
+			if($photoGroups[1].items.length>0)
+				return $photoGroups[1].items[0].url;
+		
+		console.log("Tralala are poze");
+		return "";
+	}
+}
 //function display_retweets(retweets, afterDiv) {
 //	$.each(retweets, function(_, retweet) {
 //		var div = "<div class='retweet'>";

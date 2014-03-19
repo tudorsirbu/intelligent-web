@@ -173,6 +173,8 @@ public class FoursquareManager {
 
 			try {
 				checkin = fsAPI.checkin(checkInId, sig);
+				Checkin cc = checkin.getResult();
+				venue = fsAPI.venue(cc.getVenue().getId()).getResult();
 			} catch (FoursquareApiException e) {
 				e.printStackTrace(); 
 			}

@@ -24,6 +24,7 @@ import twitter4j.User;
 import com.google.gson.Gson;
 
 import fi.foyt.foursquare.api.entities.CompactVenue;
+import fi.foyt.foursquare.api.entities.CompleteVenue;
 import api.TwitterManager;
 
 /**
@@ -99,8 +100,7 @@ public class UserVenuesServlet extends HttpServlet {
 			long[] idList = {uvf.getUserId()};
 			
 			tm.initConfiguration(idList);
-			ArrayList<CompactVenue> venues = tm.getVenues();
-			
+			ArrayList<CompleteVenue> venues = tm.getVenues();
 			
 			/* Create the response JSON */
 			String json = gson.toJson(venues);

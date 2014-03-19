@@ -110,6 +110,19 @@ button {
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
+	background: #FFF;
+}
+
+#loader {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 0px solid #e1e8ed;
+	border-botton: 0;
+	margin-top: 20px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
 }
 .venues{
 	background-color: #f5f8fa;
@@ -248,4 +261,147 @@ button {
 	margin-right: auto;
 	width: 900px;
 	margin-top:20px;
+}
+
+.bubblingG {
+text-align: center;
+width:80px;
+height:50px;
+}
+
+.bubblingG span {
+display: inline-block;
+vertical-align: middle;
+width: 10px;
+height: 10px;
+margin: 25px auto;
+background: #0015FF;
+-moz-border-radius: 50px;
+-moz-animation: bubblingG 0.9s infinite alternate;
+-webkit-border-radius: 50px;
+-webkit-animation: bubblingG 0.9s infinite alternate;
+-ms-border-radius: 50px;
+-ms-animation: bubblingG 0.9s infinite alternate;
+-o-border-radius: 50px;
+-o-animation: bubblingG 0.9s infinite alternate;
+border-radius: 50px;
+animation: bubblingG 0.9s infinite alternate;
+}
+
+#bubblingG_1 {
+-moz-animation-delay: 0s;
+-webkit-animation-delay: 0s;
+-ms-animation-delay: 0s;
+-o-animation-delay: 0s;
+animation-delay: 0s;
+}
+
+#bubblingG_2 {
+-moz-animation-delay: 0.27s;
+-webkit-animation-delay: 0.27s;
+-ms-animation-delay: 0.27s;
+-o-animation-delay: 0.27s;
+animation-delay: 0.27s;
+}
+
+#bubblingG_3 {
+-moz-animation-delay: 0.54s;
+-webkit-animation-delay: 0.54s;
+-ms-animation-delay: 0.54s;
+-o-animation-delay: 0.54s;
+animation-delay: 0.54s;
+}
+
+@-moz-keyframes bubblingG {
+0% {
+width: 10px;
+height: 10px;
+background-color:#0015FF;
+-moz-transform: translateY(0);
+}
+
+100% {
+width: 24px;
+height: 24px;
+background-color:#8ec1da;
+-moz-transform: translateY(-21px);
+}
+
+}
+
+@-webkit-keyframes bubblingG {
+0% {
+width: 10px;
+height: 10px;
+background-color:#0015FF;
+-webkit-transform: translateY(0);
+}
+
+100% {
+width: 24px;
+height: 24px;
+background-color:#8ec1da;
+-webkit-transform: translateY(-21px);
+}
+
+}
+
+@-ms-keyframes bubblingG {
+0% {
+width: 10px;
+height: 10px;
+background-color:#0015FF;
+-ms-transform: translateY(0);
+}
+
+100% {
+width: 24px;
+height: 24px;
+background-color:#8ec1da;
+-ms-transform: translateY(-21px);
+}
+
+}
+
+@-o-keyframes bubblingG {
+0% {
+width: 10px;
+height: 10px;
+background-color:#0015FF;
+-o-transform: translateY(0);
+}
+
+100% {
+width: 24px;
+height: 24px;
+background-color:#8ec1da;
+-o-transform: translateY(-21px);
+}
+
+}
+
+@keyframes bubblingG {
+0% {
+width: 10px;
+height: 10px;
+background-color:#0015FF;
+transform: translateY(0);
+}
+
+100% {
+width: 24px;
+height: 24px;
+background-color:#8ec1da;
+transform: translateY(-21px);
+}
+
+}
+
+#results > table{
+	width: 100%;
+	text-align: center;
+}
+
+#results > table > tr > th{
+	font-weight: bold;
 }
