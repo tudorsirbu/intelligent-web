@@ -63,19 +63,16 @@ $(document).ready(function() {
 			}, 5000);
 
 		}else{
-			var data = JSON.stringify(obj);
-			console.log(data);
 			$.ajax({
 				type: "post",
 				dataType: "json",
 				url: "UserVenuesServlet",
 				data: data,
-				success: function(data) {
+				success: function(data){
 					console.log(data);
 					displayVenues(data);
 				}
 			});
-
 
 		}
 
@@ -232,12 +229,13 @@ function displayVenues(data){
 	$(".bubblingG").hide();
 	$("#results").show(0);
 	$.each(data, function( key, venue ) {
+		if(venue.photos.groups.length !=0)
+			photoGroups = venue.photos.groups;
 			
-			$photoGroups = venue.photos.groups;
 			var div = "<div class='venues'>";
 			div += "<span class='venues_name'>" + venue.name + "</span><br/>";
-			if($photoGroups[1].length!=0)
-				$.each($photoGroups[1].items,function(key,value){
+			if(photoGroups[1].length!=0)
+				$.each(photoGroups[1].items,function(key,value){
 					div += "<img src='"+ value.url +"' />";
 				});
 			div += "<br/><p class='text'>" + venue.categories + "</p>";
@@ -252,15 +250,16 @@ function displayVenues(data){
 }
 
 function displayVenueStream(data) {
+	console.log(data);
 	$.each(data, function( key, venue ) {
 		if(data){
 			$(".bubblingG").hide();
 			$("#results").show(0);
-			$photoGroups = venue.photos.groups;
+			var photoGroups = venue.photos.groups;
 			var div = "<div class='venues'>";
 			div += "<span class='venues_name'>" + venue.name + "</span><br/>";
-			if($photoGroups[1].length!=0)
-				$.each($photoGroups[1].items,function(key,value){
+			if(photoGroups[1].length!=0)
+				$.each(photoGroups[1].items,function(key,value){
 					div += "<img src='"+ value.url +"' />";
 				});
 			div += "<br/><p class='text'>" + venue.categories + "</p>";
