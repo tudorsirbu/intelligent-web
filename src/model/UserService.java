@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  * The class handles all the operations on the users table.
@@ -114,5 +115,34 @@ public class UserService {
 			System.out.println(e.toString());
 			e.printStackTrace();
 		}
+	}
+	
+	public ArrayList<User> getUsers(long[] ids){
+		ArrayList<User> users = new ArrayList<User>();
+		
+		String user_ids = "";
+		for(long id:ids){
+			if(!user_ids.equals(""))
+				user_ids += ",";
+			user_ids += id;
+		}
+		try {
+			String query = "SELECT * FROM users WHERE id in (" + user_ids + ")";
+			statement = connection.createStatement();
+			ResultSet results = statement.executeQuery(query);;
+			while(results.next()){
+				String id = results.getString("id");
+				String name = results.getString("name");
+				String username = results.getString("username");
+				String location = results.getString("location");
+				String description = results.getString("description");
+				String profilePicURL = results.getString("profilePictureURL");
+				users.add(new User(id, name, username, location, description, profilePicURL, null));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		return users;
 	}
 }

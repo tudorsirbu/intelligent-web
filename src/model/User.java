@@ -13,7 +13,7 @@ public class User {
 	private String description;
 	private String profilePicURL;
 	private ArrayList<User> friends;
-	private HashMap<String,Integer> keywords = new HashMap<String,Integer>();
+	private HashMap<String,Integer> keywords;
 	
 	/**
 	 * Constructor
@@ -33,6 +33,7 @@ public class User {
 		this.description = description;
 		this.profilePicURL = profilePicURL;
 		this.friends = friends;
+		this.keywords = new HashMap<String,Integer>();
 	}
 	
 	public User(String id, String name, String username, String location, String description,
