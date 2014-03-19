@@ -114,15 +114,10 @@ public class TwitterManager {
 
 		Integer daysNumber;
 		Double latitudeNumber, longitudeNumber; 
-		try {
-			longitudeNumber = Double.parseDouble(locationLong);
-			latitudeNumber = Double.parseDouble(locationLat);
-			daysNumber = Integer.parseInt(days);
-		} catch (NumberFormatException e) {
-			daysNumber = null;
-			latitudeNumber = null;
-			longitudeNumber = null;
-		}
+
+		try { longitudeNumber = Double.parseDouble(locationLong); } catch (NumberFormatException e) { longitudeNumber = null; }
+		try { latitudeNumber = Double.parseDouble(locationLat);	} catch (NumberFormatException e) {	latitudeNumber = null; }
+		try { daysNumber = Integer.parseInt(days); } catch (NumberFormatException e) { daysNumber = null; }
 
 		/* Connect to twitter. */
 		Twitter twitterConnection = null;	
@@ -133,31 +128,56 @@ public class TwitterManager {
 			e.printStackTrace();	
 		}
 
-		List<Status> tweets = new ArrayList<Status>();
+		FoursquareManager fm = new FoursquareManager();
+		
 		HashSet<User> users = new HashSet<User>();
 		
 		try { 
-			if (latitudeNumber != null && longitudeNumber != null) {
-				Query query = new Query();	
-				query.setCount(100);
-				query.setGeoCode(new GeoLocation(latitudeNumber, longitudeNumber), 1, Query.KILOMETERS);				
+			if(daysNumber > 0) {
+				Query query = new Query();
 				
-				if(daysNumber > 0) {
-					Calendar calendar = Calendar.getInstance();
-					calendar.add(Calendar.DAY_OF_MONTH, -daysNumber);
-					SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
-					query.setSince(format.format(calendar.getTime()));
+				/* Choosing whether to use the geographic coordinates or the name of the location.
+				 * Coordinates take priority. */
+				if (latitudeNumber != null && longitudeNumber != null) {
+					query.setCount(100);
+					query.setGeoCode(new GeoLocation(latitudeNumber, longitudeNumber), 1, Query.KILOMETERS);				
+				}
+				else if (locationName != null) {
+					query.setQuery(locationName);	
+					query.setCount(100);
 				}
 				
-				//it fires the query	
+				/* Subtract the number of days so that only the queries in the last X days are taken into consideration. */
+				Calendar calendar = Calendar.getInstance();
+				calendar.add(Calendar.DAY_OF_MONTH, -daysNumber);
+				SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
+				query.setSince(format.format(calendar.getTime()));
+				
+				/* Query twitter. */
 				QueryResult result = twitterConnection.search(query);	
-				//it cycles on the tweets	
-				tweets.addAll(result.getTweets());	
+				Status currentTweet;
 				
-				System.out.println(tweets.size());
+				System.out.println(result.getTweets());
 				
-				for (Status tweet:tweets) {
-					users.add(tweet.getUser());
+				/* Only get the users from the results. */
+				for (Status tweet:result.getTweets()) {
+					
+					currentTweet = (Status) (tweet.isRetweet() ? tweet.getRetweetedStatus() : tweet);
+					
+					/* Extract all the links in the tweet. */
+					for(String link:this.extractURL(currentTweet)) {
+						System.out.println("-------------------------");
+						System.out.println("Found link");
+						
+						/* Check if it has a foursquare checkin in the link. */
+						CompleteVenue venue = fm.getVenueName(link);
+						if (venue != null) {
+//							System.out.println(tweet.getText());
+							System.out.println(link);
+							System.out.println(tweet.getUser().getScreenName());
+							users.add(tweet.getUser());
+						}
+					}
 				}
 			}
 		} 
