@@ -180,9 +180,14 @@ public class FoursquareManager {
 			}
 
 			Checkin cc = checkin.getResult();
-			venue = (CompleteVenue) cc.getVenue();
+		
+			try {
+				venue =fsAPI.venue(cc.getVenue().getId()).getResult();
+			} catch (FoursquareApiException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
-			System.out.println("BOOOOOOOOOOOOOOOOOOOOOM");
 		}
 		else if (url.startsWith("https://foursquare.com/item/")) {
 
