@@ -3,6 +3,7 @@ package api;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -103,7 +104,7 @@ public class DiscussionsTracker {
 		// remove unnecessary words, tags and characters
 		Remover remover = new Remover(status.getText());
 		remover.removeAll();
-
+		
 		// split the string into words
 		String[] tweetWords = remover.getText().toLowerCase().split(" ");
 
