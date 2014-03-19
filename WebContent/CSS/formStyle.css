@@ -110,6 +110,7 @@ button {
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
+	background: #FFF;
 }
 
 #loader {
@@ -394,4 +395,13 @@ background-color:#8ec1da;
 transform: translateY(-21px);
 }
 
+}
+
+#results > table{
+	width: 100%;
+	text-align: center;
+}
+
+#results > table > tr > th{
+	font-weight: bold;
 }
