@@ -308,7 +308,7 @@ public class TwitterManager {
 			urls = extractURL(status);
 			for(String url : urls){
 				
-				CompactVenue venue = fm.getVenueName(url);
+				CompleteVenue venue = fm.getVenueName(url);
 				if(venue!=null)
 					venues+=venue.getName()+"<br />";
 			}	
