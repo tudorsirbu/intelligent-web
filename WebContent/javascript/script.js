@@ -205,7 +205,7 @@ function displayTweets(data) {
 		
 	});
 }
-function iniateResults(){
+function initiateResults(){
 	$("#results").show(0);
 	$("#results").empty();
 }
@@ -213,7 +213,7 @@ function iniateResults(){
 function displayVenueStream(data) {
 	$.each(data, function( key, venue ) {
 		if(data){
-		var div = "<div class='tweet'>";
+		var div = "<div class='venues'>";
 		div += "<span class='screen_name'>" + venue.name + "</span>";
 		div += "<img src='"+ venue.profileImageUrl +"' />";
 		div += "<p class='text'>" + venue.categories + "</p>";
