@@ -283,8 +283,7 @@ public class TwitterManager {
 	 * @param statuses the statuses of the user
 	 * @venues the string containg all the venues the user has visited
 	 */
-	public Result<CompleteVenue> getVenuesSince(Long userID, Integer days){
-		Result<CompleteVenue> venues = null;
+	public ArrayList<CompleteVenue> getVenuesSince(Long userID, Integer days){
 		/* Connect to twitter. */
 		Twitter twitterC = null;	
 		try {	
@@ -327,13 +326,13 @@ public class TwitterManager {
 			ArrayList<String> urls = new ArrayList<String>();
 			urls = extractURL(status);
 			for(String url : urls){
-				Result<CompleteVenue> currentVenue = fm.getVenueName(url);
+				CompleteVenue currentVenue = fm.getVenueName(url);
 				if(currentVenue != null)
-					this.venues.add(currentVenue.getResult());
+					this.venues.add(currentVenue);
 			}
 				
 		}
-		return venues;
+		return this.venues;
 	}
 	/**
 	 * The method initialises the connection to twitter stream api
@@ -538,9 +537,9 @@ public class TwitterManager {
 		ArrayList<String> urls = new ArrayList<String>();
 		urls = this.extractURL(status);
 		for(String url : urls){
-			Result<CompleteVenue> currentVenue = fm.getVenueName(url);
+			CompleteVenue currentVenue = fm.getVenueName(url);
 			if(currentVenue != null)
-				this.venues.add(currentVenue.getResult());
+				this.venues.add(currentVenue);
 		}
 		System.out.println(this.venues.get(0));
 

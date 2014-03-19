@@ -77,7 +77,7 @@ public class UserVenuesServlet extends HttpServlet {
 			int days = uvf.getDays();
 			System.out.println(days);
 			if(days!=0){
-				Result<CompleteVenue> venues= tm.getVenuesSince(userID, days);
+				ArrayList<CompleteVenue> venues= tm.getVenuesSince(userID, days);
 				String json = gson.toJson(venues);
 				tm.clearVenues();
 				response.getWriter().write(json);
