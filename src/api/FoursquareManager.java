@@ -154,11 +154,11 @@ public class FoursquareManager {
 		return null;
 	}
 	
-	public Result<CompleteVenue> getVenueName(String shortURLs){
+	public CompleteVenue getVenueName(String shortURLs){
 
 		FoursquareApi fsAPI = this.init();
 		String url = expandUrl(shortURLs);
-		Result<CompleteVenue> venue = null;
+		CompleteVenue venue = null;
 
 		//if it is not a 4square login url then we return!
 		if (url.startsWith("https://foursquare.com/") && url.contains("checkin") && url.contains("s=")) {
@@ -174,12 +174,15 @@ public class FoursquareManager {
 			try {
 				checkin = fsAPI.checkin(checkInId, sig);
 				Checkin cc = checkin.getResult();
-				venue = fsAPI.venue(cc.getVenue().getId());
+				venue = fsAPI.venue(cc.getVenue().getId()).getResult();
 			} catch (FoursquareApiException e) {
 				e.printStackTrace(); 
 			}
 
+			Checkin cc = checkin.getResult();
+			venue = (CompleteVenue) cc.getVenue();
 			
+			System.out.println("BOOOOOOOOOOOOOOOOOOOOOM");
 		}
 		else if (url.startsWith("https://foursquare.com/item/")) {
 

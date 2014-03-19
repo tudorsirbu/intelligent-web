@@ -132,11 +132,13 @@ $(document).ready(function() {
 	$("#byVenueForm").submit(function( event ) {
 		event.preventDefault();
 
+		console.log($("#venue_days_since").val());
+		
 		var obj = {};
 		obj.locationName = $("#location_name").val();
 		obj.locationLat = $("#location_lat").val();
 		obj.locationLong = $("#location_long").val();
-		obj.days = $("#days").val();
+		obj.days = $("#venue_days_since").val();
 
 		var data = JSON.stringify(obj);
 		console.log(data);
