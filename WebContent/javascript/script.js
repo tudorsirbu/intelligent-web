@@ -110,6 +110,28 @@ $(document).ready(function() {
 		});
 	});
 	
+	$("#byVenueForm").submit(function( event ) {
+		event.preventDefault();
+
+		var obj = {};
+		obj.locationName = $("#location_name").val();
+		obj.locationLat = $("#location_lat").val();
+		obj.locationLong = $("#location_long").val();
+		obj.days = $("#days").val();
+
+		var data = JSON.stringify(obj);
+		console.log(data);
+
+		$.ajax({
+			type: "post",
+			dataType: "json",
+			url: "ByVenueServlet",
+			data: data,
+			success: function(data) {
+				console.log(data);
+			}
+		});
+	});
 	
 	
 	//$("#results").hide(0);
@@ -184,7 +206,7 @@ function displayTweets(data) {
 		
 	});
 }
-function iniateResults(){
+function initiateResults(){
 	$("#results").show(0);
 	$("#results").empty();
 }
@@ -192,7 +214,7 @@ function iniateResults(){
 function displayVenueStream(data) {
 	$.each(data, function( key, venue ) {
 		if(data){
-		var div = "<div class='tweet'>";
+		var div = "<div class='venues'>";
 		div += "<span class='screen_name'>" + venue.name + "</span>";
 		div += "<img src='"+ venue.profileImageUrl +"' />";
 		div += "<p class='text'>" + venue.categories + "</p>";
