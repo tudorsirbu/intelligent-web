@@ -179,10 +179,6 @@ public class FoursquareManager {
 				e.printStackTrace(); 
 			}
 
-			Checkin cc = checkin.getResult();
-			venue = (CompleteVenue) cc.getVenue();
-			
-			System.out.println("BOOOOOOOOOOOOOOOOOOOOOM");
 		}
 		else if (url.startsWith("https://foursquare.com/item/")) {
 
