@@ -220,19 +220,25 @@ function displayVenueStream(data) {
 		initiateResults();
 		var div = "<div class='venues'>";
 		div += "<span class='venues_name'>" + venue.name + "</span>";
-		div += "<img src='"+ venue.photos +"' />";
+		div += "<img src='"+ getPhoto(venue) +"' />";
 		div += "<p class='text'>" + venue.categories + "</p>";
 		div += "<p class='text'>" + venue.url + "</p>";
 		div += "</div>";	
 		$("#results").prepend(div);
-		getPhoto(venue);
+		
 		}
 	});
 }
 
 function getPhoto(venue){
-	if(venue.photos.groups.length()!=0){
+	$photoGroups = venue.photos.groups;
+	if($photoGroups.length>1){
+		
+			if($photoGroups[1].items.length>0)
+				return $photoGroups[1].items[0].url;
+		
 		console.log("Tralala are poze");
+		return "";
 	}
 		
 }
