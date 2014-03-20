@@ -46,22 +46,26 @@ public class UsersServlet extends HttpServlet {
 		
 		UserService us = new UserService(new DatabaseConnection().getConnection());
 		model.User user = us.getUser(userId);
-		
+
 		String content = "";
 
 		if(user != null){	
-			content += user.getName();
+			content += "<div id=\"user\">";
 			content += "<img src=\""+ user.getProfilePicURL() +"\"/>";
-			content += user.getLocation();
-			content += user.getUsername();
-			content += "<a href=\""+user.getId()+"\" class=\"get_tweets\"> get tweets </a>";
+			content += "<h1>" + user.getName() + "</h1>" + "<h2> @" + user.getUsername() +"</h2>";		
+			content += "<h3>" + user.getDescription() + "</h3>";
+			content += "<h3>" + user.getLocation() +"</h3>";
+			content += "<div style=\"clear:both;\"></div>";
+			content += "<button data-href=\""+user.getId()+"\" class=\"get_tweets\"> Get tweets </button>";
+			content += "</div>";
 			content += "<div id=\"results\"></div>";
 		} else {	
-			out.println("No user found.");	
+			content += "<div id=\"user\">";
+			content += "<h1>The user ID provided isn't in the database.</h1>";
+			content += "</div>";
 		}
 		
 		Template page = new Template(content, "Users results.");
-		
 		out.write(page.getPage());
 		out.close();
 	}

@@ -111,7 +111,7 @@ $(document).ready(function() {
 	$(".get_tweets").click(function(event) {
 		event.preventDefault();
 
-		var data = JSON.stringify($(this).attr("href"));
+		var data = JSON.stringify($(this).attr("data-href"));
 		console.log(data);
 
 		$.ajax({
