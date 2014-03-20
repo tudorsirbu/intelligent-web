@@ -1,4 +1,5 @@
 package api;
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -8,6 +9,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import model.DatabaseConnection;
+import model.UserService;
 import api.listeners.TwitterStatusListener;
 import api.listeners.TwitterUserListener;
 import fi.foyt.foursquare.api.Result;
@@ -337,6 +340,13 @@ public class TwitterManager {
 		} catch (TwitterException e) {
 			System.out.println("Could not retrieve user's (" + userID + ") timeline.");
 			e.printStackTrace();
+		}
+		if(statuses!=null){
+			DatabaseConnection connection = new DatabaseConnection();
+			UserService userService = new UserService(connection.getConnection());
+			userService.insertUser(statuses.get(0).getUser());
+			connection.disconnect();
+			
 		}
 
 		Calendar c = Calendar.getInstance();
