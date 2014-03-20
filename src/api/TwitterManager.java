@@ -39,8 +39,7 @@ import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterManager {	
 	private ArrayList<CompleteVenue> venues = new ArrayList<CompleteVenue>();
-
-
+	private ArrayList<User> users = new ArrayList<User>();
 
 	private TwitterStream twitterStream;
 	
@@ -143,76 +142,62 @@ public class TwitterManager {
 		
 		try { 
 			/* Get the results for the last daysNumber days, by querying previously posted tweets. */
-			if(daysNumber > 0) {
-				Query query = new Query();
-				
-				/* Choosing whether to use the geographic coordinates or the name of the location.
-				 * Coordinates take priority. */
-				if (latitudeNumber != null && longitudeNumber != null) {
-					query.setCount(10);
-					suggestedVenues = fm.queryByLocation(locationLat, locationLong);
-				}
-				else if (locationName != null) {
-					/* Search for exact location, that's what the quotes are for */
-					query.setQuery("\"" + locationName + "\"");	
-					query.setCount(100);
-				}
-				
-				/* Subtract the number of days so that only the queries in the last X days are taken into consideration. */
-				Calendar calendar = Calendar.getInstance();
-				calendar.add(Calendar.DAY_OF_MONTH, -daysNumber);
-				SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
-				query.setSince(format.format(calendar.getTime()));
-				
-				/* Query twitter for results.
-				 * If there are any suggestedVenues, it means that the geographic coordinates were provided
-				 * and a list of venues near that location was extracted from foursquare. Otherwise, it
-				 * queries twitter normally. */
-				if(suggestedVenues != null) {
-					for (CompactVenue venue : suggestedVenues) {
-						query.setQuery(venue.getName());
-						tweets.addAll(twitterConnection.search(query).getTweets());
-					}
-				}
-				else {
+			Query query = new Query();
+			
+			/* Choosing whether to use the geographic coordinates or the name of the location.
+			 * Coordinates take priority. */
+			if (latitudeNumber != null && longitudeNumber != null) {
+				query.setCount(10);
+				suggestedVenues = fm.queryByLocation(locationLat, locationLong);
+			}
+			else if (locationName != null) {
+				/* Search for exact location, that's what the quotes are for */
+				query.setQuery("\"" + locationName + "\"");	
+				query.setCount(100);
+			}
+			
+			/* Subtract the number of days so that only the queries in the last X days are taken into consideration. */
+			Calendar calendar = Calendar.getInstance();
+			calendar.add(Calendar.DAY_OF_MONTH, -daysNumber);
+			SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
+			query.setSince(format.format(calendar.getTime()));
+			
+			/* Query twitter for results.
+			 * If there are any suggestedVenues, it means that the geographic coordinates were provided
+			 * and a list of venues near that location was extracted from foursquare. Otherwise, it
+			 * queries twitter normally. */
+			if(suggestedVenues != null) {
+				for (CompactVenue venue : suggestedVenues) {
+					query.setQuery(venue.getName());
 					tweets.addAll(twitterConnection.search(query).getTweets());
-				}
-				
-				int i = 1;
-				/* Only get the users from the results. */
-				for (Status tweet:tweets) {
-					
-					currentTweet = (Status) (tweet.isRetweet() ? tweet.getRetweetedStatus() : tweet);
-					
-					/* Extract all the links in the tweet. */
-					for(String link:this.extractURL(currentTweet)) {
-						System.out.println("-------------------------");
-						System.out.println("Result " + i + " out of " + tweets.size());
-						System.out.println("Found link");
-						System.out.println(tweet.getText());
-						
-						/* Check if it has a foursquare checkin in the link. */
-						CompleteVenue venue = fm.getVenueName(link);
-						if (venue != null) {
-							System.out.println("AND IT'S A CHECKIN OMG OMG OMG !!!!!");
-							System.out.println(tweet.getUser().getScreenName());
-							users.add(tweet.getUser());
-						}
-					}
-					i++;
 				}
 			}
 			else {
-				/* Use twitter stream to get the info. */
-				this.initStream();
-				this.twitterStream.addListener(new TwitterStatusListener());
+				tweets.addAll(twitterConnection.search(query).getTweets());
+			}
+			
+			int i = 1;
+			/* Only get the users from the results. */
+			for (Status tweet:tweets) {
 				
-				FilterQuery fq = new FilterQuery();
-				String[] locations = {locationName};
-				fq.track(locations);
+				currentTweet = (Status) (tweet.isRetweet() ? tweet.getRetweetedStatus() : tweet);
 				
-				System.out.println("STREAMING STUFF");
-				this.twitterStream.filter(fq);
+				/* Extract all the links in the tweet. */
+				for(String link:this.extractURL(currentTweet)) {
+					System.out.println("-------------------------");
+					System.out.println("Result " + i + " out of " + tweets.size());
+					System.out.println("Found link");
+					System.out.println(tweet.getText());
+					
+					/* Check if it has a foursquare checkin in the link. */
+					CompleteVenue venue = fm.getVenueName(link);
+					if (venue != null) {
+						System.out.println("AND IT'S A CHECKIN OMG OMG OMG !!!!!");
+						System.out.println(tweet.getUser().getScreenName());
+						users.add(tweet.getUser());
+					}
+				}
+				i++;
 			}
 		} 
 		catch (Exception e) {	
@@ -221,6 +206,25 @@ public class TwitterManager {
 		}	
 
 		return users;	
+	}
+	
+	public void streamByLocation(String locationName, String locationLat, String locationLong) {
+		Double latitudeNumber, longitudeNumber; 
+
+		try { longitudeNumber = Double.parseDouble(locationLong); } catch (NumberFormatException e) { longitudeNumber = null; }
+		try { latitudeNumber = Double.parseDouble(locationLat);	} catch (NumberFormatException e) {	latitudeNumber = null; }
+		
+		/* Use twitter stream to get the info. */
+		if (this.twitterStream == null) {
+			this.initStream();
+			this.twitterStream.addListener(new TwitterStatusListener());
+			
+			FilterQuery fq = new FilterQuery();
+			String[] locations = {locationName};
+			fq.track(locations);
+			
+			this.twitterStream.filter(fq);
+		}
 	}
 
 	public HashSet<User> findFoursquareUsers() {
@@ -403,6 +407,7 @@ public class TwitterManager {
 	
 	public TwitterStream initStream() {
 		if (this.twitterStream == null) {
+			System.out.println("this is wrong");
 			ConfigurationBuilder cb = new ConfigurationBuilder();
 			cb.setDebugEnabled(true)
 			.setJSONStoreEnabled(true)
@@ -458,14 +463,35 @@ public class TwitterManager {
 			if(currentVenue != null)
 				this.venues.add(currentVenue);
 		}
-
+	}
+	
+	public void handleNewStatusInStream(Status status) {
+		FoursquareManager fm = new FoursquareManager();
+		ArrayList<String> urls = this.extractURL(status);
 		
+		for(String url : urls){
+			CompleteVenue currentVenue = fm.getVenueName(url);
+			if(currentVenue != null)
+				this.users.add(status.getUser());
+		}
 	}
 	
 	public ArrayList<CompleteVenue> getVenues() {
 		return venues;
 	}
 
+	public ArrayList<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(ArrayList<User> users) {
+		this.users = users;
+	}
+
+	public void clearUsers() {
+		this.users.clear();
+	}
+	
 	public void clearVenues() {
 		this.venues = new ArrayList<CompleteVenue>();
 	}

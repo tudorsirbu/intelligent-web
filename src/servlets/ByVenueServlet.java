@@ -29,15 +29,7 @@ public class ByVenueServlet extends HttpServlet {
      */
     public ByVenueServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -55,12 +47,22 @@ public class ByVenueServlet extends HttpServlet {
 		
 		ByVenueForm form = gson.fromJson(sb.toString(), ByVenueForm.class);
 		HashSet<model.User> users = new HashSet<model.User>();
-		for (User twitterUser : tm.queryByLocation(form.getLocationName(), form.getLocationLat(), form.getLocationLong(), form.getDays())) {
-			users.add(new model.User(twitterUser));
+		
+		if(Integer.parseInt(form.getDays()) > 0) {
+			for (User twitterUser : tm.queryByLocation(form.getLocationName(), form.getLocationLat(), form.getLocationLong(), form.getDays())) {
+				users.add(new model.User(twitterUser));
+			}
+		}
+		else {
+			tm.streamByLocation(form.getLocationName(), form.getLocationLat(), form.getLocationLong());
+			for(User twitterUser:tm.getUsers()) {
+				users.add(new model.User(twitterUser));
+			}
 		}
 		
 		/* Create the response JSON */
 		String json = gson.toJson(users);
+		tm.clearUsers();
 		response.getWriter().write(json.toString());
 	}
 
