@@ -283,8 +283,8 @@ public class TwitterManager {
 	 * @param statuses the statuses of the user
 	 * @venues the string containg all the venues the user has visited
 	 */
-	public ArrayList<CompleteVenue> getVenuesSince(Long userID, Integer days){
-		ArrayList<CompleteVenue> venues = new ArrayList<CompleteVenue>();
+	public ArrayList<Object> getVenuesSince(Long userID, Integer days){
+		ArrayList<Object> venues = new ArrayList<Object>();
 	
 		/* Connect to twitter. */
 		Twitter twitterC = null;	
@@ -544,7 +544,6 @@ public class TwitterManager {
 			if(currentVenue != null)
 				this.venues.add(currentVenue);
 		}
-		System.out.println(this.venues.get(0));
 
 		
 	}
