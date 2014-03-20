@@ -269,8 +269,9 @@ function displayVenueStream(data) {
 			if(venue.location.address)
 			div += "<h class='title'>Address:  </h><span class='venues_name'>"+ venue.location.address + "</span><br/>";
 			if(venue.shortUrl)
-			div += "<h class='title'>Url:  </h><a href='url'>"+ venue.shortUrl + "</a><br/><br/>";
-			if(photoGroups)
+			div += "<h class='title'>Url:  </h><a target="+"'_blank'"+" href="+venue.shortUrl+">"+ venue.shortUrl + "</a><br/><br/>";
+			console.log("hhghh"+photoGroups);
+			if(photoGroups.length>0)
 				if(photoGroups[1].length!=0)
 					$.each(photoGroups[1].items,function(key,value){
 						div += "<img src='"+ value.url +"' />";

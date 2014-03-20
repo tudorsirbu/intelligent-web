@@ -60,11 +60,14 @@ public class UserVenuesServlet extends HttpServlet {
 			TwitterManager tm = TwitterManager.getInstance();
 			
 			if(days!=0){
-				ArrayList<CompleteVenue> venues;
+				ArrayList<Object> venues;
 				if(tm.getVenuesSince(userID, days)!=null){
 					venues = tm.getVenuesSince(userID, days); 
-					for(CompleteVenue venue : venues){
-						out.println(venue.getName());	
+					for(Object venue : venues){
+						if (venue instanceof CompleteVenue)
+							out.println(((CompleteVenue) venue).getName());	
+						else
+							out.println(((CompactVenue) venue).getName());	
 						
 					}
 					String json = gson.toJson(venues);
@@ -115,7 +118,7 @@ public class UserVenuesServlet extends HttpServlet {
 			ArrayList<CompleteVenue> venuesStreamed=null;
 			System.out.println(days);
 			if(days!=0){
-				ArrayList<CompleteVenue> venues= tm.getVenuesSince(userID, days);
+				ArrayList<Object> venues= tm.getVenuesSince(userID, days);
 				String json = gson.toJson(venues);
 				tm.clearVenues();
 				response.getWriter().write(json);
