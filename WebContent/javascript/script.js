@@ -129,6 +129,8 @@ $(document).ready(function() {
 	$("#byVenueForm").submit(function( event ) {
 		event.preventDefault();
 
+		$("#results").empty();
+		
 		var obj = {};
 		obj.locationName = $("#location_name").val();
 		obj.locationLat = $("#location_lat").val();
@@ -159,8 +161,9 @@ $(document).ready(function() {
 						dataType: "json",
 						url: "ByVenueServlet",
 						data: data,
-						success: function(data){
-							console.log(data);
+						success: function(users){
+							console.log(users);
+							displayUsersStream(users);
 						}
 					});
 				}
@@ -212,6 +215,7 @@ $(document).ready(function() {
 function displayTweets(data) {
 	$("#results").show(0);
 	$("#results").empty();
+	
 	$.each(data, function( key, tweet ) {
 		var div = "<div class='tweet'>";
 		div += "<img src='"+ tweet.profileImageUrl +"' />";
@@ -363,14 +367,27 @@ function displayUsers(users) {
 	$("#results").show(0);
 	
 	$.each(users, function(key, user) {
-		var entry = "";
-		entry += "<div class='user'>";
-		entry += "<img src='"+ user.profilePicURL +"' />";
-		entry += "<a href='UsersServlet?user_id="+ user.id +"' class='title'>" + user.name + "</a>";
-		entry += "<span class='screen_name'> @" + user.username + "</span>";
-		entry += "</div>";
-		$("#results").append(entry);
+		$("#results").append(displayUser(user));
 	});
+}
+
+function displayUsersStream(users) {
+	// remove any previous results displayed
+	$("#results").show(0);
+	
+	$.each(users, function(key, user) {
+		$("#results").prepend(displayUser(user));
+	});
+}
+
+function displayUser(user) {
+	var entry = "";
+	entry += "<div class='user'>";
+	entry += "<img src='"+ user.profilePicURL +"' />";
+	entry += "<a href='UsersServlet?user_id="+ user.id +"' class='title'>" + user.name + "</a>";
+	entry += "<span class='screen_name'> @" + user.username + "</span>";
+	entry += "</div>";
+	return entry;
 }
 
 //function display_retweets(retweets, afterDiv) {
