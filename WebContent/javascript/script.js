@@ -63,19 +63,16 @@ $(document).ready(function() {
 			}, 5000);
 
 		}else{
-			var data = JSON.stringify(obj);
-			console.log(data);
 			$.ajax({
 				type: "post",
 				dataType: "json",
 				url: "UserVenuesServlet",
 				data: data,
-				success: function(data) {
+				success: function(data){
 					console.log(data);
 					displayVenues(data);
 				}
 			});
-
 
 		}
 
@@ -133,7 +130,7 @@ $(document).ready(function() {
 		event.preventDefault();
 
 		console.log($("#venue_days_since").val());
-		
+
 		var obj = {};
 		obj.locationName = $("#location_name").val();
 		obj.locationLat = $("#location_lat").val();
@@ -233,35 +230,57 @@ function displayVenues(data){
 	$(".bubblingG").hide();
 	$("#results").show(0);
 	$.each(data, function( key, venue ) {
-			
-			$photoGroups = venue.photos.groups;
-			var div = "<div class='venues'>";
-			div += "<span class='venues_name'>" + venue.name + "</span><br/>";
-			if($photoGroups[1].length!=0)
-				$.each($photoGroups[1].items,function(key,value){
+		if(venue.photos.groups.length !=0)
+			photoGroups = venue.photos.groups;
+
+		var div = "<div class='venues'>";
+		div += "<h class='title'>" +"Name:  </h><span class='venues_name'>"+ venue.name + "</span><br/>";
+		div += "<h class='title'>Category:  </h><span class='venues_name'>"+ venue.categories[0].name + "</span><br/>";
+		div += "<h class='title'>Address:  </h><span class='venues_name'>"+ venue.location.address + "</span><br/>";
+		div += "<h class='title'>Url:  </h><a href='url'>"+ venue.shortUrl + "</a><br/><br/>";
+		if(photoGroups)
+			if(photoGroups[1].length!=0)
+				$.each(photoGroups[1].items,function(key,value){
 					div += "<img src='"+ value.url +"' />";
 				});
-			div += "<br/><p class='text'>" + venue.categories + "</p>";
-			div += "<p class='text'>" + venue.url + "</p>";
-			div += "</div>";	
-			$("#results").append(div);
+			else{
+				if(photoGroups[0].length!=0)
+					$.each(photoGroups[0].items,function(key,value){
+						div += "<img src='"+ value.url +"' />";
+					});
+			}
+		div += "</div>";	
+		$("#results").append(div);
+
+
 	});
 }
 
 function displayVenueStream(data) {
+	console.log(data);
 	$.each(data, function( key, venue ) {
 		if(data){
 			$(".bubblingG").hide();
 			$("#results").show(0);
-			$photoGroups = venue.photos.groups;
+			var photoGroups = venue.photos.groups;
 			var div = "<div class='venues'>";
-			div += "<span class='venues_name'>" + venue.name + "</span><br/>";
-			if($photoGroups[1].length!=0)
-				$.each($photoGroups[1].items,function(key,value){
-					div += "<img src='"+ value.url +"' />";
-				});
-			div += "<br/><p class='text'>" + venue.categories + "</p>";
-			div += "<p class='text'>" + venue.url + "</p>";
+			div += "<h class='title'>" +"Name:  </h><span class='venues_name'>"+ venue.name + "</span><br/>";
+			div += "<h class='title'>Category:  </h><span class='venues_name'>"+ venue.categories[0].name + "</span><br/>";
+			if(venue.location.address)
+			div += "<h class='title'>Address:  </h><span class='venues_name'>"+ venue.location.address + "</span><br/>";
+			if(venue.shortUrl)
+			div += "<h class='title'>Url:  </h><a href='url'>"+ venue.shortUrl + "</a><br/><br/>";
+			if(photoGroups)
+				if(photoGroups[1].length!=0)
+					$.each(photoGroups[1].items,function(key,value){
+						div += "<img src='"+ value.url +"' />";
+					});
+				else{
+					if(photoGroups[0].length!=0)
+						$.each(photoGroups[0].items,function(key,value){
+							div += "<img src='"+ value.url +"' />";
+						});
+				}
 			div += "</div>";	
 			$("#results").prepend(div);
 
@@ -278,7 +297,7 @@ function displayKeywords(data){
 
 	// create table header
 	var keywords = data[0].keywords;
-	var header = "<tr>";
+	var header = "<tr class=\"header\">";
 	header += "<th>Twitter username</th>";
 	$.each(keywords, function(key,value){
 		header += "<th>" + key + "</th>";
@@ -292,7 +311,7 @@ function displayKeywords(data){
 		if(data){
 			console.log(value.username);
 			var row = "<tr>";
-			row += "<td>" + value.username + "</td>";
+			row += "<td><a href=\"UsersServlet?user_id=" + value.id + "\" >" + value.username + "</a></td>";
 			var total = 0;
 			$.each(value.keywords, function(key,value){
 				total += value;

@@ -107,7 +107,7 @@ public class DiscussionsTracker {
 		
 		// split the string into words
 		String[] tweetWords = remover.getText().toLowerCase().split(" ");
-
+		
 		// use HashMap to count how many times a word appears in a tweet
 		HashMap<String, Integer> words = new HashMap<String,Integer>();
 
@@ -121,7 +121,6 @@ public class DiscussionsTracker {
 				words.put(word, count);
 			}		
 		}
-
 		// iterator used to go through the HashMap
 		java.util.Iterator<Entry<String, Integer>> i =  words.entrySet().iterator();
 		// open a connection to the database

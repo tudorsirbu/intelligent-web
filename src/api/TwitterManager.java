@@ -298,6 +298,8 @@ public class TwitterManager {
 	 * @venues the string containg all the venues the user has visited
 	 */
 	public ArrayList<CompleteVenue> getVenuesSince(Long userID, Integer days){
+		ArrayList<CompleteVenue> venues = new ArrayList<CompleteVenue>();
+	
 		/* Connect to twitter. */
 		Twitter twitterC = null;	
 		try {	
@@ -342,11 +344,12 @@ public class TwitterManager {
 			for(String url : urls){
 				CompleteVenue currentVenue = fm.getVenueName(url);
 				if(currentVenue != null)
-					this.venues.add(currentVenue);
+					venues.add(currentVenue);
+				
 			}
 				
 		}
-		return this.venues;
+		return venues;
 	}
 	/**
 	 * The method initialises the connection to twitter stream api

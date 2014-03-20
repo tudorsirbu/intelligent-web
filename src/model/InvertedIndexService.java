@@ -103,19 +103,13 @@ public class InvertedIndexService {
 				String description = results.getString("description");
 				String profilePictureURL = results.getString("profilePictureURL");
 				User rowUser = new User(id, name, username, location, description, profilePictureURL, null);
-
+				
 				// if the keyword is in the top
 				if(topKeywords.contains(keyword)){
 					// get the user's current top count
 					HashMap<String, Integer> keywords = this.getUser(users, rowUser).getKeywords();
 					int keywordCount = keywords.get(keyword) + results.getInt("sumCount");
 					keywords.put(keyword, keywordCount);
-
-					// add the keywords to the user
-					// u.setKeywords(keywords);
-
-					// add the user to the users list
-					// users.add(u);
 				} else if(topKeywords.size() < noKeywords){
 					// add the keyword to the top
 					topKeywords.add(keyword);
@@ -124,14 +118,18 @@ public class InvertedIndexService {
 					for(User u:users){
 						HashMap<String, Integer> keywords = u.getKeywords();
 						// add the new keyword to the map
-						keywords.put(keyword, 0);
+						if(u.equals(rowUser))
+							keywords.put(keyword, results.getInt("sumCount"));
+						else
+							keywords.put(keyword, 0);
 					}
+					
 
 					// update this row's user keyword count for this keyword
 					HashMap<String, Integer> keywords = rowUser.getKeywords();
 					keywords.put(keyword, results.getInt("sumCount"));
 
-				}		
+				}
 			}
 		} catch (SQLException e) {
 			System.out.println("The inverted indexing fetching failed. Check your InvertedIndexService code.");

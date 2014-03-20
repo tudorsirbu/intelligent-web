@@ -113,7 +113,7 @@ button {
 	background: #FFF;
 	margin-bottom: 100px;
 }
-#venues img { }
+
 
 #loader {
 	width: 1000px;
@@ -136,9 +136,9 @@ button {
 }
 
 .venues a{
-	color: #999;
+	color: #0D3FA8;
 	text-decoration: none;
-	font-size: 12px;
+	font-size: 14px;
 }
 .venues a:hover{
 	color: #0084B4 solid #e1e8ed;
@@ -163,9 +163,9 @@ button {
 	background-color: #fff;
 }
 .venues img{
-	width: 20% ;
+	width: 15% ;
 	height: auto ;
-	padding: 3px 3px
+	padding: 1px 8px
 }
 .venues > a:title{
 	margin-top: 5px;
@@ -174,14 +174,40 @@ button {
 	display: inline-block;
 	font-size: 14px;
 }
-.venues > p.text{
-	font-size: 14px;
+.venues > p.title{
+	font-weight: bold;
+	font-weight: bold;
+	font-size: 20px;
+	color: #292f33;
 	margin: 0;
+}
+.venues >h.title{
+	font-weight: bold;
+	font-weight: bold;
+	font-size: 20px;
+	color: #292f33;
+	margin: 0;
+}
+.venues > p.cat{
+	color: #474141;
+	margin-top: 5px;
+	font-weight: bold;
+	
+	display: inline-block;
+	font-size: 14px;
+}
+.venues > p.addr{
+	color: #474141;
+	margin-top: 5px;
+	font-weight: bold;
+	
+	display: inline-block;
+	font-size: 14px;
 }
 
 .venues > .venues_name{
-	color: #999;	
-	font-size: 13px;
+	color: #0D3FA8;	
+	font-size: 20px;
 }
 
 .extended_tweet {
@@ -264,6 +290,15 @@ button {
 	margin-right: auto;
 	width: 900px;
 	margin-top:20px;
+}
+#results > table{
+	width: 100%;
+	text-align: center;
+}
+
+.header{
+	font-weight: bold;
+
 }
 
 .bubblingG {
@@ -400,11 +435,4 @@ transform: translateY(-21px);
 
 }
 
-#results > table{
-	width: 100%;
-	text-align: center;
-}
 
-#results > table > tr > th{
-	font-weight: bold;
-}
