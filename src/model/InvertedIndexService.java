@@ -66,7 +66,6 @@ public class InvertedIndexService {
 
 		// get the users
 		ArrayList<User> users = new UserService(connection).getUsers(ids); 
-		System.out.println("Users provided: " + users);
 
 		// compute date
 		Calendar c = Calendar.getInstance();
@@ -91,7 +90,6 @@ public class InvertedIndexService {
 					+ "AND inverted_index.user_id in (" + user_ids + ") "
 					+ "GROUP BY words.word, users.id "
 					+ "ORDER BY sumCount DESC";
-			System.out.println(query);
 			ResultSet results = statement.executeQuery(query);
 			while(results.next()){
 				// get the keyword

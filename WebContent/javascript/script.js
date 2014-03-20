@@ -280,7 +280,7 @@ function displayKeywords(data){
 
 	// create table header
 	var keywords = data[0].keywords;
-	var header = "<tr>";
+	var header = "<tr class=\"header\">";
 	header += "<th>Twitter username</th>";
 	$.each(keywords, function(key,value){
 		header += "<th>" + key + "</th>";
@@ -294,7 +294,7 @@ function displayKeywords(data){
 		if(data){
 			console.log(value.username);
 			var row = "<tr>";
-			row += "<td>" + value.username + "</td>";
+			row += "<td><a href=\"UsersServlet?user_id=" + value.id + "\" >" + value.username + "</a></td>";
 			var total = 0;
 			$.each(value.keywords, function(key,value){
 				total += value;

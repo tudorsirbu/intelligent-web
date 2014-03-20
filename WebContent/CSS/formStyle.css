@@ -265,6 +265,15 @@ button {
 	width: 900px;
 	margin-top:20px;
 }
+#results > table{
+	width: 100%;
+	text-align: center;
+}
+
+.header{
+	font-weight: bold;
+
+}
 
 .bubblingG {
 text-align: center;
@@ -400,11 +409,4 @@ transform: translateY(-21px);
 
 }
 
-#results > table{
-	width: 100%;
-	text-align: center;
-}
 
-#results > table > tr > th{
-	font-weight: bold;
-}
