@@ -145,8 +145,9 @@ $(document).ready(function() {
 			dataType: "json",
 			url: "ByVenueServlet",
 			data: data,
-			success: function(data) {
-				console.log(data);
+			success: function(users) {
+				console.log(users);
+				displayUsers(users);
 			}
 		});
 	});
@@ -253,8 +254,6 @@ function displayVenues(data){
 
 
 	});
-
-
 }
 
 function displayVenueStream(data) {
@@ -328,6 +327,21 @@ function displayKeywords(data){
 
 }
 
+function displayUsers(users) {
+	// remove any previous results displayed
+	$("#results").empty();
+	$("#results").show(0);
+	
+	$.each(users, function(key, user) {
+		var entry = "";
+		entry += "<div class='user'>";
+		entry += "<img src='"+ user.profilePicURL +"' />";
+		entry += "<a href='UsersServlet?user_id="+ user.id +"' class='title'>" + user.name + "</a>";
+		entry += "<span class='screen_name'> @" + user.username + "</span>";
+		entry += "</div>";
+		$("#results").append(entry);
+	});
+}
 
 //function display_retweets(retweets, afterDiv) {
 //$.each(retweets, function(_, retweet) {

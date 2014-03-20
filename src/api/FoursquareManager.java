@@ -19,6 +19,7 @@ import fi.foyt.foursquare.api.entities.CompactVenue;
 import fi.foyt.foursquare.api.entities.CompleteTip;
 import fi.foyt.foursquare.api.entities.CompleteVenue;
 import fi.foyt.foursquare.api.entities.Location;
+import fi.foyt.foursquare.api.entities.VenueGroup;
 import fi.foyt.foursquare.api.entities.VenuesSearchResult;
 
 public class FoursquareManager {
@@ -40,7 +41,7 @@ public class FoursquareManager {
 
 		FoursquareApi fsAPI = this.init();
 		String url = expandUrl(shortURLs);
-
+		
 		//if it is not a 4square login url then we return!
 		if (url.startsWith("https://foursquare.com/") && url.contains("checkin") && url.contains("s=")) {
 			Pattern pId = Pattern.compile(".+?checkin/(.+?)\\?s=.+", Pattern.DOTALL);
@@ -94,8 +95,8 @@ public class FoursquareManager {
 
 		}
 	}
-
-	public HashSet<CompactUser> queryByLocation(String locationName, String locationLat, String locationLong, String days) {
+	
+	public CompactVenue[] queryByLocation(String locationLat, String locationLong) {
 		/* 
 		 * 
 		 * https://developer.foursquare.com/docs/checkins/recent
@@ -103,27 +104,29 @@ public class FoursquareManager {
 		 */
 
 		FoursquareApi fs = this.init();
-		HashSet<CompactUser> users = new HashSet<CompactUser>();
-
+		CompactVenue[] venues = null;
+		
 		try {
-			Result<Checkin[]> result = fs.checkinsRecent(locationLat + "," + locationLong, 100, (long) 5);
-
+			
 			Map<String, String> searchParameters = new HashMap<String, String>();
-			searchParameters.put("ll", "53, -1");
-
+			searchParameters.put("ll", ""+ locationLat + ","+ locationLong +"");
+			searchParameters.put("intent", "checkin");
+			searchParameters.put("limit", "10");
+			
+			Result<VenuesSearchResult> result = fs.venuesSearch(searchParameters);
 			if (result.getMeta().getCode() == 200) {
-				Checkin[] checkins = result.getResult();
+				VenuesSearchResult venuesResult = result.getResult();
 				System.out.println("INTRU AICI!");
-				for (Checkin checkin : checkins) {
-					System.out.println(checkin.getId());
-					users.add(checkin.getUser());
+				for (CompactVenue venue : venuesResult.getVenues()) {
+					System.out.println(venue.getName());
 				}
+				venues = venuesResult.getVenues();
 			}
 		} catch (FoursquareApiException e) {
 			e.printStackTrace();
 		}
-
-		return users;
+		
+		return venues;
 	}
 
 	public CompactVenue[] getVenues(String location) {
@@ -180,6 +183,7 @@ public class FoursquareManager {
 			}
 
 			Checkin cc = checkin.getResult();
+			venue = (CompleteVenue) cc.getVenue();
 
 			try {
 				venue =fsAPI.venue(cc.getVenue().getId()).getResult();
