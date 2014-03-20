@@ -136,9 +136,9 @@ button {
 }
 
 .venues a{
-	color: #999;
+	color: #0D3FA8;
 	text-decoration: none;
-	font-size: 12px;
+	font-size: 14px;
 }
 .venues a:hover{
 	color: #0084B4 solid #e1e8ed;
@@ -174,14 +174,40 @@ button {
 	display: inline-block;
 	font-size: 14px;
 }
-.venues > p.text{
-	font-size: 14px;
+.venues > p.title{
+	font-weight: bold;
+	font-weight: bold;
+	font-size: 20px;
+	color: #292f33;
 	margin: 0;
+}
+.venues >h.title{
+	font-weight: bold;
+	font-weight: bold;
+	font-size: 20px;
+	color: #292f33;
+	margin: 0;
+}
+.venues > p.cat{
+	color: #474141;
+	margin-top: 5px;
+	font-weight: bold;
+	
+	display: inline-block;
+	font-size: 14px;
+}
+.venues > p.addr{
+	color: #474141;
+	margin-top: 5px;
+	font-weight: bold;
+	
+	display: inline-block;
+	font-size: 14px;
 }
 
 .venues > .venues_name{
-	color: #999;	
-	font-size: 13px;
+	color: #0D3FA8;	
+	font-size: 20px;
 }
 
 .extended_tweet {

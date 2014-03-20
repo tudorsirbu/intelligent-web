@@ -130,7 +130,7 @@ $(document).ready(function() {
 		event.preventDefault();
 
 		console.log($("#venue_days_since").val());
-		
+
 		var obj = {};
 		obj.locationName = $("#location_name").val();
 		obj.locationLat = $("#location_lat").val();
@@ -231,22 +231,30 @@ function displayVenues(data){
 	$.each(data, function( key, venue ) {
 		if(venue.photos.groups.length !=0)
 			photoGroups = venue.photos.groups;
-			
-			var div = "<div class='venues'>";
-			div += "<span class='venues_name'>" + venue.name + "</span><br/>";
+
+		var div = "<div class='venues'>";
+		div += "<h class='title'>" +"Name:  </h><span class='venues_name'>"+ venue.name + "</span><br/>";
+		div += "<h class='title'>Category:  </h><span class='venues_name'>"+ venue.categories[0].name + "</span><br/>";
+		div += "<h class='title'>Address:  </h><span class='venues_name'>"+ venue.location.address + "</span><br/>";
+		div += "<h class='title'>Url:  </h><a href='url'>"+ venue.shortUrl + "</a><br/><br/>";
+		if(photoGroups)
 			if(photoGroups[1].length!=0)
 				$.each(photoGroups[1].items,function(key,value){
 					div += "<img src='"+ value.url +"' />";
 				});
-			div += "<br/><p class='text'>" + venue.categories + "</p>";
-			div += "<p class='text'>" + venue.url + "</p>";
-			div += "</div>";	
-			$("#results").append(div);
+			else{
+				if(photoGroups[0].length!=0)
+					$.each(photoGroups[0].items,function(key,value){
+						div += "<img src='"+ value.url +"' />";
+					});
+			}
+		div += "</div>";	
+		$("#results").append(div);
 
-		
+
 	});
-	
-	
+
+
 }
 
 function displayVenueStream(data) {
@@ -257,13 +265,23 @@ function displayVenueStream(data) {
 			$("#results").show(0);
 			var photoGroups = venue.photos.groups;
 			var div = "<div class='venues'>";
-			div += "<span class='venues_name'>" + venue.name + "</span><br/>";
-			if(photoGroups[1].length!=0)
-				$.each(photoGroups[1].items,function(key,value){
-					div += "<img src='"+ value.url +"' />";
-				});
-			div += "<br/><p class='text'>" + venue.categories + "</p>";
-			div += "<p class='text'>" + venue.url + "</p>";
+			div += "<h class='title'>" +"Name:  </h><span class='venues_name'>"+ venue.name + "</span><br/>";
+			div += "<h class='title'>Category:  </h><span class='venues_name'>"+ venue.categories[0].name + "</span><br/>";
+			if(venue.location.address)
+			div += "<h class='title'>Address:  </h><span class='venues_name'>"+ venue.location.address + "</span><br/>";
+			if(venue.shortUrl)
+			div += "<h class='title'>Url:  </h><a href='url'>"+ venue.shortUrl + "</a><br/><br/>";
+			if(photoGroups)
+				if(photoGroups[1].length!=0)
+					$.each(photoGroups[1].items,function(key,value){
+						div += "<img src='"+ value.url +"' />";
+					});
+				else{
+					if(photoGroups[0].length!=0)
+						$.each(photoGroups[0].items,function(key,value){
+							div += "<img src='"+ value.url +"' />";
+						});
+				}
 			div += "</div>";	
 			$("#results").prepend(div);
 
