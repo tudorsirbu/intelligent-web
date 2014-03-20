@@ -27,6 +27,7 @@ $(document).ready(function() {
 
 	$("#userVenuesForm").submit(function( event ) {
 		$("#results").hide(0);
+		$("#results").empty();
 		$(".bubblingG").show();
 		var obj = {};
 		obj.userId = $("#user_id").val();
@@ -262,7 +263,7 @@ function displayTweets(data) {
 }
 
 function displayVenues(data){
-	$("#results").empty();
+	
 	$(".bubblingG").hide();
 	$("#results").show(0);
 	$.each(data, function( key, venue ) {
@@ -296,7 +297,6 @@ function displayVenueStream(data) {
 	console.log(data);
 	$.each(data, function( key, venue ) {
 		if(data){
-			$("#results").empty();
 			$(".bubblingG").hide();
 			$("#results").show(0);
 			var photoGroups = venue.photos.groups;
