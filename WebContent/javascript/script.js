@@ -139,17 +139,47 @@ $(document).ready(function() {
 
 		var data = JSON.stringify(obj);
 		console.log(data);
+		
+		if (obj.days == 0) {
+			$.ajax({
+				type: "post",
+				dataType: "json",
+				url: "ByVenueServlet",
+				data: data,
+				success: function(data){
+					console.log(data);
+					connectionEstablished = true;
+				}
+			});
 
-		$.ajax({
-			type: "post",
-			dataType: "json",
-			url: "ByVenueServlet",
-			data: data,
-			success: function(users) {
-				console.log(users);
-				displayUsers(users);
-			}
-		});
+			setInterval(function() {	
+				if(connectionEstablished == true) {
+					$.ajax({
+						type: "post",
+						dataType: "json",
+						url: "ByVenueServlet",
+						data: data,
+						success: function(data){
+							console.log(data);
+						}
+					});
+				}
+			}, 5000);
+		}
+		else {
+			$.ajax({
+				type: "post",
+				dataType: "json",
+				url: "ByVenueServlet",
+				data: data,
+				success: function(users) {
+					console.log(users);
+					displayUsers(users);
+				}
+			});
+		};
+		
+		
 	});
 
 

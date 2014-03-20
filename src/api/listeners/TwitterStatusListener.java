@@ -4,6 +4,7 @@ import twitter4j.StallWarning;
 import twitter4j.Status;
 import twitter4j.StatusDeletionNotice;
 import twitter4j.StatusListener;
+import api.TwitterManager;
 
 public class TwitterStatusListener implements StatusListener {
 
@@ -33,6 +34,8 @@ public class TwitterStatusListener implements StatusListener {
 
 	@Override
 	public void onStatus(Status tweet) {
+		TwitterManager tm = TwitterManager.getInstance();
+		tm.handleNewStatusInStream(tweet);
 		System.out.println(tweet.getText());
 	}
 
