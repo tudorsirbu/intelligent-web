@@ -236,10 +236,8 @@ function displayVenues(data){
 		var div = "<div class='venues'>";
 		div += "<h class='title'>" +"Name:  </h><span class='venues_name'>"+ venue.name + "</span><br/>";
 		div += "<h class='title'>Category:  </h><span class='venues_name'>"+ venue.categories[0].name + "</span><br/>";
-		if(venue.location.address)
-			div += "<h class='title'>Address:  </h><span class='venues_name'>"+ venue.location.address + "</span><br/>";
-		if(venue.shortUrl)
-			div += "<h class='title'>Url:  </h><a target="+"'_blank'"+" href="+venue.shortUrl+">"+ venue.shortUrl + "</a><br/><br/>";
+		div += "<h class='title'>Address:  </h><span class='venues_name'>"+ venue.location.address + "</span><br/>";
+		div += "<h class='title'>Url:  </h><a href='url'>"+ venue.shortUrl + "</a><br/><br/>";
 		if(photoGroups)
 			if(photoGroups[1].length!=0)
 				$.each(photoGroups[1].items,function(key,value){
@@ -272,6 +270,7 @@ function displayVenueStream(data) {
 			div += "<h class='title'>Address:  </h><span class='venues_name'>"+ venue.location.address + "</span><br/>";
 			if(venue.shortUrl)
 			div += "<h class='title'>Url:  </h><a target="+"'_blank'"+" href="+venue.shortUrl+">"+ venue.shortUrl + "</a><br/><br/>";
+			console.log("hhghh"+photoGroups);
 			if(photoGroups.length>0)
 				if(photoGroups[1].length!=0)
 					$.each(photoGroups[1].items,function(key,value){
