@@ -215,15 +215,16 @@ public class TwitterManager {
 		try { latitudeNumber = Double.parseDouble(locationLat);	} catch (NumberFormatException e) {	latitudeNumber = null; }
 		
 		/* Use twitter stream to get the info. */
-		this.initStream();
-		this.twitterStream.addListener(new TwitterStatusListener());
-		
-		FilterQuery fq = new FilterQuery();
-		String[] locations = {locationName};
-		fq.track(locations);
-		
-		System.out.println("STREAMING STUFF");
-		this.twitterStream.filter(fq);
+		if (this.twitterStream == null) {
+			this.initStream();
+			this.twitterStream.addListener(new TwitterStatusListener());
+			
+			FilterQuery fq = new FilterQuery();
+			String[] locations = {locationName};
+			fq.track(locations);
+			
+			this.twitterStream.filter(fq);
+		}
 	}
 
 	public HashSet<User> findFoursquareUsers() {
@@ -406,6 +407,7 @@ public class TwitterManager {
 	
 	public TwitterStream initStream() {
 		if (this.twitterStream == null) {
+			System.out.println("this is wrong");
 			ConfigurationBuilder cb = new ConfigurationBuilder();
 			cb.setDebugEnabled(true)
 			.setJSONStoreEnabled(true)
@@ -486,6 +488,10 @@ public class TwitterManager {
 		this.users = users;
 	}
 
+	public void clearUsers() {
+		this.users.clear();
+	}
+	
 	public void clearVenues() {
 		this.venues = new ArrayList<CompleteVenue>();
 	}

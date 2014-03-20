@@ -62,6 +62,7 @@ public class ByVenueServlet extends HttpServlet {
 		
 		/* Create the response JSON */
 		String json = gson.toJson(users);
+		tm.clearUsers();
 		response.getWriter().write(json.toString());
 	}
 

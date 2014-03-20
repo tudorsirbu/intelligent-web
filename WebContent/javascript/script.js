@@ -129,8 +129,6 @@ $(document).ready(function() {
 	$("#byVenueForm").submit(function( event ) {
 		event.preventDefault();
 
-		console.log($("#venue_days_since").val());
-
 		var obj = {};
 		obj.locationName = $("#location_name").val();
 		obj.locationLat = $("#location_lat").val();
@@ -140,7 +138,9 @@ $(document).ready(function() {
 		var data = JSON.stringify(obj);
 		console.log(data);
 		
+		console.log(obj.days);
 		if (obj.days == 0) {
+			
 			$.ajax({
 				type: "post",
 				dataType: "json",
