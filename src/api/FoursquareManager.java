@@ -32,12 +32,12 @@ public class FoursquareManager {
 
 		FoursquareApi fsAPI = new FoursquareApi(clientID, clientSecret, redirectUrl);
 		fsAPI.setoAuthToken(accessToken);
-		
+
 		return fsAPI;
 	}
-	
+
 	public void getLocationInformation(String shortURLs) {
-		
+
 		FoursquareApi fsAPI = this.init();
 		String url = expandUrl(shortURLs);
 
@@ -94,23 +94,23 @@ public class FoursquareManager {
 
 		}
 	}
-	
+
 	public HashSet<CompactUser> queryByLocation(String locationName, String locationLat, String locationLong, String days) {
 		/* 
 		 * 
 		 * https://developer.foursquare.com/docs/checkins/recent
 		 * 
 		 */
-		
+
 		FoursquareApi fs = this.init();
 		HashSet<CompactUser> users = new HashSet<CompactUser>();
-		
+
 		try {
 			Result<Checkin[]> result = fs.checkinsRecent(locationLat + "," + locationLong, 100, (long) 5);
-			
+
 			Map<String, String> searchParameters = new HashMap<String, String>();
 			searchParameters.put("ll", "53, -1");
-			
+
 			if (result.getMeta().getCode() == 200) {
 				Checkin[] checkins = result.getResult();
 				System.out.println("INTRU AICI!");
@@ -122,10 +122,10 @@ public class FoursquareManager {
 		} catch (FoursquareApiException e) {
 			e.printStackTrace();
 		}
-		
+
 		return users;
 	}
-	
+
 	public CompactVenue[] getVenues(String location) {
 		/* 
 		 * 
@@ -133,27 +133,27 @@ public class FoursquareManager {
 		 * 
 		 */
 		FoursquareApi fs = this.init();
-		
+
 		try {
 			String[] splittedLocation = location.split(",");
-			
+
 			Map<String, String> searchParams = new HashMap<String, String>();
 			searchParams.put("query", splittedLocation[0].trim());
 			searchParams.put("near", splittedLocation[1].trim());	
-			
+
 			Result<VenuesSearchResult> result = fs.venuesSearch(searchParams);
 			System.out.println(result.getMeta().getCode());
 			if (result.getMeta().getCode() == 200) {
 				return result.getResult().getVenues();
 			}
-			
+
 		} catch (FoursquareApiException e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
-	
+
 	public CompleteVenue getVenueName(String shortURLs){
 
 		FoursquareApi fsAPI = this.init();
@@ -180,14 +180,14 @@ public class FoursquareManager {
 			}
 
 			Checkin cc = checkin.getResult();
-		
+
 			try {
 				venue =fsAPI.venue(cc.getVenue().getId()).getResult();
 			} catch (FoursquareApiException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
 		else if (url.startsWith("https://foursquare.com/item/")) {
 

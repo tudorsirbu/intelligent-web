@@ -30,7 +30,7 @@ public class WordService {
 	public ArrayList<String> getStopList(){
 		ArrayList<String> stopList = new ArrayList<String>();
 		try {
-			statement = connection.createStatement();
+			statement = this.connection.createStatement();
 			String query = "SELECT word FROM words WHERE indexed = 0";
 			ResultSet results = statement.executeQuery(query);
 			while(results.next())
