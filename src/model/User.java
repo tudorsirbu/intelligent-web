@@ -48,6 +48,16 @@ public class User {
 		this.keywords = keywords;
 	}
 	
+	public User(twitter4j.User twitterUser) {
+		this(String.valueOf(twitterUser.getId()),
+			twitterUser.getName(), 
+			twitterUser.getScreenName(), 
+			twitterUser.getLocation(), 
+			twitterUser.getDescription(), 
+			twitterUser.getProfileImageURL(), 
+			null);
+	}
+	
 	/* 
 	 * Getters and setters for each detail stored for the user
 	 */

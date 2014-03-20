@@ -130,21 +130,26 @@ public class TwitterManager {
 		}
 
 		FoursquareManager fm = new FoursquareManager();
-		
+	
 		HashSet<User> users = new HashSet<User>();
+		List<Status> tweets = new ArrayList<Status>(); 
+		CompactVenue[] suggestedVenues = null;
+		Status currentTweet;
 		
 		try { 
+			/* Get the results for the last daysNumber days, by querying previously posted tweets. */
 			if(daysNumber > 0) {
 				Query query = new Query();
 				
 				/* Choosing whether to use the geographic coordinates or the name of the location.
 				 * Coordinates take priority. */
 				if (latitudeNumber != null && longitudeNumber != null) {
-					query.setCount(100);
-					query.setGeoCode(new GeoLocation(latitudeNumber, longitudeNumber), 1, Query.KILOMETERS);				
+					query.setCount(10);
+					suggestedVenues = fm.queryByLocation(locationLat, locationLong);
 				}
 				else if (locationName != null) {
-					query.setQuery(locationName);	
+					/* Search for exact location, that's what the quotes are for */
+					query.setQuery("\"" + locationName + "\"");	
 					query.setCount(100);
 				}
 				
@@ -154,38 +159,48 @@ public class TwitterManager {
 				SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
 				query.setSince(format.format(calendar.getTime()));
 				
-				/* Query twitter. */
-				QueryResult result = twitterConnection.search(query);	
-				Status currentTweet;
+				/* Query twitter for results.
+				 * If there are any suggestedVenues, it means that the geographic coordinates were provided
+				 * and a list of venues near that location was extracted from foursquare. Otherwise, it
+				 * queries twitter normally. */
+				if(suggestedVenues != null) {
+					for (CompactVenue venue : suggestedVenues) {
+						query.setQuery(venue.getName());
+						tweets.addAll(twitterConnection.search(query).getTweets());
+					}
+				}
+				else {
+					tweets.addAll(twitterConnection.search(query).getTweets());
+				}
 				
-				System.out.println(result.getTweets());
-				
+				int i = 1;
 				/* Only get the users from the results. */
-				for (Status tweet:result.getTweets()) {
+				for (Status tweet:tweets) {
 					
 					currentTweet = (Status) (tweet.isRetweet() ? tweet.getRetweetedStatus() : tweet);
 					
 					/* Extract all the links in the tweet. */
 					for(String link:this.extractURL(currentTweet)) {
 						System.out.println("-------------------------");
+						System.out.println("Result " + i + " out of " + tweets.size());
 						System.out.println("Found link");
+						System.out.println(tweet.getText());
 						
 						/* Check if it has a foursquare checkin in the link. */
 						CompleteVenue venue = fm.getVenueName(link);
 						if (venue != null) {
-//							System.out.println(tweet.getText());
-							System.out.println(link);
+							System.out.println("AND IT'S A CHECKIN OMG OMG OMG !!!!!");
 							System.out.println(tweet.getUser().getScreenName());
 							users.add(tweet.getUser());
 						}
 					}
+					i++;
 				}
 			}
 		} 
 		catch (Exception e) {	
 			e.printStackTrace(); 	
 			System.out.println("Failed to search tweets:" + e.getMessage());	
-			System.exit(-1);	
 		}	
 
 		return users;	
@@ -224,7 +239,6 @@ public class TwitterManager {
 		catch (Exception e) {	
 			e.printStackTrace(); 	
 			System.out.println("Failed to search tweets:" + e.getMessage());	
-			System.exit(-1);	
 		}
 		
 		return users;
