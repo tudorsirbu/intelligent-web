@@ -69,4 +69,24 @@
     <servlet-name>UserTrackerServlet</servlet-name>
     <url-pattern>/UserTrackerServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SearchVenue</display-name>
+    <servlet-name>SearchVenue</servlet-name>
+    <servlet-class>servlets.SearchVenue</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchVenue</servlet-name>
+    <url-pattern>/SearchVenue</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SearchNearby</display-name>
+    <servlet-name>SearchNearby</servlet-name>
+    <servlet-class>servlets.SearchNearby</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchNearby</servlet-name>
+    <url-pattern>/SearchNearby</url-pattern>
+  </servlet-mapping>
 </web-app>

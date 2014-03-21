@@ -4,12 +4,14 @@
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <link rel="stylesheet" type="text/css" href="CSS/reset.css">
 <link rel="stylesheet" type="text/css" href="CSS/formStyle.css">
-<link rel="stylesheet" type="text/css" href="CSS/jquery-ui-1.10.4.custom.min.css">
+<link rel="stylesheet" type="text/css"
+	href="CSS/jquery-ui-1.10.4.custom.min.css">
 <link rel="stylesheet" type="text/css" href="CSS/map.css">
 
 <script src="javascript/jquery-1.11.0.js"></script>
 <script src="javascript/jquery-ui-1.10.4.custom.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgU59vjkXnSzHlfrR1iaZ6zottGl35Ys&sensor=false"></script>
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgU59vjkXnSzHlfrR1iaZ6zottGl35Ys&sensor=false"></script>
 <script src="javascript/script.js"></script>
 
 
@@ -23,6 +25,7 @@
 			<li><a href="#tabs-2">Frequent keywords</a></li>
 			<li><a href="#tabs-3">Venues for user</a></li>
 			<li><a href="#tabs-4">Get users by venue</a></li>
+			<li><a href="#tabs-5">Find nearby venue</a></li>
 		</ul>
 		<div id="tabs-1">
 			<form action="TrackingServlet" method="get" id="trackingForm">
@@ -118,14 +121,46 @@
 				</div>
 			</form>
 		</div>
+		<div id="tabs-5">
+			<form action="SearchVenue" method="post" id="searchVenue">
+				<div>
+					<label for="venue_name">Name of venue:</label> <input type="text"
+						id="venue_name" class="nms" value="Arts Tower" name="venue_name" />
+				</div>
+				<div>
+					<label for="venue_city">City of venue:</label> <input
+						name="venue_city" type="text" id="venue_city" class="geo"
+						value="Sheffield" />
+				</div>
+				<div class="button">
+					<button name="submit" type="submit">Search for a venue</button>
+				</div>
+			</form>
+			<form action="SearchNearby" method="post" id="searchNearby">
+				<div>
+					<label for="venues_list">Venue:</label> <select name="venues_list"
+						id="venues_list">
+						<option value="0">Search for a venue first</option>
+					</select>
+				</div>
+				<div>
+					<label for="nearby_radius">Radius (meters):</label> <input
+						name="nearby_radius" type="number" id="nearby_radius" class="geo"
+						value="500" />
+				</div>
+				<div class="button">
+					<button name="submit" type="submit">Find nearby venues</button>
+				</div>
+			</form>
+		</div>
 	</div>
 	<div id="map-canvas"></div>
 	<div id="results"></div>
-	
+
 	<div id="loader" class="bubblingG">
 		<span id="bubblingG_1"> </span> <span id="bubblingG_2"> </span> <span
 			id="bubblingG_3"> </span>
 	</div>
-	
+
 </body>
 </html>
