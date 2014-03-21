@@ -372,7 +372,6 @@ function displayUsers(users) {
 }
 
 function displayUsersStream(users) {
-	// remove any previous results displayed
 	$("#results").show(0);
 	
 	$.each(users, function(key, user) {
@@ -386,6 +385,8 @@ function displayUser(user) {
 	entry += "<img src='"+ user.profilePicURL +"' />";
 	entry += "<a href='UsersServlet?user_id="+ user.id +"' class='title'>" + user.name + "</a>";
 	entry += "<span class='screen_name'> @" + user.username + "</span>";
+	entry += "<h3>" + user.description + "</h3>";
+	entry += "<h3>" + user.location + "</h3>";
 	entry += "</div>";
 	return entry;
 }
