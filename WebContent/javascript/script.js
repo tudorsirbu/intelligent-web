@@ -347,7 +347,7 @@ function initMapEmpty(){
 	  
 	  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 }
-
+var activeWindow = new google.maps.InfoWindow();
 function initMap(data){
 
 	  $.each(data, function(key,venue){
@@ -366,7 +366,10 @@ function initMap(data){
 		  });
 		  markersArray.push(marker);
 		  google.maps.event.addListener(marker, 'click', function() {
+			  if(activeWindow!=null)	  
+				  activeWindow.close();  
 		    infowindow.open(map,marker);
+		    activeWindow= infowindow;
 		  });
 		
 	});
