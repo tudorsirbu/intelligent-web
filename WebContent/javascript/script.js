@@ -309,29 +309,36 @@ function displayTweets(data) {
 
 	});
 }
+function populateMapVenues(data){
+	$.each(data, function(key,venue){
+		
+		
+	});
+	
+}
 function initMap(){
-	var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+	var myLatlng = new google.maps.LatLng(53.388960,-1.469930);
 	  var mapOptions = {
-	    zoom: 4,
+	    zoom: 2,
 	    center: myLatlng
 	  };
 
 	  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-	  var contentString = "hello!";
-
-	  var infowindow = new google.maps.InfoWindow({
-	      content: contentString
-	  });
-
-	  var marker = new google.maps.Marker({
-	      position: myLatlng,
-	      map: map,
-	      title: 'Uluru (Ayers Rock)'
-	  });
-	  google.maps.event.addListener(marker, 'click', function() {
-	    infowindow.open(map,marker);
-	  });
+//	  var contentString = "hello!";
+//
+//	  var infowindow = new google.maps.InfoWindow({
+//	      content: contentString
+//	  });
+//
+//	  var marker = new google.maps.Marker({
+//	      position: myLatlng,
+//	      map: map,
+//	      title: 'Uluru (Ayers Rock)'
+//	  });
+//	  google.maps.event.addListener(marker, 'click', function() {
+//	    infowindow.open(map,marker);
+//	  });
 }
 function displayVenues(data){
 	
