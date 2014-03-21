@@ -1,4 +1,19 @@
 $(document).ready(function() {
+
+	$("#map-canvas").hide();
+	google.maps.event.addDomListener(window, 'load', initMap);
+	$("#results").hide();
+	$('#loader').hide();
+
+	var $loading = $('#loader');
+	$(document)
+		.ajaxStart(function () {
+			$loading.show();
+		})
+		.ajaxStop(function () {
+			$loading.hide();
+		});
+
 	$("#searchNearby").hide(0);
 	$("#searchVenue").submit(function(event){
 		var obj = {};
@@ -39,12 +54,7 @@ $(document).ready(function() {
 		});
 		event.preventDefault();
 	});
-	
-	$("#map-canvas").hide(0);
-	google.maps.event.addDomListener(window, 'load', initMap);
-	$("#map-canvas").show(0);
-	$("#results").hide(0);
-	$(".bubblingG").hide();
+
 
 	$("#trackingForm").submit(function( event ) {
 
@@ -78,14 +88,12 @@ $(document).ready(function() {
 		$("#map-canvas").empty(0);
 		$("#results").hide(0);
 		$("#results").empty();
-		$(".bubblingG").show();
-		
+
 		getUserVenuesFormErrors();	
 
 		if (isFormErrorFree($(this)) == true) {
 			$("#results").hide(0);
 			$("#results").empty();
-			$(".bubblingG").show();
 			var obj = {};
 			obj.userId = $("#user_id").val();
 			obj.days = $("#days_last_visited").val();
@@ -356,7 +364,6 @@ function initMap(){
 function displayVenues(data){
 	
 	$("#map-canvas").show(0);
-	$(".bubblingG").hide();
 	$("#results").show(0);
 	$.each(data, function( key, venue ) {
 		photoGroups = venue.photos.groups;
@@ -389,7 +396,6 @@ function displayVenueStream(data) {
 	console.log(data);
 	$.each(data, function( key, venue ) {
 		if(data){
-			$(".bubblingG").hide();
 			$("#map-canvas").show(0);
 			$("#results").show(0);
 			var photoGroups = venue.photos.groups;
