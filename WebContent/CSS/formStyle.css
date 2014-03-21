@@ -331,9 +331,7 @@ body #results {
 	border-radius: 0;
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
-	border: 0;
 	background-color: #8ec1da;
-	/*background-image: none;*/
 }
 
 #tabs .ui-tabs-anchor {
