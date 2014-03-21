@@ -41,61 +41,6 @@ public class TrackingServlet extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();	
-		out.println("<h2>Results</h2>");	
-
-		String keywords = request.getParameter("keywords");
-		String regionLat = request.getParameter("region_lat");
-		String regionLong = request.getParameter("region_long");
-		String radius = request.getParameter("radius");
-		
-		String resultString = "";	
-		
-		TwitterManager tm = TwitterManager.getInstance();
-		List<Status> tweets = tm.query(keywords, regionLat, regionLong, radius);
-
-		if(!keywords.trim().isEmpty()){	
-			FoursquareManager fs = new FoursquareManager();
-			Pattern urlPattern = Pattern.compile("\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
-			
-			for (Status tweet:tweets) {
-				// Gets the user 		
-				User user = tweet.getUser();
-
-				/* Only access foursquare if the user mentions it in his tweet. */
-				if (tweet.getText().toLowerCase().contains("foursquare") == true) {
-					Matcher m = urlPattern.matcher(tweet.getText());
-
-					while (m.find()) {
-						System.out.println(m.group());
-						fs.getLocationInformation(m.group());
-					}					
-				}
-
-				/* Display the tweets. */
-				Status status = user.isGeoEnabled() ? user.getStatus() : null;
-				resultString+="@" + user.getName() + " - " + tweet.getText();
-				if (status==null) {
-					resultString += " (" + user.getLocation() + ") \n";						
-				} 	
-				else {
-					String coordinates = status.getGeoLocation().getLatitude() + "," + status.getGeoLocation().getLongitude();
-					resultString += " (" + (status!=null && status.getGeoLocation() != null ? coordinates : user.getLocation()) + ") \n";						
-				}
-			}
-				
-			out.println(resultString);
-		} else {	
-			out.println("No keywords entered.");	
-		}	
-		out.close();	
-	}
-
-	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -111,23 +56,20 @@ public class TrackingServlet extends HttpServlet {
 		
 		/* Get tweets according to the query parameters */
 		TwitterManager tm = TwitterManager.getInstance();
-		List<Status> tweets = tm.query(tf.getKeywords(), tf.getRegionLat(), tf.getRegionLong(), tf.getRadius());
+		List<MiniStatus> tweets = tm.query(tf.getKeywords(), tf.getRegionLat(), tf.getRegionLong(), tf.getRadius());
 		
-		for (Status t:tweets) {
+		for (MiniStatus t:tweets) {
 			System.out.println(t.getText()+" "+t.getId());
 		}
 		
-		List<MiniStatus> processedTweets = new ArrayList<MiniStatus>();
-		for (Status t:tweets) {
-			processedTweets.add(new MiniStatus(t));
-			
+		for (MiniStatus t:tweets) {
 			UserService us = new UserService(new DatabaseConnection().getConnection());
 			User user = t.getUser();
 			us.insertUser(new model.User(String.valueOf(user.getId()), user.getName(), user.getScreenName(), user.getLocation(), user.getDescription(), user.getProfileImageURL(), null));
 		}
 		
 		/* Create the response JSON */
-		String json = gson.toJson(processedTweets);
+		String json = gson.toJson(tweets);
 		response.getWriter().write(json.toString());
 	}
 

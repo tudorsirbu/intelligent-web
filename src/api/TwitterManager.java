@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 import model.DatabaseConnection;
 import model.UserService;
+import servlets.util.MiniStatus;
 import twitter4j.FilterQuery;
 import twitter4j.GeoLocation;
 import twitter4j.Paging;
@@ -26,6 +27,7 @@ import twitter4j.User;
 import twitter4j.UserStreamListener;
 import twitter4j.auth.AccessToken;
 import twitter4j.conf.ConfigurationBuilder;
+import util.ApiUtil;
 import api.listeners.TwitterStatusListener;
 import api.listeners.TwitterUserListener;
 import fi.foyt.foursquare.api.entities.CompactVenue;
@@ -57,7 +59,7 @@ public class TwitterManager {
 		return instance;
 	}
 	
-	public List<Status> query(String keywords, String latitude, String longitude, String radius) {	
+	public List<MiniStatus> query(String keywords, String latitude, String longitude, String radius) {	
 		
 		Integer radiusNumber;
 		Double latitudeNumber, longitudeNumber;
@@ -82,7 +84,7 @@ public class TwitterManager {
 			e.printStackTrace();	
 		}
 
-		List<Status> tweets = new ArrayList<Status>();
+		List<MiniStatus> tweets = new ArrayList<MiniStatus>();
 
 		try {
 			for(String keyword:keywordsArray) {
@@ -99,7 +101,10 @@ public class TwitterManager {
 				//it fires the query	
 				QueryResult result = twitterConnection.search(query);	
 				//it cycles on the tweets	
-				tweets.addAll(result.getTweets());	
+				for(Status tweet:result.getTweets()) {
+					tweets.add(new MiniStatus(tweet, ApiUtil.expandStatus(tweet)));
+				}
+						
 			}	
 		} 
 		catch (Exception e) {	
