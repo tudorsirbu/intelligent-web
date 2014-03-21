@@ -1,7 +1,5 @@
 $(document).ready(function() {
-
-	$("#map-canvas").hide();
-	google.maps.event.addDomListener(window, 'load', initMap);
+	google.maps.event.addDomListener(window, 'load', initMapEmpty);
 	$("#results").hide();
 	$('#loader').hide();
 
@@ -84,8 +82,7 @@ $(document).ready(function() {
 	});
 
 	$("#userVenuesForm").submit(function( event ) {
-		$("#map-canvas").hide(0);
-		$("#map-canvas").empty(0);
+		google.maps.event.addDomListener(window, 'load', initMapEmpty);
 		$("#results").hide(0);
 		$("#results").empty();
 
@@ -330,40 +327,44 @@ function displayTweets(data) {
 
 	});
 }
-function populateMapVenues(data){
-	$.each(data, function(key,venue){
-		
-		
-	});
-	
-}
-function initMap(){
+
+var map;
+function initMapEmpty(){
 	var myLatlng = new google.maps.LatLng(53.388960,-1.469930);
 	  var mapOptions = {
 	    zoom: 2,
 	    center: myLatlng
 	  };
-
-	  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-//	  var contentString = "hello!";
-//
-//	  var infowindow = new google.maps.InfoWindow({
-//	      content: contentString
-//	  });
-//
-//	  var marker = new google.maps.Marker({
-//	      position: myLatlng,
-//	      map: map,
-//	      title: 'Uluru (Ayers Rock)'
-//	  });
-//	  google.maps.event.addListener(marker, 'click', function() {
-//	    infowindow.open(map,marker);
-//	  });
+	  
+	  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 }
-function displayVenues(data){
+
+function initMap(data){
+
+	  $.each(data, function(key,venue){
+		  var contentString = "No address";
+		  var myLatlng = new google.maps.LatLng(venue.location.lat,venue.location.lng);
+		  if(venue.location.address!=null)
+			  contentString = venue.location.address; 
+		  var infowindow = new google.maps.InfoWindow({
+		      content: contentString
+		  });
 	
-	$("#map-canvas").show(0);
+		  var marker = new google.maps.Marker({
+		      position: myLatlng,
+		      map: map,
+		      title: venue.name
+		  });
+		  google.maps.event.addListener(marker, 'click', function() {
+		    infowindow.open(map,marker);
+		  });
+		
+	});
+
+}
+
+function displayVenues(data){
+	google.maps.event.addDomListener(window, 'load', initMap(data));
 	$("#results").show(0);
 	$.each(data, function( key, venue ) {
 		photoGroups = venue.photos.groups;
@@ -393,7 +394,7 @@ function displayVenues(data){
 }
 
 function displayVenueStream(data) {
-	console.log(data);
+	google.maps.event.addDomListener(window, 'load', initMap(data));
 	$.each(data, function( key, venue ) {
 		if(data){
 			$("#map-canvas").show(0);
