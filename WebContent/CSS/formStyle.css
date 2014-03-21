@@ -221,6 +221,10 @@ button {
 	min-height: 60px;
 }
 
+.user h3 {
+	font-size: 15px;
+}
+
 .tweet, .user {
 	border-bottom: 1px solid #e1e8ed;
 }
