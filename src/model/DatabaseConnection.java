@@ -24,7 +24,7 @@ public class DatabaseConnection {
 	// database connection details
 	private final String HOST = "localhost";
 	private final String USERNAME = "root";
-	private final String PASSWORD = "mysql";
+	private final String PASSWORD = "";
 	private final String DATABASE ="intelwebdb";
 	
 	/**
