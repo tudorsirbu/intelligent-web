@@ -156,6 +156,33 @@ public class FoursquareManager {
 
 		return null;
 	}
+	
+	/**
+	 * The method searches for a venues given some search parameters
+	 * @param searchParams https://developer.foursquare.com/docs/venues/search
+	 * @return List of venues that match the query
+	 */
+	public CompactVenue[] getVenuesList(Map<String, String> searchParams) {
+		/* 
+		 * 
+		 * https://developer.foursquare.com/docs/venues/search 
+		 * 
+		 */
+		FoursquareApi fs = this.init();
+
+		try {
+			Result<VenuesSearchResult> result = fs.venuesSearch(searchParams);
+			if (result.getMeta().getCode() == 200) {
+				return result.getResult().getVenues();
+			}
+
+		} catch (FoursquareApiException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
 
 	public CompleteVenue getVenueName(String shortURLs){
 

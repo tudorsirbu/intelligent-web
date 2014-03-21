@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <link rel="stylesheet" type="text/css" href="CSS/reset.css">
 <link rel="stylesheet" type="text/css" href="CSS/formStyle.css">
-<link rel="stylesheet" type="text/css" href="CSS/jquery-ui-1.10.4.custom.min.css">
+<link rel="stylesheet" type="text/css"
+	href="CSS/jquery-ui-1.10.4.custom.min.css">
+<link rel="stylesheet" type="text/css" href="CSS/map.css">
 
 <script src="javascript/jquery-1.11.0.js"></script>
 <script src="javascript/jquery-ui-1.10.4.custom.min.js"></script>
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgU59vjkXnSzHlfrR1iaZ6zottGl35Ys&sensor=false"></script>
 <script src="javascript/script.js"></script>
 
-<title> Query interface </title>
+
+<title>Query interface</title>
 </head>
 <body>
 
+<<<<<<< HEAD
 <div id="tabs">
   <ul>
     <li><a href="#tabs-1">Tracking</a></li>
@@ -94,22 +101,150 @@
 		<div>
 			<label for="venue_days_since"> In the last days: </label> 
 			<input name="venue_days_since" type="text" id="venue_days_since" class="nmb" />
+=======
+	<div id="tabs">
+		<ul>
+			<li><a href="#tabs-1">Tracking</a></li>
+			<li><a href="#tabs-2">Frequent keywords</a></li>
+			<li><a href="#tabs-3">Venues for user</a></li>
+			<li><a href="#tabs-4">Get users by venue</a></li>
+			<li><a href="#tabs-5">Find nearby venue</a></li>
+		</ul>
+		<div id="tabs-1">
+			<form action="TrackingServlet" method="get" id="trackingForm">
+				<div>
+					<label for="keyword/hashtag">Keyword/hashtag:</label> <input
+						name="keywords" type="text" id="keywords" class="nms"
+						value="#IntelligentWebCOM3504" />
+				</div>
+				<div>
+					<p>Geographic region:</p>
+				</div>
+				<div>
+					<label for="region_lat">Latitude:</label> <input name="region_lat"
+						type="text" id="region_lat" class="geo" />
+				</div>
+				<div>
+					<label for="region_long">Longitude:</label> <input
+						name="region_long" type="text" id="region_long" class="geo" />
+				</div>
+				<div>
+					<label for="radius">Radius:</label> <input name="radius"
+						type="text" id="radius" class="geo" />
+				</div>
+				<div class="button">
+					<button name="submit" type="submit">Search for results!</button>
+				</div>
+			</form>
 		</div>
-		<div class="button">
-			<button name="submit" type="submit">Search for results!</button>
-		</div>
-	</form>
-  </div>
-</div>
+		<div id="tabs-2">
+			<form action="" method="get" id="discussionsTrackerForm">
+				<div>
+					<label for="user_ids">User IDs:</label>
+					<textarea name="user_ids" rows="10" cols="1" id="user_ids"></textarea>
+				</div>
+				<div>
+					<label for="keywords">Most:<input name="no_keywords"
+						type="number" id="no_keywords" class="nmb" /> frequent keywords
+					</label>
+				</div>
+				<div>
+					<label for="days">Last:<input name="days_since"
+						type="number" id="days_since" class="nmb" /> days
+					</label>
 
-<div id="results"></div>
-<div id="loader" class="bubblingG">
-<span id="bubblingG_1">
-</span>
-<span id="bubblingG_2">
-</span>
-<span id="bubblingG_3">
-</span>
-</div>
+				</div>
+				<div class="button">
+					<button name="submit" type="submit">Search for results!</button>
+				</div>
+			</form>
+		</div>
+		<div id="tabs-3">
+			<form action="UserVenuesServlet" method="get" id="userVenuesForm">
+				<div>
+					<label for="user_id">User ID:</label> <input name="user_id"
+						type="text" id="user_id" class="nms" />
+				</div>
+				<div>
+					<label for="days_last_visited">Points of interest the user
+						has visited in the last:<input name="days_last_visited"
+						type="number" id="days_last_visited" class="nmb" /> days
+					</label>
+				</div>
+				<div class="button">
+					<button name="submit" type="submit">Search for results!</button>
+				</div>
+			</form>
+		</div>
+		<div id="tabs-4">
+			<form action="" method="get" id="byVenueForm">
+				<div>
+					<label for="location_name">Name of location:</label> <input
+						type="text" id="location_name" class="nms" value="The Arts Tower" />
+				</div>
+				<div>
+					<p>Coordinates of location</p>
+				</div>
+				<div>
+					<label for="location_lat">Latitude:</label> <input
+						name="location_lat" type="text" id="location_lat" class="geo" />
+				</div>
+				<div>
+					<label for="location_long">Longitude:</label> <input
+						name="location_long" type="text" id="location_long" class="geo" />
+				</div>
+				<div>
+					<label for="venue_days_since">Currently being visited or
+						has been visited in the last: <input name="venue_days_since"
+						type="text" id="venue_days_since" class="nmb" /> days
+					</label>
+				</div>
+				<div class="button">
+					<button name="submit" type="submit">Search for results!</button>
+				</div>
+			</form>
+>>>>>>> a980efecb6bc0860273fdad544022218ec5a9f67
+		</div>
+		<div id="tabs-5">
+			<form action="SearchVenue" method="post" id="searchVenue">
+				<div>
+					<label for="venue_name">Name of venue:</label> <input type="text"
+						id="venue_name" class="nms" value="Arts Tower" name="venue_name" />
+				</div>
+				<div>
+					<label for="venue_city">City of venue:</label> <input
+						name="venue_city" type="text" id="venue_city" class="geo"
+						value="Sheffield" />
+				</div>
+				<div class="button">
+					<button name="submit" type="submit">Search for a venue</button>
+				</div>
+			</form>
+			<form action="SearchNearby" method="post" id="searchNearby">
+				<div>
+					<label for="venues_list">Venue:</label> <select name="venues_list"
+						id="venues_list">
+						<option value="0">Search for a venue first</option>
+					</select>
+				</div>
+				<div>
+					<label for="nearby_radius">Radius (meters):</label> <input
+						name="nearby_radius" type="number" id="nearby_radius" class="geo"
+						value="500" />
+				</div>
+				<div class="button">
+					<button name="submit" type="submit">Find nearby venues</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div id="map-canvas"></div>
+	<div id="results"></div>
+
+	<div id="loader" class="bubblingG">
+		<span id="bubblingG_1"> </span> <span id="bubblingG_2"> </span> <span
+			id="bubblingG_3"> </span>
+	</div>
+
 </body>
 </html>

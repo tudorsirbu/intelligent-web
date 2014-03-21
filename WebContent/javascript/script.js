@@ -1,6 +1,51 @@
 $(document).ready(function() {
+	$("#searchNearby").hide(0);
+	$("#searchVenue").submit(function(event){
+		var obj = {};
+		obj.venue_name = $("#venue_name").val();
+		obj.venue_city = $("#venue_city").val();
+
+		var data = JSON.stringify(obj);
+		
+		$.ajax({
+			type: "post",
+			dataType: "json",
+			url: "SearchVenue",
+			data: data,
+			success: function(venues) {
+				console.log(venues);
+				populateSelectVenues(venues);
+			}
+		});
+		event.preventDefault();
+	});
+	
+	$("#searchNearby").submit(function(event){
+		var obj = {};
+		obj.venues_list = $("#venues_list").val();
+		obj.nearby_radius = $("#nearby_radius").val();
+
+		var data = JSON.stringify(obj);
+		
+		$.ajax({
+			type: "post",
+			dataType: "json",
+			url: "SearchNearby",
+			data: data,
+			success: function(venues) {
+				console.log(venues);
+				displayVenues(venues);
+			}
+		});
+		event.preventDefault();
+	});
+	
+	$("#map-canvas").hide(0);
+	google.maps.event.addDomListener(window, 'load', initMap);
+	$("#map-canvas").show(0);
 	$("#results").hide(0);
 	$(".bubblingG").hide();
+
 	$("#trackingForm").submit(function( event ) {
 
 		getTrackingFormErrors();
@@ -14,7 +59,6 @@ $(document).ready(function() {
 
 			var data = JSON.stringify(obj);
 			console.log(data);
-
 			$.ajax({
 				type: "post",
 				dataType: "json",
@@ -23,16 +67,19 @@ $(document).ready(function() {
 				success: function(tweets) {
 					console.log(tweets);
 					displayTweets(tweets);
-				}
-			});	
+				}	
+			});
 		}
-		
 		event.preventDefault();
 	});
 
-
 	$("#userVenuesForm").submit(function( event ) {
-
+		$("#map-canvas").hide(0);
+		$("#map-canvas").empty(0);
+		$("#results").hide(0);
+		$("#results").empty();
+		$(".bubblingG").show();
+		
 		getUserVenuesFormErrors();	
 
 		if (isFormErrorFree($(this)) == true) {
@@ -275,9 +322,40 @@ function displayTweets(data) {
 
 	});
 }
+function populateMapVenues(data){
+	$.each(data, function(key,venue){
+		
+		
+	});
+	
+}
+function initMap(){
+	var myLatlng = new google.maps.LatLng(53.388960,-1.469930);
+	  var mapOptions = {
+	    zoom: 2,
+	    center: myLatlng
+	  };
 
+	  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+//	  var contentString = "hello!";
+//
+//	  var infowindow = new google.maps.InfoWindow({
+//	      content: contentString
+//	  });
+//
+//	  var marker = new google.maps.Marker({
+//	      position: myLatlng,
+//	      map: map,
+//	      title: 'Uluru (Ayers Rock)'
+//	  });
+//	  google.maps.event.addListener(marker, 'click', function() {
+//	    infowindow.open(map,marker);
+//	  });
+}
 function displayVenues(data){
 	
+	$("#map-canvas").show(0);
 	$(".bubblingG").hide();
 	$("#results").show(0);
 	$.each(data, function( key, venue ) {
@@ -312,6 +390,7 @@ function displayVenueStream(data) {
 	$.each(data, function( key, venue ) {
 		if(data){
 			$(".bubblingG").hide();
+			$("#map-canvas").show(0);
 			$("#results").show(0);
 			var photoGroups = venue.photos.groups;
 			var div = "<div class='venues'>";
@@ -562,6 +641,32 @@ function markAsCorrect(element) {
 	element.css('border-color', '#27ae60');
 	element.attr('data-error', 'false');
 }
+
+function populateSelectVenues(data){
+	$("#venues_list").empty();
+	$.each(data, function(key,value){
+		if(value.location.address != null)
+			$("#venues_list").prepend("<option value="+ value.location.lat +"," + value.location.lng
+					+">" + value.name + " - " + value.location.address + "</option>");
+		else
+			$("#venues_list").prepend("<option value="+ value.location.lat +"," + value.location.lng +">" + value.name + "</option>");
+	});
+	$("#searchNearby").show(0);
+}
+
+//function displayNearbyVenues(data){
+//	$("#results").empty();
+//	$.each(data,function(key,value){
+//		var content = "";
+//		content += "<div class=\"nearbyVenue\">";
+//		content += "<img src=\"" + value.
+//			
+//		content	+= value.name + "</div>";
+//		$("#results").prepend(content);
+//	});
+//	$("#results").show(0);
+//}
+
 
 //function display_retweets(retweets, afterDiv) {
 //$.each(retweets, function(_, retweet) {
