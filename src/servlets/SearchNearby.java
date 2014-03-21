@@ -15,7 +15,9 @@ import api.FoursquareManager;
 
 import com.google.gson.Gson;
 
+import fi.foyt.foursquare.api.FoursquareApiException;
 import fi.foyt.foursquare.api.entities.CompactVenue;
+import fi.foyt.foursquare.api.entities.CompleteVenue;
 
 /**
  * Servlet implementation class SearchNearby
@@ -57,7 +59,12 @@ public class SearchNearby extends HttpServlet {
 		params.put("ll", form.getVenues_list());
 		params.put("intent", "browse");
 		params.put("radius", form.getNearby_radius());
-		CompactVenue[] venues = foursquare.getVenuesList(params); 
+		CompleteVenue[] venues = null;
+		try {
+			venues = foursquare.getVenuesList(params);
+		} catch (FoursquareApiException e) {
+			e.printStackTrace();
+		} 
 			
 		/* Create the response JSON */
 		String json = gson.toJson(venues);

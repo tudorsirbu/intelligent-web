@@ -19,7 +19,9 @@ import api.TwitterManager;
 
 import com.google.gson.Gson;
 
+import fi.foyt.foursquare.api.FoursquareApiException;
 import fi.foyt.foursquare.api.entities.CompactVenue;
+import fi.foyt.foursquare.api.entities.CompleteVenue;
 
 /**
  * Servlet implementation class SearchVenue
@@ -61,7 +63,12 @@ public class SearchVenue extends HttpServlet {
 		HashMap<String,String> params = new HashMap<String,String>();
 		params.put("query", form.getVenue_name());
 		params.put("near", form.getVenue_city());
-		CompactVenue[] venues = foursquare.getVenuesList(params); 
+		CompleteVenue[] venues = null;
+		try {
+			venues = foursquare.getVenuesList(params);
+		} catch (FoursquareApiException e) {
+			e.printStackTrace();
+		} 
 			
 		/* Create the response JSON */
 		String json = gson.toJson(venues);
