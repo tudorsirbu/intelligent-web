@@ -48,6 +48,7 @@ $(document).ready(function() {
 			success: function(venues) {
 				console.log(venues);
 				displayVenues(venues);
+//				displayNearbyVenues(venues);
 			}
 		});
 		event.preventDefault();
@@ -82,7 +83,9 @@ $(document).ready(function() {
 	});
 
 	$("#userVenuesForm").submit(function( event ) {
+		clearOverlays();
 		google.maps.event.addDomListener(window, 'load', initMapEmpty);
+		
 		$("#results").hide(0);
 		$("#results").empty();
 
@@ -327,6 +330,13 @@ function displayTweets(data) {
 
 	});
 }
+var markersArray = [];
+function clearOverlays() {
+	  for (var i = 0; i < markersArray.length; i++ ) {
+	    markersArray[i].setMap(null);
+	  }
+	  markersArray.length = 0;
+	}
 
 var map;
 function initMapEmpty(){
@@ -355,6 +365,7 @@ function initMap(data){
 		      map: map,
 		      title: venue.name
 		  });
+		  markersArray.push(marker);
 		  google.maps.event.addListener(marker, 'click', function() {
 		    infowindow.open(map,marker);
 		  });
@@ -365,6 +376,7 @@ function initMap(data){
 
 function displayVenues(data){
 	google.maps.event.addDomListener(window, 'load', initMap(data));
+	
 	$("#results").show(0);
 	$.each(data, function( key, venue ) {
 		photoGroups = venue.photos.groups;
@@ -395,6 +407,7 @@ function displayVenues(data){
 
 function displayVenueStream(data) {
 	google.maps.event.addDomListener(window, 'load', initMap(data));
+	
 	$.each(data, function( key, venue ) {
 		if(data){
 			$("#map-canvas").show(0);
@@ -408,12 +421,13 @@ function displayVenueStream(data) {
 			if(venue.shortUrl)
 			div += "<h class='title'>Url:  </h><a target="+"'_blank'"+" href="+venue.shortUrl+">"+ venue.shortUrl + "</a><br/><br/>";
 			console.log("hhghh"+photoGroups);
-			if(photoGroups.length>0)
+			if(photoGroups.length>1)
 				if(photoGroups[1].length!=0)
 					$.each(photoGroups[1].items,function(key,value){
 						div += "<img src='"+ value.url +"' />";
 					});
 				else{
+					if(photoGroups.length>0)
 					if(photoGroups[0].length!=0)
 						$.each(photoGroups[0].items,function(key,value){
 							div += "<img src='"+ value.url +"' />";
@@ -683,19 +697,16 @@ function populateSelectVenues(data){
 	$("#searchNearby").show(0);
 }
 
-
-//function displayNearbyVenues(data){
-//	$("#results").empty();
-//	$.each(data,function(key,value){
-//		var content = "";
-//		content += "<div class=\"nearbyVenue\">";
-//		content += "<img src=\"" + value.
-//			
-//		content	+= value.name + "</div>";
-//		$("#results").prepend(content);
-//	});
-//	$("#results").show(0);
-//}
+function displayNearbyVenues(data){
+	$("#results").empty();
+	$.each(data,function(key,value){
+		var content = "";
+		content += "<div class=\"nearbyVenue\">";			
+		content	+= value.name + "</div>";
+		$("#results").prepend(content);
+	});
+	$("#results").show(0);
+}
 
 
 //function display_retweets(retweets, afterDiv) {
