@@ -23,23 +23,20 @@
   <div id="tabs-1">
 	<form action="TrackingServlet" method="get" id="trackingForm">
 	    <div>
-	        <label for="keyword/hashtag">Keyword/hashtag:</label>
-	        <input name="keywords" type="text" id="keywords" class="nms" value="#IntelligentWebCOM3504" />
-	    </div>
-	    <div>
-	    	<p>Geographic region:</p>
+	        <label for="keywords">Keywords/hashtags: *</label>
+	        <input data-name="Keywords/hashtags" name="keywords" type="text" id="keywords" class="nms" placeholder="Keywords or hashtags separated by commas..." />
 	    </div>
 	    <div>
 	    	<label for="region_lat">Latitude:</label>
-	        <input name="region_lat" type="text" id="region_lat" class="geo"/>
+	        <input data-name="Latitude" name="region_lat" type="text" id="region_lat" class="geo" placeholder="e.g. 53.3892" />
 	    </div>
 	    <div>
 	        <label for="region_long">Longitude:</label>
-	        <input name="region_long" type="text" id="region_long" class="geo" />
+	        <input data-name="Longitude" name="region_long" type="text" id="region_long" class="geo"  placeholder="e.g. -1.4832" />
 	    </div>  
 	    <div>
 	    	<label for="radius">Radius:</label>
-	        <input name="radius" type="text" id="radius" class="geo"/>
+	        <input data-name="Radius" name="radius" type="text" id="radius" class="geo" placeholder="e.g. 3" />
 	    </div>
 	    <div class="button">
 	        <button name="submit" type="submit">Search for results!</button>
@@ -50,14 +47,15 @@
   	<form action="" method="get" id="discussionsTrackerForm">
 	    <div>
 	        <label for="user_ids">User IDs:</label>
-	        <textarea name="user_ids" rows="10" cols="1" id="user_ids"></textarea>
+	        <textarea name="user_ids" rows="10" cols="1" id="user_ids" placeholder="Twitter ids sparated by commas..."></textarea>
 	    </div>
 	    <div>
-	    	<label for="keywords">Most:<input name="no_keywords" type="number" id="no_keywords" class="nmb" /> frequent keywords</label>   
+	    	<label for="no_keywords">No. of keywords:</label>
+	    	<input name="no_keywords" type="number" id="no_keywords" class="nmb" placeholder="e.g. 5" />   
 	    </div>
 	    <div>
-	        <label for="days">Last:<input name="days_since" type="number" id="days_since" class="nmb"/> days</label>
-	        
+	        <label for="days_since">Last days:</label>
+	        <input name="days_since" type="number" id="days_since" class="nmb" placeholder="e.g. 5" />
 	    </div>  
 	    <div class="button">
 	        <button name="submit" type="submit">Search for results!</button>
@@ -71,7 +69,8 @@
 	        <input name="user_id" type="text" id="user_id" class="nms" />
 	    </div>
 	    <div>
-	    	<label for="days_last_visited">Points of interest the user has visited in the last:<input name="days_last_visited" type="number" id="days_last_visited" class="nmb"/> days</label>   
+	    	<label for="days_last_visited">Points of interest the user has visited in the last days:</label> 
+	    	<input name="days_last_visited" type="number" id="days_last_visited" class="nmb"/>   
 	    </div> 
 	    <div class="button">
 	        <button name="submit" type="submit">Search for results!</button>
@@ -81,25 +80,20 @@
   <div id="tabs-4">
 	<form action="" method="get" id="byVenueForm">
 		<div>
-			<label for="location_name">Name of location:</label> <input
-				type="text" id="location_name" class="nms" value="The Arts Tower" />
+			<label for="location_name">Name of location:</label> 
+			<input name="location_name" type="text" id="location_name" class="nms" value="The Arts Tower" />
 		</div>
 		<div>
-			<p>Coordinates of location</p>
+			<label for="location_lat">Latitude:</label> 
+			<input name="location_lat" type="text" id="location_lat" class="geo" />
 		</div>
 		<div>
-			<label for="location_lat">Latitude:</label> <input
-				name="location_lat" type="text" id="location_lat" class="geo" />
+			<label for="location_long">Longitude:</label> 
+			<input name="location_long" type="text" id="location_long" class="geo" />
 		</div>
 		<div>
-			<label for="location_long">Longitude:</label> <input
-				name="location_long" type="text" id="location_long" class="geo" />
-		</div>
-		<div>
-			<label for="venue_days_since">Currently being visited or has been visited
-				in the last: <input name="venue_days_since" type="text" id="venue_days_since" class="nmb" />
-				days
-			</label>
+			<label for="venue_days_since"> In the last days: </label> 
+			<input name="venue_days_since" type="text" id="venue_days_since" class="nmb" />
 		</div>
 		<div class="button">
 			<button name="submit" type="submit">Search for results!</button>

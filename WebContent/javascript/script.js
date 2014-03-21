@@ -3,108 +3,119 @@ $(document).ready(function() {
 	$(".bubblingG").hide();
 	$("#trackingForm").submit(function( event ) {
 
-		var obj = {};
-		obj.keywords = $("#keywords").val();
-		obj.regionLat = $("#region_lat").val();
-		obj.regionLong = $("#region_long").val();
-		obj.radius = $("#radius").val();
+		getTrackingFormErrors();
 
-		var data = JSON.stringify(obj);
+		if (isFormErrorFree($(this)) == true) {
+			var obj = {};
+			obj.keywords = $("#keywords").val();
+			obj.regionLat = $("#region_lat").val();
+			obj.regionLong = $("#region_long").val();
+			obj.radius = $("#radius").val();
 
-		$.ajax({
-			type: "post",
-			dataType: "json",
-			url: "TrackingServlet",
-			data: data,
-			success: function(tweets) {
-				console.log(tweets);
-				displayTweets(tweets);
-			}
-		});
+			var data = JSON.stringify(obj);
+			console.log(data);
+
+			$.ajax({
+				type: "post",
+				dataType: "json",
+				url: "TrackingServlet",
+				data: data,
+				success: function(tweets) {
+					console.log(tweets);
+					displayTweets(tweets);
+				}
+			});	
+		}
+		
 		event.preventDefault();
 	});
 
 
 	$("#userVenuesForm").submit(function( event ) {
-		$("#results").hide(0);
-		$("#results").empty();
-		$(".bubblingG").show();
-		var obj = {};
-		obj.userId = $("#user_id").val();
-		obj.days = $("#days_last_visited").val();
 
-		var data = JSON.stringify(obj);
-		console.log(data);
-		var connectionEstablished = false;
-		if(obj.days==0){
-			$.ajax({
-				type: "post",
-				dataType: "json",
-				url: "UserVenuesServlet",
-				data: data,
-				success: function(data){
+		getUserVenuesFormErrors();	
 
-					console.log(data);
-					connectionEstablished = true;
-				}
-			});
+		if (isFormErrorFree($(this)) == true) {
+			$("#results").hide(0);
+			$("#results").empty();
+			$(".bubblingG").show();
+			var obj = {};
+			obj.userId = $("#user_id").val();
+			obj.days = $("#days_last_visited").val();
 
-			setInterval(function() {	
-				if(connectionEstablished == true) {
-					$.ajax({
-						type: "post",
-						dataType: "json",
-						url: "UserVenuesServlet",
-						data: data,
-						success: function(data){
-							displayVenueStream(data);
-							console.log(data);
-						}
-					});
-				}
-			}, 5000);
+			var data = JSON.stringify(obj);
+			console.log(data);
+			var connectionEstablished = false;
+			if(obj.days==0){
+				$.ajax({
+					type: "post",
+					dataType: "json",
+					url: "UserVenuesServlet",
+					data: data,
+					success: function(data){
 
-		}else{
-			$.ajax({
-				type: "post",
-				dataType: "json",
-				url: "UserVenuesServlet",
-				data: data,
-				success: function(data){
-					console.log(data);
-					displayVenues(data);
-				}
-			});
+						console.log(data);
+						connectionEstablished = true;
+					}
+				});
 
+				setInterval(function() {	
+					if(connectionEstablished == true) {
+						$.ajax({
+							type: "post",
+							dataType: "json",
+							url: "UserVenuesServlet",
+							data: data,
+							success: function(data){
+								displayVenueStream(data);
+								console.log(data);
+							}
+						});
+					}
+				}, 5000);
+
+			}else{
+				$.ajax({
+					type: "post",
+					dataType: "json",
+					url: "UserVenuesServlet",
+					data: data,
+					success: function(data){
+						console.log(data);
+						displayVenues(data);
+					}
+				});
+
+			}
 		}
-
-
-
-
+			
 		event.preventDefault();
 	});
 
 	$("#discussionsTrackerForm").submit(function( event ) {
 		event.preventDefault();
 
-		var obj = {};
-		obj.keywords = $("#no_keywords").val();
-		obj.daysSince = $("#days_since").val();
-		obj.userIds = $("#user_ids").val();
+		getDiscussionTrackerFormErrors();
 
-		var data = JSON.stringify(obj);
-		console.log(data);
-		$.ajax({
-			type: "post",
-			dataType: "json",
-			url: "UserTrackerServlet",
-			data: data,
-			success: function(data) {
-				console.log(data);
-				displayKeywords(data);
-			}
-		});
+		if (isFormErrorFree($(this)) == true) {
+			var obj = {};
+			obj.keywords = $("#no_keywords").val();
+			obj.daysSince = $("#days_since").val();
+			obj.userIds = $("#user_ids").val();
 
+			var data = JSON.stringify(obj);
+			console.log(data);
+			$.ajax({
+				type: "post",
+				dataType: "json",
+				url: "UserTrackerServlet",
+				data: data,
+				success: function(data) {
+					console.log(data);
+					displayKeywords(data);
+				}
+			});
+		}
 	});
 
 
@@ -131,60 +142,63 @@ $(document).ready(function() {
 	$("#byVenueForm").submit(function( event ) {
 		event.preventDefault();
 
-		$("#results").empty();
-		
-		var obj = {};
-		obj.locationName = $("#location_name").val();
-		obj.locationLat = $("#location_lat").val();
-		obj.locationLong = $("#location_long").val();
-		obj.days = $("#venue_days_since").val();
+		getByVenueFormErrors();
 
-		var data = JSON.stringify(obj);
-		console.log(data);
-		
-		console.log(obj.days);
-		if (obj.days == 0) {
+		if (isFormErrorFree($(this)) == true) {
+
+			$("#results").empty();
 			
-			$.ajax({
-				type: "post",
-				dataType: "json",
-				url: "ByVenueServlet",
-				data: data,
-				success: function(data){
-					console.log(data);
-					connectionEstablished = true;
-				}
-			});
+			var obj = {};
+			obj.locationName = $("#location_name").val();
+			obj.locationLat = $("#location_lat").val();
+			obj.locationLong = $("#location_long").val();
+			obj.days = $("#venue_days_since").val();
 
-			setInterval(function() {	
-				if(connectionEstablished == true) {
-					$.ajax({
-						type: "post",
-						dataType: "json",
-						url: "ByVenueServlet",
-						data: data,
-						success: function(users){
-							console.log(users);
-							displayUsersStream(users);
-						}
-					});
-				}
-			}, 5000);
-		}
-		else {
-			$.ajax({
-				type: "post",
-				dataType: "json",
-				url: "ByVenueServlet",
-				data: data,
-				success: function(users) {
-					console.log(users);
-					displayUsers(users);
-				}
-			});
-		};
-		
-		
+			var data = JSON.stringify(obj);
+			console.log(data);
+			
+			console.log(obj.days);
+			if (obj.days == 0) {
+				
+				$.ajax({
+					type: "post",
+					dataType: "json",
+					url: "ByVenueServlet",
+					data: data,
+					success: function(data){
+						console.log(data);
+						connectionEstablished = true;
+					}
+				});
+
+				setInterval(function() {	
+					if(connectionEstablished == true) {
+						$.ajax({
+							type: "post",
+							dataType: "json",
+							url: "ByVenueServlet",
+							data: data,
+							success: function(users){
+								console.log(users);
+								displayUsersStream(users);
+							}
+						});
+					}
+				}, 5000);
+			}
+			else {
+				$.ajax({
+					type: "post",
+					dataType: "json",
+					url: "ByVenueServlet",
+					data: data,
+					success: function(users) {
+						console.log(users);
+						displayUsers(users);
+					}
+				});
+			};
+		}	
 	});
 
 
@@ -393,6 +407,160 @@ function displayUser(user) {
 	entry += "<h3>" + user.location + "</h3>";
 	entry += "</div>";
 	return entry;
+}
+
+function isFormErrorFree(element) {
+	var foundErrors = false;
+
+	element.find(":input").each(function(value) {
+        if ($(this).attr('data-error') == 'true') {
+        	foundErrors = true;
+        }
+    });
+
+	if(foundErrors == true) 
+		return false;
+	else
+		return true;
+}
+
+function getTrackingFormErrors() {
+	$('#trackingForm :input').change(function() {
+	    getTrackingFormErrors();
+	});
+
+	$("#trackingForm :input").each(function(value) {
+        var $this = $(this);
+
+        switch($this.attr('name')) {
+			case "keywords":
+				checkIfEmpty($this);
+				break;
+			case "region_lat":
+			case "region_long":
+				checkIfDouble($this);
+				break;
+			case "radius":
+				checkIfInteger($this);
+				break;
+		}
+    });
+}
+
+function getDiscussionTrackerFormErrors() {
+	$('#discussionsTrackerForm :input').change(function() {
+	    getDiscussionTrackerFormErrors();
+	});
+	
+	var anyErrors = false;
+
+	$("#discussionsTrackerForm :input").each(function(value) {
+        var $this = $(this);
+
+        switch($this.attr('name')) {
+			case "user_ids":
+				checkIfEmpty($this);
+				break;
+			case "no_keywords":
+				checkIfInteger($this, true);
+				break;
+			case "days_since":
+				checkIfInteger($this, true);
+				break;
+		}
+    });
+}
+
+function getByVenueFormErrors() {
+	$('#byVenueForm :input').change(function() {
+	    getByVenueFormErrors();
+	});
+	
+	var anyErrors = false;
+
+	$("#byVenueForm :input").each(function(value) {
+        var $this = $(this);
+
+        switch($this.attr('name')) {
+			case "location_name":
+				checkIfEmpty($this);
+				break;
+			case "location_lat":
+				checkIfEmpty($this);
+				break;
+			case "location_long":
+				checkIfEmpty($this);
+				break;	
+			case "venue_days_since":
+				checkIfEmpty($this);
+				break;
+		}
+    });
+}
+
+function getUserVenuesFormErrors() {
+	$('#userVenuesForm :input').change(function() {
+	    getDiscussionTrackerFormErrors();
+	});
+	
+	var anyErrors = false;
+
+	$("#userVenuesForm :input").each(function(value) {
+        var $this = $(this);
+
+        switch($this.attr('name')) {
+			case "user_id":
+				checkIfEmpty($this);
+				break;
+			case "days_last_visited":
+				checkIfInteger($this, true);
+				break;
+		}
+    });
+}
+
+function checkIfEmpty(element) {
+	if(!element.val()) {
+		markAsError(element);
+	} else {
+		markAsCorrect(element);
+	}
+}
+
+function checkIfDouble(element, mandatory) {
+	if (mandatory == true) {
+		var n = element.val();
+		if(n === +n && n !== (n|0)) {
+			markAsCorrect(element);
+		} else {
+			markAsError(element);
+		}
+	} else {
+		markAsCorrect(element);
+	}
+}
+
+function checkIfInteger(element, mandatory) {
+	if (mandatory == true) {
+		if(element.val() % 1 != 0 || !element.val()) {
+			markAsError(element);
+		} else {
+			console.log('CEVA');
+			markAsCorrect(element);
+		}	
+	} else {
+		markAsCorrect(element);
+	}
+}
+
+function markAsError(element) {
+	element.css('border-color', '#c0392b');
+	element.attr('data-error', 'true');
+}
+
+function markAsCorrect(element) {
+	element.css('border-color', '#27ae60');
+	element.attr('data-error', 'false');
 }
 
 //function display_retweets(retweets, afterDiv) {
