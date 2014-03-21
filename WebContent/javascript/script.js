@@ -42,6 +42,9 @@ $(document).ready(function() {
 	
 	
 	
+	$("#map-canvas").hide(0);
+	google.maps.event.addDomListener(window, 'load', initMap);
+	$("#map-canvas").show(0);
 	$("#results").hide(0);
 	$(".bubblingG").hide();
 	$("#trackingForm").submit(function( event ) {
@@ -69,6 +72,8 @@ $(document).ready(function() {
 
 
 	$("#userVenuesForm").submit(function( event ) {
+		$("#map-canvas").hide(0);
+		$("#map-canvas").empty(0);
 		$("#results").hide(0);
 		$("#results").empty();
 		$(".bubblingG").show();
@@ -304,9 +309,33 @@ function displayTweets(data) {
 
 	});
 }
+function initMap(){
+	var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+	  var mapOptions = {
+	    zoom: 4,
+	    center: myLatlng
+	  };
 
+	  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+	  var contentString = "hello!";
+
+	  var infowindow = new google.maps.InfoWindow({
+	      content: contentString
+	  });
+
+	  var marker = new google.maps.Marker({
+	      position: myLatlng,
+	      map: map,
+	      title: 'Uluru (Ayers Rock)'
+	  });
+	  google.maps.event.addListener(marker, 'click', function() {
+	    infowindow.open(map,marker);
+	  });
+}
 function displayVenues(data){
 	
+	$("#map-canvas").show(0);
 	$(".bubblingG").hide();
 	$("#results").show(0);
 	$.each(data, function( key, venue ) {
@@ -341,6 +370,7 @@ function displayVenueStream(data) {
 	$.each(data, function( key, venue ) {
 		if(data){
 			$(".bubblingG").hide();
+			$("#map-canvas").show(0);
 			$("#results").show(0);
 			var photoGroups = venue.photos.groups;
 			var div = "<div class='venues'>";
@@ -419,7 +449,6 @@ function displayUsers(users) {
 }
 
 function displayUsersStream(users) {
-	// remove any previous results displayed
 	$("#results").show(0);
 	
 	$.each(users, function(key, user) {
@@ -433,6 +462,8 @@ function displayUser(user) {
 	entry += "<img src='"+ user.profilePicURL +"' />";
 	entry += "<a href='UsersServlet?user_id="+ user.id +"' class='title'>" + user.name + "</a>";
 	entry += "<span class='screen_name'> @" + user.username + "</span>";
+	entry += "<h3>" + user.description + "</h3>";
+	entry += "<h3>" + user.location + "</h3>";
 	entry += "</div>";
 	return entry;
 }

@@ -1,5 +1,4 @@
 package api;
-import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -11,36 +10,30 @@ import java.util.regex.Pattern;
 
 import model.DatabaseConnection;
 import model.UserService;
-import api.listeners.TwitterStatusListener;
-import api.listeners.TwitterUserListener;
-import fi.foyt.foursquare.api.Result;
-import fi.foyt.foursquare.api.entities.CompactVenue;
-import fi.foyt.foursquare.api.entities.CompleteVenue;
-import twitter4j.DirectMessage;
 import twitter4j.FilterQuery;
 import twitter4j.GeoLocation;
 import twitter4j.Paging;
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.ResponseList;
-import twitter4j.StallWarning;
 import twitter4j.Status;
-import twitter4j.StatusDeletionNotice;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
 import twitter4j.User;
-import twitter4j.UserList;
 import twitter4j.UserStreamListener;
 import twitter4j.auth.AccessToken;
 import twitter4j.conf.ConfigurationBuilder;
+import api.listeners.TwitterStatusListener;
+import api.listeners.TwitterUserListener;
+import fi.foyt.foursquare.api.entities.CompactVenue;
+import fi.foyt.foursquare.api.entities.CompleteVenue;
 
 public class TwitterManager {	
 	private ArrayList<CompleteVenue> venues = new ArrayList<CompleteVenue>();
 	private ArrayList<User> users = new ArrayList<User>();
-
 	private TwitterStream twitterStream;
 	
 	private String consumerkey = "gHCxnRIAapqAfBG5oyt6w";	
@@ -49,6 +42,9 @@ public class TwitterManager {
 	private String accesstokensecret = "ZgwdueIhOQeZ3ZIt29dKZlWrc4lwcrquQ8JaDCTLeLD1i";	
 	
 	private static TwitterManager instance = null;
+	
+	public final Double LONGITUDE_IN_KM = 0.008983;
+	public final Double LATITUDE_IN_KM = 0.015060;
 	
 	protected TwitterManager() {
 		// Exists only to defeat instantiation.
@@ -220,8 +216,21 @@ public class TwitterManager {
 			this.twitterStream.addListener(new TwitterStatusListener());
 			
 			FilterQuery fq = new FilterQuery();
-			String[] locations = {locationName};
-			fq.track(locations);
+			
+			/* Getting data by taking the provided data into consideration. Location takes priority to coordinates. */
+			if(!locationName.isEmpty()) {
+				String[] locations = {locationName};
+				fq.track(locations);
+			}
+			else if(latitudeNumber != null && longitudeNumber != null) {
+				/* https://dev.twitter.com/docs/streaming-apis/parameters#locations */
+				
+				/* Gets all the tweets which are in a square of 2 km per side with the 
+				 * (longitudeNumber, latitudeNumber) as the center of it. */
+				double[][] locationBox = {{longitudeNumber - this.LONGITUDE_IN_KM, latitudeNumber - this.LATITUDE_IN_KM}, 
+										  {longitudeNumber + this.LONGITUDE_IN_KM, latitudeNumber + this.LATITUDE_IN_KM}};
+				fq.locations(locationBox);
+			}
 			
 			this.twitterStream.filter(fq);
 		}
@@ -266,10 +275,7 @@ public class TwitterManager {
 	}
 	
 	public Twitter init() throws Exception{	
-		
-
 		Twitter twitterConnection = initTwitter(this.consumerkey, this.consumersecret, this.accesstoken, this.accesstokensecret);	
-
 		return twitterConnection;	
 	}
 
@@ -375,8 +381,8 @@ public class TwitterManager {
 					venues.add(currentVenue);
 				
 			}
-				
 		}
+				
 		return venues;
 	}
 	/**
@@ -450,10 +456,7 @@ public class TwitterManager {
 		return links;
 	}
 
-	
-
 	public void handleStatus(Status status) {
-		
 		FoursquareManager fm = new FoursquareManager();
 
 		ArrayList<String> urls = new ArrayList<String>();
