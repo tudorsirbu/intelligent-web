@@ -8,9 +8,10 @@ function getMediaId(url){
 		dataType: 'jsonp',
 		crossDomain: true,
 		success: function(media) {
-			getMedia(media.media_id);
+			var result = getMedia(media.media_id);
 		}
 	});
+	return result;
 }
 
 /*
@@ -30,7 +31,4 @@ function getMedia(id){
 			return mediaObject;
 		}
 	});
-	
-	
-	
 }
