@@ -1,4 +1,47 @@
 $(document).ready(function() {
+	$("#searchNearby").hide(0);
+	$("#searchVenue").submit(function(event){
+		var obj = {};
+		obj.venue_name = $("#venue_name").val();
+		obj.venue_city = $("#venue_city").val();
+
+		var data = JSON.stringify(obj);
+		
+		$.ajax({
+			type: "post",
+			dataType: "json",
+			url: "SearchVenue",
+			data: data,
+			success: function(venues) {
+				console.log(venues);
+				populateSelectVenues(venues);
+			}
+		});
+		event.preventDefault();
+	});
+	
+	$("#searchNearby").submit(function(event){
+		var obj = {};
+		obj.venues_list = $("#venues_list").val();
+		obj.nearby_radius = $("#nearby_radius").val();
+
+		var data = JSON.stringify(obj);
+		
+		$.ajax({
+			type: "post",
+			dataType: "json",
+			url: "SearchNearby",
+			data: data,
+			success: function(venues) {
+				console.log(venues);
+				displayNearbyVenues(venues);
+			}
+		});
+		event.preventDefault();
+	});
+	
+	
+	
 	$("#results").hide(0);
 	$(".bubblingG").hide();
 	$("#trackingForm").submit(function( event ) {
@@ -392,6 +435,28 @@ function displayUser(user) {
 	entry += "<span class='screen_name'> @" + user.username + "</span>";
 	entry += "</div>";
 	return entry;
+}
+
+function populateSelectVenues(data){
+	$("#venues_list").empty();
+	$.each(data, function(key,value){
+		if(value.location.address != null)
+			$("#venues_list").prepend("<option value="+ value.location.lat +"," + value.location.lng
+					+">" + value.name + " - " + value.location.address + "</option>");
+		else
+			$("#venues_list").prepend("<option>" + value.name + "</option>");
+	});
+	$("#searchNearby").show(0);
+}
+
+function displayNearbyVenues(data){
+	$("#results").empty();
+	$.each(data,function(key,value){
+		var content = "";
+		content += "<div class=\"nearbyVenue\">" + value.name + "</div>";
+		$("#results").prepend(content);
+	});
+	$("#results").show(0);
 }
 
 //function display_retweets(retweets, afterDiv) {

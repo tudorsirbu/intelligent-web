@@ -99,7 +99,7 @@ button {
     margin-left: .5em;
 }
 
-#results {
+body #results {
 	
 	width: 1000px;
 	margin-left: auto;
