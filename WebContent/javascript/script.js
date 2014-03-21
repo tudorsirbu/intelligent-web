@@ -83,7 +83,9 @@ $(document).ready(function() {
 	});
 
 	$("#userVenuesForm").submit(function( event ) {
+		clearOverlays();
 		google.maps.event.addDomListener(window, 'load', initMapEmpty);
+		
 		$("#results").hide(0);
 		$("#results").empty();
 
@@ -328,6 +330,13 @@ function displayTweets(data) {
 
 	});
 }
+var markersArray = [];
+function clearOverlays() {
+	  for (var i = 0; i < markersArray.length; i++ ) {
+	    markersArray[i].setMap(null);
+	  }
+	  markersArray.length = 0;
+	}
 
 var map;
 function initMapEmpty(){
@@ -356,6 +365,7 @@ function initMap(data){
 		      map: map,
 		      title: venue.name
 		  });
+		  markersArray.push(marker);
 		  google.maps.event.addListener(marker, 'click', function() {
 		    infowindow.open(map,marker);
 		  });
@@ -366,6 +376,7 @@ function initMap(data){
 
 function displayVenues(data){
 	google.maps.event.addDomListener(window, 'load', initMap(data));
+	
 	$("#results").show(0);
 	$.each(data, function( key, venue ) {
 		photoGroups = venue.photos.groups;
@@ -396,6 +407,7 @@ function displayVenues(data){
 
 function displayVenueStream(data) {
 	google.maps.event.addDomListener(window, 'load', initMap(data));
+	
 	$.each(data, function( key, venue ) {
 		if(data){
 			$("#map-canvas").show(0);
@@ -409,12 +421,13 @@ function displayVenueStream(data) {
 			if(venue.shortUrl)
 			div += "<h class='title'>Url:  </h><a target="+"'_blank'"+" href="+venue.shortUrl+">"+ venue.shortUrl + "</a><br/><br/>";
 			console.log("hhghh"+photoGroups);
-			if(photoGroups.length>0)
+			if(photoGroups.length>1)
 				if(photoGroups[1].length!=0)
 					$.each(photoGroups[1].items,function(key,value){
 						div += "<img src='"+ value.url +"' />";
 					});
 				else{
+					if(photoGroups.length>0)
 					if(photoGroups[0].length!=0)
 						$.each(photoGroups[0].items,function(key,value){
 							div += "<img src='"+ value.url +"' />";
@@ -521,14 +534,14 @@ function getTrackingFormErrors() {
 
         switch($this.attr('name')) {
 			case "keywords":
-				checkIfEmpty($this);
+				validateEmpty($this);
 				break;
 			case "region_lat":
 			case "region_long":
-				checkIfDouble($this);
+				validateDouble($this);
 				break;
 			case "radius":
-				checkIfInteger($this);
+				validatePositiveInteger($this);
 				break;
 		}
     });
@@ -546,13 +559,13 @@ function getDiscussionTrackerFormErrors() {
 
         switch($this.attr('name')) {
 			case "user_ids":
-				checkIfEmpty($this);
+				validateEmpty($this);
 				break;
 			case "no_keywords":
-				checkIfInteger($this, true);
+				validatePositiveInteger($this, true);
 				break;
 			case "days_since":
-				checkIfInteger($this, true);
+				validatePositiveInteger($this, true);
 				break;
 		}
     });
@@ -563,26 +576,28 @@ function getByVenueFormErrors() {
 	    getByVenueFormErrors();
 	});
 	
-	var anyErrors = false;
-
-	$("#byVenueForm :input").each(function(value) {
-        var $this = $(this);
-
-        switch($this.attr('name')) {
-			case "location_name":
-				checkIfEmpty($this);
-				break;
-			case "location_lat":
-				checkIfEmpty($this);
-				break;
-			case "location_long":
-				checkIfEmpty($this);
-				break;	
-			case "venue_days_since":
-				checkIfEmpty($this);
-				break;
-		}
-    });
+	var $form = $(this);
+	var $locationName = $form.add("input[name=location_name]");
+	var $locationLat = $form.add("input[name=location_lat]");
+	var $locationLong = $form.add("input[name=location_long]");
+	var $venueDaysSince = $form.add("input[name=venue_days_since]");
+	
+	if (!isEmpty($locationName)) {
+		markInputAsCorrect($locationName);
+    	markInputAsCorrect($locationLat);
+    	markInputAsCorrect($locationLong);
+	}
+	else if (isEmpty($locationName) && !isEmpty($locationLat) && !isEmpty($locationLong)) {
+    	markInputAsCorrect($locationName);
+    	markInputAsCorrect($locationLat);
+    	markInputAsCorrect($locationLong);
+    }
+	else {
+		validateEmpty($locationName);
+		validateEmpty($locationLong);
+		validateEmpty($locationLat);
+	}
+	validateEmpty($venueDaysSince);
 }
 
 function getUserVenuesFormErrors() {
@@ -597,55 +612,75 @@ function getUserVenuesFormErrors() {
 
         switch($this.attr('name')) {
 			case "user_id":
-				checkIfEmpty($this);
+				validateEmpty($this);
 				break;
 			case "days_last_visited":
-				checkIfInteger($this, true);
+				validatePositiveInteger($this, true);
 				break;
 		}
     });
 }
 
-function checkIfEmpty(element) {
+
+function isEmpty(element) {
 	if(!element.val()) {
-		markAsError(element);
+		return true;
 	} else {
-		markAsCorrect(element);
+		return false;
 	}
 }
 
-function checkIfDouble(element, mandatory) {
+function validateEmpty(element) {
+	if(!element.val()) {
+		markInputAsError(element);
+	} else {
+		markInputAsCorrect(element);
+	}
+}
+
+function validateDouble(element, mandatory) {
 	if (mandatory == true) {
 		var n = element.val();
 		if(n === +n && n !== (n|0)) {
-			markAsCorrect(element);
+			markInputAsCorrect(element);
 		} else {
-			markAsError(element);
+			markInputAsError(element);
 		}
 	} else {
-		markAsCorrect(element);
+		markInputAsCorrect(element);
 	}
 }
 
-function checkIfInteger(element, mandatory) {
+function validateInteger(element, mandatory) {
 	if (mandatory == true) {
 		if(element.val() % 1 != 0 || !element.val()) {
-			markAsError(element);
+			markInputAsError(element);
 		} else {
-			console.log('CEVA');
-			markAsCorrect(element);
+			markInputAsCorrect(element);
 		}	
 	} else {
-		markAsCorrect(element);
+		markInputAsCorrect(element);
 	}
 }
 
-function markAsError(element) {
+function validatePositiveInteger(element, mandatory) {
+	if (mandatory == true) {
+		if(element.val() % 1 != 0 || element.val() < 0 || !element.val()) {
+			markInputAsError(element);
+		} else {
+			markInputAsCorrect(element);
+		}	
+	} else {
+		markInputAsCorrect(element);
+	}
+}
+
+function markInputAsError(element) {
 	element.css('border-color', '#c0392b');
 	element.attr('data-error', 'true');
 }
 
-function markAsCorrect(element) {
+function markInputAsCorrect(element) {
 	element.css('border-color', '#27ae60');
 	element.attr('data-error', 'false');
 }
@@ -666,9 +701,7 @@ function displayNearbyVenues(data){
 	$("#results").empty();
 	$.each(data,function(key,value){
 		var content = "";
-		content += "<div class=\"nearbyVenue\">";
-//		content += "<img src=\"" + value.
-			
+		content += "<div class=\"nearbyVenue\">";			
 		content	+= value.name + "</div>";
 		$("#results").prepend(content);
 	});
