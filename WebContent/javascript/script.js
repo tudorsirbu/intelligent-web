@@ -475,7 +475,7 @@ function populateSelectVenues(data){
 			$("#venues_list").prepend("<option value="+ value.location.lat +"," + value.location.lng
 					+">" + value.name + " - " + value.location.address + "</option>");
 		else
-			$("#venues_list").prepend("<option>" + value.name + "</option>");
+			$("#venues_list").prepend("<option value="+ value.location.lat +"," + value.location.lng +">" + value.name + "</option>");
 	});
 	$("#searchNearby").show(0);
 }
