@@ -161,26 +161,33 @@ public class FoursquareManager {
 	 * The method searches for a venues given some search parameters
 	 * @param searchParams https://developer.foursquare.com/docs/venues/search
 	 * @return List of venues that match the query
+	 * @throws FoursquareApiException 
 	 */
-	public CompactVenue[] getVenuesList(Map<String, String> searchParams) {
+	public CompleteVenue[] getVenuesList(Map<String, String> searchParams) throws FoursquareApiException {
+		CompactVenue[] results = null;
+		
+		
 		/* 
 		 * 
 		 * https://developer.foursquare.com/docs/venues/search 
 		 * 
 		 */
-		FoursquareApi fs = this.init();
+		FoursquareApi foursquare = this.init();
 
 		try {
-			Result<VenuesSearchResult> result = fs.venuesSearch(searchParams);
+			Result<VenuesSearchResult> result = foursquare.venuesSearch(searchParams);
 			if (result.getMeta().getCode() == 200) {
-				return result.getResult().getVenues();
+				results = result.getResult().getVenues();
 			}
 
 		} catch (FoursquareApiException e) {
 			e.printStackTrace();
 		}
-
-		return null;
+		CompleteVenue[] venues = new CompleteVenue[results.length];
+		for(int i=0; i<results.length; i++){
+			venues[i] = foursquare.venue(results[i].getId()).getResult();
+		}
+		return venues;
 	}
 	
 

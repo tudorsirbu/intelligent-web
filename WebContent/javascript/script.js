@@ -47,8 +47,8 @@ $(document).ready(function() {
 			data: data,
 			success: function(venues) {
 				console.log(venues);
-//				displayVenues(venues);
-				displayNearbyVenues(venues);
+				displayVenues(venues);
+//				displayNearbyVenues(venues);
 			}
 		});
 		event.preventDefault();
