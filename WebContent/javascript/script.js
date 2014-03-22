@@ -293,6 +293,16 @@ function displayTweets(data) {
 		div += "<span class='screen_name'> @" + tweet.screenName + "</span>";
 		div += "<p class='text'>" + tweet.text + "</p>";
 		div += "<a href='" + tweet.id + "' class='get_retweets'>" + tweet.retweetCount + " retweets</a>";
+		$.each(tweet.extendedUrls, function( index, url ) {
+			  if(url.indexOf('instagram.com/p') != -1) {
+				  var instagram = getMediaId(url);
+				  console.log(instagram);
+				  if (instagram != null)  {
+					  alert('ceva');
+					  div += "<img src='"+ instagram.imgUrl + "' />";
+				  }
+			  }
+		});
 		div += "</div>";	
 		$("#results").append(div);
 	});
@@ -347,7 +357,7 @@ function initMapEmpty(){
 	  
 	  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 }
-
+var activeWindow = new google.maps.InfoWindow();
 function initMap(data){
 
 	  $.each(data, function(key,venue){
@@ -366,7 +376,10 @@ function initMap(data){
 		  });
 		  markersArray.push(marker);
 		  google.maps.event.addListener(marker, 'click', function() {
+			  if(activeWindow!=null)	  
+				  activeWindow.close();  
 		    infowindow.open(map,marker);
+		    activeWindow= infowindow;
 		  });
 		
 	});
@@ -697,6 +710,44 @@ function populateSelectVenues(data){
 }
 
 
+/* 
+ * The function gets a URL to a photo (eg. instagram.com/p/ID)
+ * and after getting the media ID it calls the getMedia function
+ */
+function getMediaId(url){
+	var result = null;
+	$.ajax({
+		url: "http://api.instagram.com/oembed?url=" + url,
+		dataType: 'jsonp',
+		crossDomain: true,
+		success: function(media) {
+			result = getMedia(media.media_id);
+			console.log(result);
+		}
+	});
+	return result;
+}
+
+/*
+ * The the function is getting the media object using the
+ * provided ID and returns certain details about it.
+ */
+function getMedia(id){
+	$.ajax({
+		url: "https://api.instagram.com/v1/media/" + id +"?client_id=7c6bfcdf43c242eab9dfebf227dc86c9",
+		dataType: 'jsonp',
+		crossDomain: true,
+		success: function(media) {
+			if (media.data != undefined) {
+				var mediaObject = {};
+				mediaObject.created_time = media.data.created_time;
+				mediaObject.imgUrl = media.data.images.low_resolution.url;
+				mediaObject.username = media.data.user.username;
+				return mediaObject;
+			}
+		}
+	});
+}
 
 //function display_retweets(retweets, afterDiv) {
 //$.each(retweets, function(_, retweet) {

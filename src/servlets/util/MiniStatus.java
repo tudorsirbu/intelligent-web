@@ -1,5 +1,9 @@
 package servlets.util;
-import twitter4j.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import twitter4j.Status;
+import twitter4j.User;
 public class MiniStatus {
 	private String profileImageUrl;
 	private String name;
@@ -7,8 +11,20 @@ public class MiniStatus {
 	private String text;
 	private String id;
 	private long user_id;
+	private User user;
 	private String retweetCount;
+	private List<String> extendedUrls;
 	
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
 	public MiniStatus(Status status){
 		this.id = String.valueOf((status.getId()));
 		
@@ -19,6 +35,8 @@ public class MiniStatus {
 		this.name = u.getName();
 		this.screenName = u.getScreenName();
 		this.user_id = u.getId();
+		this.user = status.getUser();
+		this.extendedUrls = new ArrayList<String>();
 		if(status.isRetweet()) {
 			this.text = "RT " + status.getRetweetedStatus().getText();
 		}
@@ -30,6 +48,11 @@ public class MiniStatus {
 			this.retweetCount = "0";
 	}
 
+	public MiniStatus(Status status, List<String> extendedUrls) {
+		this(status);
+		this.extendedUrls = extendedUrls;
+	}
+	
 	
 	public long getUser_id() {
 		return user_id;
@@ -96,6 +119,16 @@ public class MiniStatus {
 		return "MiniStatus [profileImageUrl=" + profileImageUrl + ", name="
 				+ name + ", screenName=" + screenName + ", text=" + text
 				+ ", id=" + id + ", retweetCount=" + retweetCount + "]";
+	}
+
+
+	public List<String> getExtendedUrls() {
+		return extendedUrls;
+	}
+
+
+	public void setExtendedUrls(List<String> extendedUrls) {
+		this.extendedUrls = extendedUrls;
 	}
 
 
