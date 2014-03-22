@@ -48,7 +48,6 @@ $(document).ready(function() {
 			success: function(venues) {
 				console.log(venues);
 				displayVenues(venues);
-//				displayNearbyVenues(venues);
 			}
 		});
 		event.preventDefault();
@@ -697,16 +696,6 @@ function populateSelectVenues(data){
 	$("#searchNearby").show(0);
 }
 
-function displayNearbyVenues(data){
-	$("#results").empty();
-	$.each(data,function(key,value){
-		var content = "";
-		content += "<div class=\"nearbyVenue\">";			
-		content	+= value.name + "</div>";
-		$("#results").prepend(content);
-	});
-	$("#results").show(0);
-}
 
 
 //function display_retweets(retweets, afterDiv) {
