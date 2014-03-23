@@ -398,6 +398,7 @@ public class TwitterManager {
 	 * @param fq the filter query that will enable us to listen for the given users
 	 */
 	public void initConfiguration(long[] userID){
+		
 		if (this.twitterStream == null) {
 			ConfigurationBuilder cb = new ConfigurationBuilder();
 			cb.setDebugEnabled(true)
