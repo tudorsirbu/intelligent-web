@@ -623,7 +623,7 @@ function getDiscussionTrackerFormErrors() {
 
         switch($this.attr('name')) {
 			case "user_ids":
-				validateEmpty($this);
+				validatePositiveLong($this, true);
 				break;
 			case "no_keywords":
 				validatePositiveInteger($this, true);
@@ -676,7 +676,7 @@ function getUserVenuesFormErrors() {
 
         switch($this.attr('name')) {
 			case "user_id":
-				validateEmpty($this);
+				validatePositiveLong($this, true);
 				break;
 			case "days_last_visited":
 				validatePositiveInteger($this, true);
@@ -730,6 +730,18 @@ function validateInteger(element, mandatory) {
 function validatePositiveInteger(element, mandatory) {
 	if (mandatory == true) {
 		if(element.val() % 1 != 0 || element.val() < 0 || !element.val()) {
+			markInputAsError(element);
+		} else {
+			markInputAsCorrect(element);
+		}	
+	} else {
+		markInputAsCorrect(element);
+	}
+}
+
+function validatePositiveLong(element, mandatory) {
+	if (mandatory == true) {
+		if(element.val() % 1 != 0 || element.val() < 0 || element.val().length >= 19 || !element.val()) {
 			markInputAsError(element);
 		} else {
 			markInputAsCorrect(element);
