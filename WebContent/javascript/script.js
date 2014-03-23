@@ -2,7 +2,7 @@ $(document).ready(function() {
 	google.maps.event.addDomListener(window, 'load', initMapEmpty);
 	$("#results").hide();
 	$('#loader').hide();
-
+	$("#map-canvas").hide();
 	var $loading = $('#loader');
 	$(document)
 		.ajaxStart(function () {
@@ -121,8 +121,10 @@ $(document).ready(function() {
 							url: "UserVenuesServlet",
 							data: data,
 							success: function(data){
+								$("#map-canvas").show();
+								google.maps.event.trigger(map,'resize');
+								initMapEmpty();
 								displayVenueStream(data);
-								console.log(data);
 							}
 						});
 					}
@@ -135,7 +137,9 @@ $(document).ready(function() {
 					url: "UserVenuesServlet",
 					data: data,
 					success: function(data){
-						console.log(data);
+						$("#map-canvas").show();
+						google.maps.event.trigger(map,'resize');
+						initMapEmpty();
 						displayVenues(data);
 					}
 				});
