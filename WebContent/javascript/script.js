@@ -387,11 +387,45 @@ function initMap(data){
 }
 
 function displayVenues(data){
-	google.maps.event.addDomListener(window, 'load', initMap(data));
 	
+	console.log(data[0]);
 	$("#results").show(0);
-	$.each(data, function( key, venue ) {
-		photoGroups = venue.photos.groups;
+	if(data[0]!=""){
+		google.maps.event.addDomListener(window, 'load', initMap(data));
+		if(data.length!=0){
+			$.each(data, function( key, venue ) {
+				photoGroups = venue.photos.groups;
+				var div = "<div class='venues'>";
+				div += "<h class='title'>" +"Name:  </h><span class='venues_name'>"+ venue.name + "</span><br/>";
+				div += "<h class='title'>Category:  </h><span class='venues_name'>"+ venue.categories[0].name + "</span><br/>";
+				if(venue.location.address)
+				div += "<h class='title'>Address:  </h><span class='venues_name'>"+ venue.location.address + "</span><br/>";
+				if(venue.shortUrl)
+				div += "<h class='title'>Url:  </h><a href='url'>"+ venue.shortUrl + "</a><br/><br/>";
+				if(photoGroups.length>1)
+					if(photoGroups[1].length!=0)
+						$.each(photoGroups[1].items,function(key,value){
+							div += "<img src='"+ value.url +"' />";
+						});
+					else{
+						if(photoGroups[0].length!=0 )
+							$.each(photoGroups[0].items,function(key,value){
+								div += "<img src='"+ value.url +"' />";
+							});
+					}
+				div += "</div>";	
+				$("#results").append(div);
+
+			});
+		}
+		else{
+			var div = "<div class='venues'>";
+			div += "<h class='title'>" +"No checkins found for the last specified number of days!</h><br/>";
+			div += "</div>";
+			$("#results").append(div);
+		}
+	}
+	else{
 		var div = "<div class='venues'>";
 		div += "<h3 class='title'>Name:  </h3><span class='venues_name'>"+ venue.name + "</span><br/>";
 		div += "<h3 class='title'>Category:  </h3><span class='venues_name'>"+ venue.categories[0].name + "</span><br/>";
@@ -411,10 +445,10 @@ function displayVenues(data){
 					});
 			}
 		div += "</div>";	
+		div += "<h3 class='title'>" +"The user ID that you entered does not exist! Please try again with another user ID!</h3><br/>";
+		div += "</div>";
 		$("#results").append(div);
-
-
-	});
+	}
 }
 
 function displayVenueStream(data) {
