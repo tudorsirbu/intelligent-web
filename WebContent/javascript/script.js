@@ -236,6 +236,7 @@ $(document).ready(function() {
 				setInterval(function() {	
 					if(connectionEstablished == true) {
 						$.ajax({
+							global: false,
 							type: "post",
 							dataType: "json",
 							url: "ByVenueServlet",
