@@ -37,30 +37,51 @@ public class TwitterManager {
 	private ArrayList<CompleteVenue> venues = new ArrayList<CompleteVenue>();
 	private ArrayList<User> users = new ArrayList<User>();
 	private TwitterStream twitterStream;
-	
+
 	private String consumerkey = "gHCxnRIAapqAfBG5oyt6w";	
 	private String consumersecret = "pisw8haLdrOvmPxyOLkT7xJoEqQkxgei2xrOkhdeJjA";	
 	private String accesstoken = "18540628-4dkbUfF495u9r35CxEfqm5PDorm7e4nraiPFRQCoD";	
 	private String accesstokensecret = "ZgwdueIhOQeZ3ZIt29dKZlWrc4lwcrquQ8JaDCTLeLD1i";	
-	
+
 	private static TwitterManager instance = null;
-	
+
 	public final Double LONGITUDE_IN_KM = 0.008983;
 	public final Double LATITUDE_IN_KM = 0.015060;
-	
+
 	protected TwitterManager() {
 		// Exists only to defeat instantiation.
 	}
-	
+
 	public static TwitterManager getInstance() {
 		if(instance == null) {
 			instance = new TwitterManager();
 		}
 		return instance;
 	}
-	
+
+	public boolean userExists(long userID){
+		/* Connect to twitter. */
+		Twitter twitterConnection = null;	
+		try {	
+			twitterConnection = this.init();		 	 	 	
+		} catch (Exception e) {	
+			System.out.println("Cannot initialise Twitter.");	
+			e.printStackTrace();	
+		}
+		// list of statuses
+		ResponseList<Status> statuses = null;
+
+		// get the user's timeline
+		try {
+			statuses = twitterConnection.getUserTimeline(userID, new Paging(1,100));
+		} catch (TwitterException e) {
+			System.out.println("Could not retrieve user's (" + userID + ") timeline.");
+			return false;
+		}
+		return true;
+	}
 	public List<MiniStatus> query(String keywords, String latitude, String longitude, String radius) {	
-		
+
 		Integer radiusNumber;
 		Double latitudeNumber, longitudeNumber;
 		try {
@@ -104,7 +125,7 @@ public class TwitterManager {
 				for(Status tweet:result.getTweets()) {
 					tweets.add(new MiniStatus(tweet, ApiUtil.expandStatus(tweet)));
 				}
-						
+
 			}	
 		} 
 		catch (Exception e) {	
@@ -135,16 +156,16 @@ public class TwitterManager {
 		}
 
 		FoursquareManager fm = new FoursquareManager();
-	
+
 		HashSet<User> users = new HashSet<User>();
 		List<Status> tweets = new ArrayList<Status>(); 
 		CompactVenue[] suggestedVenues = null;
 		Status currentTweet;
-		
+
 		try { 
 			/* Get the results for the last daysNumber days, by querying previously posted tweets. */
 			Query query = new Query();
-			
+
 			/* Choosing whether to use the geographic coordinates or the name of the location.
 			 * Coordinates take priority. */
 			if (latitudeNumber != null && longitudeNumber != null) {
@@ -156,13 +177,13 @@ public class TwitterManager {
 				query.setQuery("\"" + locationName + "\"");	
 				query.setCount(100);
 			}
-			
+
 			/* Subtract the number of days so that only the queries in the last X days are taken into consideration. */
 			Calendar calendar = Calendar.getInstance();
 			calendar.add(Calendar.DAY_OF_MONTH, -daysNumber);
 			SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
 			query.setSince(format.format(calendar.getTime()));
-			
+
 			/* Query twitter for results.
 			 * If there are any suggestedVenues, it means that the geographic coordinates were provided
 			 * and a list of venues near that location was extracted from foursquare. Otherwise, it
@@ -176,20 +197,20 @@ public class TwitterManager {
 			else {
 				tweets.addAll(twitterConnection.search(query).getTweets());
 			}
-			
+
 			int i = 1;
 			/* Only get the users from the results. */
 			for (Status tweet:tweets) {
-				
+
 				currentTweet = (Status) (tweet.isRetweet() ? tweet.getRetweetedStatus() : tweet);
-				
+
 				/* Extract all the links in the tweet. */
 				for(String link:this.extractURL(currentTweet)) {
 					System.out.println("-------------------------");
 					System.out.println("Result " + i + " out of " + tweets.size());
 					System.out.println("Found link");
 					System.out.println(tweet.getText());
-					
+
 					/* Check if it has a foursquare checkin in the link. */
 					CompleteVenue venue = fm.getVenueName(link);
 					if (venue != null) {
@@ -208,20 +229,20 @@ public class TwitterManager {
 
 		return users;	
 	}
-	
+
 	public void streamByLocation(String locationName, String locationLat, String locationLong) {
 		Double latitudeNumber, longitudeNumber; 
 
 		try { longitudeNumber = Double.parseDouble(locationLong); } catch (NumberFormatException e) { longitudeNumber = null; }
 		try { latitudeNumber = Double.parseDouble(locationLat);	} catch (NumberFormatException e) {	latitudeNumber = null; }
-		
+
 		/* Use twitter stream to get the info. */
 		if (this.twitterStream == null) {
 			this.initStream();
 			this.twitterStream.addListener(new TwitterStatusListener());
-			
+
 			FilterQuery fq = new FilterQuery();
-			
+
 			/* Getting data by taking the provided data into consideration. Location takes priority to coordinates. */
 			if(!locationName.isEmpty()) {
 				String[] locations = {locationName};
@@ -229,20 +250,20 @@ public class TwitterManager {
 			}
 			else if(latitudeNumber != null && longitudeNumber != null) {
 				/* https://dev.twitter.com/docs/streaming-apis/parameters#locations */
-				
+
 				/* Gets all the tweets which are in a square of 2 km per side with the 
 				 * (longitudeNumber, latitudeNumber) as the center of it. */
 				double[][] locationBox = {{longitudeNumber - this.LONGITUDE_IN_KM, latitudeNumber - this.LATITUDE_IN_KM}, 
-										  {longitudeNumber + this.LONGITUDE_IN_KM, latitudeNumber + this.LATITUDE_IN_KM}};
+						{longitudeNumber + this.LONGITUDE_IN_KM, latitudeNumber + this.LATITUDE_IN_KM}};
 				fq.locations(locationBox);
 			}
-			
+
 			this.twitterStream.filter(fq);
 		}
 	}
 
 	public HashSet<User> findFoursquareUsers() {
-		
+
 		String[] keywordsArray = {"#foursquare", "foursquare"};
 
 		/* Connect to twitter. */
@@ -275,10 +296,10 @@ public class TwitterManager {
 			e.printStackTrace(); 	
 			System.out.println("Failed to search tweets:" + e.getMessage());	
 		}
-		
+
 		return users;
 	}
-	
+
 	public Twitter init() throws Exception{	
 		Twitter twitterConnection = initTwitter(this.consumerkey, this.consumersecret, this.accesstoken, this.accesstokensecret);	
 		return twitterConnection;	
@@ -322,16 +343,13 @@ public class TwitterManager {
 		return retweets;
 	}
 	/**
-	 * The method gets the venues the give user has visited in the last given days
+	 * The method gets the venues the given user has visited in the last given days
 	 * @param userID the id of the user to get the venues for
 	 * @param days the number of days to go back
-	 * @param twitterC the connection to the twitter api
-	 * @param statuses the statuses of the user
-	 * @venues the string containg all the venues the user has visited
 	 */
 	public ArrayList<Object> getVenuesSince(Long userID, Integer days){
 		ArrayList<Object> venues = new ArrayList<Object>();
-	
+
 		/* Connect to twitter. */
 		Twitter twitterC = null;	
 		try {	
@@ -359,7 +377,7 @@ public class TwitterManager {
 			UserService userService = new UserService(connection.getConnection());
 			userService.insertUser(statuses.get(0).getUser());
 			connection.disconnect();
-			
+
 		}
 
 		Calendar c = Calendar.getInstance();
@@ -376,7 +394,7 @@ public class TwitterManager {
 			}
 
 		}
-		
+
 		FoursquareManager fm = new FoursquareManager();
 		for(Status status : sts){
 			ArrayList<String> urls = new ArrayList<String>();
@@ -385,39 +403,42 @@ public class TwitterManager {
 				CompleteVenue currentVenue = fm.getVenueName(url);
 				if(currentVenue != null)
 					venues.add(currentVenue);
-				
+
 			}
 		}
-				
+
 		return venues;
 	}
 	/**
 	 * The method initialises the connection to twitter stream api
+	 * and listens for when the given user posts a status, in order to get
+	 * the foursquare link out of it.
 	 * @param userID the id of the user to listen for
-	 * @param cb the configuration builder
-	 * @param fq the filter query that will enable us to listen for the given users
 	 */
 	public void initConfiguration(long[] userID){
-		
+
 		if (this.twitterStream == null) {
 			ConfigurationBuilder cb = new ConfigurationBuilder();
 			cb.setDebugEnabled(true)
 			.setJSONStoreEnabled(true)
 			.setOAuthConsumerKey("H4VHRaf8ybmPhzzK47uQ")
 			.setOAuthConsumerSecret("y6oxNsvuoauf4sPcGU45Ct5eVfryYlai5TUBU92Uxbk");
-			
+
 			TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
 			this.twitterStream = twitterStreamFactory.getInstance(new AccessToken("1225017144-1l22gHEw6SpxoQQac1PmT5a3FjQnexJrMQmiFra", "WR2I8lHSBlqVKHV1a3t3CDElHKe0sHkVl1TCLyrVnrkLS"));
 			this.twitterStream.addListener(userStreamListener);
-			
+
 			FilterQuery fq = new FilterQuery();
-			
+
 			fq.follow(userID);
-			
+
 			twitterStream.filter(fq);
 		}
 	}
-	
+	/**
+	 * This method connects to the twitter stream using the given credentials.
+	 * @return
+	 */
 	public TwitterStream initStream() {
 		if (this.twitterStream == null) {
 			System.out.println("this is wrong");
@@ -426,14 +447,14 @@ public class TwitterManager {
 			.setJSONStoreEnabled(true)
 			.setOAuthConsumerKey("H4VHRaf8ybmPhzzK47uQ")
 			.setOAuthConsumerSecret("y6oxNsvuoauf4sPcGU45Ct5eVfryYlai5TUBU92Uxbk");
-			
+
 			TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
 			this.twitterStream = twitterStreamFactory.getInstance(new AccessToken("1225017144-1l22gHEw6SpxoQQac1PmT5a3FjQnexJrMQmiFra", "WR2I8lHSBlqVKHV1a3t3CDElHKe0sHkVl1TCLyrVnrkLS"));
-			
+
 		}
 		return this.twitterStream;
 	}
-	
+
 	UserStreamListener userStreamListener = new TwitterUserListener();
 
 	/**
@@ -448,7 +469,7 @@ public class TwitterManager {
 	public ArrayList<String> extractURL(Status status) {
 		ArrayList<String> links = new ArrayList<String>();
 		String text = status.getText();
-		
+
 		String regex = "\\(?\\b(http://|www[.])[-A-Za-z0-9+&@#/%?=~_()|!:,.;]*[-A-Za-z0-9+&@#/%=~_()|]";
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(text);
@@ -474,18 +495,18 @@ public class TwitterManager {
 				this.venues.add(currentVenue);
 		}
 	}
-	
+
 	public void handleNewStatusInStream(Status status) {
 		FoursquareManager fm = new FoursquareManager();
 		ArrayList<String> urls = this.extractURL(status);
-		
+
 		for(String url : urls){
 			CompleteVenue currentVenue = fm.getVenueName(url);
 			if(currentVenue != null)
 				this.users.add(status.getUser());
 		}
 	}
-	
+
 	public ArrayList<CompleteVenue> getVenues() {
 		return venues;
 	}
@@ -501,7 +522,7 @@ public class TwitterManager {
 	public void clearUsers() {
 		this.users.clear();
 	}
-	
+
 	public void clearVenues() {
 		this.venues = new ArrayList<CompleteVenue>();
 	}
