@@ -132,7 +132,7 @@ public class UserVenuesServlet extends HttpServlet {
 					 response.getWriter().write(json);
 				}
 				else{
-					 String json = gson.toJson("pizda");
+					 String json = gson.toJson("");
 					 tm.clearVenues();
 					 response.getWriter().write(json);
 				}

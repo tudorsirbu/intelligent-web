@@ -113,8 +113,8 @@ $(document).ready(function() {
 					async: false,
 					success: function(data){
 						
-						if(data=="pizda"){
-							console.log("AICI!!!!!"+data);
+						if(data==""){
+							console.log(data);
 							isUser = false; 
 						}else{
 							console.log(data);
@@ -124,7 +124,6 @@ $(document).ready(function() {
 						
 					}
 				});
-				console.log(isUser);
 				if(isUser==true){
 					setInterval(function() {	
 						if(connectionEstablished == true) {
