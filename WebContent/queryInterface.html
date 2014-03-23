@@ -4,14 +4,12 @@
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <link rel="stylesheet" type="text/css" href="CSS/reset.css">
 <link rel="stylesheet" type="text/css" href="CSS/formStyle.css">
-<link rel="stylesheet" type="text/css"
-	href="CSS/jquery-ui-1.10.4.custom.min.css">
+<link rel="stylesheet" type="text/css" href="CSS/jquery-ui-1.10.4.custom.min.css">
 <link rel="stylesheet" type="text/css" href="CSS/map.css">
 
 <script src="javascript/jquery-1.11.0.js"></script>
 <script src="javascript/jquery-ui-1.10.4.custom.min.js"></script>
-<script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgU59vjkXnSzHlfrR1iaZ6zottGl35Ys&sensor=false"></script>
+<script	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgU59vjkXnSzHlfrR1iaZ6zottGl35Ys&sensor=false"></script>
 <script src="javascript/instagram.js"></script>
 <script src="javascript/script.js"></script>
 
@@ -25,7 +23,7 @@
 		<li><a href="#tabs-2">Frequent keywords</a></li>
 		<li><a href="#tabs-3">Venues for user</a></li>
 		<li><a href="#tabs-4">Get users by venue</a></li>
-		<li><a href="#tabs-5">Something Tudor did</a></li>
+		<li><a href="#tabs-5">Find nearby venues</a></li>
 	</ul>
 	<div id="tabs-1">
 		<form action="TrackingServlet" method="get" id="trackingForm">
@@ -100,7 +98,7 @@
 			</div>
 			<div>
 				<label for="venue_days_since"> In the last days: </label> 
-				<input name="venue_days_since" type="text" id="venue_days_since" class="nmb" />
+				<input name="venue_days_since" type="number" id="venue_days_since" class="nmb" />
 			</div>
 			<div class="button">
 	        	<button name="submit" type="submit">Search for results!</button>

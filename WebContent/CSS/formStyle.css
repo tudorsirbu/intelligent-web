@@ -38,7 +38,7 @@ form div + div {
     margin-top: 1em;
 }
 
-form input[type=text] {
+form input[type="text"], form input[type="number"] {
   	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -46,6 +46,10 @@ form input[type=text] {
 	border-color: #999;
 	height: 30px;
 	font-size: 14px;
+}
+
+form input[type="number"] {
+	width: 70px;
 }
 
 label {
@@ -85,7 +89,7 @@ input.geo {
     font: 1em sans-serif;
 
     /* Set all fields to same size */
-    width: 80px;
+    width: 100px;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 
@@ -118,6 +122,10 @@ textarea {
 
     /* Allow resizing */
     resize: vertical;
+    
+    -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 }
 .button {
     /* Set the position of the button*/
@@ -128,13 +136,13 @@ button {
     margin-left: .5em;
 }
 
-body #results {
+#results {
 	
 	width: 1000px;
 	margin-left: auto;
 	margin-right: auto;
 	border: 1px solid #e1e8ed;
-	border-botton: 0;
+	border-botton: 100px;
 	margin-top: 20px;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
@@ -155,19 +163,20 @@ body #results {
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 }
+
 .venues{
 	background-color: #f5f8fa;
 	padding: 5px 10px;
 	clear: both;
 	min-height: 60px;
 	border-bottom: 1px solid #e1e8ed;
-	
+	font-size: 14px;
 }
 
-.venues a{
+.venues a {
 	color: #0D3FA8;
 	text-decoration: none;
-	font-size: 14px;
+	font-size: 15px;
 }
 .venues a:hover{
 	color: #0084B4 solid #e1e8ed;
@@ -201,7 +210,7 @@ body #results {
 	font-weight: bold;
 	color: #292f33;
 	display: inline-block;
-	font-size: 14px;
+	font-size: 17px;
 }
 .venues > p.title{
 	font-weight: bold;
@@ -210,12 +219,12 @@ body #results {
 	color: #292f33;
 	margin: 0;
 }
-.venues >h.title{
+#results h3.title {
+	display: inline-block;
 	font-weight: bold;
-	font-weight: bold;
-	font-size: 20px;
+	font-size: 17px;
 	color: #292f33;
-	margin: 0;
+	margin-right: 5px;
 }
 .venues > p.cat{
 	color: #474141;
@@ -234,9 +243,8 @@ body #results {
 	font-size: 14px;
 }
 
-.venues > .venues_name{
-	color: #0D3FA8;	
-	font-size: 20px;
+.venues_name {	
+	font-size: 17px;
 }
 
 .extended_tweet {
