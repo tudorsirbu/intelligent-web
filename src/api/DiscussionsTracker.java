@@ -150,7 +150,12 @@ public class DiscussionsTracker {
 		// close the database connection
 		db.disconnect();
 	}
-	
+	/**
+	 * The method checks if a given work is on the stoplist
+	 * @param word the word which is checked against the stoplist
+	 * @param stopListWords the list of stoplist words
+	 * @return true if the word is on the stop list and false otherwise
+	 */
 	private boolean isInStopList(String word, ArrayList<String> stopListWords){
 		for(String w : stopListWords){
 			if(w.equalsIgnoreCase(word))

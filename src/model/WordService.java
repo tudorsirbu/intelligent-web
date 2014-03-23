@@ -101,7 +101,11 @@ public class WordService {
 		
 		return -1;
 	}
-	
+	/**
+	 * Is the word indexable?
+	 * @param word the word to be checked if it can be indexed?
+	 * @return true if the word can be indexed and false otherwise
+	 */
 	public boolean isIndexable(String word){
 		try{
 			// create statement
