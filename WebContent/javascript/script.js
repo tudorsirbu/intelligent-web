@@ -47,6 +47,9 @@ $(document).ready(function() {
 			data: data,
 			success: function(venues) {
 				console.log(venues);
+				$("#map-canvas").show();
+				google.maps.event.trigger(map,'resize');
+				initMapEmpty();
 				displayVenues(venues);
 			}
 		});
