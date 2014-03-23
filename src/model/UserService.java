@@ -24,7 +24,12 @@ public class UserService {
 		// create a connection to the database
 		this.connection = connection;
 	}
-
+	
+	/**
+	 * The method returns a user for a given ID
+	 * @param id id of the requested user
+	 * @return a user or null if no user with that id was found
+	 */
 	public User getUser(String id){
 		try {
 			String query = "SELECT * FROM users WHERE id = ?";
@@ -116,7 +121,11 @@ public class UserService {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * Returns a list of users given a list of ids
+	 * @param ids the list of ids of users which are requested
+	 * @return returns a list of users for the given ids
+	 */
 	public ArrayList<User> getUsers(long[] ids){
 		ArrayList<User> users = new ArrayList<User>();
 		

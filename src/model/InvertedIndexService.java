@@ -17,11 +17,23 @@ import java.util.HashSet;
 public class InvertedIndexService {
 	Connection connection = null;
 	Statement statement = null;
-
+	
+	/**
+	 * Constructor
+	 * @param connection a connection to the database
+	 */
 	public InvertedIndexService(Connection connection){
 		this.connection = connection;
 	}
 
+	/**
+	 * The method creates an inverted index for a given word, associated to a given 
+	 * user on a specific date and also records the number of occurances of that word
+	 * @param word the word to be indexed
+	 * @param userID the user who posted the tweet containing that word
+	 * @param tweetDate the tweet date
+	 * @param count the number of times the word apprears in a tweet
+	 */
 	public void createIndex(String word, String userID, java.util.Date tweetDate, int count){
 		// get the word id
 		WordService wordService = new WordService(connection);
@@ -57,6 +69,13 @@ public class InvertedIndexService {
 		}
 	}
 
+	/**
+	 * The method returns the top keywords for a list of users
+	 * @param ids the ids for which the keywords are required
+	 * @param days the keywords from the last X days
+	 * @param noKeywords the number of keywords to be returned
+	 * @return
+	 */
 	public ArrayList<User> getKeywords(long[] ids, int days, int noKeywords){
 		// the returned hashmap containing for each user a hashmap of the top keywords
 		HashSet<User> top = new HashSet<User>();
@@ -138,7 +157,12 @@ public class InvertedIndexService {
 
 		return users;
 	}
-
+	/**
+	 * The method looks for a user in a list of users
+	 * @param users  list of users
+	 * @param searchedUser searched user
+	 * @return returns the user from the list if it makes the given user and null otherwise
+	 */
 	private User getUser(ArrayList<User> users, User searchedUser){
 		for(User user: users)
 			if(user.equals(searchedUser))

@@ -35,7 +35,15 @@ public class User {
 		this.friends = friends;
 		this.keywords = new HashMap<String,Integer>();
 	}
-	
+	/**
+	 * 
+	 * @param id user's twitter id
+	 * @param name user's name
+	 * @param location user's location (if provided)
+	 * @param description user's description (if provided)
+	 * @param profilePicURL user's profile picture URL
+	 * @param keywords a list of keywords associated to this user
+	 */
 	public User(String id, String name, String username, String location, String description,
 			String profilePicURL, ArrayList<User> friends, HashMap<String,Integer> keywords) {
 		this.id = id;
@@ -47,7 +55,10 @@ public class User {
 		this.friends = friends;
 		this.keywords = keywords;
 	}
-	
+	/**
+	 * Constructor
+	 * @param twitterUser Twitter4j user can be passed
+	 */
 	public User(twitter4j.User twitterUser) {
 		this(String.valueOf(twitterUser.getId()),
 			twitterUser.getName(), 

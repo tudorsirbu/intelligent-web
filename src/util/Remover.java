@@ -8,30 +8,43 @@ package util;
  */
 public class Remover {
 	private String statusText = "";
-	
+	/**
+	 * Constructor
+	 * @param s text to be stripped of unwanted elements
+	 */
 	public Remover(String s){
 		this.statusText = s;
 	}
-	
+	/**
+	 * Removed hashtags 
+	 */
 	public void removeHashTags(){
 		statusText = statusText.replaceAll("#[\\w]+", "");
 	}
-	
+	/**
+	 * Remove screen names (eg. @studor)
+	 */
 	public void removeScreenNames(){
 		statusText = statusText.replaceAll("@[\\w]+", "");
 	}
-	
+	/**
+	 * Remove any URLs present in the text
+	 */
 	public void removeUrls(){
 		// remove urls that start with http, https, ftp or file eg. http://www.google.com
 		statusText = statusText.replaceAll("\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]", "");
 		// remove urls that do not have the protocol. eg. www.google.com
 		statusText = statusText.replaceAll("\\bwww.[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]", "");
 	}
-	
+	/**
+	 * Remove any non-words
+	 */
 	public void removeNonWords(){
 		statusText = statusText.replaceAll("[^a-zA-Z0-9\\s]", "");
 	}
-	
+	/**
+	 * Remove RT tags (RT=retweets)
+	 */
 	public void removeRTs(){
 		statusText= statusText.replaceAll("\\bRT\\b", "");
 	}
@@ -51,12 +64,5 @@ public class Remover {
 	 */
 	public String getText(){
 		return statusText.trim();
-	}
-	
-	
-	public static void main(String[] args){
-		Remover r = new Remover("RT RT Hello #sheffield #university @tudor /= http://sheffield.ac.uk www.sheffield.ac.uk");
-		r.removeAll();
-		System.out.println(r.getText());
 	}
 }
