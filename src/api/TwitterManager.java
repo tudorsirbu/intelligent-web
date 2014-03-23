@@ -343,12 +343,9 @@ public class TwitterManager {
 		return retweets;
 	}
 	/**
-	 * The method gets the venues the give user has visited in the last given days
+	 * The method gets the venues the given user has visited in the last given days
 	 * @param userID the id of the user to get the venues for
 	 * @param days the number of days to go back
-	 * @param twitterC the connection to the twitter api
-	 * @param statuses the statuses of the user
-	 * @venues the string containg all the venues the user has visited
 	 */
 	public ArrayList<Object> getVenuesSince(Long userID, Integer days){
 		ArrayList<Object> venues = new ArrayList<Object>();
@@ -414,9 +411,9 @@ public class TwitterManager {
 	}
 	/**
 	 * The method initialises the connection to twitter stream api
+	 * and listens for when the given user posts a status, in order to get
+	 * the foursquare link out of it.
 	 * @param userID the id of the user to listen for
-	 * @param cb the configuration builder
-	 * @param fq the filter query that will enable us to listen for the given users
 	 */
 	public void initConfiguration(long[] userID){
 
@@ -438,7 +435,10 @@ public class TwitterManager {
 			twitterStream.filter(fq);
 		}
 	}
-
+	/**
+	 * This method connects to the twitter stream using the given credentials.
+	 * @return
+	 */
 	public TwitterStream initStream() {
 		if (this.twitterStream == null) {
 			System.out.println("this is wrong");

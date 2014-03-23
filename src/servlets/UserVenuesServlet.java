@@ -47,46 +47,6 @@ public class UserVenuesServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();	
-		out.println("<h2>Results</h2>");	
-
-		Long userID = Long.parseLong(request.getParameter("user_id"));
-		Integer days = Integer.parseInt(request.getParameter("days_last_visited"));
-		String submit = request.getParameter("submit");
-		Gson gson = new Gson();
-		if(submit != null){	
-			
-			TwitterManager tm = TwitterManager.getInstance();
-			
-			if(days!=0){
-				ArrayList<Object> venues;
-				if(tm.getVenuesSince(userID, days)!=null){
-					venues = tm.getVenuesSince(userID, days); 
-					for(Object venue : venues){
-						if (venue instanceof CompleteVenue)
-							out.println(((CompleteVenue) venue).getName());	
-						else
-							out.println(((CompactVenue) venue).getName());	
-						
-					}
-					String json = gson.toJson(venues);
-					 response.getWriter().write(json);
-				}
-				else
-					out.println("Cant get the venues for that user!");		
-			}
-			else{
-
-				long [] list = new long[1];
-				list[0]=userID;
-				tm.initConfiguration(list);
-			}
-		} else {	
-			out.println("No text entered.");	
-		}	
-		out.close();
-		
 	}
 
 	/**
