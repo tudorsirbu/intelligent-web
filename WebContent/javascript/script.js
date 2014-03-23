@@ -3,6 +3,8 @@ $(document).ready(function() {
 	$("#results").hide();
 	$('#loader').hide();
 	$("#map-canvas").hide();
+	
+	
 	var $loading = $('#loader');
 	$(document)
 		.ajaxStart(function () {
@@ -47,9 +49,7 @@ $(document).ready(function() {
 			data: data,
 			success: function(venues) {
 				console.log(venues);
-				$("#map-canvas").show();
-				google.maps.event.trigger(map,'resize');
-				initMapEmpty();
+				
 				displayVenues(venues);
 			}
 		});
@@ -300,20 +300,36 @@ function displayTweets(data) {
 		div += "<span class='screen_name'> @" + tweet.screenName + "</span>";
 		div += "<p class='text'>" + tweet.text + "</p>";
 		div += "<a href='" + tweet.id + "' class='get_retweets'>" + tweet.retweetCount + " retweets</a>";
+		div += "<a href='#' class='show' style='display:block'>Show instagram (if available) </a>";
+		div += "<div class='instagramPic' style='display:none'><a class='instagramUser'></a>";
+		div	+= "<img id='"+tweet.id +"'/></div>";
+		div += "</div>";
+		
+		
 		$.each(tweet.extendedUrls, function( index, url ) {
 			  if(url.indexOf('instagram.com/p') != -1) {
-				  var instagram = getMediaId(url);
-				  console.log(instagram);
-				  if (instagram != null)  {
-					  alert('ceva');
-					  div += "<img src='"+ instagram.imgUrl + "' />";
-				  }
+				  $.ajax({
+						url: "http://api.instagram.com/oembed?url=" + url,
+						dataType: 'jsonp',
+						success: function(media) {
+							console.log(media);
+							var tweetId = "#" + tweet.id;  
+							$(tweetId).attr("src",media.url);
+							$(tweetId).parent().add(".instagramUser").find('.instagramUser').attr("href",url);
+							$(tweetId).parent().add(".instagramUser").text(media.author_name);
+						}
+					});
 			  }
 		});
-		div += "</div>";	
+		
 		$("#results").append(div);
 	});
-
+	$(".show").click(function(event){
+		event.preventDefault();
+		
+		var $this = $(this).parent();
+		$this.parent().add('.instagramPic').removeAttr("style");
+	});
 	$(".get_retweets").click(function(event) {
 		event.preventDefault();
 
@@ -764,40 +780,40 @@ function populateSelectVenues(data){
  * The function gets a URL to a photo (eg. instagram.com/p/ID)
  * and after getting the media ID it calls the getMedia function
  */
-function getMediaId(url){
+function getMedia(url){
 	var result = null;
 	$.ajax({
 		url: "http://api.instagram.com/oembed?url=" + url,
 		dataType: 'jsonp',
 		crossDomain: true,
 		success: function(media) {
-			result = getMedia(media.media_id);
-			console.log(result);
+			 result = media;
 		}
 	});
+	console.log(result);
 	return result;
 }
 
-/*
- * The the function is getting the media object using the
- * provided ID and returns certain details about it.
- */
-function getMedia(id){
-	$.ajax({
-		url: "https://api.instagram.com/v1/media/" + id +"?client_id=7c6bfcdf43c242eab9dfebf227dc86c9",
-		dataType: 'jsonp',
-		crossDomain: true,
-		success: function(media) {
-			if (media.data != undefined) {
-				var mediaObject = {};
-				mediaObject.created_time = media.data.created_time;
-				mediaObject.imgUrl = media.data.images.low_resolution.url;
-				mediaObject.username = media.data.user.username;
-				return mediaObject;
-			}
-		}
-	});
-}
+///*
+// * The the function is getting the media object using the
+// * provided ID and returns certain details about it.
+// */
+//function getMedia(id){
+//	$.ajax({
+//		url: "https://api.instagram.com/v1/media/" + id +"?client_id=7c6bfcdf43c242eab9dfebf227dc86c9",
+//		dataType: 'jsonp',
+//		crossDomain: true,
+//		success: function(media) {
+//			if (media.data != undefined) {
+//				var mediaObject = {};
+//				mediaObject.created_time = media.data.created_time;
+//				mediaObject.imgUrl = media.data.images.low_resolution.url;
+//				mediaObject.username = media.data.user.username;
+//				return mediaObject;
+//			}
+//		}
+//	});
+//}
 
 //function display_retweets(retweets, afterDiv) {
 //$.each(retweets, function(_, retweet) {
