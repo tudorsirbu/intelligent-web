@@ -24,7 +24,10 @@ public class MiniStatus {
 		this.user = user;
 	}
 
-
+	/**
+	 * Constructor
+	 * @param status takes a Twitter4j Status
+	 */
 	public MiniStatus(Status status){
 		this.id = String.valueOf((status.getId()));
 		
@@ -47,7 +50,11 @@ public class MiniStatus {
 		else 
 			this.retweetCount = "0";
 	}
-
+	/**
+	 * Constructor	
+	 * @param status the Twitter4j Status
+	 * @param extendedUrls the urls found in this status
+	 */
 	public MiniStatus(Status status, List<String> extendedUrls) {
 		this(status);
 		this.extendedUrls = extendedUrls;
@@ -61,10 +68,6 @@ public class MiniStatus {
 	public void setUser_id(long user_id) {
 		this.user_id = user_id;
 	}
-
-
-
-
 
 	public String getProfileImageUrl() {
 		return profileImageUrl;
