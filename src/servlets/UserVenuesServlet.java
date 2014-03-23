@@ -124,11 +124,19 @@ public class UserVenuesServlet extends HttpServlet {
 				response.getWriter().write(json);
 			} 
 			else{
-				tm.initConfiguration(idList);
-				 venuesStreamed = tm.getVenues();
-				 String json = gson.toJson(venuesStreamed);
-				 tm.clearVenues();
-				 response.getWriter().write(json);
+				if(tm.userExists(idList[0])==true){
+					tm.initConfiguration(idList);
+					 venuesStreamed = tm.getVenues();
+					 String json = gson.toJson(venuesStreamed);
+					 tm.clearVenues();
+					 response.getWriter().write(json);
+				}
+				else{
+					 String json = gson.toJson("pizda");
+					 tm.clearVenues();
+					 response.getWriter().write(json);
+				}
+				
 			}
 				
 			/* Create the response JSON */
