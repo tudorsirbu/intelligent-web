@@ -420,7 +420,7 @@ function displayVenues(data){
 		}
 		else{
 			var div = "<div class='venues'>";
-			div += "<h class='title'>" +"No check ins found for the last specified number of days!</h><br/>";
+			div += "<h class='title'>" +"No checkins found for the last specified number of days!</h><br/>";
 			div += "</div>";
 			$("#results").append(div);
 		}
