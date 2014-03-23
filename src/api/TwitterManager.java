@@ -351,7 +351,8 @@ public class TwitterManager {
 			statuses = twitterC.getUserTimeline(userID, new Paging(1,100));
 		} catch (TwitterException e) {
 			System.out.println("Could not retrieve user's (" + userID + ") timeline.");
-			e.printStackTrace();
+			venues.add("");
+			return venues;
 		}
 		if(statuses!=null){
 			DatabaseConnection connection = new DatabaseConnection();
