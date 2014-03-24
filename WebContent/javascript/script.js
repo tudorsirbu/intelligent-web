@@ -290,32 +290,6 @@ $(document).ready(function() {
 			};
 		}	
 	});
-
-
-	//$("#results").hide(0);
-	//$("#userVenuesForm").submit(function( event ) {
-
-	//	var obj = {};
-	//	obj.userID = $("#user_id").val();
-	//	obj.days = $("#days").val();
-
-	//	var data = JSON.stringify(obj);
-
-	//	$.ajax({
-	//		type: "post",
-	//	dataType: "json",
-	//	url: "UserVenuesServlet",
-	//	data: data,
-	//	success: function(tweets) {
-	//	console.log(tweets);
-	//	displayTweets(tweets);
-	//	}
-	//});
-	//event.preventDefault();
-	//	});
-
-
-
 });
 
 function displayTweets(data) {
@@ -377,7 +351,7 @@ function displayTweets(data) {
 				$.each(data, function(_, retweet) {
 					var div = "<div class='retweet'>";
 					div += "<img src='"+ retweet.profileImageUrl +"' />";
-					div += "<strong class='title'>" + retweet.name + "</strong>";
+					div += "<a href='UsersServlet?user_id="+ retweet.user_id +"' class='title'>" + retweet.name + "</a>";
 					div += "<span class='screen_name'> @" + retweet.screenName + "</span>";
 					div += "<p class='text'>" + retweet.text + "</p>";
 					div += "</div>";	
@@ -831,39 +805,3 @@ function getMedia(url){
 	console.log(result);
 	return result;
 }
-
-///*
-// * The the function is getting the media object using the
-// * provided ID and returns certain details about it.
-// */
-//function getMedia(id){
-//	$.ajax({
-//		url: "https://api.instagram.com/v1/media/" + id +"?client_id=7c6bfcdf43c242eab9dfebf227dc86c9",
-//		dataType: 'jsonp',
-//		crossDomain: true,
-//		success: function(media) {
-//			if (media.data != undefined) {
-//				var mediaObject = {};
-//				mediaObject.created_time = media.data.created_time;
-//				mediaObject.imgUrl = media.data.images.low_resolution.url;
-//				mediaObject.username = media.data.user.username;
-//				return mediaObject;
-//			}
-//		}
-//	});
-//}
-
-//function display_retweets(retweets, afterDiv) {
-//$.each(retweets, function(_, retweet) {
-//var div = "<div class='retweet'>";
-//div += "<img src='"+ retweet.profileImageUrl +"' />";
-//div += "<strong class='title'>" + retweet.name + "</strong>";
-//div += "<span class='screen_name'> @" + retweet.screenName + "</span>";
-//div += "<p class='text'>" + retweet.text + "</p>";
-//div += "</div>";	
-//console.log(div);
-//console.log(afterDiv);
-//afterDiv.after(div);
-//});
-//}
-//SA IAU TOATE POZELE?!

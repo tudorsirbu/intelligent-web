@@ -10,7 +10,6 @@
 <script src="javascript/jquery-1.11.0.js"></script>
 <script src="javascript/jquery-ui-1.10.4.custom.min.js"></script>
 <script	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgU59vjkXnSzHlfrR1iaZ6zottGl35Ys&sensor=false"></script>
-<script src="javascript/instagram.js"></script>
 <script src="javascript/script.js"></script>
 
 <title>Query interface</title>
@@ -19,7 +18,7 @@
 
 <div id="tabs">
 	<ul>
-		<li><a href="#tabs-1">Tracking</a></li>
+		<li><a href="#tabs-1">Discussions tracking</a></li>
 		<li><a href="#tabs-2">Frequent keywords</a></li>
 		<li><a href="#tabs-3">Venues for user</a></li>
 		<li><a href="#tabs-4">Get users by venue</a></li>
@@ -29,7 +28,7 @@
 		<form action="TrackingServlet" method="get" id="trackingForm">
 		    <div>
 		        <label for="keywords">Keywords/hashtags: *</label>
-		        <input data-name="Keywords/hashtags" name="keywords" type="text" id="keywords" class="nms keywords_input" placeholder="Keywords separated by commas..." />
+		        <input data-name="Keywords/hashtags" name="keywords" type="text" id="keywords" class="nms keywords_input" placeholder="e.g. #starbucks coffee london" />
 		    </div>
 		    <div>
 		    	<label for="region_lat">Latitude:</label>

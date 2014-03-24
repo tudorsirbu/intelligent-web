@@ -192,6 +192,7 @@ public class TwitterManager {
 			System.out.println("Cannot initialise Twitter.");	
 			e.printStackTrace();	
 		}
+		
 		// list of statuses
 		ResponseList<Status> statuses = null;
 
@@ -207,10 +208,10 @@ public class TwitterManager {
 
 	
 	/**
-	 * Queries the Twitter API based on the combination of parameters it gets and returns 100 results for each 
-	 * keyword or hashtag provided. Latitude, longitude and radius are optional and can be null.
+	 * Queries the Twitter API based on the combination of parameters it gets and returns 100 results for the 
+	 * keywords/hashtags provided.
 	 * 
-	 * @param keywords comma-separated keywords and hashtags 
+	 * @param keywords keywords for the query
 	 * @param latitude latitude for the area where the search should be done
 	 * @param longitude longitude for the area where the search should be done
 	 * @param radius radius in kilometres for the area where the search should be done with the centre of the longitude and latitude provided
@@ -230,8 +231,6 @@ public class TwitterManager {
 			longitudeNumber = null;
 		}
 
-		String[] keywordsArray = keywords.split(",");
-
 		/* Connect to twitter. */
 		Twitter twitterConnection = null;	
 		try {	
@@ -244,24 +243,23 @@ public class TwitterManager {
 		List<MiniStatus> tweets = new ArrayList<MiniStatus>();
 
 		try {
-			for(String keyword:keywordsArray) {
-				Query query = new Query(keyword.trim());	
-				query.setCount(100);
-				if(longitudeNumber != null && latitudeNumber != null) {
-					if(radiusNumber == null)
-						radiusNumber = 3;
+			Query query = new Query(keywords.trim());	
+			query.setCount(100);
+			
+			/* If the coordinates are set as well, restrict the area to the one provided. */
+			if(longitudeNumber != null && latitudeNumber != null) {
+				if(radiusNumber == null)
+					radiusNumber = 3;
 
-					query.setGeoCode(new GeoLocation(latitudeNumber, longitudeNumber), radiusNumber, Query.KILOMETERS);	
-				}
+				query.setGeoCode(new GeoLocation(latitudeNumber, longitudeNumber), radiusNumber, Query.KILOMETERS);	
+			}
 
-				//it fires the query	
-				QueryResult result = twitterConnection.search(query);	
-				//it cycles on the tweets	
-				for(Status tweet:result.getTweets()) {
-					tweets.add(new MiniStatus(tweet, ApiUtil.expandStatus(tweet)));
-				}
-
-			}	
+			/* Get the results. */	
+			QueryResult result = twitterConnection.search(query);	
+			
+			/* Iterate through the results and only get the information that is needed. */	
+			for(Status tweet:result.getTweets()) 
+				tweets.add(new MiniStatus(tweet, ApiUtil.expandStatus(tweet)));
 		} 
 		catch (Exception e) {	
 			e.printStackTrace(); 	
