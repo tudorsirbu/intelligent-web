@@ -38,6 +38,10 @@ form div + div {
     margin-top: 1em;
 }
 
+form .keywords {
+	width: 200px;
+}
+
 form input[type="text"], form input[type="number"] {
   	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -46,6 +50,18 @@ form input[type="text"], form input[type="number"] {
 	border-color: #999;
 	height: 30px;
 	font-size: 14px;
+}
+
+#searchNearby {
+	margin-top: 20px;
+}
+
+#venues_list {
+    -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 3px 5px;
+	background-color: #fff;
 }
 
 form input[type="number"] {
@@ -84,6 +100,12 @@ input.nms {
     /* Field border */
     border: 1px solid #999;
 }
+
+
+#keywords {
+	width: 240px;
+}
+
 input.geo {
     /* Add same font for all input fileds */
     font: 1em sans-serif;

@@ -29,7 +29,7 @@
 		<form action="TrackingServlet" method="get" id="trackingForm">
 		    <div>
 		        <label for="keywords">Keywords/hashtags: *</label>
-		        <input data-name="Keywords/hashtags" name="keywords" type="text" id="keywords" class="nms" placeholder="Keywords or hashtags separated by commas..." />
+		        <input data-name="Keywords/hashtags" name="keywords" type="text" id="keywords" class="nms keywords_input" placeholder="Keywords separated by commas..." />
 		    </div>
 		    <div>
 		    	<label for="region_lat">Latitude:</label>
@@ -71,11 +71,11 @@
 		<form action="UserVenuesServlet" method="get" id="userVenuesForm">
 		    <div>
 		        <label for="user_id">User ID:</label>
-		        <input name="user_id" type="text" id="user_id" class="nms" />
+		        <input name="user_id" type="text" id="user_id" class="nms" placeholder="The id of the user..." />
 		    </div>
 		    <div>
 		    	<label for="days_last_visited">Points of interest the user has visited in the last days:</label> 
-		    	<input name="days_last_visited" type="number" id="days_last_visited" class="nmb"/>   
+		    	<input name="days_last_visited" type="number" id="days_last_visited" class="nmb" placeholder="e.g. 3"/>   
 		    </div> 
 		    <div class="button">
 		        <button name="submit" type="submit">Search for results!</button>
@@ -86,19 +86,19 @@
 		<form action="" method="get" id="byVenueForm">
 			<div>
 				<label for="location_name">Name of location:</label> 
-				<input name="location_name" type="text" id="location_name" class="nms" value="The Arts Tower" />
+				<input name="location_name" type="text" id="location_name" class="nms" value="" placeholder="e.g. The Arts Tower" />
 			</div>
 			<div>
 				<label for="location_lat">Latitude:</label> 
-				<input name="location_lat" type="text" id="location_lat" class="geo" />
+				<input name="location_lat" type="text" id="location_lat" class="geo" placeholder="e.g. 53.3892" />
 			</div>
 			<div>
 				<label for="location_long">Longitude:</label> 
-				<input name="location_long" type="text" id="location_long" class="geo" />
+				<input name="location_long" type="text" id="location_long" class="geo" placeholder="e.g. -1.4832" />
 			</div>
 			<div>
 				<label for="venue_days_since"> In the last days: </label> 
-				<input name="venue_days_since" type="number" id="venue_days_since" class="nmb" />
+				<input name="venue_days_since" type="number" id="venue_days_since" class="nmb" placeholder="e.g. 4" />
 			</div>
 			<div class="button">
 	        	<button name="submit" type="submit">Search for results!</button>
@@ -109,12 +109,11 @@
 		<form action="SearchVenue" method="post" id="searchVenue">
 			<div>
 				<label for="venue_name">Name of venue:</label> <input type="text"
-					id="venue_name" class="nms" value="Arts Tower" name="venue_name" />
+					id="venue_name" class="nms" value="" name="venue_name" placeholder="e.g. Arts Tower" />
 			</div>
 			<div>
 				<label for="venue_city">City of venue:</label> <input
-					name="venue_city" type="text" id="venue_city" class="geo"
-					value="Sheffield" />
+					name="venue_city" type="text" id="venue_city" class="nms" placeholder="e.g. Sheffield" />
 			</div>
 			<div class="button">
 				<button name="submit" type="submit">Search for a venue</button>
@@ -130,7 +129,7 @@
 			<div>
 				<label for="nearby_radius">Radius (meters):</label> <input
 					name="nearby_radius" type="number" id="nearby_radius" class="geo"
-					value="500" />
+					placeholder="e.g. 500" />
 			</div>
 			<div class="button">
 				<button name="submit" type="submit">Find nearby venues</button>
