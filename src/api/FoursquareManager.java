@@ -25,6 +25,7 @@ import fi.foyt.foursquare.api.entities.VenuesSearchResult;
 public class FoursquareManager {
 	/**
 	 * Initialises the foursquare api connection with the necessary credentials.
+	 * 
 	 * @return Return the foursquare connection.
 	 */
 	private FoursquareApi init() {
@@ -41,8 +42,9 @@ public class FoursquareManager {
 	}
 
 	/**
-	 * Gets the location information out of a url if it is a foursquare ulr.
-	 * @param shortURLs the url to get the information out of.
+	 * Gets the location information out of a URL if it is a Foursquare URL.
+	 * 
+	 * @param shortURLs the URL to get the information out of.
 	 */
 	public void getLocationInformation(String shortURLs) {
 
@@ -104,7 +106,8 @@ public class FoursquareManager {
 	}
 	
 	/**
-	 * Checks what venues are around the given location in lat and long.
+	 * Checks what venues are around the given latitude and longitude.
+	 * 
 	 * @param locationLat the latitude to use in the location.
 	 * @param locationLong the longitude to use in the location.
 	 * @return a list of compact venues.
@@ -144,6 +147,7 @@ public class FoursquareManager {
 
 	/**
 	 * This method returns the venues that are in the proximity of the given location.
+	 * 
 	 * @param location the name of the location to get the proximal venues for.
 	 * @return a list of compact venues.
 	 */
@@ -176,7 +180,8 @@ public class FoursquareManager {
 	}
 	
 	/**
-	 * The method searches for a venues given some search parameters
+	 * The method searches for a venues given some search parameters.
+	 * 
 	 * @param searchParams https://developer.foursquare.com/docs/venues/search
 	 * @return List of venues that match the query
 	 * @throws FoursquareApiException 
@@ -209,8 +214,9 @@ public class FoursquareManager {
 	}
 	
 	/**
-	 * Gets the complete venue out of a foursquare checkin.
-	 * @param shortURLs the url to verify for a foursquare checkin
+	 * Gets the complete venue out of a Foursquare checkin.
+	 * 
+	 * @param shortURLs the URL to verify for a Foursquare checkin
 	 * @return a complete venue.
 	 */
 	public CompleteVenue getVenueName(String shortURLs){
@@ -278,9 +284,10 @@ public class FoursquareManager {
 	}
 
 	/**
-	 * This method expands a url until it is fully expanded and no longer a tiny url.
-	 * @param shortURLs the url to be expanded.
-	 * @return the fully expanded url.
+	 * This method expands a URL until it is fully expanded and no longer a tiny URL.
+	 * 
+	 * @param shortURLs the URL to be expanded.
+	 * @return the fully expanded URL.
 	 */
 	private String expandUrl(String shortURLs) {
 		String url = shortURLs;
@@ -304,9 +311,10 @@ public class FoursquareManager {
 	}
 
 	/** 
-	 * Gets the full url out of a short url.
-	 * @param shortURLs the url to get transform in a full url.
-	 * @return the full url.
+	 * Gets the full URL out of a short URL.
+	 * 
+	 * @param shortURLs the URL to get transform in a full URL.
+	 * @return the full URL.
 	 * @throws IOException
 	 */
 	private String getFullURL (String shortURLs) throws IOException {
@@ -319,5 +327,4 @@ public class FoursquareManager {
 
 		return header;
 	}
-
 }

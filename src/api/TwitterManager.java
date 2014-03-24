@@ -24,7 +24,6 @@ import twitter4j.TwitterFactory;
 import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
 import twitter4j.User;
-import twitter4j.UserStreamListener;
 import twitter4j.auth.AccessToken;
 import twitter4j.conf.ConfigurationBuilder;
 import util.ApiUtil;
@@ -33,33 +32,158 @@ import api.listeners.TwitterUserListener;
 import fi.foyt.foursquare.api.entities.CompactVenue;
 import fi.foyt.foursquare.api.entities.CompleteVenue;
 
+/**
+ * This class consists of methods that use the Twitter API in order to get data. 
+ * Can only be instantiated as a Singleton.
+ * 
+ * This class is tightly coupled with FoursquareManager and is not expected to
+ * work without it.
+ * 
+ * @author Tudor-Daniel Sirbu
+ * @author Claudiu Tarta
+ * @author Florin-Cristian Gavrila
+ * 
+ */
 public class TwitterManager {	
-	private ArrayList<CompleteVenue> venues = new ArrayList<CompleteVenue>();
-	private ArrayList<User> users = new ArrayList<User>();
-	private TwitterStream twitterStream;
 
+	/*
+	 * The access credentials for the Twitter API.
+	 */
 	private String consumerkey = "gHCxnRIAapqAfBG5oyt6w";	
 	private String consumersecret = "pisw8haLdrOvmPxyOLkT7xJoEqQkxgei2xrOkhdeJjA";	
 	private String accesstoken = "18540628-4dkbUfF495u9r35CxEfqm5PDorm7e4nraiPFRQCoD";	
 	private String accesstokensecret = "ZgwdueIhOQeZ3ZIt29dKZlWrc4lwcrquQ8JaDCTLeLD1i";	
-
+	
+	/**
+	 * A list of venues which will be used for the Twitter streaming API.
+	 */
+	private ArrayList<CompleteVenue> venues = new ArrayList<CompleteVenue>();
+	
+	/**
+	 * A list of users which will be used for the Twitter streaming API.
+	 */
+	private ArrayList<User> users = new ArrayList<User>();
+	
+	/**
+	 * The connection to the Streaming Twitter API.
+	 */
+	private TwitterStream twitterStream;
+	
+	/**
+	 * The instance of TwitterManager, which will only be one as the class is a Singleton.
+	 */
 	private static TwitterManager instance = null;
-
+	
+	/*
+	 * Values for how much a kilometre means in geographic coordinates.
+	 */
 	public final Double LONGITUDE_IN_KM = 0.008983;
 	public final Double LATITUDE_IN_KM = 0.015060;
 
 	protected TwitterManager() {
-		// Exists only to defeat instantiation.
+		/* Exists only to prevent instantiation. */
 	}
-
+	
+	/**
+	 * Creates the instance of TwitterManager.
+	 * 
+	 * @return the instance of TwitterManager.
+	 */
 	public static TwitterManager getInstance() {
 		if(instance == null) {
 			instance = new TwitterManager();
 		}
 		return instance;
 	}
+	
+	/**
+	 * The method initialises the connection to the Twitter Stream API.
+	 * 
+	 * @param userId the id of the user to listen for
+	 */
+	@Deprecated
+	public void initConfiguration(long[] userId){
+		
+		if (this.twitterStream == null) {
+			ConfigurationBuilder cb = new ConfigurationBuilder();
+			cb.setDebugEnabled(true)
+			.setJSONStoreEnabled(true)
+			.setOAuthConsumerKey("H4VHRaf8ybmPhzzK47uQ")
+			.setOAuthConsumerSecret("y6oxNsvuoauf4sPcGU45Ct5eVfryYlai5TUBU92Uxbk");
+			
+			TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
+			this.twitterStream = twitterStreamFactory.getInstance(new AccessToken("1225017144-1l22gHEw6SpxoQQac1PmT5a3FjQnexJrMQmiFra", "WR2I8lHSBlqVKHV1a3t3CDElHKe0sHkVl1TCLyrVnrkLS"));
+			this.twitterStream.addListener(new TwitterUserListener());
+			
+			FilterQuery fq = new FilterQuery();
+			
+			fq.follow(userId);
+			
+			twitterStream.filter(fq);
+		}
+	}
+	
+	/**
+	 * The method initialises the connection to the Twitter Stream API.
+	 * 
+	 * @return the twitter stream connection
+	 */
+	public TwitterStream initStream() {
+		if (this.twitterStream == null) {
+			System.out.println("this is wrong");
+			ConfigurationBuilder cb = new ConfigurationBuilder();
+			cb.setDebugEnabled(true)
+			.setJSONStoreEnabled(true)
+			.setOAuthConsumerKey("H4VHRaf8ybmPhzzK47uQ")
+			.setOAuthConsumerSecret("y6oxNsvuoauf4sPcGU45Ct5eVfryYlai5TUBU92Uxbk");
+			
+			TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
+			this.twitterStream = twitterStreamFactory.getInstance(new AccessToken("1225017144-1l22gHEw6SpxoQQac1PmT5a3FjQnexJrMQmiFra", "WR2I8lHSBlqVKHV1a3t3CDElHKe0sHkVl1TCLyrVnrkLS"));
+		}
+		return this.twitterStream;
+	}
+	
+	/**
+	 * Initializes a connection to the Twitter API.
+	 * 
+	 * @return A twitter connection
+	 * @throws Exception if the authentication keys are not correct
+	 */
+	public Twitter init() throws Exception{	
+		Twitter twitterConnection = initTwitter(this.consumerkey, this.consumersecret, this.accesstoken, this.accesstokensecret);	
+		return twitterConnection;	
+	}
 
-	public boolean userExists(long userID){
+	/**
+	 * Initializes a connection to the Twitter API.
+	 * 
+	 * @param consumerKey the consumer key available from Twitter
+	 * @param consumerSecret the consumer secret available from Twitter
+	 * @param accessToken the access token available from Twitter
+	 * @param accessTokenSecret the access token secret available from Twitter
+	 * @return a twitter connection
+	 * @throws Exception if the authentication keys are not correct
+	 */
+	private Twitter initTwitter(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) 	
+			throws Exception {	
+		ConfigurationBuilder cb = new ConfigurationBuilder();
+		cb.setDebugEnabled(true)	
+		.setOAuthConsumerKey(consumerKey)	
+		.setOAuthConsumerSecret(consumerSecret)	
+		.setOAuthAccessToken(accessToken)	
+		.setOAuthAccessTokenSecret(accessTokenSecret)	
+		.setJSONStoreEnabled(true);	
+		return (new TwitterFactory(cb.build()).getInstance());	
+	}
+	
+	
+	/**
+	 * Checks if a users exists on Twitter.
+	 * 
+	 * @param userId the id of the user
+	 * @return true if the user exists, false otherwise
+	 */
+	public boolean userExists(long userId){
 		/* Connect to twitter. */
 		Twitter twitterConnection = null;	
 		try {	
@@ -73,13 +197,25 @@ public class TwitterManager {
 
 		// get the user's timeline
 		try {
-			statuses = twitterConnection.getUserTimeline(userID, new Paging(1,100));
+			statuses = twitterConnection.getUserTimeline(userId, new Paging(1,100));
 		} catch (TwitterException e) {
-			System.out.println("Could not retrieve user's (" + userID + ") timeline.");
+			System.out.println("Could not retrieve user's (" + userId + ") timeline.");
 			return false;
 		}
 		return true;
 	}
+
+	
+	/**
+	 * Queries the Twitter API based on the combination of parameters it gets and returns 100 results for each 
+	 * keyword or hashtag provided. Latitude, longitude and radius are optional and can be null.
+	 * 
+	 * @param keywords comma-separated keywords and hashtags 
+	 * @param latitude latitude for the area where the search should be done
+	 * @param longitude longitude for the area where the search should be done
+	 * @param radius radius in kilometres for the area where the search should be done with the centre of the longitude and latitude provided
+	 * @return
+	 */
 	public List<MiniStatus> query(String keywords, String latitude, String longitude, String radius) {	
 
 		Integer radiusNumber;
@@ -113,7 +249,6 @@ public class TwitterManager {
 				query.setCount(100);
 				if(longitudeNumber != null && latitudeNumber != null) {
 					if(radiusNumber == null)
-
 						radiusNumber = 3;
 
 					query.setGeoCode(new GeoLocation(latitudeNumber, longitudeNumber), radiusNumber, Query.KILOMETERS);	
@@ -136,7 +271,18 @@ public class TwitterManager {
 
 		return tweets;	
 	}
-
+	
+	/**
+	 * Queries the Twitter API based on the combination of parameters it gets and returns 100 results if
+	 * location name is provided. If both location name and coordinates are provided or only the coordinates are
+	 * provided, it will return 10 results for each venue that it finds near the specified coordinates.
+	 * 
+	 * @param locationName name of the location to be searched
+	 * @param locationLat latitude of the location
+	 * @param locationLong longitude of the location
+	 * @param days the number of days for the results to be provided
+	 * @return a set of unique users that have checked in on Foursquare in the provided location
+	 */
 	public HashSet<User> queryByLocation(String locationName, String locationLat, String locationLong, String days) {	
 
 		Integer daysNumber;
@@ -229,7 +375,16 @@ public class TwitterManager {
 
 		return users;	
 	}
-
+	
+	/**
+	 * Initializes the Twitter Streaming API for the search by location. If both location name and coordinates
+	 * (latitude and longitude) are provided, the location name will be the only one take into consideration.
+	 * If just one of the two is provided, then the results will be provided for it.
+	 * 
+	 * @param locationName name of the location
+	 * @param locationLat latitude of the location
+	 * @param locationLong longitude of the location
+	 */
 	public void streamByLocation(String locationName, String locationLat, String locationLong) {
 		Double latitudeNumber, longitudeNumber; 
 
@@ -262,6 +417,13 @@ public class TwitterManager {
 		}
 	}
 
+	/**
+	 * Method that searches for the tags "foursquare" and "#foursquare" and then returns a list of users that
+	 * checked in on Foursquare from the results.
+	 * 
+	 * @return a set of unique users that checked in on foursquare.
+	 */
+	@Deprecated
 	public HashSet<User> findFoursquareUsers() {
 
 		String[] keywordsArray = {"#foursquare", "foursquare"};
@@ -299,25 +461,13 @@ public class TwitterManager {
 
 		return users;
 	}
-
-	public Twitter init() throws Exception{	
-		Twitter twitterConnection = initTwitter(this.consumerkey, this.consumersecret, this.accesstoken, this.accesstokensecret);	
-		return twitterConnection;	
-	}
-
-	private Twitter initTwitter(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) 	
-			throws Exception {	
-		ConfigurationBuilder cb = new ConfigurationBuilder();
-		cb.setDebugEnabled(true)	
-		.setOAuthConsumerKey(consumerKey)	
-		.setOAuthConsumerSecret(consumerSecret)	
-		.setOAuthAccessToken(accessToken)	
-		.setOAuthAccessTokenSecret(accessTokenSecret)	
-		.setJSONStoreEnabled(true);	
-		return (new TwitterFactory(cb.build()).getInstance());	
-	}
-
-
+	
+	/**
+	 * Returns a list of statuses for a certain status, provided its id is given.
+	 * 
+	 * @param statusId the id of the status for which retweets are wanted
+	 * @return a list of statuses
+	 */
 	public List<Status> retweetsForStatus(String statusId) {
 
 		long statusIdNumber = Long.parseLong(statusId);
@@ -328,7 +478,6 @@ public class TwitterManager {
 		try {	
 			twitterConnection = this.init();		 	 	 	
 
-			System.out.println("################## aici" +  statusIdNumber);
 			retweets = twitterConnection.getRetweets(statusIdNumber);
 
 		} catch (TwitterException e) {
@@ -342,12 +491,15 @@ public class TwitterManager {
 
 		return retweets;
 	}
+	
 	/**
-	 * The method gets the venues the given user has visited in the last given days
-	 * @param userID the id of the user to get the venues for
-	 * @param days the number of days to go back
+	 * The method gets the venues that the user has visited in the last given days.
+	 * 
+	 * @param userId the Twitter id of the user
+	 * @param days how many days in the past to look for visited venues
+	 * @return a list of CompleteVenues and CompactVenues
 	 */
-	public ArrayList<Object> getVenuesSince(Long userID, Integer days){
+	public ArrayList<Object> getVenuesSince(Long userId, Integer days) {
 		ArrayList<Object> venues = new ArrayList<Object>();
 
 		/* Connect to twitter. */
@@ -366,9 +518,9 @@ public class TwitterManager {
 
 		// get the user's timeline
 		try {
-			statuses = twitterC.getUserTimeline(userID, new Paging(1,100));
+			statuses = twitterC.getUserTimeline(userId, new Paging(1,100));
 		} catch (TwitterException e) {
-			System.out.println("Could not retrieve user's (" + userID + ") timeline.");
+			System.out.println("Could not retrieve user's (" + userId + ") timeline.");
 			venues.add("");
 			return venues;
 		}
@@ -403,68 +555,17 @@ public class TwitterManager {
 				CompleteVenue currentVenue = fm.getVenueName(url);
 				if(currentVenue != null)
 					venues.add(currentVenue);
-
 			}
 		}
 
 		return venues;
 	}
-	/**
-	 * The method initialises the connection to twitter stream api
-	 * and listens for when the given user posts a status, in order to get
-	 * the foursquare link out of it.
-	 * @param userID the id of the user to listen for
-	 */
-	public void initConfiguration(long[] userID){
-
-		if (this.twitterStream == null) {
-			ConfigurationBuilder cb = new ConfigurationBuilder();
-			cb.setDebugEnabled(true)
-			.setJSONStoreEnabled(true)
-			.setOAuthConsumerKey("H4VHRaf8ybmPhzzK47uQ")
-			.setOAuthConsumerSecret("y6oxNsvuoauf4sPcGU45Ct5eVfryYlai5TUBU92Uxbk");
-
-			TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
-			this.twitterStream = twitterStreamFactory.getInstance(new AccessToken("1225017144-1l22gHEw6SpxoQQac1PmT5a3FjQnexJrMQmiFra", "WR2I8lHSBlqVKHV1a3t3CDElHKe0sHkVl1TCLyrVnrkLS"));
-			this.twitterStream.addListener(userStreamListener);
-
-			FilterQuery fq = new FilterQuery();
-
-			fq.follow(userID);
-
-			twitterStream.filter(fq);
-		}
-	}
-	/**
-	 * This method connects to the twitter stream using the given credentials.
-	 * @return
-	 */
-	public TwitterStream initStream() {
-		if (this.twitterStream == null) {
-			System.out.println("this is wrong");
-			ConfigurationBuilder cb = new ConfigurationBuilder();
-			cb.setDebugEnabled(true)
-			.setJSONStoreEnabled(true)
-			.setOAuthConsumerKey("H4VHRaf8ybmPhzzK47uQ")
-			.setOAuthConsumerSecret("y6oxNsvuoauf4sPcGU45Ct5eVfryYlai5TUBU92Uxbk");
-
-			TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
-			this.twitterStream = twitterStreamFactory.getInstance(new AccessToken("1225017144-1l22gHEw6SpxoQQac1PmT5a3FjQnexJrMQmiFra", "WR2I8lHSBlqVKHV1a3t3CDElHKe0sHkVl1TCLyrVnrkLS"));
-
-		}
-		return this.twitterStream;
-	}
-
-	UserStreamListener userStreamListener = new TwitterUserListener();
 
 	/**
-	 * The method extracts all urls from a Status object
-	 * @param status the status to extract the urls from
-	 * @param links the list all the found links will be put in
-	 * @param text the text of the given status
-	 * @param p the compiled pattern that identifies a url
-	 * @param m the matcher that matches the text agains the pattern
-	 * @param urlStr the string that contains the found url to be put in the list
+	 * The method extracts all URLs from a Status.
+	 * 
+	 * @param status the status for which to get the URLs.
+	 * @return a list of extracted URLs.
 	 */
 	public ArrayList<String> extractURL(Status status) {
 		ArrayList<String> links = new ArrayList<String>();
@@ -483,7 +584,13 @@ public class TwitterManager {
 		}
 		return links;
 	}
-
+	
+	/**
+	 * Extracts the URLs in a status and then checks if there is a Foursquare in one of them, then adds it 
+	 * to the venues instance variable.
+	 * 
+	 * @param status a status for which to check for Foursquare checkins.
+	 */
 	public void handleStatus(Status status) {
 		FoursquareManager fm = new FoursquareManager();
 
@@ -495,7 +602,14 @@ public class TwitterManager {
 				this.venues.add(currentVenue);
 		}
 	}
-
+	
+	/**
+	 * Used for the streaming functionality. Extracts the URLs in a status got from the Twitter Stream
+	 * and checks for Foursquare checkins. If there are any present, it adds the user to the users instance
+	 * variable.
+	 * 
+	 * @param status a status for which to check for Foursquare checkins.
+	 */
 	public void handleNewStatusInStream(Status status) {
 		FoursquareManager fm = new FoursquareManager();
 		ArrayList<String> urls = this.extractURL(status);
