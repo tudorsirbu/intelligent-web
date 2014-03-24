@@ -23,7 +23,10 @@ import fi.foyt.foursquare.api.entities.VenueGroup;
 import fi.foyt.foursquare.api.entities.VenuesSearchResult;
 
 public class FoursquareManager {
-
+	/**
+	 * Initialises the foursquare api connection with the necessary credentials.
+	 * @return Return the foursquare connection.
+	 */
 	private FoursquareApi init() {
 
 		String clientID = "JRIYO5DDJ43NBLDNNU3PH1URI0RQ4ZA3TTHEDPFDPYOC2C5L";
@@ -37,6 +40,10 @@ public class FoursquareManager {
 		return fsAPI;
 	}
 
+	/**
+	 * Gets the location information out of a url if it is a foursquare ulr.
+	 * @param shortURLs the url to get the information out of.
+	 */
 	public void getLocationInformation(String shortURLs) {
 
 		FoursquareApi fsAPI = this.init();
@@ -96,6 +103,12 @@ public class FoursquareManager {
 		}
 	}
 	
+	/**
+	 * Checks what venues are around the given location in lat and long.
+	 * @param locationLat the latitude to use in the location.
+	 * @param locationLong the longitude to use in the location.
+	 * @return a list of compact venues.
+	 */
 	public CompactVenue[] queryByLocation(String locationLat, String locationLong) {
 		/* 
 		 * 
@@ -129,6 +142,11 @@ public class FoursquareManager {
 		return venues;
 	}
 
+	/**
+	 * This method returns the venues that are in the proximity of the given location.
+	 * @param location the name of the location to get the proximal venues for.
+	 * @return a list of compact venues.
+	 */
 	public CompactVenue[] getVenues(String location) {
 		/* 
 		 * 
@@ -190,7 +208,11 @@ public class FoursquareManager {
 		return venues;
 	}
 	
-
+	/**
+	 * Gets the complete venue out of a foursquare checkin.
+	 * @param shortURLs the url to verify for a foursquare checkin
+	 * @return a complete venue.
+	 */
 	public CompleteVenue getVenueName(String shortURLs){
 
 		FoursquareApi fsAPI = this.init();
@@ -255,6 +277,11 @@ public class FoursquareManager {
 
 	}
 
+	/**
+	 * This method expands a url until it is fully expanded and no longer a tiny url.
+	 * @param shortURLs the url to be expanded.
+	 * @return the fully expanded url.
+	 */
 	private String expandUrl(String shortURLs) {
 		String url = shortURLs;
 		String initialUrl = shortURLs;
@@ -276,6 +303,12 @@ public class FoursquareManager {
 		return shortURLs;
 	}
 
+	/** 
+	 * Gets the full url out of a short url.
+	 * @param shortURLs the url to get transform in a full url.
+	 * @return the full url.
+	 * @throws IOException
+	 */
 	private String getFullURL (String shortURLs) throws IOException {
 		URL shortUrl= new URL(shortURLs);
 		final HttpURLConnection httpURLConnection = (HttpURLConnection)shortUrl.openConnection();

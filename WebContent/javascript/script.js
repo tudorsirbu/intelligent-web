@@ -3,6 +3,8 @@ $(document).ready(function() {
 	$("#results").hide();
 	$('#loader').hide();
 	$("#map-canvas").hide();
+	
+	
 	var $loading = $('#loader');
 	$(document)
 		.ajaxStart(function () {
@@ -47,9 +49,7 @@ $(document).ready(function() {
 			data: data,
 			success: function(venues) {
 				console.log(venues);
-				$("#map-canvas").show();
-				google.maps.event.trigger(map,'resize');
-				initMapEmpty();
+				
 				displayVenues(venues);
 			}
 		});
@@ -103,36 +103,56 @@ $(document).ready(function() {
 			var data = JSON.stringify(obj);
 			console.log(data);
 			var connectionEstablished = false;
+			var isUser = true;
 			if(obj.days==0){
 				$.ajax({
 					type: "post",
 					dataType: "json",
 					url: "UserVenuesServlet",
 					data: data,
+					async: false,
 					success: function(data){
-
-						console.log(data);
-						connectionEstablished = true;
+						
+						if(data==""){
+							console.log(data);
+							isUser = false; 
+						}else{
+							console.log(data);
+							connectionEstablished = true;
+							
+						}
+						
 					}
 				});
-
-				setInterval(function() {	
-					if(connectionEstablished == true) {
-						$.ajax({
-							global: false,
-							type: "post",
-							dataType: "json",
-							url: "UserVenuesServlet",
-							data: data,
-							success: function(data){
-								$("#map-canvas").show();
-								google.maps.event.trigger(map,'resize');
-								initMapEmpty();
-								displayVenueStream(data);
-							}
-						});
-					}
-				}, 5000);
+				if(isUser==true){
+					setInterval(function() {	
+						if(connectionEstablished == true) {
+							$.ajax({
+								global: false,
+								type: "post",
+								dataType: "json",
+								url: "UserVenuesServlet",
+								data: data,
+								success: function(data){
+									if(data.length!=0){
+										$("#map-canvas").show();
+										google.maps.event.trigger(map,'resize');
+										initMapEmpty();
+										displayVenueStream(data);
+									}else
+										displayVenueStream(data);
+										
+									
+								}
+							});
+						}
+					}, 5000);
+				}else{
+					userDoesNotExist();
+				}
+					
+				
+				
 
 			}else{
 				$.ajax({
@@ -302,20 +322,36 @@ function displayTweets(data) {
 		div += "<span class='screen_name'> @" + tweet.screenName + "</span>";
 		div += "<p class='text'>" + tweet.text + "</p>";
 		div += "<a href='" + tweet.id + "' class='get_retweets'>" + tweet.retweetCount + " retweets</a>";
+		div += "<a href='#' class='show' style='display:block'>Show instagram (if available) </a>";
+		div += "<div class='instagramPic' style='display:none'><a class='instagramUser'></a>";
+		div	+= "<img id='"+tweet.id +"'/></div>";
+		div += "</div>";
+		
+		
 		$.each(tweet.extendedUrls, function( index, url ) {
 			  if(url.indexOf('instagram.com/p') != -1) {
-				  var instagram = getMediaId(url);
-				  console.log(instagram);
-				  if (instagram != null)  {
-					  alert('ceva');
-					  div += "<img src='"+ instagram.imgUrl + "' />";
-				  }
+				  $.ajax({
+						url: "http://api.instagram.com/oembed?url=" + url,
+						dataType: 'jsonp',
+						success: function(media) {
+							console.log(media);
+							var tweetId = "#" + tweet.id;  
+							$(tweetId).attr("src",media.url);
+							$(tweetId).parent().add(".instagramUser").find('.instagramUser').attr("href",url);
+							$(tweetId).parent().add(".instagramUser").text(media.author_name);
+						}
+					});
 			  }
 		});
-		div += "</div>";	
+		
 		$("#results").append(div);
 	});
-
+	$(".show").click(function(event){
+		event.preventDefault();
+		
+		var $this = $(this).parent();
+		$this.parent().add('.instagramPic').removeAttr("style");
+	});
 	$(".get_retweets").click(function(event) {
 		event.preventDefault();
 
@@ -397,7 +433,6 @@ function initMap(data){
 
 function displayVenues(data){
 	
-	console.log(data[0]);
 	$("#results").show(0);
 	if(data[0]!=""){
 		google.maps.event.addDomListener(window, 'load', initMap(data));
@@ -429,7 +464,7 @@ function displayVenues(data){
 		}
 		else{
 			var div = "<div class='venues'>";
-			div += "<h class='title'>" +"No checkins found for the last specified number of days!</h><br/>";
+			div += "<h3 class='title'>" +"No checkins found for the last specified number of days!</h><br/>";
 			div += "</div>";
 			$("#results").append(div);
 		}
@@ -460,8 +495,15 @@ function displayVenues(data){
 	}
 }
 
+function userDoesNotExist(){
+		$("#results").show(0);
+		var div = "<div class='venues'>";
+		div += "<h3 class='title'>The user ID that you entered does not exist! Please try again with another user ID!</h><br/>";
+		div += "</div>";
+		$("#results").append(div);
+}
+
 function displayVenueStream(data) {
-	if(data.lenth!=0){
 		google.maps.event.addDomListener(window, 'load', initMap(data));
 		
 		$.each(data, function( key, venue ) {
@@ -473,7 +515,8 @@ function displayVenueStream(data) {
 				div += "<h class='title'>" +"Name:  </h><span class='venues_name'>"+ venue.name + "</span><br/>";
 				div += "<h class='title'>Category:  </h><span class='venues_name'>"+ venue.categories[0].name + "</span><br/>";
 				if(venue.location.address)
-				div += "<h class='title'>Address:  </h><span class='venues_name'>"+ venue.location.address + "</span><br/>";
+			
+					div += "<h class='title'>Address:  </h><span class='venues_name'>"+ venue.location.address + "</span><br/>";
 				if(venue.shortUrl)
 				div += "<h class='title'>Url:  </h><a target="+"'_blank'"+" href="+venue.shortUrl+">"+ venue.shortUrl + "</a><br/><br/>";
 				console.log("hhghh"+photoGroups);
@@ -495,14 +538,6 @@ function displayVenueStream(data) {
 			}
 		});
 	}
-	else{
-		var div = "<div class='venues'>";
-		div += "<h class='title'>" +"The user ID that you entered does not exist! Please try again with another user ID!</h><br/>";
-		div += "</div>";
-		$("#results").append(div);
-	}
-	
-}
 
 
 function displayKeywords(data){
@@ -778,40 +813,40 @@ function populateSelectVenues(data){
  * The function gets a URL to a photo (eg. instagram.com/p/ID)
  * and after getting the media ID it calls the getMedia function
  */
-function getMediaId(url){
+function getMedia(url){
 	var result = null;
 	$.ajax({
 		url: "http://api.instagram.com/oembed?url=" + url,
 		dataType: 'jsonp',
 		crossDomain: true,
 		success: function(media) {
-			result = getMedia(media.media_id);
-			console.log(result);
+			 result = media;
 		}
 	});
+	console.log(result);
 	return result;
 }
 
-/*
- * The the function is getting the media object using the
- * provided ID and returns certain details about it.
- */
-function getMedia(id){
-	$.ajax({
-		url: "https://api.instagram.com/v1/media/" + id +"?client_id=7c6bfcdf43c242eab9dfebf227dc86c9",
-		dataType: 'jsonp',
-		crossDomain: true,
-		success: function(media) {
-			if (media.data != undefined) {
-				var mediaObject = {};
-				mediaObject.created_time = media.data.created_time;
-				mediaObject.imgUrl = media.data.images.low_resolution.url;
-				mediaObject.username = media.data.user.username;
-				return mediaObject;
-			}
-		}
-	});
-}
+///*
+// * The the function is getting the media object using the
+// * provided ID and returns certain details about it.
+// */
+//function getMedia(id){
+//	$.ajax({
+//		url: "https://api.instagram.com/v1/media/" + id +"?client_id=7c6bfcdf43c242eab9dfebf227dc86c9",
+//		dataType: 'jsonp',
+//		crossDomain: true,
+//		success: function(media) {
+//			if (media.data != undefined) {
+//				var mediaObject = {};
+//				mediaObject.created_time = media.data.created_time;
+//				mediaObject.imgUrl = media.data.images.low_resolution.url;
+//				mediaObject.username = media.data.user.username;
+//				return mediaObject;
+//			}
+//		}
+//	});
+//}
 
 //function display_retweets(retweets, afterDiv) {
 //$.each(retweets, function(_, retweet) {

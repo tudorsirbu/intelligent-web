@@ -24,7 +24,6 @@ import twitter4j.TwitterFactory;
 import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
 import twitter4j.User;
-import twitter4j.UserStreamListener;
 import twitter4j.auth.AccessToken;
 import twitter4j.conf.ConfigurationBuilder;
 import util.ApiUtil;
@@ -80,7 +79,7 @@ public class TwitterManager {
 	 */
 	public final Double LONGITUDE_IN_KM = 0.008983;
 	public final Double LATITUDE_IN_KM = 0.015060;
-	
+
 	protected TwitterManager() {
 		/* Exists only to prevent instantiation. */
 	}
@@ -177,6 +176,36 @@ public class TwitterManager {
 		return (new TwitterFactory(cb.build()).getInstance());	
 	}
 	
+	
+	/**
+	 * Checks if a users exists on Twitter.
+	 * 
+	 * @param userId the id of the user
+	 * @return true if the user exists, false otherwise
+	 */
+	public boolean userExists(long userId){
+		/* Connect to twitter. */
+		Twitter twitterConnection = null;	
+		try {	
+			twitterConnection = this.init();		 	 	 	
+		} catch (Exception e) {	
+			System.out.println("Cannot initialise Twitter.");	
+			e.printStackTrace();	
+		}
+		// list of statuses
+		ResponseList<Status> statuses = null;
+
+		// get the user's timeline
+		try {
+			statuses = twitterConnection.getUserTimeline(userId, new Paging(1,100));
+		} catch (TwitterException e) {
+			System.out.println("Could not retrieve user's (" + userId + ") timeline.");
+			return false;
+		}
+		return true;
+	}
+
+	
 	/**
 	 * Queries the Twitter API based on the combination of parameters it gets and returns 100 results for each 
 	 * keyword or hashtag provided. Latitude, longitude and radius are optional and can be null.
@@ -188,7 +217,7 @@ public class TwitterManager {
 	 * @return
 	 */
 	public List<MiniStatus> query(String keywords, String latitude, String longitude, String radius) {	
-		
+
 		Integer radiusNumber;
 		Double latitudeNumber, longitudeNumber;
 		try {
@@ -231,7 +260,7 @@ public class TwitterManager {
 				for(Status tweet:result.getTweets()) {
 					tweets.add(new MiniStatus(tweet, ApiUtil.expandStatus(tweet)));
 				}
-						
+
 			}	
 		} 
 		catch (Exception e) {	
@@ -273,16 +302,16 @@ public class TwitterManager {
 		}
 
 		FoursquareManager fm = new FoursquareManager();
-	
+
 		HashSet<User> users = new HashSet<User>();
 		List<Status> tweets = new ArrayList<Status>(); 
 		CompactVenue[] suggestedVenues = null;
 		Status currentTweet;
-		
+
 		try { 
 			/* Get the results for the last daysNumber days, by querying previously posted tweets. */
 			Query query = new Query();
-			
+
 			/* Choosing whether to use the geographic coordinates or the name of the location.
 			 * Coordinates take priority. */
 			if (latitudeNumber != null && longitudeNumber != null) {
@@ -294,13 +323,13 @@ public class TwitterManager {
 				query.setQuery("\"" + locationName + "\"");	
 				query.setCount(100);
 			}
-			
+
 			/* Subtract the number of days so that only the queries in the last X days are taken into consideration. */
 			Calendar calendar = Calendar.getInstance();
 			calendar.add(Calendar.DAY_OF_MONTH, -daysNumber);
 			SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
 			query.setSince(format.format(calendar.getTime()));
-			
+
 			/* Query twitter for results.
 			 * If there are any suggestedVenues, it means that the geographic coordinates were provided
 			 * and a list of venues near that location was extracted from foursquare. Otherwise, it
@@ -314,20 +343,20 @@ public class TwitterManager {
 			else {
 				tweets.addAll(twitterConnection.search(query).getTweets());
 			}
-			
+
 			int i = 1;
 			/* Only get the users from the results. */
 			for (Status tweet:tweets) {
-				
+
 				currentTweet = (Status) (tweet.isRetweet() ? tweet.getRetweetedStatus() : tweet);
-				
+
 				/* Extract all the links in the tweet. */
 				for(String link:this.extractURL(currentTweet)) {
 					System.out.println("-------------------------");
 					System.out.println("Result " + i + " out of " + tweets.size());
 					System.out.println("Found link");
 					System.out.println(tweet.getText());
-					
+
 					/* Check if it has a foursquare checkin in the link. */
 					CompleteVenue venue = fm.getVenueName(link);
 					if (venue != null) {
@@ -361,14 +390,14 @@ public class TwitterManager {
 
 		try { longitudeNumber = Double.parseDouble(locationLong); } catch (NumberFormatException e) { longitudeNumber = null; }
 		try { latitudeNumber = Double.parseDouble(locationLat);	} catch (NumberFormatException e) {	latitudeNumber = null; }
-		
+
 		/* Use twitter stream to get the info. */
 		if (this.twitterStream == null) {
 			this.initStream();
 			this.twitterStream.addListener(new TwitterStatusListener());
-			
+
 			FilterQuery fq = new FilterQuery();
-			
+
 			/* Getting data by taking the provided data into consideration. Location takes priority to coordinates. */
 			if(!locationName.isEmpty()) {
 				String[] locations = {locationName};
@@ -376,14 +405,14 @@ public class TwitterManager {
 			}
 			else if(latitudeNumber != null && longitudeNumber != null) {
 				/* https://dev.twitter.com/docs/streaming-apis/parameters#locations */
-				
+
 				/* Gets all the tweets which are in a square of 2 km per side with the 
 				 * (longitudeNumber, latitudeNumber) as the center of it. */
 				double[][] locationBox = {{longitudeNumber - this.LONGITUDE_IN_KM, latitudeNumber - this.LATITUDE_IN_KM}, 
-										  {longitudeNumber + this.LONGITUDE_IN_KM, latitudeNumber + this.LATITUDE_IN_KM}};
+						{longitudeNumber + this.LONGITUDE_IN_KM, latitudeNumber + this.LATITUDE_IN_KM}};
 				fq.locations(locationBox);
 			}
-			
+
 			this.twitterStream.filter(fq);
 		}
 	}
@@ -396,7 +425,7 @@ public class TwitterManager {
 	 */
 	@Deprecated
 	public HashSet<User> findFoursquareUsers() {
-		
+
 		String[] keywordsArray = {"#foursquare", "foursquare"};
 
 		/* Connect to twitter. */
@@ -429,7 +458,7 @@ public class TwitterManager {
 			e.printStackTrace(); 	
 			System.out.println("Failed to search tweets:" + e.getMessage());	
 		}
-		
+
 		return users;
 	}
 	
@@ -472,7 +501,7 @@ public class TwitterManager {
 	 */
 	public ArrayList<Object> getVenuesSince(Long userId, Integer days) {
 		ArrayList<Object> venues = new ArrayList<Object>();
-	
+
 		/* Connect to twitter. */
 		Twitter twitterC = null;	
 		try {	
@@ -500,7 +529,7 @@ public class TwitterManager {
 			UserService userService = new UserService(connection.getConnection());
 			userService.insertUser(statuses.get(0).getUser());
 			connection.disconnect();
-			
+
 		}
 
 		Calendar c = Calendar.getInstance();
@@ -517,7 +546,7 @@ public class TwitterManager {
 			}
 
 		}
-		
+
 		FoursquareManager fm = new FoursquareManager();
 		for(Status status : sts){
 			ArrayList<String> urls = new ArrayList<String>();
@@ -528,10 +557,10 @@ public class TwitterManager {
 					venues.add(currentVenue);
 			}
 		}
-				
+
 		return venues;
 	}
-	
+
 	/**
 	 * The method extracts all URLs from a Status.
 	 * 
@@ -541,7 +570,7 @@ public class TwitterManager {
 	public ArrayList<String> extractURL(Status status) {
 		ArrayList<String> links = new ArrayList<String>();
 		String text = status.getText();
-		
+
 		String regex = "\\(?\\b(http://|www[.])[-A-Za-z0-9+&@#/%?=~_()|!:,.;]*[-A-Za-z0-9+&@#/%=~_()|]";
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(text);
@@ -584,14 +613,14 @@ public class TwitterManager {
 	public void handleNewStatusInStream(Status status) {
 		FoursquareManager fm = new FoursquareManager();
 		ArrayList<String> urls = this.extractURL(status);
-		
+
 		for(String url : urls){
 			CompleteVenue currentVenue = fm.getVenueName(url);
 			if(currentVenue != null)
 				this.users.add(status.getUser());
 		}
 	}
-	
+
 	public ArrayList<CompleteVenue> getVenues() {
 		return venues;
 	}
@@ -607,7 +636,7 @@ public class TwitterManager {
 	public void clearUsers() {
 		this.users.clear();
 	}
-	
+
 	public void clearVenues() {
 		this.venues = new ArrayList<CompleteVenue>();
 	}
