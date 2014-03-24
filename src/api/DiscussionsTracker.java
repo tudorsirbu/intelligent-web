@@ -3,7 +3,6 @@ package api;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +18,7 @@ import util.Remover;
 /**
  * DiscussionsTracker is used to query Twitter for the statuses
  * of a specific user. 
+ * 
  * @author tudorsirbu
  *
  */
@@ -38,6 +38,7 @@ public class DiscussionsTracker {
 
 	/**
 	 * The method gets the tweets for the provided ids and indexes them
+	 * 
 	 * @param twitter the twitter api connection
 	 * @param ids the ids of the users that are being queried 
 	 */
@@ -70,6 +71,7 @@ public class DiscussionsTracker {
 
 	/**
 	 * The method retrieves all the statuses of a user
+	 * 
 	 * @param twitter the twitter connection to the api
 	 * @param id the id of the user for which the statuses are retrieved
 	 * @return the retrieved statuses
@@ -92,6 +94,7 @@ public class DiscussionsTracker {
 
 	/**
 	 * The method performs an inverted index on a provided status
+	 * 
 	 * @param status the status to be indexed
 	 */
 	public void createInvertedIndex(Status status) {
@@ -152,6 +155,7 @@ public class DiscussionsTracker {
 	}
 	/**
 	 * The method checks if a given work is on the stoplist
+	 * 
 	 * @param word the word which is checked against the stoplist
 	 * @param stopListWords the list of stoplist words
 	 * @return true if the word is on the stop list and false otherwise
