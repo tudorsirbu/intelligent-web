@@ -329,8 +329,8 @@ function displayTweets(data) {
 		div += "<span class='screen_name'> @" + tweet.screenName + "</span>";
 		div += "<p class='text'>" + tweet.text + "</p>";
 		div += "<a href='" + tweet.id + "' class='get_retweets'>" + tweet.retweetCount + " retweets</a>";
-		div += "<div class='instagramPic'><a class='instagramUser' target='_blank' style='display:block;'></a>";
-		div	+= "<a href='#' class='imgURL' target='_blank'><img id='"+tweet.id +"' style='width:25%; margin-top:10px;' /></a></div>";
+		div += "<div class='instagramPic' style='display:none;'><a class='instagramUser' target='_blank' style='display:block;'></a>";
+		div	+= "<a href='#' class='imgURL' target='_blank'><img id='"+tweet.id +"' /></a></div>";
 		div += "<div style='clear:both;'></div>";
 		div += "</div>";
 		
@@ -343,9 +343,11 @@ function displayTweets(data) {
 						success: function(media) {
 							console.log(media);
 							var tweetId = "#" + tweet.id;  
+							var $instagramPic = $(tweetId).parent().parent();
 							$(tweetId).attr("src",media.url);
-							$(tweetId).parent().parent().find(".instagramUser").attr("href", "http://www.instagram.com/"+media.author_name);
-							$(tweetId).parent().parent().find(".instagramUser").text(media.author_name);
+							$instagramPic.show();
+							$instagramPic.find(".instagramUser").attr("href", "http://www.instagram.com/"+media.author_name);
+							$instagramPic.find(".instagramUser").text(media.author_name);
 							$(tweetId).parent().attr("href",url);
 						}
 					});
