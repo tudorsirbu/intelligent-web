@@ -22,10 +22,10 @@ public class DatabaseConnection {
 	private ResultSet resultSet = null;
 	
 	// database connection details
-	private final String HOST = "localhost";
-	private final String USERNAME = "root";
-	private final String PASSWORD = "";
-	private final String DATABASE ="intelwebdb";
+	private final String HOST = "stusql.dcs.shef.ac.uk";
+	private final String USERNAME = "team010";
+	private final String PASSWORD = "16197ecb";
+	private final String DATABASE ="team010";
 	
 	/**
 	 * Create a connection to the database
