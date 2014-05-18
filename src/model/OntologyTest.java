@@ -7,6 +7,7 @@ import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 
+
 public class OntologyTest {
 
 	public static void main (String args[]) {
