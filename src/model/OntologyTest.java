@@ -51,6 +51,6 @@ public class OntologyTest {
 			System.out.println(ontClass.toString()); 
 		}
 		
-		m.write(System.out);
+		m.write(System.out, "RDF/XML");
 	}
 }
