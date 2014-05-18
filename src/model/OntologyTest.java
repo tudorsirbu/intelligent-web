@@ -1,35 +1,32 @@
 package model;
 
+import java.io.FileInputStream;
+
+import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 
 public class OntologyTest {
 
 	public static void main (String args[]) {
-		
-		String ns = "http://localhost/#";
-		OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
-		
-		Resource cristi = m.createResource("Cristi");
-		Resource clau = m.createResource("Clau");
-		
-		Property hasFlatMate = m.createProperty(ns, "hasFlatMate");
-		
-		cristi.addProperty(hasFlatMate, clau);
-		clau.addProperty(hasFlatMate, cristi);
-		
-		Statement flatMateStmt = m.createStatement(cristi, hasFlatMate, clau);
-		
-		m.add(flatMateStmt);
-		
-		
-		
+		org.apache.log4j.BasicConfigurator.configure();
+		String filePath = "src/model/ontology.owl"; 
+		OntModel m = 
+				ModelFactory.createOntologyModel(OntModelSpec.RDFS_MEM); 
+		try { 
+			m.read(new FileInputStream(filePath), ""); 
+		} catch (Exception e) { 
+			e.printStackTrace();
+		} 
+		//lists all classes 
+		ExtendedIterator<OntClass> classIterator = m.listClasses(); 
+		while (classIterator.hasNext()) { 
+			OntClass ontClass = classIterator.next(); 
+			//do something with ontClass e.g. 
+			System.out.println(ontClass.toString()); 
+		}
 	}
-	
-	
 }
