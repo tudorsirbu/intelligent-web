@@ -10,7 +10,7 @@
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
- 	 xmlns:mydomain="http://localhost/#">
+ 	 xmlns:domain="http://localhost/#">
 
 	<rdfs:Class rdf:ID="user"> 
 		<rdfs:comment> 

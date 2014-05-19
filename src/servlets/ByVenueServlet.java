@@ -11,12 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import servlets.util.ByVenueForm;
 import servlets.util.Util;
 import twitter4j.User;
+import util.RDFBuilder;
 import api.FoursquareManager;
 import api.TwitterManager;
 
 import com.google.gson.Gson;
-
-import fi.foyt.foursquare.api.entities.CompactUser;
 
 /**
  * Servlet implementation class VenueServlet
@@ -40,8 +39,8 @@ public class ByVenueServlet extends HttpServlet {
 		
 		TwitterManager tm = TwitterManager.getInstance();
 		FoursquareManager fm = new FoursquareManager();
-		
 		Gson gson = new Gson();
+		RDFBuilder rdfBuilder = new RDFBuilder();
 		
 		StringBuilder sb = Util.jsonRequestToString(request);
 		
@@ -51,6 +50,7 @@ public class ByVenueServlet extends HttpServlet {
 		if(Integer.parseInt(form.getDays()) > 0) {
 			for (User twitterUser : tm.queryByLocation(form.getLocationName(), form.getLocationLat(), form.getLocationLong(), form.getDays())) {
 				users.add(new model.User(twitterUser));
+				rdfBuilder.addUser(twitterUser);
 			}
 		}
 		else {
@@ -59,6 +59,8 @@ public class ByVenueServlet extends HttpServlet {
 				users.add(new model.User(twitterUser));
 			}
 		}
+		
+		rdfBuilder.save();
 		
 		/* Create the response JSON */
 		String json = gson.toJson(users);
