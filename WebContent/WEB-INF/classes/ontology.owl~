@@ -1,10 +1,4 @@
-<?xml version="1.0"?>
-<!DOCTYPE rdf:RDF [
-    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
-    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
-    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
-    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-]>
+<?xml version="1.0" encoding="UTF-16"?>
 <rdf:RDF 
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
@@ -18,7 +12,7 @@
 		</rdfs:comment>  
 	</rdfs:Class>
 
-	<rdf:Property rdf:ID="hasName"> 
+	<rdf:Property rdf:ID="hasFullName"> 
 		<rdfs:comment> 
 			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
 		</rdfs:comment> 
@@ -26,6 +20,14 @@
 		<rdfs:range rdf:resource="Literal"/>
 	</rdf:Property>
 	
+	<rdf:Property rdf:ID="hasScreenName"> 
+		<rdfs:comment> 
+			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+		</rdfs:comment> 
+		<rdfs:domain rdf:resource="#user"/> 
+		<rdfs:range rdf:resource="Literal"/>
+	</rdf:Property>
+
 	<rdf:Property rdf:ID="hasId"> 
 		<rdfs:comment> 
 			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
@@ -140,7 +142,7 @@
 		</rdfs:comment>  
 	</rdfs:Class>	
 	
-	<rdf:Property rdf:ID="hasUser"> 
+	<rdf:Property rdf:ID="hasTwitterUser"> 
 		<rdfs:comment> 
 			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
 		</rdfs:comment>

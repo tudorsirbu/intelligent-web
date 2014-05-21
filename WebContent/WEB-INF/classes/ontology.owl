@@ -18,7 +18,7 @@
 		</rdfs:comment>  
 	</rdfs:Class>
 
-	<rdf:Property rdf:ID="hasName"> 
+	<rdf:Property rdf:ID="hasFullName"> 
 		<rdfs:comment> 
 			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
 		</rdfs:comment> 
@@ -26,6 +26,14 @@
 		<rdfs:range rdf:resource="Literal"/>
 	</rdf:Property>
 	
+	<rdf:Property rdf:ID="hasScreenName"> 
+		<rdfs:comment> 
+			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+		</rdfs:comment> 
+		<rdfs:domain rdf:resource="#user"/> 
+		<rdfs:range rdf:resource="Literal"/>
+	</rdf:Property>
+
 	<rdf:Property rdf:ID="hasId"> 
 		<rdfs:comment> 
 			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
@@ -140,7 +148,7 @@
 		</rdfs:comment>  
 	</rdfs:Class>	
 	
-	<rdf:Property rdf:ID="hasUser"> 
+	<rdf:Property rdf:ID="hasTwitterUser"> 
 		<rdfs:comment> 
 			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
 		</rdfs:comment>
