@@ -2,6 +2,7 @@ package util;
 
 import java.net.URL;
 
+import model.Venue;
 import twitter4j.User;
 
 import com.hp.hpl.jena.ontology.OntClass;
@@ -73,6 +74,18 @@ public class RDFBuilder {
 			System.out.println(s);
 			this.model.add(s);			
 		}
+		
+	}
+	
+	public void addVenue(Venue venue){
+		Resource resourceVenue = ResourceFactory.createResource(this.NS + "https://foursquare.com/" + venue.getVenueName());
+		
+		Property hasName = this.model.getOntProperty(this.NS + "hasName");
+		Property hasPhotos = this.model.getOntProperty(this.NS + "hasPhotos");
+		Property hasCategory = this.model.getOntProperty(this.NS + "hasCategory");
+		Property hasAddress = this.model.getOntProperty(this.NS + "hasAddress");
+		Property hasUrl = this.model.getOntProperty(this.NS + "hasUrl");
+		Property hasDescription = this.model.getOntProperty(this.NS + "hasDescription");
 		
 	}
 	
