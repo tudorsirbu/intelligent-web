@@ -14,6 +14,7 @@ public class User {
 	private String profilePicURL;
 	private ArrayList<User> friends;
 	private HashMap<String,Integer> keywords;
+	private ArrayList<Tweet> tweets;
 	
 	/**
 	 * Constructor
@@ -45,7 +46,7 @@ public class User {
 	 * @param keywords a list of keywords associated to this user
 	 */
 	public User(String id, String name, String username, String location, String description,
-			String profilePicURL, ArrayList<User> friends, HashMap<String,Integer> keywords) {
+			String profilePicURL, ArrayList<User> friends, ArrayList<Tweet> tweets) {
 		this.id = id;
 		this.name = name;
 		this.username = username;
@@ -53,7 +54,7 @@ public class User {
 		this.description = description;
 		this.profilePicURL = profilePicURL;
 		this.friends = friends;
-		this.keywords = keywords;
+		this.tweets = tweets;
 	}
 	/**
 	 * Constructor
