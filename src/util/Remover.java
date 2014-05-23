@@ -1,5 +1,7 @@
 package util;
 
+import java.util.ArrayList;
+
 /**
  * The class operates on a status and remove unnecessary words like
  * hashtags, usernames, links and so on.
