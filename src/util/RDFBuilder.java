@@ -16,6 +16,9 @@ import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
+import fi.foyt.foursquare.api.entities.CompleteVenue;
+import fi.foyt.foursquare.api.entities.PhotoGroup;
+
 public class RDFBuilder {
 
 	private final String NS = "file:///home/cristi/Desktop/eclipse/#";
@@ -98,14 +101,40 @@ public class RDFBuilder {
 		
 	}
 	
-	public void addVenue(Venue venue){
-		Resource resourceVenue = ResourceFactory.createResource(this.NS + "https://foursquare.com/" + venue.getVenueName());
+	public void addVenue(CompleteVenue venue){
+		Resource resource = ResourceFactory.createResource(this.NS + "https://foursquare.com/" + venue.getName());
 		
 		Property name = this.model.getOntProperty(this.NS + "name");
 		Property hasPhoto = this.model.getOntProperty(this.NS + "hasPhoto");
 		Property category = this.model.getOntProperty(this.NS + "category");
 		Property address = this.model.getOntProperty(this.NS + "address");
 		Property hasBeenVisitedBy =this.model.getOntProperty(this.NS + "hasBeenVisitedBy");
+		
+		Statement[] statements = {
+				this.statementsModel.createStatement(resource, name, venue.getName()),
+				this.statementsModel.createStatement(resource, hasPhoto, venue.getPhotos().getGroups().),
+				
+				
+		};
+	}
+	
+	public String venuePhotos (CompleteVenue venue){
+		String photos = new String();
+		PhotoGroup[] photoGroups = venue.getPhotos().getGroups();
+		if(photoGroups.length>1)
+			if(photoGroups[1].getItems().length!=0)
+				$.each(photoGroups[1].items,function(key,value){
+					div += "<img src='"+ value.url +"' />";
+				});
+			else{
+				if(photoGroups[0].length!=0 )
+					$.each(photoGroups[0].items,function(key,value){
+						div += "<img src='"+ value.url +"' />";
+					});
+			}
+		
+		
+		return null;
 	}
 	
 	public void save() {
