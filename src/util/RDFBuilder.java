@@ -80,13 +80,11 @@ public class RDFBuilder {
 	public void addVenue(Venue venue){
 		Resource resourceVenue = ResourceFactory.createResource(this.NS + "https://foursquare.com/" + venue.getVenueName());
 		
-		Property hasName = this.model.getOntProperty(this.NS + "hasName");
-		Property hasPhotos = this.model.getOntProperty(this.NS + "hasPhotos");
-		Property hasCategory = this.model.getOntProperty(this.NS + "hasCategory");
-		Property hasAddress = this.model.getOntProperty(this.NS + "hasAddress");
-		Property hasUrl = this.model.getOntProperty(this.NS + "hasUrl");
-		Property hasDescription = this.model.getOntProperty(this.NS + "hasDescription");
-		
+		Property name = this.model.getOntProperty(this.NS + "name");
+		Property hasPhoto = this.model.getOntProperty(this.NS + "hasPhoto");
+		Property category = this.model.getOntProperty(this.NS + "category");
+		Property address = this.model.getOntProperty(this.NS + "address");
+		Property hasBeenVisitedBy =this.model.getOntProperty(this.NS + "hasBeenVisitedBy");
 	}
 	
 	public void save() {
