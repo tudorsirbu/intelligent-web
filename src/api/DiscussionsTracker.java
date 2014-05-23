@@ -13,6 +13,7 @@ import model.InvertedIndexService;
 import model.UserService;
 import model.WordService;
 import twitter4j.*;
+import util.RDFBuilder;
 import util.Remover;
 
 /**
@@ -48,24 +49,12 @@ public class DiscussionsTracker {
 			// get the user's statuses 
 			ResponseList<Status> statuses = getTweets(id);
 
-			// index each status
-			for(Status status : statuses){
-				// create inveted index
-				createInvertedIndex(status);
-			}
-			// connect to the dabase
-			Connection connection = new DatabaseConnection().getConnection();
-			// add the user to the database
-			UserService userService = new UserService(connection);
-			// get the user details from a status and insert it in the database
-			userService.insertUser(statuses.get(0).getUser());
-			// close the databse connection 
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			// add the statuses to the RDF
+			RDFBuilder rdfBuilder = new RDFBuilder();
+			rdfBuilder.addTweets(statuses);
+			
+			// add the user to the RDF
+			rdfBuilder.addUser(statuses.get(0).getUser());
 		}
 	}
 
@@ -90,82 +79,6 @@ public class DiscussionsTracker {
 		}
 
 		return statuses;
-	}
-
-	/**
-	 * The method performs an inverted index on a provided status
-	 * 
-	 * @param status the status to be indexed
-	 */
-	public void createInvertedIndex(Status status) {
-		// get the date of the status
-		Date date = status.getCreatedAt();
-
-		// get the user id
-		String userID = Long.toString(((status.getUser()).getId()));
-
-		// remove unnecessary words, tags and characters
-		Remover remover = new Remover(status.getText());
-		remover.removeAll();
-		
-		// split the string into words
-		String[] tweetWords = remover.getText().toLowerCase().split(" ");
-		
-		// use HashMap to count how many times a word appears in a tweet
-		HashMap<String, Integer> words = new HashMap<String,Integer>();
-
-		// count # of appearances of a word in a tweet
-		for(String word:tweetWords){
-			if(words.get(word) == null)
-				words.put(word, 1);
-			else{
-				int count = words.get(word) + 1;
-				words.remove(word);
-				words.put(word, count);
-			}		
-		}
-		// iterator used to go through the HashMap
-		java.util.Iterator<Entry<String, Integer>> i =  words.entrySet().iterator();
-		// open a connection to the database
-		DatabaseConnection db = new DatabaseConnection();
-		while(i.hasNext()){
-			
-			Map.Entry<String, Integer> pairs = (Map.Entry) i.next();
-
-			// get the word and bring it to lowercase
-			String word = pairs.getKey().toLowerCase();
-			
-			// get the stop list	
-			WordService wordService = new WordService(db.getConnection());
-			ArrayList<String> stopList = wordService.getStopList();
-			
-			if (!isInStopList(word, stopList) && !word.trim().isEmpty()){
-				// get the word count
-				int count = pairs.getValue();
-	
-				// create a service for the inverted_index table
-				InvertedIndexService index = new InvertedIndexService(db.getConnection());
-	
-				// create the inverted index
-				index.createIndex(word, userID, date, count);
-			}
-		}
-		// close the database connection
-		db.disconnect();
-	}
-	/**
-	 * The method checks if a given work is on the stoplist
-	 * 
-	 * @param word the word which is checked against the stoplist
-	 * @param stopListWords the list of stoplist words
-	 * @return true if the word is on the stop list and false otherwise
-	 */
-	private boolean isInStopList(String word, ArrayList<String> stopListWords){
-		for(String w : stopListWords){
-			if(w.equalsIgnoreCase(word))
-				return true;
-		}
-		return false;
 	}
 
 }
