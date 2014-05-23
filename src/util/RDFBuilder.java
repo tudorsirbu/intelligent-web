@@ -46,10 +46,10 @@ public class RDFBuilder {
 		/* Setting the namespace so that the statments will look like <domain:hasId>131321</domain:hasId>
 		 * Useful info on this here: http://nuin.blogspot.co.uk/2005/04/jena-tip-namespaces-and-j0-problem.html */
 		this.model.setNsPrefix("domain", this.NS);
-		this.model.setNsPrefix("foaf", this.NS);
+		this.model.setNsPrefix("foaf", this.FOAF_NS);
 		
 		this.statementsModel.setNsPrefix("domain", this.NS);
-		this.statementsModel.setNsPrefix("foaf", this.NS);
+		this.statementsModel.setNsPrefix("foaf", this.FOAF_NS);
 		
 		/* Lists all classes */
 		ExtendedIterator<OntClass> classIterator = model.listClasses(); 
@@ -72,15 +72,12 @@ public class RDFBuilder {
 	public void addUser(User user) {
 		Resource resource = ResourceFactory.createResource(this.NS + "https://twitter.com/" + user.getScreenName());
 
-		Property name = this.model.getOntProperty(this.FOAF_NS + "name");
+		Property name = this.model.createProperty(this.FOAF_NS + "name");
 		Property screenName = this.model.getOntProperty(this.NS + "screenName");
 		Property id = this.model.getOntProperty(this.NS + "id");
 		Property locationName = this.model.getOntProperty(this.NS + "locationName");
-		Property depiction = this.model.getOntProperty(this.FOAF_NS + "depiction");
+		Property depiction = this.model.createProperty(this.FOAF_NS + "depiction");
 		Property description = this.model.getOntProperty(this.NS + "description");
-		
-		System.out.println(name);
-		System.out.println("THIS IS IT ->>> " + screenName);
 		
 		Statement[] statements = {
 				this.statementsModel.createStatement(resource, name, user.getName()),
@@ -91,11 +88,7 @@ public class RDFBuilder {
 				this.statementsModel.createStatement(resource, description, user.getDescription())
 		};
 		
-		for(Statement s:statements) {
-			System.out.println(s);
-			this.statementsModel.add(s);			
-		}
-		
+		this.addStatementsToModel(statements);
 	}
 	
 	public void addVenue(Venue venue){
@@ -107,11 +100,17 @@ public class RDFBuilder {
 		Property hasAddress = this.model.getOntProperty(this.NS + "hasAddress");
 		Property hasUrl = this.model.getOntProperty(this.NS + "hasUrl");
 		Property hasDescription = this.model.getOntProperty(this.NS + "hasDescription");
-		
+	}
+	
+	private void addStatementsToModel(Statement[] statements) {
+		for(Statement s:statements) {
+			System.out.println(s);
+			this.statementsModel.add(s);			
+		}
 	}
 	
 	public void save() {
-		this.model.write(System.out, "RDF/XML");
+		this.statementsModel.write(System.out, "RDF/XML");
 	}
 	
 }

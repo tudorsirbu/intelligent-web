@@ -14,7 +14,7 @@
  	 xmlns:domain="http://www.smartweb.com/data/#">
 
 	<rdfs:Class rdf:ID="TwitterUser"> 
-		<rdfs:subClassOf rdf:resource="foaf:Agent" />
+		<rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Agent" />
 		<rdfs:comment> 
 			The class of users.
 		</rdfs:comment>  
