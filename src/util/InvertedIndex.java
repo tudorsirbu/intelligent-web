@@ -47,7 +47,7 @@ public class InvertedIndex {
 	        
 	        // loop through them and get only the top X keywords
 	        int minMax = 0;
-	        String minMaxKeyword;
+	        String minMaxKeyword = "";
 	        
 	        Iterator i = userKeywords.entrySet().iterator();
 	        while(i.hasNext()){
