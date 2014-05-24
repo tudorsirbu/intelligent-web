@@ -1,13 +1,13 @@
 package util;
 
-import model.Venue;
+import java.util.ArrayList;
+import java.util.List;
+
 import twitter4j.User;
 
-import com.hp.hpl.jena.ontology.AllDifferent;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
@@ -16,10 +16,16 @@ import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
+import fi.foyt.foursquare.api.entities.Category;
+import fi.foyt.foursquare.api.entities.CompleteVenue;
+import fi.foyt.foursquare.api.entities.Photo;
+import fi.foyt.foursquare.api.entities.PhotoGroup;
+
 public class RDFBuilder {
 
-	private final String NS = "file:///home/cristi/Desktop/eclipse/#";
+	private final String NS = "file:///home/cristi/#";
 	private final String FOAF_NS = "http://xmlns.com/foaf/0.1/#";
+	private final String GEO_NS = "http://www.w3.org/2003/01/geo/wgs84_pos#";
 	private final String ontologyPath = "ontology.owl";
 	
 	public OntModel model;
@@ -47,15 +53,16 @@ public class RDFBuilder {
 		 * Useful info on this here: http://nuin.blogspot.co.uk/2005/04/jena-tip-namespaces-and-j0-problem.html */
 		this.model.setNsPrefix("domain", this.NS);
 		this.model.setNsPrefix("foaf", this.FOAF_NS);
+		this.model.setNsPrefix("geo", this.GEO_NS);
 		
 		this.statementsModel.setNsPrefix("domain", this.NS);
 		this.statementsModel.setNsPrefix("foaf", this.FOAF_NS);
+		this.statementsModel.setNsPrefix("geo", this.GEO_NS);
 		
 		/* Lists all classes */
 		ExtendedIterator<OntClass> classIterator = model.listClasses(); 
 		while (classIterator.hasNext()) { 
 			OntClass ontClass = classIterator.next(); 
-			//do something with ontClass e.g. 
 			System.out.println(ontClass.toString()); 
 		}
 		
@@ -63,8 +70,7 @@ public class RDFBuilder {
 		Property hasName = this.model.getOntProperty(this.NS + "name");
 		ExtendedIterator<Resource> iter = this.model.listResourcesWithProperty(hasName);
 		while (iter.hasNext()) { 
-			Resource ontClass = iter.next(); 
-			//do something with ontClass e.g. 
+			Resource ontClass = iter.next();
 			System.out.println(ontClass.toString()); 
 		}
 	}
@@ -79,30 +85,75 @@ public class RDFBuilder {
 		Property depiction = this.model.createProperty(this.FOAF_NS + "depiction");
 		Property description = this.model.getOntProperty(this.NS + "description");
 		
-		Statement[] statements = {
-				this.statementsModel.createStatement(resource, name, user.getName()),
-				this.statementsModel.createStatement(resource, screenName, user.getScreenName()),
-				this.statementsModel.createLiteralStatement(resource, id, user.getId()),
-				this.statementsModel.createStatement(resource, locationName, user.getLocation()),
-				this.statementsModel.createStatement(resource, depiction, user.getProfileBackgroundImageURL()),
-				this.statementsModel.createStatement(resource, description, user.getDescription())
-		};
+		List<Statement> statements = new ArrayList<Statement>();
+		
+		System.out.println(screenName);
+		
+		
+		statements.add(this.statementsModel.createStatement(resource, name, user.getName()));
+		statements.add(this.statementsModel.createStatement(resource, screenName, user.getScreenName()));
+		statements.add(this.statementsModel.createLiteralStatement(resource, id, user.getId()));
+		statements.add(this.statementsModel.createStatement(resource, locationName, user.getLocation()));
+		statements.add(this.statementsModel.createStatement(resource, depiction, user.getProfileBackgroundImageURL()));
+		statements.add(this.statementsModel.createStatement(resource, description, user.getDescription()));
 		
 		this.addStatementsToModel(statements);
 	}
 	
-	public void addVenue(Venue venue){
-		Resource resourceVenue = ResourceFactory.createResource(this.NS + "https://foursquare.com/" + venue.getVenueName());
+	public void addVenue(CompleteVenue venue){
+		Resource venueResource = ResourceFactory.createResource(this.NS + venue.getUrl());
 		
-		Property hasName = this.model.getOntProperty(this.NS + "hasName");
-		Property hasPhotos = this.model.getOntProperty(this.NS + "hasPhotos");
-		Property hasCategory = this.model.getOntProperty(this.NS + "hasCategory");
-		Property hasAddress = this.model.getOntProperty(this.NS + "hasAddress");
-		Property hasUrl = this.model.getOntProperty(this.NS + "hasUrl");
-		Property hasDescription = this.model.getOntProperty(this.NS + "hasDescription");
+		Property name = this.model.getOntProperty(this.NS + "name");
+		Property hasPhoto = this.model.getOntProperty(this.NS + "hasPhoto");
+		Property category = this.model.getOntProperty(this.NS + "category");
+		Property location = this.model.getOntProperty(this.NS + "location");
+		Property latitude  = this.model.createProperty(this.GEO_NS + "lat");
+		Property longitude = this.model.createProperty(this.GEO_NS + "long");
+		Property hasBeenVisitedBy =this.model.getOntProperty(this.NS + "hasBeenVisitedBy");
+		
+		List<Statement> statements = new ArrayList<Statement>();
+		
+		statements.add(this.statementsModel.createStatement(venueResource, name, venue.getName()));
+		
+		
+		for(String photoURL:this.venuePhotosURL(venue)) {
+			statements.add(this.statementsModel.createStatement(venueResource, hasPhoto, photoURL));
+		}
+		
+		for(String categoryName:this.venueCategories(venue)) {
+			statements.add(this.statementsModel.createStatement(venueResource, category, categoryName));
+		}
+		
+		Resource locationResource = ResourceFactory.createResource(this.GEO_NS + "Point");
+		locationResource.addLiteral(latitude, venue.getLocation().getLat());
+		locationResource.addLiteral(longitude, venue.getLocation().getLng());
+		statements.add(this.statementsModel.createStatement(venueResource, location, locationResource));
+
 	}
 	
-	private void addStatementsToModel(Statement[] statements) {
+	public List<String> venuePhotosURL (CompleteVenue venue){
+		List<String> photoURLs = new ArrayList<String>();
+		
+		for(PhotoGroup photoGroup:venue.getPhotos().getGroups()) {
+			for(Photo photo:photoGroup.getItems()) {
+				photoURLs.add(photo.getUrl());
+			}
+		}
+		
+		return photoURLs;
+	}
+	
+	public List<String> venueCategories(CompleteVenue venue){
+		List<String> categories = new ArrayList<String>();
+		
+		for(Category category:venue.getCategories()) {
+			categories.add(category.getName());
+		}
+		
+		return categories;
+	}
+	
+	private void addStatementsToModel(List<Statement> statements) {
 		for(Statement s:statements) {
 			System.out.println(s);
 			this.statementsModel.add(s);			

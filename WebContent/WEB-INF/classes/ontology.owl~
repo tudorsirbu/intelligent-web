@@ -14,7 +14,7 @@
  	 xmlns:domain="http://www.smartweb.com/data/#">
 
 	<rdfs:Class rdf:ID="TwitterUser"> 
-		<rdfs:subClassOf rdf:resource="foaf:Agent" />
+		<rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Agent" />
 		<rdfs:comment> 
 			The class of users.
 		</rdfs:comment>  
@@ -57,7 +57,7 @@
 			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
 		</rdfs:comment> 
 		<rdfs:domain rdf:resource="#TwitterUser"/> 
-		<rdfs:range rdf:resource="#venue"/>
+		<rdfs:range rdf:resource="#FoursquareVenue"/>
 	</rdf:Property>
 
 	<rdf:Property rdf:ID="tweeted"> 
@@ -98,12 +98,12 @@
 		<rdfs:range rdf:resource="Literal"/>
 	</rdf:Property>
 
-	<rdf:Property rdf:ID="address"> 
+	<rdf:Property rdf:ID="location"> 
 		<rdfs:comment> 
 			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
 		</rdfs:comment> 
 		<rdfs:domain rdf:resource="#FoursquareVenue"/> 
-		<rdfs:range rdf:resource="Literal"/>
+		<rdfs:range rdf:resource="xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
 	</rdf:Property>
 
 	<rdf:Property rdf:ID="hasBeenVisitedBy"> 
