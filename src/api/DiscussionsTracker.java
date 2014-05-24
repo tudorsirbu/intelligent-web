@@ -43,11 +43,11 @@ public class DiscussionsTracker {
 	 * @param twitter the twitter api connection
 	 * @param ids the ids of the users that are being queried 
 	 */
-	public void usersQuery(String[] screenNames){
+	public void usersQuery(long[] ids){
 		// for each user id
-		for(String screenName:screenNames){
+		for(long id : ids){
 			// get the user's statuses 
-			ResponseList<Status> statuses = getTweets(screenName);
+			ResponseList<Status> statuses = getTweets(id);
 
 			// add the statuses to the RDF
 			RDFBuilder rdfBuilder = new RDFBuilder();
@@ -65,16 +65,16 @@ public class DiscussionsTracker {
 	 * @param id the id of the user for which the statuses are retrieved
 	 * @return the retrieved statuses
 	 */
-	public ResponseList<Status> getTweets(String screenName){
+	public ResponseList<Status> getTweets(long id){
 
 		// list of statuses
 		ResponseList<Status> statuses = null;
 
 		// get the user's timeline
 		try {
-			statuses = twitterConnection.getUserTimeline(screenName, new Paging(1,100));
+			statuses = twitterConnection.getUserTimeline(id, new Paging(1,100));
 		} catch (TwitterException e) {
-			System.out.println("Could not retrieve user's (" + screenName + ") timeline.");
+			System.out.println("Could not retrieve user's (" + id + ") timeline.");
 			e.printStackTrace();
 		}
 
