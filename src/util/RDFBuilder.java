@@ -1,13 +1,15 @@
 package util;
 
-import model.Venue;
+import java.util.ArrayList;
+import java.util.List;
+
+import twitter4j.ResponseList;
+import twitter4j.Status;
 import twitter4j.User;
 
-import com.hp.hpl.jena.ontology.AllDifferent;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
@@ -16,14 +18,12 @@ import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
+import fi.foyt.foursquare.api.entities.Category;
 import fi.foyt.foursquare.api.entities.CompleteVenue;
+import fi.foyt.foursquare.api.entities.Photo;
 import fi.foyt.foursquare.api.entities.PhotoGroup;
 
 public class RDFBuilder {
-
-	private final String NS = "file:///home/cristi/Desktop/eclipse/#";
-	private final String FOAF_NS = "http://xmlns.com/foaf/0.1/#";
-	private final String ontologyPath = "ontology.owl";
 	
 	public OntModel model;
 	public Model statementsModel;
@@ -41,104 +41,149 @@ public class RDFBuilder {
 		
 		/* Reading and parsing the ontology file */
 		try { 
-			this.model.read(this.getClass().getClassLoader().getResourceAsStream(ontologyPath), ""); 
+			this.model.read(this.getClass().getClassLoader().getResourceAsStream(Config.ONTOLOGY_PATH), ""); 
 		} catch (Exception e) { 
 			e.printStackTrace();
 		}
 		
 		/* Setting the namespace so that the statments will look like <domain:hasId>131321</domain:hasId>
 		 * Useful info on this here: http://nuin.blogspot.co.uk/2005/04/jena-tip-namespaces-and-j0-problem.html */
-		this.model.setNsPrefix("domain", this.NS);
-		this.model.setNsPrefix("foaf", this.NS);
+		this.model.setNsPrefix("domain", Config.NS);
+		this.model.setNsPrefix("foaf", Config.FOAF_NS);
+		this.model.setNsPrefix("geo", Config.GEO_NS);
 		
-		this.statementsModel.setNsPrefix("domain", this.NS);
-		this.statementsModel.setNsPrefix("foaf", this.NS);
+		this.statementsModel.setNsPrefix("domain", Config.NS);
+		this.statementsModel.setNsPrefix("foaf", Config.FOAF_NS);
+		this.statementsModel.setNsPrefix("geo", Config.GEO_NS);
 		
 		/* Lists all classes */
 		ExtendedIterator<OntClass> classIterator = model.listClasses(); 
 		while (classIterator.hasNext()) { 
 			OntClass ontClass = classIterator.next(); 
-			//do something with ontClass e.g. 
 			System.out.println(ontClass.toString()); 
 		}
 		
 		
-		Property hasName = this.model.getOntProperty(this.NS + "name");
+		Property hasName = this.model.getOntProperty(Config.NS + "name");
 		ExtendedIterator<Resource> iter = this.model.listResourcesWithProperty(hasName);
 		while (iter.hasNext()) { 
-			Resource ontClass = iter.next(); 
-			//do something with ontClass e.g. 
+			Resource ontClass = iter.next();
 			System.out.println(ontClass.toString()); 
 		}
 	}
 	
 	public void addUser(User user) {
-		Resource resource = ResourceFactory.createResource(this.NS + "https://twitter.com/" + user.getScreenName());
+		Resource resource = ResourceFactory.createResource(Config.NS + "https://twitter.com/" + user.getScreenName());
 
-		Property name = this.model.getOntProperty(this.FOAF_NS + "name");
-		Property screenName = this.model.getOntProperty(this.NS + "screenName");
-		Property id = this.model.getOntProperty(this.NS + "id");
-		Property locationName = this.model.getOntProperty(this.NS + "locationName");
-		Property depiction = this.model.getOntProperty(this.FOAF_NS + "depiction");
-		Property description = this.model.getOntProperty(this.NS + "description");
+		Property name = this.model.createProperty(Config.FOAF_NS + "name");
+		Property screenName = this.model.getOntProperty(Config.NS + "screenName");
+		Property id = this.model.getOntProperty(Config.NS + "id");
+		Property locationName = this.model.getOntProperty(Config.NS + "locationName");
+		Property depiction = this.model.createProperty(Config.FOAF_NS + "depiction");
+		Property description = this.model.getOntProperty(Config.NS + "description");
 		
-		System.out.println(name);
-		System.out.println("THIS IS IT ->>> " + screenName);
+		List<Statement> statements = new ArrayList<Statement>();
 		
-		Statement[] statements = {
-				this.statementsModel.createStatement(resource, name, user.getName()),
-				this.statementsModel.createStatement(resource, screenName, user.getScreenName()),
-				this.statementsModel.createLiteralStatement(resource, id, user.getId()),
-				this.statementsModel.createStatement(resource, locationName, user.getLocation()),
-				this.statementsModel.createStatement(resource, depiction, user.getProfileBackgroundImageURL()),
-				this.statementsModel.createStatement(resource, description, user.getDescription())
-		};
+		System.out.println(screenName);
 		
+		
+		statements.add(this.statementsModel.createStatement(resource, name, user.getName()));
+		statements.add(this.statementsModel.createStatement(resource, screenName, user.getScreenName()));
+		statements.add(this.statementsModel.createLiteralStatement(resource, id, user.getId()));
+		statements.add(this.statementsModel.createStatement(resource, locationName, user.getLocation()));
+		statements.add(this.statementsModel.createStatement(resource, depiction, user.getProfileBackgroundImageURL()));
+		statements.add(this.statementsModel.createStatement(resource, description, user.getDescription()));
+		
+		this.addStatementsToModel(statements);
+	}
+	
+	public void addVenue(CompleteVenue venue){
+		Resource venueResource = ResourceFactory.createResource(Config.NS + venue.getUrl());
+		
+		Property name = this.model.getOntProperty(Config.NS + "name");
+		Property hasPhoto = this.model.getOntProperty(Config.NS + "hasPhoto");
+		Property category = this.model.getOntProperty(Config.NS + "category");
+		Property location = this.model.getOntProperty(Config.NS + "location");
+		Property latitude  = this.model.createProperty(Config.GEO_NS + "lat");
+		Property longitude = this.model.createProperty(Config.GEO_NS + "long");
+		Property hasBeenVisitedBy =this.model.getOntProperty(Config.NS + "hasBeenVisitedBy");
+		
+		List<Statement> statements = new ArrayList<Statement>();
+		
+		statements.add(this.statementsModel.createStatement(venueResource, name, venue.getName()));
+		
+		
+		for(String photoURL:this.venuePhotosURL(venue)) {
+			statements.add(this.statementsModel.createStatement(venueResource, hasPhoto, photoURL));
+		}
+		
+		for(String categoryName:this.venueCategories(venue)) {
+			statements.add(this.statementsModel.createStatement(venueResource, category, categoryName));
+		}
+		
+		Resource locationResource = ResourceFactory.createResource(Config.GEO_NS + "Point");
+		locationResource.addLiteral(latitude, venue.getLocation().getLat());
+		locationResource.addLiteral(longitude, venue.getLocation().getLng());
+		statements.add(this.statementsModel.createStatement(venueResource, location, locationResource));
+
+		this.addStatementsToModel(statements);
+	}
+	
+	public void addTweets(ResponseList<Status> tweets) {
+		for(Status tweet:tweets) {
+			this.addTweet(tweet);
+		}
+	}
+
+	public void addTweet(Status tweet) {
+		Resource tweetResource = ResourceFactory.createResource(Config.NS + "https://twitter.com/" + tweet.getUser().getScreenName() + "/status/" + tweet.getId());
+		
+		Property user = this.model.getOntProperty(Config.NS + "user");
+		Property text = this.model.getOntProperty(Config.NS + "text");
+		Property createdAt = this.model.getOntProperty(Config.NS + "createdAt");
+		Property retweetedBy = this.model.getOntProperty(Config.NS + "retweetedBy");
+		
+		List<Statement> statements = new ArrayList<Statement>();
+		
+		Resource userResource = ResourceFactory.createResource(Config.NS + "https://twitter.com/" + tweet.getUser().getScreenName());
+		statements.add(this.statementsModel.createStatement(tweetResource, user, userResource));
+		statements.add(this.statementsModel.createStatement(tweetResource, text, tweet.getText()));
+		statements.add(this.statementsModel.createLiteralStatement(tweetResource, createdAt, tweet.getCreatedAt()));
+		
+		this.addStatementsToModel(statements);
+	}
+	
+	public List<String> venuePhotosURL (CompleteVenue venue){
+		List<String> photoURLs = new ArrayList<String>();
+		
+		for(PhotoGroup photoGroup:venue.getPhotos().getGroups()) {
+			for(Photo photo:photoGroup.getItems()) {
+				photoURLs.add(photo.getUrl());
+			}
+		}
+		
+		return photoURLs;
+	}
+	
+	public List<String> venueCategories(CompleteVenue venue){
+		List<String> categories = new ArrayList<String>();
+		
+		for(Category category:venue.getCategories()) {
+			categories.add(category.getName());
+		}
+		
+		return categories;
+	}
+	
+	private void addStatementsToModel(List<Statement> statements) {
 		for(Statement s:statements) {
 			System.out.println(s);
 			this.statementsModel.add(s);			
 		}
-		
-	}
-	
-	public void addVenue(CompleteVenue venue){
-		Resource resource = ResourceFactory.createResource(this.NS + "https://foursquare.com/" + venue.getName());
-		
-		Property name = this.model.getOntProperty(this.NS + "name");
-		Property hasPhoto = this.model.getOntProperty(this.NS + "hasPhoto");
-		Property category = this.model.getOntProperty(this.NS + "category");
-		Property address = this.model.getOntProperty(this.NS + "address");
-		Property hasBeenVisitedBy =this.model.getOntProperty(this.NS + "hasBeenVisitedBy");
-		
-		Statement[] statements = {
-				this.statementsModel.createStatement(resource, name, venue.getName()),
-				this.statementsModel.createStatement(resource, hasPhoto, venue.getPhotos().getGroups().),
-				
-				
-		};
-	}
-	
-	public String venuePhotos (CompleteVenue venue){
-		String photos = new String();
-		PhotoGroup[] photoGroups = venue.getPhotos().getGroups();
-		if(photoGroups.length>1)
-			if(photoGroups[1].getItems().length!=0)
-				$.each(photoGroups[1].items,function(key,value){
-					div += "<img src='"+ value.url +"' />";
-				});
-			else{
-				if(photoGroups[0].length!=0 )
-					$.each(photoGroups[0].items,function(key,value){
-						div += "<img src='"+ value.url +"' />";
-					});
-			}
-		
-		
-		return null;
 	}
 	
 	public void save() {
-		this.model.write(System.out, "RDF/XML");
+		this.statementsModel.write(System.out, "RDF/XML");
 	}
 	
 }

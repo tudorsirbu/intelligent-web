@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import twitter4j.User;
+import util.Config;
 import fi.foyt.foursquare.api.FoursquareApi;
 import fi.foyt.foursquare.api.FoursquareApiException;
 import fi.foyt.foursquare.api.Result;
@@ -30,13 +31,11 @@ public class FoursquareManager {
 	 */
 	private FoursquareApi init() {
 
-		String clientID = "JRIYO5DDJ43NBLDNNU3PH1URI0RQ4ZA3TTHEDPFDPYOC2C5L";
-		String clientSecret = "QUIFUD44KU22UDMZUD0FQFRPWH21I2H4Y1J3CSWISUWOMZ1R";
-		String redirectUrl = "http://www.sheffield.ac.uk";
-		String accessToken = "5PJGTZWVP2QR1BK3LJHVLDYPQVFURSTUA1GGN0V3ZI2NBXIT";
+		// get the keys necessary for Foursquare to operate
+		Config config = new Config();
 
-		FoursquareApi fsAPI = new FoursquareApi(clientID, clientSecret, redirectUrl);
-		fsAPI.setoAuthToken(accessToken);
+		FoursquareApi fsAPI = new FoursquareApi(config.CLIENT_ID, config.CLIENT_SECRET, config.REDIRECT_URL);
+		fsAPI.setoAuthToken(config.ACCESS_TOKEN);
 
 		return fsAPI;
 	}

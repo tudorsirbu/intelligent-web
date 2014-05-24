@@ -27,6 +27,7 @@ import twitter4j.User;
 import twitter4j.auth.AccessToken;
 import twitter4j.conf.ConfigurationBuilder;
 import util.ApiUtil;
+import util.Config;
 import api.listeners.TwitterStatusListener;
 import api.listeners.TwitterUserListener;
 import fi.foyt.foursquare.api.entities.CompactVenue;
@@ -49,10 +50,7 @@ public class TwitterManager {
 	/*
 	 * The access credentials for the Twitter API.
 	 */
-	private String consumerkey = "gHCxnRIAapqAfBG5oyt6w";	
-	private String consumersecret = "pisw8haLdrOvmPxyOLkT7xJoEqQkxgei2xrOkhdeJjA";	
-	private String accesstoken = "18540628-4dkbUfF495u9r35CxEfqm5PDorm7e4nraiPFRQCoD";	
-	private String accesstokensecret = "ZgwdueIhOQeZ3ZIt29dKZlWrc4lwcrquQ8JaDCTLeLD1i";	
+	Config config = new Config();	
 	
 	/**
 	 * A list of venues which will be used for the Twitter streaming API.
@@ -103,13 +101,15 @@ public class TwitterManager {
 	 */
 	@Deprecated
 	public void initConfiguration(long[] userId){
+		// load the configuration class which stored the necessary keys
+		Config config = new Config();
 		
 		if (this.twitterStream == null) {
 			ConfigurationBuilder cb = new ConfigurationBuilder();
 			cb.setDebugEnabled(true)
 			.setJSONStoreEnabled(true)
-			.setOAuthConsumerKey("H4VHRaf8ybmPhzzK47uQ")
-			.setOAuthConsumerSecret("y6oxNsvuoauf4sPcGU45Ct5eVfryYlai5TUBU92Uxbk");
+			.setOAuthConsumerKey(config.CONSUMER_KEY)
+			.setOAuthConsumerSecret(config.CONSUMER_SECRET);
 			
 			TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
 			this.twitterStream = twitterStreamFactory.getInstance(new AccessToken("1225017144-1l22gHEw6SpxoQQac1PmT5a3FjQnexJrMQmiFra", "WR2I8lHSBlqVKHV1a3t3CDElHKe0sHkVl1TCLyrVnrkLS"));
@@ -129,13 +129,16 @@ public class TwitterManager {
 	 * @return the twitter stream connection
 	 */
 	public TwitterStream initStream() {
+		// load the configuration class which stored the necessary keys
+		Config config = new Config();
+		
 		if (this.twitterStream == null) {
 			System.out.println("this is wrong");
 			ConfigurationBuilder cb = new ConfigurationBuilder();
 			cb.setDebugEnabled(true)
 			.setJSONStoreEnabled(true)
-			.setOAuthConsumerKey("H4VHRaf8ybmPhzzK47uQ")
-			.setOAuthConsumerSecret("y6oxNsvuoauf4sPcGU45Ct5eVfryYlai5TUBU92Uxbk");
+			.setOAuthConsumerKey(config.CONSUMER_KEY)
+			.setOAuthConsumerSecret(config.CONSUMER_SECRET);
 			
 			TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
 			this.twitterStream = twitterStreamFactory.getInstance(new AccessToken("1225017144-1l22gHEw6SpxoQQac1PmT5a3FjQnexJrMQmiFra", "WR2I8lHSBlqVKHV1a3t3CDElHKe0sHkVl1TCLyrVnrkLS"));
@@ -150,7 +153,7 @@ public class TwitterManager {
 	 * @throws Exception if the authentication keys are not correct
 	 */
 	public Twitter init() throws Exception{	
-		Twitter twitterConnection = initTwitter(this.consumerkey, this.consumersecret, this.accesstoken, this.accesstokensecret);	
+		Twitter twitterConnection = initTwitter(config.CONSUMER_KEY, config.CONSUMER_SECRET, config.ACCESS_TOKEN, config.ACCESS_TOKEN_SECRET);	
 		return twitterConnection;	
 	}
 

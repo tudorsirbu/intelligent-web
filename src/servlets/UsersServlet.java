@@ -82,11 +82,11 @@ public class UsersServlet extends HttpServlet {
 		StringBuilder sb = Util.jsonRequestToString(request);
 	    
 	    /* Parse the JSON object it got from the request */
-		Long userId = gson.fromJson(sb.toString(), Long.class);
+		String screenName = gson.fromJson(sb.toString(), String.class);
 		
 		/* Get tweets according to the query parameters */
 		DiscussionsTracker dt = new DiscussionsTracker();
-		ResponseList<Status> tweets = dt.getTweets(userId);
+		ResponseList<Status> tweets = dt.getTweets(screenName);
 		
 		List<MiniStatus> processedTweets = new ArrayList<MiniStatus>();
 		for (Status tweet:tweets) {
