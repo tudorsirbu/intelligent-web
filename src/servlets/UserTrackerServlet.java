@@ -164,17 +164,8 @@ public class UserTrackerServlet extends HttpServlet {
 	}
 
 
-	private long[] toLongArray(String ids){
-		// split the string
-		String[] idsArray = ids.split(",");
-		long[] user_ids = new long[idsArray.length];
-
-		// for each string id
-		for(int i=0; i<idsArray.length; i++){
-			// convert it to long type and add it to the array
-			user_ids[i] = Long.parseLong(idsArray[i].trim());
-		}
-		return user_ids;
+	private String[] toLongArray(String screenNames){
+		return screenNames.split(",");
 	}
 
 }
