@@ -138,6 +138,12 @@ public class User {
 		this.keywords = keywords;
 	}
 
+	public ArrayList<Tweet> getTweets() {
+		return tweets;
+	}
+	public void setTweets(ArrayList<Tweet> tweets) {
+		this.tweets = tweets;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

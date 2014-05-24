@@ -3,7 +3,7 @@ import java.util.Date;
 
 import twitter4j.User;
 
-public class Keyword{
+public class Keyword implements Comparable<Keyword>{
 	// the user to whom this keyword belongs
 	private String userId;
 	// the keyword
@@ -22,13 +22,16 @@ public class Keyword{
 	 * @param date on what date it apparead
 	 */
 	public Keyword(String userId, String keyword, int count, Date date) {
-		super();
 		this.userId = userId;
 		this.keyword = keyword;
 		this.count = count;
 		this.date = date;
 	}
 	
+	public Keyword(String keyword, int count){
+		this.keyword = keyword;
+		this.count = count;
+	}
 	
 	public String getUserId() {
 		return userId;
@@ -55,7 +58,15 @@ public class Keyword{
 		this.date = date;
 	}
 
-	
-	
+	@Override
+	public int compareTo(Keyword k) {
+		if(this.count > k.getCount())
+			return 1;
+		else if(this.count == k.getCount())
+			return 0;
+		else 
+			return -1;
+	}
+
 	
 }
