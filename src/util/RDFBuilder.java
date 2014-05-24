@@ -132,13 +132,16 @@ public class RDFBuilder {
 		this.addStatementsToModel(statements);
 	}
 	
-	public void addTweets(ResponseList<Status> tweets) {
+	public void addTweets(List<Status> tweets) {
 		for(Status tweet:tweets) {
 			this.addTweet(tweet);
 		}
 	}
 
 	public void addTweet(Status tweet) {
+		
+		this.addUser(tweet.getUser());
+		
 		Resource tweetResource = ResourceFactory.createResource("https://twitter.com/" + tweet.getUser().getScreenName() + "/status/" + tweet.getId());
 		
 		Property user = this.model.getOntProperty(Config.NS + "user");

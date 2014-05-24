@@ -220,10 +220,11 @@ public class TwitterManager {
 	 * @param radius radius in kilometres for the area where the search should be done with the centre of the longitude and latitude provided
 	 * @return
 	 */
-	public List<MiniStatus> query(String keywords, String latitude, String longitude, String radius) {	
+	public List<Status> query(String keywords, String latitude, String longitude, String radius) {	
 
 		Integer radiusNumber;
 		Double latitudeNumber, longitudeNumber;
+		QueryResult result = null;
 		try {
 			longitudeNumber = Double.parseDouble(longitude);
 			latitudeNumber = Double.parseDouble(latitude);
@@ -258,11 +259,9 @@ public class TwitterManager {
 			}
 
 			/* Get the results. */	
-			QueryResult result = twitterConnection.search(query);	
+			result = twitterConnection.search(query);	
 			
-			/* Iterate through the results and only get the information that is needed. */	
-			for(Status tweet:result.getTweets()) 
-				tweets.add(new MiniStatus(tweet, ApiUtil.expandStatus(tweet)));
+			
 		} 
 		catch (Exception e) {	
 			e.printStackTrace(); 	
@@ -270,7 +269,7 @@ public class TwitterManager {
 			System.exit(-1);	
 		}	
 
-		return tweets;	
+		return result.getTweets();	
 	}
 	
 	/**

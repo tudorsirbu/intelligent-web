@@ -19,6 +19,8 @@ import servlets.util.MiniStatus;
 import servlets.util.TrackingForm;
 import twitter4j.Status;
 import twitter4j.User;
+import util.ApiUtil;
+import util.RDFBuilder;
 
 import com.google.gson.Gson;
 
@@ -56,20 +58,24 @@ public class TrackingServlet extends HttpServlet {
 		
 		/* Get tweets according to the query parameters */
 		TwitterManager tm = TwitterManager.getInstance();
-		List<MiniStatus> tweets = tm.query(tf.getKeywords(), tf.getRegionLat(), tf.getRegionLong(), tf.getRadius());
+		List<Status> statuses = tm.query(tf.getKeywords(), tf.getRegionLat(), tf.getRegionLong(), tf.getRadius());
 		
-		for (MiniStatus t:tweets) {
+		List<MiniStatus> miniStatuses = new ArrayList<MiniStatus>();
+		
+		/* Iterate through the results and only get the information that is needed. */	
+		for(Status status:statuses) 
+			miniStatuses.add(new MiniStatus(status, ApiUtil.expandStatus(status)));
+		
+		RDFBuilder rdfBuilder = new RDFBuilder();
+		rdfBuilder.addTweets(statuses);
+		rdfBuilder.save();
+		
+		for (MiniStatus t:miniStatuses) {
 			System.out.println(t.getText()+" "+t.getId());
 		}
 		
-		for (MiniStatus t:tweets) {
-			UserService us = new UserService(new DatabaseConnection().getConnection());
-			User user = t.getUser();
-			us.insertUser(new model.User(String.valueOf(user.getId()), user.getName(), user.getScreenName(), user.getLocation(), user.getDescription(), user.getProfileImageURL(), null));
-		}
-		
 		/* Create the response JSON */
-		String json = gson.toJson(tweets);
+		String json = gson.toJson(statuses);
 		response.getWriter().write(json.toString());
 	}
 
