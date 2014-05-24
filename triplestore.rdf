@@ -1,0 +1,22 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:domain="file:///home/cristi/workspace/intelligent-web/#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/#"
+    xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" > 
+  <rdf:Description rdf:about="file:///home/cristi/workspace/intelligent-web/#https://twitter.com/claudiutarta">
+    <foaf:name>Claudiu Tarta</foaf:name>
+    <domain:screenName>claudiutarta</domain:screenName>
+    <domain:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">2379054998</domain:id>
+    <domain:locationName></domain:locationName>
+    <foaf:depiction>http://abs.twimg.com/images/themes/theme1/bg.png</foaf:depiction>
+    <domain:description></domain:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="file:///home/cristi/workspace/intelligent-web/#https://twitter.com/studor">
+    <foaf:name>Tudor</foaf:name>
+    <domain:screenName>studor</domain:screenName>
+    <domain:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">18540628</domain:id>
+    <domain:locationName>Sheffield, UK</domain:locationName>
+    <foaf:depiction>http://abs.twimg.com/images/themes/theme15/bg.png</foaf:depiction>
+    <domain:description>CompSci@Shef #IntelligentWeb</domain:description>
+  </rdf:Description>
+</rdf:RDF>

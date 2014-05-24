@@ -1,5 +1,8 @@
 package util;
 
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +44,8 @@ public class RDFBuilder {
 		
 		/* Reading and parsing the ontology file */
 		try { 
-			this.model.read(this.getClass().getClassLoader().getResourceAsStream(Config.ONTOLOGY_PATH), ""); 
+			this.model.read(new FileInputStream(Config.ONTOLOGY_PATH), "");
+			this.statementsModel.read(new FileInputStream(Config.TRIPLE_STORE_PATH), "");
 		} catch (Exception e) { 
 			e.printStackTrace();
 		}
@@ -86,7 +90,6 @@ public class RDFBuilder {
 		
 		System.out.println(screenName);
 		
-		
 		statements.add(this.statementsModel.createStatement(resource, name, user.getName()));
 		statements.add(this.statementsModel.createStatement(resource, screenName, user.getScreenName()));
 		statements.add(this.statementsModel.createLiteralStatement(resource, id, user.getId()));
@@ -98,7 +101,7 @@ public class RDFBuilder {
 	}
 	
 	public void addVenue(CompleteVenue venue){
-		Resource venueResource = ResourceFactory.createResource(Config.NS + venue.getUrl());
+		Resource venueResource = ResourceFactory.createResource(venue.getUrl());
 		
 		Property name = this.model.getOntProperty(Config.NS + "name");
 		Property hasPhoto = this.model.getOntProperty(Config.NS + "hasPhoto");
@@ -136,7 +139,7 @@ public class RDFBuilder {
 	}
 
 	public void addTweet(Status tweet) {
-		Resource tweetResource = ResourceFactory.createResource(Config.NS + "https://twitter.com/" + tweet.getUser().getScreenName() + "/status/" + tweet.getId());
+		Resource tweetResource = ResourceFactory.createResource("https://twitter.com/" + tweet.getUser().getScreenName() + "/status/" + tweet.getId());
 		
 		Property user = this.model.getOntProperty(Config.NS + "user");
 		Property text = this.model.getOntProperty(Config.NS + "text");
@@ -145,7 +148,7 @@ public class RDFBuilder {
 		
 		List<Statement> statements = new ArrayList<Statement>();
 		
-		Resource userResource = ResourceFactory.createResource(Config.NS + "https://twitter.com/" + tweet.getUser().getScreenName());
+		Resource userResource = ResourceFactory.createResource("https://twitter.com/" + tweet.getUser().getScreenName());
 		statements.add(this.statementsModel.createStatement(tweetResource, user, userResource));
 		statements.add(this.statementsModel.createStatement(tweetResource, text, tweet.getText()));
 		statements.add(this.statementsModel.createLiteralStatement(tweetResource, createdAt, tweet.getCreatedAt()));
@@ -183,7 +186,26 @@ public class RDFBuilder {
 	}
 	
 	public void save() {
-		this.statementsModel.write(System.out, "RDF/XML");
+		FileWriter out = null;
+		try {
+			out = new FileWriter(Config.TRIPLE_STORE_PATH);
+			this.statementsModel.write(out, "RDF/XML");
+			this.statementsModel.write(System.out, "RDF/XML");
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Could not write to file.");
+		}
+		finally {
+			try {
+				System.out.println("Closing file.");
+				out.close();
+			}
+			catch (IOException closeException) {
+				closeException.printStackTrace();
+				System.out.println("Could not close file.");
+			}
+		}
 	}
 	
 }
