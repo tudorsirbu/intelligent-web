@@ -381,6 +381,102 @@ function initMapEmpty(){
 	  
 	  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 }
+var region_lat;
+var region_long;
+var location_lat;
+var location_long;
+
+var mapDiscussionsTracker;
+function displayMapDiscussionsTracker() {
+    document.getElementById('mapDiscussionsTracker').style.display="block";
+    document.getElementById('hideMapDiscussionsTracker').style.display="block";
+    initializeMapDiscussionsTracker();
+    
+}
+
+function hideMapDiscussionsTracker() {
+    document.getElementById('mapDiscussionsTracker').style.display="none";
+    document.getElementById('hideMapDiscussionsTracker').style.display="none";
+}
+function initializeMapDiscussionsTracker() {
+    // create the map
+	var myLatlng = new google.maps.LatLng(53.388960,-1.469930);
+	  var mapOptions = {
+	    zoom: 2,
+	    center: myLatlng,
+	    mapTypeId: google.maps.MapTypeId.ROADMAP
+	  };
+	  
+	  mapDiscussionsTracker = new google.maps.Map(document.getElementById('mapDiscussionsTracker'), mapOptions);
+	  markerMapDiscussionsTracker = new google.maps.Marker({
+		    map:mapDiscussionsTracker,
+		    draggable:true,
+		    animation: google.maps.Animation.DROP,
+		    position: myLatlng
+		  });
+		  google.maps.event.addListener(markerMapDiscussionsTracker, 'click', toggleBounceMapDiscussionsTracker);
+		       
+	      google.maps.event.addListener(markerMapDiscussionsTracker, "dragend", function(event) {
+	            var lat = event.latLng.lat();
+	            var lng = event.latLng.lng();
+	        document.getElementById('region_lat').value=lat;
+	        document.getElementById('region_long').value=lng;
+	        });   
+   }
+function toggleBounceMapDiscussionsTracker() {
+
+	  if (markerMapDiscussionsTracker.getAnimation() != null) {
+	    markerMapDiscussionsTracker.setAnimation(null);
+	  } else {
+	    markerMapDiscussionsTracker.setAnimation(google.maps.Animation.BOUNCE);
+	  }
+	}
+var mapGetUsersByVenue;
+function displayMapGetUsersByVenue() {
+    document.getElementById('mapGetUsersByVenue').style.display="block";
+    document.getElementById('hideMapGetUsersByVenue').style.display="block";
+    initializeMapGetUsersByVenue();
+    
+}
+
+function hideMapGetUsersByVenue() {
+    document.getElementById('mapGetUsersByVenue').style.display="none";
+    document.getElementById('hideMapGetUsersByVenue').style.display="none";
+}
+function initializeMapGetUsersByVenue(){
+	// create the map
+	var myLatlng = new google.maps.LatLng(53.388960,-1.469930);
+	  var mapOptions = {
+	    zoom: 2,
+	    center: myLatlng,
+	    mapTypeId: google.maps.MapTypeId.ROADMAP
+	  };
+	  
+	  mapGetUsersByVenue = new google.maps.Map(document.getElementById('mapGetUsersByVenue'), mapOptions);
+	  markerMapGetUsersByVenue = new google.maps.Marker({
+		    map:mapGetUsersByVenue,
+		    draggable:true,
+		    animation: google.maps.Animation.DROP,
+		    position: myLatlng
+		  });
+		  google.maps.event.addListener(markerMapGetUsersByVenue, 'click', toggleBounceMapGetUsersByVenue);
+		       
+	      google.maps.event.addListener(markerMapGetUsersByVenue, "dragend", function(event) {
+	            var lat = event.latLng.lat();
+	            var lng = event.latLng.lng();
+	        document.getElementById('location_lat').value=lat;
+	        document.getElementById('location_long').value=lng;
+	        });
+}
+function toggleBounceMapGetUsersByVenue() {
+
+	  if (markerMapGetUsersByVenue.getAnimation() != null) {
+	    markerMapGetUsersByVenue.setAnimation(null);
+	  } else {
+	    markerMapGetUsersByVenue.setAnimation(google.maps.Animation.BOUNCE);
+	  }
+	}
+
 var activeWindow = new google.maps.InfoWindow();
 function initMap(data){
 
