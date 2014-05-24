@@ -101,13 +101,15 @@ public class TwitterManager {
 	 */
 	@Deprecated
 	public void initConfiguration(long[] userId){
+		// load the configuration class which stored the necessary keys
+		Config config = new Config();
 		
 		if (this.twitterStream == null) {
 			ConfigurationBuilder cb = new ConfigurationBuilder();
 			cb.setDebugEnabled(true)
 			.setJSONStoreEnabled(true)
-			.setOAuthConsumerKey("H4VHRaf8ybmPhzzK47uQ")
-			.setOAuthConsumerSecret("y6oxNsvuoauf4sPcGU45Ct5eVfryYlai5TUBU92Uxbk");
+			.setOAuthConsumerKey(config.CONSUMER_KEY)
+			.setOAuthConsumerSecret(config.CONSUMER_SECRET);
 			
 			TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
 			this.twitterStream = twitterStreamFactory.getInstance(new AccessToken("1225017144-1l22gHEw6SpxoQQac1PmT5a3FjQnexJrMQmiFra", "WR2I8lHSBlqVKHV1a3t3CDElHKe0sHkVl1TCLyrVnrkLS"));
@@ -127,13 +129,16 @@ public class TwitterManager {
 	 * @return the twitter stream connection
 	 */
 	public TwitterStream initStream() {
+		// load the configuration class which stored the necessary keys
+		Config config = new Config();
+		
 		if (this.twitterStream == null) {
 			System.out.println("this is wrong");
 			ConfigurationBuilder cb = new ConfigurationBuilder();
 			cb.setDebugEnabled(true)
 			.setJSONStoreEnabled(true)
-			.setOAuthConsumerKey("H4VHRaf8ybmPhzzK47uQ")
-			.setOAuthConsumerSecret("y6oxNsvuoauf4sPcGU45Ct5eVfryYlai5TUBU92Uxbk");
+			.setOAuthConsumerKey(config.CONSUMER_KEY)
+			.setOAuthConsumerSecret(config.CONSUMER_SECRET);
 			
 			TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
 			this.twitterStream = twitterStreamFactory.getInstance(new AccessToken("1225017144-1l22gHEw6SpxoQQac1PmT5a3FjQnexJrMQmiFra", "WR2I8lHSBlqVKHV1a3t3CDElHKe0sHkVl1TCLyrVnrkLS"));
