@@ -82,7 +82,7 @@ public class UserTrackerServlet extends HttpServlet {
 		d.usersQuery(toLongArray(form.getUserIds()));
 
 		// get data from RDF
-		RDFService rdfService = new rdfService();
+		RDFService rdfService = new RDFService();
 		// get the tweets for the given user names
 		ArrayList<User> users = rdfService.getUsers(this.toLongArray(form.getUserIds()), form.getDaysSince());
 		
