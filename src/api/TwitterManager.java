@@ -27,6 +27,7 @@ import twitter4j.User;
 import twitter4j.auth.AccessToken;
 import twitter4j.conf.ConfigurationBuilder;
 import util.ApiUtil;
+import util.Config;
 import api.listeners.TwitterStatusListener;
 import api.listeners.TwitterUserListener;
 import fi.foyt.foursquare.api.entities.CompactVenue;
@@ -49,10 +50,7 @@ public class TwitterManager {
 	/*
 	 * The access credentials for the Twitter API.
 	 */
-	private String consumerkey = "gHCxnRIAapqAfBG5oyt6w";	
-	private String consumersecret = "pisw8haLdrOvmPxyOLkT7xJoEqQkxgei2xrOkhdeJjA";	
-	private String accesstoken = "18540628-4dkbUfF495u9r35CxEfqm5PDorm7e4nraiPFRQCoD";	
-	private String accesstokensecret = "ZgwdueIhOQeZ3ZIt29dKZlWrc4lwcrquQ8JaDCTLeLD1i";	
+	Config config = new Config();	
 	
 	/**
 	 * A list of venues which will be used for the Twitter streaming API.
@@ -150,7 +148,7 @@ public class TwitterManager {
 	 * @throws Exception if the authentication keys are not correct
 	 */
 	public Twitter init() throws Exception{	
-		Twitter twitterConnection = initTwitter(this.consumerkey, this.consumersecret, this.accesstoken, this.accesstokensecret);	
+		Twitter twitterConnection = initTwitter(config.CONSUMER_KEY, config.CONSUMER_SECRET, config.ACCESS_TOKEN, config.ACCESS_TOKEN_SECRET);	
 		return twitterConnection;	
 	}
 
