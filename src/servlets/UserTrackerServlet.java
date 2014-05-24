@@ -26,6 +26,8 @@ import model.User;
 import servlets.util.TrackingForm;
 import servlets.util.UserTrackerForm;
 import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
 import api.DiscussionsTracker;
 import api.TwitterManager;
 
@@ -77,14 +79,18 @@ public class UserTrackerServlet extends HttpServlet {
 		/* Parse the JSON object it got from the request */
 		UserTrackerForm form = gson.fromJson(sb.toString(), UserTrackerForm.class);
 
+		// convert the screen name into ids
+		long[] ids = this.toUserIdFromScreenName(form.getScreenNames());
+		
 		/* Get tweets according to the query parameters */
 		DiscussionsTracker d = new DiscussionsTracker();
-		d.usersQuery(toLongArray(form.getUserIds()));
+		d.usersQuery(ids);
 
 		// get data from RDF
 		RDFService rdfService = new RDFService();
+		
 		// get the tweets for the given user names
-		ArrayList<User> users = rdfService.getUsers(this.toLongArray(form.getUserIds()), form.getDaysSince());
+		ArrayList<User> users = rdfService.getUsers(ids, form.getDaysSince());
 		
 		// create inverted index for the given users' tweets
 		HashMap<String,ArrayList<Keyword>> keywords = new HashMap<String,ArrayList<Keyword>>();
@@ -162,20 +168,31 @@ public class UserTrackerServlet extends HttpServlet {
 		String json = gson.toJson(users);
 		response.getWriter().write(json.toString());
 	}
-
-
-	private long[] toLongArray(String ids){
-		// split the string
-		String[] idsArray = ids.split(",");
-		long[] user_ids = new long[idsArray.length];
-
-		// for each string id
-		for(int i=0; i<idsArray.length; i++){
-			// convert it to long type and add it to the array
-			user_ids[i] = Long.parseLong(idsArray[i].trim());
+	
+	private long[] toUserIdFromScreenName(String screenNames){
+		String[] screenNamesList = screenNames.split(",");
+		long[] ids = new long[screenNamesList.length];
+		for(int i=0; i<screenNamesList.length; i++){
+			TwitterManager twitterManager = TwitterManager.getInstance();
+			// create a connection to twitter
+			Twitter twitterConnection = null;
+			try {
+				twitterConnection = twitterManager.init();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			// get the user's id
+			try {
+				ids[i] =twitterConnection.getUserTimeline(screenNamesList[i]).get(0).getUser().getId();
+			} catch (TwitterException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		return user_ids;
+		
+		return ids;
 	}
-
 
 }

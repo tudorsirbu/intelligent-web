@@ -19,6 +19,8 @@ import servlets.util.TrackingForm;
 import servlets.util.UserVenuesForm;
 import servlets.util.Util;
 import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
 import twitter4j.User;
 
 import com.google.gson.Gson;
@@ -72,9 +74,34 @@ public class UserVenuesServlet extends HttpServlet {
 			/* Get tweets according to the query parameters */
 			TwitterManager tm = TwitterManager.getInstance();
 			
-			long[] idList = {uvf.getUserId()};
-			Long userID = uvf.getUserId();
+			long[] idList = new long[1];
+			Long userID = (long) 0;
+		
+			// convert the user's screen name to id
+			TwitterManager twitterManager = TwitterManager.getInstance();
+			// create a connection to twitter
+			Twitter twitterConnection = null;
+			try {
+				twitterConnection = twitterManager.init();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			// get the user's id
+			try {
+				userID =twitterConnection.getUserTimeline(uvf.getScreenName()).get(0).getUser().getId();
+				idList[0] = userID;
+				
+			} catch (TwitterException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			int days = uvf.getDays();
+			
+			
+			
 			ArrayList<CompleteVenue> venuesStreamed=null;
 			System.out.println(days);
 			if(days!=0){
