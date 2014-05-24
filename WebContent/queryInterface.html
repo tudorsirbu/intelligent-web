@@ -45,8 +45,12 @@
 		    <div class="button">
 		        <button name="submit" type="submit">Search for results!</button>
 		    </div>
-		</form>  	
+		</form> 
+		 	<div id="mapDiscussionsTracker"></div>
+		 	<button onclick="displayMapDiscussionsTracker()">Show Map</button>
+		 	<button id="hideMapDiscussionsTracker" onclick="hideMapDiscussionsTracker()" style="display:none">Hide Map</button>
 	</div>
+	
 	<div id="tabs-2">
 		<form action="" method="get" id="discussionsTrackerForm">
 			<div>
@@ -103,6 +107,9 @@
 	        	<button name="submit" type="submit">Search for results!</button>
 	    	</div>	
 	    </form>
+	    <div id="mapGetUsersByVenue" ></div>
+	    <button onclick="displayMapGetUsersByVenue()">Show Map</button>
+	    <button id="hideMapGetUsersByVenue" onclick="hideMapGetUsersByVenue()" style="display:none">Hide Map</button>
 	</div>
 	<div id="tabs-5">
 		<form action="SearchVenue" method="post" id="searchVenue">
