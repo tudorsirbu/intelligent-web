@@ -16,7 +16,14 @@ import servlets.util.Util;
 import util.RDFService;
 
 /**
- * Servlet implementation class UserVenueServlet
+ * Servlet implementation class that deals with finding all the users that have visited a specific venue.
+ * 
+ * 
+ * 
+ * @author Tudor-Daniel Sirbu
+ * @author Claudiu Tarta
+ * @author Florin-Cristian Gavrila
+ * 
  */
 public class UserVenueServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
