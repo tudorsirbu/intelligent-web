@@ -1,36 +1,121 @@
 package util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import model.Tweet;
+import model.User;
+import servlets.util.MiniStatus;
+
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
+import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.query.ResultSetFormatter;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.Resource;
 
 public class RDFService extends RDFBase {
 	
-	public void getUser(long id) {
-		System.out.println(id);
+	public User getUser(long id) {
+		User user = null;
+		
 		String queryString =        
 			      "PREFIX sweb: <" + Config.NS + "> " +
 			      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-			      "select ?id " +
+			      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> " +
+			      "PREFIX foaf: <http://xmlns.com/foaf/0.1/>" +
+			      "select * " +
 			      "where { " +
-			      	"?user a sweb:User. " +
-			      	"?user sweb:id " + id +
+			      	"?user sweb:id " + id + "." +
 			      "} \n ";
+		System.out.println(queryString);
 	    Query query = QueryFactory.create(queryString);
 	    
-	    QueryExecution qe = QueryExecutionFactory.create(query, this.statementsModel);
+	    QueryExecution qe = QueryExecutionFactory.create(query, this.model);
 	    ResultSet results =  qe.execSelect();
 	    
-	    // Output query results    
-	    ResultSetFormatter.out(System.out, results, query);
+	    while(results.hasNext()) {
+	    	QuerySolution solution = results.nextSolution() ;
+	        Resource currentResource = solution.getResource("user");
+
+	        user = new User(
+	        		currentResource.getProperty(this.id).getString(),
+	        		currentResource.getProperty(this.foaf_name).getString(),
+	        		currentResource.getProperty(this.screenName).getString(),
+	        		currentResource.getProperty(this.locationName).getString(),
+	        		currentResource.getProperty(this.description).getString(),
+	        		currentResource.getProperty(this.depiction).getString()
+	        );	
+	        
+	        user.setTweets(this.getTweetsByUserId(id));
+	    }
+	    
+	    return user;
 	}
 	
-	public void getUsers(long[] ids) {
+	public List<User> getUsers(long[] ids) {
+		
+		List<User> users = new ArrayList<User>();
+		
 		for(long id:ids)
-			this.getUser(id);
+			users.add(this.getUser(id));
+		
+		return users;
+	}
+		
+	public ArrayList<Tweet> getTweetsByUserId(long id) {
+		Tweet tweet = null;
+		
+		String queryString =        
+			      "PREFIX sweb: <" + Config.NS + "> " +
+			      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
+			      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> " +
+			      "PREFIX foaf: <http://xmlns.com/foaf/0.1/>" +
+			      "select * " +
+			      "where { " +
+			      		"?user sweb:id " + id + "." +
+			      		"?tweet sweb:user ?user. " +
+			      "} \n ";
+		System.out.println(queryString);
+	    Query query = QueryFactory.create(queryString);
+	    
+	    QueryExecution qe = QueryExecutionFactory.create(query, this.model);
+	    ResultSet results =  qe.execSelect();
+	    
+	    ArrayList<Tweet> tweets = new ArrayList<Tweet>();
+	    while(results.hasNext()) {
+	    	QuerySolution solution = results.nextSolution() ;
+	        Resource currentResource = solution.getResource("tweet");
+
+	        /* Taking care of the date */
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-d k:m:s");
+			String dateRaw = currentResource.getProperty(this.createdAt).getString();
+			dateRaw = dateRaw.replace('T', ' ');
+			dateRaw = dateRaw.replace("Z", "");
+			
+			Date date = null;
+			try {
+				date = dateFormat.parse(dateRaw);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
+			
+	        tweet = new Tweet(
+	        		String.valueOf(id),
+	        		currentResource.getProperty(this.text).getString(),
+	        		date
+	        );	
+	        
+	        tweets.add(tweet);
+	    }
+	    
+	    return tweets;
 	}
 	
 }

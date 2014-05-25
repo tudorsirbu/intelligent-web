@@ -23,6 +23,7 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 import fi.foyt.foursquare.api.entities.Category;
 import fi.foyt.foursquare.api.entities.CompleteVenue;
@@ -33,56 +34,43 @@ public class RDFBuilder extends RDFBase {
 	
 	public void addUser(User user) {
 		Resource resource = ResourceFactory.createResource("https://twitter.com/" + user.getScreenName());
-
-		Property name = this.model.createProperty(Config.FOAF_NS + "name");
-		Property screenName = this.model.getOntProperty(Config.NS + "screenName");
-		Property id = this.model.getOntProperty(Config.NS + "id");
-		Property locationName = this.model.getOntProperty(Config.NS + "locationName");
-		Property depiction = this.model.createProperty(Config.FOAF_NS + "depiction");
-		Property description = this.model.getOntProperty(Config.NS + "description");
+		Resource twitterUserType = model.createResource(Config.NS + "TwitterUser");
 		
 		List<Statement> statements = new ArrayList<Statement>();
-		
-		System.out.println(screenName);
-		
-		statements.add(this.statementsModel.createStatement(resource, name, user.getName()));
-		statements.add(this.statementsModel.createStatement(resource, screenName, user.getScreenName()));
-		statements.add(this.statementsModel.createLiteralStatement(resource, id, user.getId()));
-		statements.add(this.statementsModel.createStatement(resource, locationName, user.getLocation()));
-		statements.add(this.statementsModel.createStatement(resource, depiction, user.getProfileBackgroundImageURL()));
-		statements.add(this.statementsModel.createStatement(resource, description, user.getDescription()));
+		statements.add(this.statementsModel.createStatement(resource, RDF.type, twitterUserType));
+	
+		statements.add(this.statementsModel.createStatement(resource, this.foaf_name, user.getName()));
+		statements.add(this.statementsModel.createStatement(resource, this.screenName, user.getScreenName()));
+		statements.add(this.statementsModel.createLiteralStatement(resource, this.id, user.getId()));
+		statements.add(this.statementsModel.createStatement(resource, this.locationName, user.getLocation()));
+		statements.add(this.statementsModel.createStatement(resource, this.depiction, user.getProfileBackgroundImageURL()));
+		statements.add(this.statementsModel.createStatement(resource, this.description, user.getDescription()));
 		
 		this.addStatementsToModel(statements);
 	}
 	
 	public void addVenue(CompleteVenue venue){
 		Resource venueResource = ResourceFactory.createResource(venue.getUrl());
-		
-		Property name = this.model.getOntProperty(Config.NS + "name");
-		Property hasPhoto = this.model.getOntProperty(Config.NS + "hasPhoto");
-		Property category = this.model.getOntProperty(Config.NS + "category");
-		Property location = this.model.getOntProperty(Config.NS + "location");
-		Property latitude  = this.model.createProperty(Config.GEO_NS + "lat");
-		Property longitude = this.model.createProperty(Config.GEO_NS + "long");
-		Property hasBeenVisitedBy =this.model.getOntProperty(Config.NS + "hasBeenVisitedBy");
+		Resource venueType = model.createResource(Config.NS + "FoursquareVenue");
 		
 		List<Statement> statements = new ArrayList<Statement>();
+		statements.add(this.statementsModel.createStatement(venueResource, RDF.type, venueType));
 		
-		statements.add(this.statementsModel.createStatement(venueResource, name, venue.getName()));
+		statements.add(this.statementsModel.createStatement(venueResource, this.name, venue.getName()));
 		
 		
 		for(String photoURL:this.venuePhotosURL(venue)) {
-			statements.add(this.statementsModel.createStatement(venueResource, hasPhoto, photoURL));
+			statements.add(this.statementsModel.createStatement(venueResource, this.hasPhoto, photoURL));
 		}
 		
 		for(String categoryName:this.venueCategories(venue)) {
-			statements.add(this.statementsModel.createStatement(venueResource, category, categoryName));
+			statements.add(this.statementsModel.createStatement(venueResource, this.category, categoryName));
 		}
 		
 		Resource locationResource = ResourceFactory.createResource(Config.GEO_NS + "Point");
 		locationResource.addLiteral(latitude, venue.getLocation().getLat());
 		locationResource.addLiteral(longitude, venue.getLocation().getLng());
-		statements.add(this.statementsModel.createStatement(venueResource, location, locationResource));
+		statements.add(this.statementsModel.createStatement(venueResource, this.location, locationResource));
 
 		this.addStatementsToModel(statements);
 	}
@@ -98,11 +86,7 @@ public class RDFBuilder extends RDFBase {
 		this.addUser(tweet.getUser());
 		
 		Resource tweetResource = ResourceFactory.createResource("https://twitter.com/" + tweet.getUser().getScreenName() + "/status/" + tweet.getId());
-		
-		Property user = this.model.getOntProperty(Config.NS + "user");
-		Property text = this.model.getOntProperty(Config.NS + "text");
-		Property createdAt = this.model.getOntProperty(Config.NS + "createdAt");
-		Property retweetedBy = this.model.getOntProperty(Config.NS + "retweetedBy");
+		Resource tweetType = model.createResource(Config.NS + "Tweet");
 		
 		Calendar myCal = new GregorianCalendar();
 		myCal.setTime(tweet.getCreatedAt());
@@ -111,6 +95,7 @@ public class RDFBuilder extends RDFBase {
 		XSDDateTime dateTimeLiteral = new XSDDateTime(myCal);
 		
 		Resource userResource = ResourceFactory.createResource("https://twitter.com/" + tweet.getUser().getScreenName());
+		statements.add(this.statementsModel.createStatement(tweetResource, RDF.type, tweetType));
 		statements.add(this.statementsModel.createStatement(tweetResource, user, userResource));
 		statements.add(this.statementsModel.createStatement(tweetResource, text, tweet.getText()));
 		statements.add(this.statementsModel.createLiteralStatement(tweetResource, createdAt, dateTimeLiteral));
