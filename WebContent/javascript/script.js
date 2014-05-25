@@ -60,7 +60,7 @@ $(document).ready(function() {
 					if(venues.visitedBy.length !=0){
 						$.each(venues.visitedBy, function(key, v){
 							console.log(v);
-							div += displayUser(v);
+							div += displayUserRDFa(v);
 						});
 					} else {
 						div += "<div class='user'>The venue was not visited by any users.</div>";
@@ -710,6 +710,18 @@ function displayUsersStream(users) {
 }
 
 function displayUser(user) {
+	var entry = "";
+	entry += "<div class='user'>";
+	entry += "<img src='"+ user.profilePicURL +"' />";
+	entry += "<a href='UsersServlet?user_id="+ user.id +"' class='title'>" + user.name + "</a>";
+	entry += "<span class='screen_name'> @" + user.username + "</span>";
+	entry += "<h3>" + user.description + "</h3>";
+	entry += "<h3>" + user.location + "</h3>";
+	entry += "</div>";
+	return entry;
+}
+
+function displayUserRDFa(user) {
 	var entry = "";
 	entry += "<div class='user'>";
 	entry += "<img src='"+ user.profilePicURL +"' />";
