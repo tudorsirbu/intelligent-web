@@ -40,9 +40,7 @@
 		        <label for="region_long">Longitude:</label>
 		        <input data-name="Longitude" name="region_long" type="text" id="region_long" class="geo"  placeholder="e.g. -1.4832" />
 		    </div>  
-		    <div id="mapDiscussionsTracker"></div>
-		 	<div><button onclick="displayMapDiscussionsTracker()">Show Map</button></div>
-		 	<div id="hideMapDiscussionsTracker"  style="display:none"><button  onclick="hideMapDiscussionsTracker()">Hide Map</button></div>
+		   
 		    <div>
 		    	<label for="radius">Radius:</label>
 		        <input data-name="Radius" name="radius" type="text" id="radius" class="geo" placeholder="e.g. 3" />
@@ -51,6 +49,10 @@
 		        <button name="submit" type="submit">Search for results!</button>
 		    </div>
 		</form> 
+		 <div><button onclick="displayMapDiscussionsTracker()">Show Map</button></div>
+		 	<div id="hideMapDiscussionsTracker"  style="display:none"><button  onclick="hideMapDiscussionsTracker()">Hide Map</button></div>
+		    <div id="mapDiscussionsTracker"></div>
+		 	
 		 	
 	</div>
 	
@@ -102,9 +104,8 @@
 				<label for="location_long">Longitude:</label> 
 				<input name="location_long" type="text" id="location_long" class="geo" placeholder="e.g. -1.4832" />
 			</div>
-			<div id="mapGetUsersByVenue" ></div>
-	        <div><button onclick="displayMapGetUsersByVenue()">Show Map</button></div>
-	        <div id="hideMapGetUsersByVenue" style="display:none"><button onclick="hideMapGetUsersByVenue()">Hide Map</button></div>
+			
+	        
 			<div>
 				<label for="venue_days_since"> In the last days: </label> 
 				<input name="venue_days_since" type="number" id="venue_days_since" class="nmb" placeholder="e.g. 4" />
@@ -113,6 +114,9 @@
 	        	<button name="submit" type="submit">Search for results!</button>
 	    	</div>	
 	    </form>
+	    <div><button onclick="displayMapGetUsersByVenue()">Show Map</button></div>
+	        <div id="hideMapGetUsersByVenue" style="display:none"><button onclick="hideMapGetUsersByVenue()">Hide Map</button></div>
+			<div id="mapGetUsersByVenue" ></div>
 	</div>
 	<div id="tabs-5">
 		<form action="SearchVenue" method="post" id="searchVenue">
