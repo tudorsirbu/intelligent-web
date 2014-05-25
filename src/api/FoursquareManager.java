@@ -35,7 +35,7 @@ public class FoursquareManager {
 		Config config = new Config();
 
 		FoursquareApi fsAPI = new FoursquareApi(config.CLIENT_ID, config.CLIENT_SECRET, config.REDIRECT_URL);
-		fsAPI.setoAuthToken(config.ACCESS_TOKEN);
+		fsAPI.setoAuthToken(config.FOURSQR_ACCESS_TOKEN);
 
 		return fsAPI;
 	}
@@ -198,6 +198,7 @@ public class FoursquareManager {
 
 		try {
 			Result<VenuesSearchResult> result = foursquare.venuesSearch(searchParams);
+			System.out.println("MATAAA!" + result.getMeta().getCode());
 			if (result.getMeta().getCode() == 200) {
 				results = result.getResult().getVenues();
 			}

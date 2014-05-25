@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:sweb="http://www.smartweb.com/data/#"
@@ -1216,3 +1217,12 @@ Amazing Writer
     <sweb:user rdf:resource="https://twitter.com/bech_normand"/>
   </rdf:Description>
 </rdf:RDF>
+=======
+<?xml version="1.0" encoding="MacRoman"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:domain="http://www.smartweb.com/data/#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/#"
+    xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" > 
+</rdf:RDF>
+>>>>>>> f567ed049fbe775bb47f9e813ca73356532274f1

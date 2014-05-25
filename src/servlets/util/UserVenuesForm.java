@@ -8,19 +8,17 @@ public class UserVenuesForm {
 	/* Form fields */
 	
 	// the id of the user
-	private long screenName;
+	private String userId;
 	
 	// the days 
 	private int days;
-
 	
-
-	public long getScreenName() {
-		return screenName;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setScreenName(long screenName) {
-		this.screenName = screenName;
+	public void setUserId(String user_id) {
+		this.userId = user_id;
 	}
 
 	public int getDays() {
@@ -33,7 +31,7 @@ public class UserVenuesForm {
 
 	@Override
 	public String toString() {
-		return "UserVenuesForm [screenName=" + screenName + ", days=" + days + "]";
+		return "UserVenuesForm [screenName=" + userId + ", days=" + days + "]";
 	}
 	
 
