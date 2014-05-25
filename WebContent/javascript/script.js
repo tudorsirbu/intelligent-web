@@ -47,14 +47,22 @@ $(document).ready(function() {
 		obj.venue_name = $("#visited_venue").val();
 
 		var data = JSON.stringify(obj);
-		
+
 		$.ajax({
 			type: "post",
 			dataType: "json",
-			url: "VisitedVenueServlet",
+			url: "UserVenueServlet",
 			data: data,
 			success: function(venues) {
-				console.log(venues);
+				var div = "";
+				$.each(venues.visitedBy, function(key, v){
+					console.log(v);
+					div += displayUser(v);
+				});
+				$("#results").empty();
+				$("#results").append(div);
+				$("#results").show(0);
+				
 			}
 		});
 		event.preventDefault();
@@ -329,7 +337,6 @@ function displayTweets(data) {
 		div += "<div style='clear:both;'></div>";
 		div += "</div>";
 		
-		console.log('Here!');
 		
 		$.each(tweet.extendedUrls, function( index, url ) {
 			  if(url.indexOf('instagram.com/p') != -1) {
