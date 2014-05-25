@@ -169,22 +169,35 @@ public class UserTrackerServlet extends HttpServlet {
 		String[] screenNamesList = screenNames.split(",");
 		long[] ids = new long[screenNamesList.length];
 		for(int i=0; i<screenNamesList.length; i++){
-			TwitterManager twitterManager = TwitterManager.getInstance();
-			// create a connection to twitter
-			Twitter twitterConnection = null;
-			try {
-				twitterConnection = twitterManager.init();
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			// try to convert a screen name into an id
+			boolean isScreenName = false;
+			long id = 0;
+			try{
+				id = Long.valueOf(screenNamesList[i]);
+			} catch (NumberFormatException e) {
+				isScreenName=true;
 			}
 			
-			// get the user's id
-			try {
-				ids[i] =twitterConnection.getUserTimeline(screenNamesList[i]).get(0).getUser().getId();
-			} catch (TwitterException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if(isScreenName){
+				TwitterManager twitterManager = TwitterManager.getInstance();
+				// create a connection to twitter
+				Twitter twitterConnection = null;
+				try {
+					twitterConnection = twitterManager.init();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				// get the user's id
+				try {
+					ids[i] =twitterConnection.getUserTimeline(screenNamesList[i]).get(0).getUser().getId();
+				} catch (TwitterException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else {
+				ids[i] = id;
 			}
 		}
 		

@@ -48,31 +48,44 @@ public class UsersServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();	
 
 		String userId = request.getParameter("user_id");
-	
-		// convert the user's screen name to id
-		TwitterManager twitterManager = TwitterManager.getInstance();
-		// create a connection to twitter
-		Twitter twitterConnection = null;
-		try {
-			twitterConnection = twitterManager.init();
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		long id = 0;
+		boolean isScreenName = false;
+		try{
+			id = Long.valueOf(userId);
+		} catch (NumberFormatException e){
+			isScreenName = true;
 		}
 		
-		// get the user's id
-		long userID = 0;
-		try {
-			userID =twitterConnection.getUserTimeline(userId).get(0).getUser().getId();
+		if(isScreenName){
+		
+			// convert the user's screen name to id
+			TwitterManager twitterManager = TwitterManager.getInstance();
+			// create a connection to twitter
+			Twitter twitterConnection = null;
+			try {
+				twitterConnection = twitterManager.init();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			
-		} catch (TwitterException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// get the user's id
+			long userID = 0;
+			try {
+				userID =twitterConnection.getUserTimeline(userId).get(0).getUser().getId();
+				RDFService rdf = new RDFService();
+				rdf.getUser(userID);
+			} catch (TwitterException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else { 
+			RDFService rdf = new RDFService();
+			rdf.getUser(id);
 		}
 		
-		RDFService rdf = new RDFService();
-		rdf.getUser(userID);
 		User user = null;
+
 		String content = "";
 
 		if(user != null){	
