@@ -76,7 +76,7 @@ public class UserTrackerServlet extends HttpServlet {
 		UserTrackerForm form = gson.fromJson(sb.toString(), UserTrackerForm.class);
 
 		// convert the screen name into ids
-		long[] ids = this.toUserIdFromScreenName(form.getScreenNames());
+		long[] ids = this.toUserIdFromScreenName(form.getUserIds());
 		
 		/* Get tweets according to the query parameters */
 		DiscussionsTracker d = new DiscussionsTracker();
