@@ -69,6 +69,7 @@ $(document).ready(function() {
 		getTrackingFormErrors();
 
 		if (isFormErrorFree($(this)) == true) {
+			hideMapDiscussionsTracker();
 			var obj = {};
 			obj.keywords = $("#keywords").val();
 			obj.regionLat = $("#region_lat").val();
@@ -101,6 +102,7 @@ $(document).ready(function() {
 		getUserVenuesFormErrors();	
 
 		if (isFormErrorFree($(this)) == true) {
+			
 			$("#results").hide(0);
 			$("#results").empty();
 			var obj = {};
@@ -234,6 +236,7 @@ $(document).ready(function() {
 		getByVenueFormErrors();
 
 		if (isFormErrorFree($(this)) == true) {
+			hideMapGetUsersByVenue();
 
 			$("#results").empty();
 			
@@ -375,7 +378,7 @@ var map;
 function initMapEmpty(){
 	var myLatlng = new google.maps.LatLng(53.388960,-1.469930);
 	  var mapOptions = {
-	    zoom: 4,
+	    zoom: 3,
 	    center: myLatlng
 	  };
 	  
@@ -402,7 +405,7 @@ function initializeMapDiscussionsTracker() {
     // create the map
 	var myLatlng = new google.maps.LatLng(53.388960,-1.469930);
 	  var mapOptions = {
-	    zoom: 4,
+	    zoom: 3,
 	    center: myLatlng,
 	    mapTypeId: google.maps.MapTypeId.ROADMAP
 	  };
@@ -447,7 +450,7 @@ function initializeMapGetUsersByVenue(){
 	// create the map
 	var myLatlng = new google.maps.LatLng(53.388960,-1.469930);
 	  var mapOptions = {
-	    zoom: 4,
+	    zoom: 3,
 	    center: myLatlng,
 	    mapTypeId: google.maps.MapTypeId.ROADMAP
 	  };
@@ -472,7 +475,6 @@ function toggleBounceMapGetUsersByVenue() {
 
 	  if (markerMapGetUsersByVenue.getAnimation() != null) {
 	    markerMapGetUsersByVenue.setAnimation(null);
-	  } else {
 	    markerMapGetUsersByVenue.setAnimation(google.maps.Animation.BOUNCE);
 	  }
 	}
