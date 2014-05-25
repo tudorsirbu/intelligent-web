@@ -23,6 +23,8 @@
 		<li><a href="#tabs-3">Venues for user</a></li>
 		<li><a href="#tabs-4">Get users by venue</a></li>
 		<li><a href="#tabs-5">Find nearby venues</a></li>
+		<li><a href="#tabs-6">Find a user</a></li>
+		<li><a href="#tabs-7">Find a venue</a></li>
 	</ul>
 	<div id="tabs-1">
 		<form action="TrackingServlet" method="get" id="trackingForm">
@@ -140,6 +142,28 @@
 			</div>
 			<div class="button">
 				<button name="submit" type="submit">Find nearby venues</button>
+			</div>
+		</form>
+	</div>
+	<div id="tabs-6">
+		<form action="UsersServlet" method="get" id="searchUser">
+			<div>
+				<label for="screen_name">User screen name or user id:</label> <input type="text"
+					id="screen_name" class="nms" value="" name="user_id" placeholder="e.g. studor" />
+			</div>
+			<div class="button">
+				<button name="submit" type="submit">Find the user</button>
+			</div>
+		</form>
+	</div>
+	<div id="tabs-7">
+		<form action="SearchVenue" method="post" id="searchVenue">
+			<div>
+				<label for="visited_venue">User screen name or user id:</label> <input type="text"
+					id="visited_venue" class="nms" value="" name="visited_venue" placeholder="e.g. The Arts Tower" />
+			</div>
+			<div class="button">
+				<button name="submit" type="submit">Find users who visited this location</button>
 			</div>
 		</form>
 	</div>
