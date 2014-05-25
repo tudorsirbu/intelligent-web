@@ -30,7 +30,15 @@ import api.TwitterManager;
 import com.google.gson.Gson;
 
 /**
- * Servlet implementation class UserTrackerServlet
+ * Servlet implementation class that deals with finding the most used keywords by a list of users.
+ * 
+ * The class works with Foursquare Manager.
+ * 
+ * 
+ * @author Tudor-Daniel Sirbu
+ * @author Claudiu Tarta
+ * @author Florin-Cristian Gavrila
+ * 
  */
 @WebServlet("/UserTrackerServlet")
 public class UserTrackerServlet extends HttpServlet {

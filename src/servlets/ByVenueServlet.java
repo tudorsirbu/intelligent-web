@@ -18,7 +18,16 @@ import api.TwitterManager;
 import com.google.gson.Gson;
 
 /**
- * Servlet implementation class VenueServlet
+ * Servlet implementation class that deals with finding users that have checked in, in a location by name or coordinates.
+ * The users are stored in the triple store.
+ * 
+ * The class works with Twitter Manager and Foursquare Manager.
+ * 
+ * 
+ * @author Tudor-Daniel Sirbu
+ * @author Claudiu Tarta
+ * @author Florin-Cristian Gavrila
+ * 
  */
 public class ByVenueServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

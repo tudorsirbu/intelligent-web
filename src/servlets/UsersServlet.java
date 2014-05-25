@@ -27,7 +27,15 @@ import api.TwitterManager;
 import com.google.gson.Gson;
 
 /**
- * Servlet implementation class UsersServlet
+ * Servlet implementation class that deals with showing information about a specific user.
+ * 
+ * The class works with Twitter Manager.
+ * 
+ * 
+ * @author Tudor-Daniel Sirbu
+ * @author Claudiu Tarta
+ * @author Florin-Cristian Gavrila
+ * 
  */
 public class UsersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

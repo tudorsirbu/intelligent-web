@@ -21,7 +21,16 @@ import api.TwitterManager;
 import com.google.gson.Gson;
 
 /**
- * Servlet implementation class RetweetsServlet
+ * Servlet implementation class that deals with getting the retweets of a tweet and the users that retweeted the tweet.
+ * The users are stored in the triple store.
+ * 
+ * The class works with Twitter Manager and Foursquare Manager.
+ * 
+ * 
+ * @author Tudor-Daniel Sirbu
+ * @author Claudiu Tarta
+ * @author Florin-Cristian Gavrila
+ * 
  */
 public class RetweetsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

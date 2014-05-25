@@ -29,7 +29,15 @@ import api.TwitterManager;
 import servlets.util.*;
 
 /**
- * Servlet implementation class TrackingServlet
+ * Servlet implementation class that deals with tracking what keywords are being used in a specific location.
+ * 
+ * The class works with Twitter Manager.
+ * 
+ * 
+ * @author Tudor-Daniel Sirbu
+ * @author Claudiu Tarta
+ * @author Florin-Cristian Gavrila
+ * 
  */
 public class TrackingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
