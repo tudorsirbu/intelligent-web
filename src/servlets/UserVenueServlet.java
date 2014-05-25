@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import model.Venue;
+import servlets.util.TrackingForm;
+import servlets.util.Util;
 import util.RDFService;
 
 /**
@@ -38,17 +41,24 @@ public class UserVenueServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Gson gson = new Gson();
+		
+		/* Build the string containing the JSON object so that it can be parsed by gson */
+		StringBuilder sb = Util.jsonRequestToString(request);
+		JsonObject jSon = gson.fromJson(sb.toString(), JsonObject.class);
+		
 		// get the name of the venue
-		String venueName = request.getParameter("venue_name");
+		String venueName = jSon.get("venue_name").getAsString();
 		
 		// get the venue with that name
 		RDFService rdf = new RDFService();
 		Venue venue = rdf.getVenue(venueName);
 		
 		// conver the venue in json 
-		String venueAsJson = new Gson().toJson(venue);
+		String venueAsJson = gson.toJson(venue);
 		
 		// display the venue as json
+		System.out.println(venueAsJson);
 		response.getWriter().write(venueAsJson);
 	}
 
