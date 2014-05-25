@@ -47,8 +47,8 @@ public class RDFBuilder {
 		
 		/* Reading and parsing the ontology file */
 		try { 
-			this.model.read(new FileInputStream(Config.ONTOLOGY_PATH), "");
-			this.statementsModel.read(new FileInputStream(Config.TRIPLE_STORE_PATH), "");
+			this.model.read(new FileInputStream(Config.ONTOLOGY_PATH), Config.NS);
+			this.statementsModel.read(new FileInputStream(Config.TRIPLE_STORE_PATH), Config.NS);
 		} catch (Exception e) { 
 			e.printStackTrace();
 		}
@@ -80,7 +80,7 @@ public class RDFBuilder {
 	}
 	
 	public void addUser(User user) {
-		Resource resource = ResourceFactory.createResource(Config.NS + "https://twitter.com/" + user.getScreenName());
+		Resource resource = ResourceFactory.createResource("https://twitter.com/" + user.getScreenName());
 
 		Property name = this.model.createProperty(Config.FOAF_NS + "name");
 		Property screenName = this.model.getOntProperty(Config.NS + "screenName");
