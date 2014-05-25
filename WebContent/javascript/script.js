@@ -55,10 +55,20 @@ $(document).ready(function() {
 			data: data,
 			success: function(venues) {
 				var div = "";
-				$.each(venues.visitedBy, function(key, v){
-					console.log(v);
-					div += displayUser(v);
-				});
+				
+				if(venues != null){
+					if(venues.visitedBy.length !=0){
+						$.each(venues.visitedBy, function(key, v){
+							console.log(v);
+							div += displayUser(v);
+						});
+					} else {
+						div += "<div class='user'>The venue was not visited by any users.</div>";
+					}
+				} else {
+					div += "<div class='user'>The venue could not be found.</div>";
+				}
+				
 				$("#results").empty();
 				$("#results").append(div);
 				$("#results").show(0);
