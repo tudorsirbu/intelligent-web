@@ -62,6 +62,7 @@ $(document).ready(function() {
 		});
 		event.preventDefault();
 	});
+	
 
 
 	$("#trackingForm").submit(function( event ) {
