@@ -60,42 +60,57 @@ public class UserVenuesServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		Gson gson = new Gson();
 		
-		
-		
 		/* Build the string containing the JSON object so that it can be parsed by gson */
 		StringBuilder sb = Util.jsonRequestToString(request);
 		
+		UserVenuesForm uvf = gson.fromJson(sb.toString(), UserVenuesForm.class);
+		
+		// try to convert user ids into screen names
+		boolean isScreenName = false;
+		long id = 0;
+		try{
+			id = Long.valueOf(uvf.getUserId());
+		} catch (NumberFormatException e){
+			isScreenName = true;
+		}
+		
 		/* Parse the JSON object it got from the request */
 		try {
-			UserVenuesForm uvf = gson.fromJson(sb.toString(), UserVenuesForm.class);
-			
-			System.out.println(uvf);
+			long[] idList = new long[1];
+			Long userID = (long) 0;
 			
 			/* Get tweets according to the query parameters */
 			TwitterManager tm = TwitterManager.getInstance();
 			
-			long[] idList = new long[1];
-			Long userID = (long) 0;
-		
-			// convert the user's screen name to id
-			TwitterManager twitterManager = TwitterManager.getInstance();
-			// create a connection to twitter
-			Twitter twitterConnection = null;
-			try {
-				twitterConnection = twitterManager.init();
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			
-			// get the user's id
-			try {
-				userID =twitterConnection.getUserTimeline(uvf.getScreenName()).get(0).getUser().getId();
-				idList[0] = userID;
+			// if the parameter is a screen name
+			if(isScreenName){
 				
-			} catch (TwitterException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				idList = new long[1];
+				userID = (long) 0;
+			
+				// convert the user's screen name to id
+				TwitterManager twitterManager = TwitterManager.getInstance();
+				// create a connection to twitter
+				Twitter twitterConnection = null;
+				try {
+					twitterConnection = twitterManager.init();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				// get the user's id
+				try {
+					userID =twitterConnection.getUserTimeline(uvf.getUserId()).get(0).getUser().getId();
+					idList[0] = userID;
+					
+				} catch (TwitterException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else {
+				idList = new long[1];
+				userID = id;
 			}
 			
 			int days = uvf.getDays();

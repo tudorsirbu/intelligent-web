@@ -28,6 +28,7 @@ import twitter4j.auth.AccessToken;
 import twitter4j.conf.ConfigurationBuilder;
 import util.ApiUtil;
 import util.Config;
+import util.RDFBuilder;
 import api.listeners.TwitterStatusListener;
 import api.listeners.TwitterUserListener;
 import fi.foyt.foursquare.api.entities.CompactVenue;
@@ -525,11 +526,8 @@ public class TwitterManager {
 			return venues;
 		}
 		if(statuses!=null){
-			DatabaseConnection connection = new DatabaseConnection();
-			UserService userService = new UserService(connection.getConnection());
-			userService.insertUser(statuses.get(0).getUser());
-			connection.disconnect();
-
+			RDFBuilder rdf = new RDFBuilder();
+			rdf.addUser(statuses.get(0).getUser());
 		}
 
 		Calendar c = Calendar.getInstance();
