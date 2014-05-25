@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.DatabaseConnection;
+import model.User;
 import model.UserService;
 import servlets.util.MiniStatus;
 import servlets.util.Template;
@@ -71,7 +72,7 @@ public class UsersServlet extends HttpServlet {
 		
 		RDFService rdf = new RDFService();
 		rdf.getUser(userID);
-
+		User user = null;
 		String content = "";
 
 		if(user != null){	

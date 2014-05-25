@@ -9,14 +9,15 @@ import com.hp.hpl.jena.query.ResultSetFormatter;
 
 public class RDFService extends RDFBase {
 	
-	public void getUsers(long[] ids) {
+	public void getUser(long id) {
+		System.out.println(id);
 		String queryString =        
 			      "PREFIX sweb: <" + Config.NS + "> " +
 			      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
 			      "select ?id " +
 			      "where { " +
 			      	"?user a sweb:User. " +
-			      	"?user sweb:id ?id " +
+			      	"?user sweb:id " + id +
 			      "} \n ";
 	    Query query = QueryFactory.create(queryString);
 	    
@@ -25,6 +26,11 @@ public class RDFService extends RDFBase {
 	    
 	    // Output query results    
 	    ResultSetFormatter.out(System.out, results, query);
+	}
+	
+	public void getUsers(long[] ids) {
+		for(long id:ids)
+			this.getUser(id);
 	}
 	
 }
