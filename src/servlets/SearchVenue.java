@@ -24,7 +24,16 @@ import fi.foyt.foursquare.api.entities.CompactVenue;
 import fi.foyt.foursquare.api.entities.CompleteVenue;
 
 /**
- * Servlet implementation class SearchVenue
+ * Servlet implementation class that deals with finding venues that match the suggested name and return a list with venues that
+ * match the name.
+ * 
+ * The class works with Foursquare Manager.
+ * 
+ * 
+ * @author Tudor-Daniel Sirbu
+ * @author Claudiu Tarta
+ * @author Florin-Cristian Gavrila
+ * 
  */
 public class SearchVenue extends HttpServlet {
 	private static final long serialVersionUID = 1L;

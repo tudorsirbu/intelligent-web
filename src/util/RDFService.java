@@ -1,5 +1,6 @@
 package util;
 
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -8,7 +9,10 @@ import java.util.List;
 
 import model.Tweet;
 import model.User;
-import servlets.util.MiniStatus;
+import model.Venue;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import api.TwitterManager;
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
@@ -16,7 +20,6 @@ import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
 
 public class RDFService extends RDFBase {
@@ -116,6 +119,37 @@ public class RDFService extends RDFBase {
 	    }
 	    
 	    return tweets;
+	}
+	
+	// simulator
+	/**
+	 * The method queries the RDF for a a venue using the provided venue name.
+	 * @param name The name of the venue to be looked up.
+	 * @return Venue the venue with that name or null
+	 */
+	public Venue getVenue(String name){
+		ArrayList<User> users  = new ArrayList<User>();
+		
+		TwitterManager twitterManager = TwitterManager.getInstance();
+		// create a connection to twitter
+		Twitter twitterConnection = null;
+		try {
+			twitterConnection = twitterManager.init();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		// get the user's id
+		try {
+			users.add(new User(twitterConnection.getUserTimeline("studor").get(0).getUser()));
+			users.add(new User(twitterConnection.getUserTimeline("cristi_gavrila").get(0).getUser()));
+		} catch (TwitterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return new Venue("1", name, users, "In cur cu satelitul");
 	}
 	
 }

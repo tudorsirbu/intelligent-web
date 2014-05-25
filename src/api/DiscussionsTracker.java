@@ -20,8 +20,9 @@ import util.Remover;
  * DiscussionsTracker is used to query Twitter for the statuses
  * of a specific user. 
  * 
- * @author tudorsirbu
- *
+ * @author Tudor-Daniel Sirbu
+ * @author Claudiu Tarta
+ * @author Florin-Cristian Gavrila
  */
 public class DiscussionsTracker {
 	Twitter twitterConnection = null;

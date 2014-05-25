@@ -3,18 +3,45 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
+import twitter4j.Status;
 import util.Remover;
 import util.StoplistBuilder;
+
+/**
+ * The class stores details about a tweet and creates an inverted index
+ * on the stored tweet if requested. 
+ * @author Tudor Sirbu
+ * @author Cristi Gavrila
+ * @author Claudiu Tarta
+ *
+ */
 
 public class Tweet {
 	private String text;
 	private Date date; 
 	private String userId;
 	
+	/**
+	 * Constructor that creates a Tweet using a user ID, the text of the tweet
+	 * and the date when it was posted
+	 * @param userId The id of the user who posted the tweet
+	 * @param tweet the text of the tweet
+	 * @param date the date when the tweet was posted
+	 */
 	public Tweet(String userId, String tweet, Date date){
 		this.userId = userId;
 		this.text = tweet;
 		this.date = date;
+	}
+	
+	/**
+	 * Constructor that creates a Tweet from a Twitter4j.Status 
+	 * @param status a status returned by Twitter4j
+	 */
+	public Tweet(Status status){
+		this.userId = String.valueOf(status.getUser().getId());
+		this.text = status.getText();
+		this.date = status.getCreatedAt();
 	}
 	
 	public String getTweet(){ return this.text;}

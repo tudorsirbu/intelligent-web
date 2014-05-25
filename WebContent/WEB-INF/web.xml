@@ -89,4 +89,14 @@
     <servlet-name>SearchNearby</servlet-name>
     <url-pattern>/SearchNearby</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserVenueServlet</display-name>
+    <servlet-name>UserVenueServlet</servlet-name>
+    <servlet-class>servlets.UserVenueServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserVenueServlet</servlet-name>
+    <url-pattern>/UserVenueServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

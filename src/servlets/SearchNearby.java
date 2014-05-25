@@ -20,7 +20,16 @@ import fi.foyt.foursquare.api.entities.CompactVenue;
 import fi.foyt.foursquare.api.entities.CompleteVenue;
 
 /**
- * Servlet implementation class SearchNearby
+ * Servlet implementation class that deals with finding venues that are nearby the inputed venue, in the selected city from the list
+ * of returned possible matches.
+ * 
+ * The class works with Foursquare Manager.
+ * 
+ * 
+ * @author Tudor-Daniel Sirbu
+ * @author Claudiu Tarta
+ * @author Florin-Cristian Gavrila
+ * 
  */
 public class SearchNearby extends HttpServlet {
 	private static final long serialVersionUID = 1L;

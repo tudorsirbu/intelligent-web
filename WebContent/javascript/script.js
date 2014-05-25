@@ -42,6 +42,42 @@ $(document).ready(function() {
 		event.preventDefault();
 	});
 	
+	$("#searchVisitedVenue").submit(function(event){
+		var obj = {};
+		obj.venue_name = $("#visited_venue").val();
+
+		var data = JSON.stringify(obj);
+
+		$.ajax({
+			type: "post",
+			dataType: "json",
+			url: "UserVenueServlet",
+			data: data,
+			success: function(venues) {
+				var div = "";
+				
+				if(venues != null){
+					if(venues.visitedBy.length !=0){
+						$.each(venues.visitedBy, function(key, v){
+							console.log(v);
+							div += displayUser(v);
+						});
+					} else {
+						div += "<div class='user'>The venue was not visited by any users.</div>";
+					}
+				} else {
+					div += "<div class='user'>The venue could not be found.</div>";
+				}
+				
+				$("#results").empty();
+				$("#results").append(div);
+				$("#results").show(0);
+				
+			}
+		});
+		event.preventDefault();
+	});
+	
 	$("#searchNearby").submit(function(event){
 		var obj = {};
 		obj.venues_list = $("#venues_list").val();
@@ -311,7 +347,6 @@ function displayTweets(data) {
 		div += "<div style='clear:both;'></div>";
 		div += "</div>";
 		
-		console.log('Here!');
 		
 		$.each(tweet.extendedUrls, function( index, url ) {
 			  if(url.indexOf('instagram.com/p') != -1) {
