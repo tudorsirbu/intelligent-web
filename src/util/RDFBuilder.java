@@ -29,55 +29,7 @@ import fi.foyt.foursquare.api.entities.CompleteVenue;
 import fi.foyt.foursquare.api.entities.Photo;
 import fi.foyt.foursquare.api.entities.PhotoGroup;
 
-public class RDFBuilder {
-	
-	public OntModel model;
-	public Model statementsModel;
-	
-	public RDFBuilder() {
-		org.apache.log4j.BasicConfigurator.configure();
-		this.model = ModelFactory.createOntologyModel(OntModelSpec.RDFS_MEM); 
-		this.statementsModel = ModelFactory.createDefaultModel();
-		
-		this.model.addSubModel(this.statementsModel);
-		
-		/* Outputs the relative path to the files. No longer useful */
-		/*URL resource = getClass().getResource("/");
-		  System.out.println(resource.getPath()); */
-		
-		/* Reading and parsing the ontology file */
-		try { 
-			this.model.read(new FileInputStream(Config.ONTOLOGY_PATH), Config.NS);
-			this.statementsModel.read(new FileInputStream(Config.TRIPLE_STORE_PATH), Config.NS);
-		} catch (Exception e) { 
-			e.printStackTrace();
-		}
-		
-		/* Setting the namespace so that the statments will look like <domain:hasId>131321</domain:hasId>
-		 * Useful info on this here: http://nuin.blogspot.co.uk/2005/04/jena-tip-namespaces-and-j0-problem.html */
-		this.model.setNsPrefix("domain", Config.NS);
-		this.model.setNsPrefix("foaf", Config.FOAF_NS);
-		this.model.setNsPrefix("geo", Config.GEO_NS);
-		
-		this.statementsModel.setNsPrefix("domain", Config.NS);
-		this.statementsModel.setNsPrefix("foaf", Config.FOAF_NS);
-		this.statementsModel.setNsPrefix("geo", Config.GEO_NS);
-		
-		/* Lists all classes */
-		ExtendedIterator<OntClass> classIterator = model.listClasses(); 
-		while (classIterator.hasNext()) { 
-			OntClass ontClass = classIterator.next(); 
-			System.out.println(ontClass.toString()); 
-		}
-		
-		
-		Property hasName = this.model.getOntProperty(Config.NS + "name");
-		ExtendedIterator<Resource> iter = this.model.listResourcesWithProperty(hasName);
-		while (iter.hasNext()) { 
-			Resource ontClass = iter.next();
-			System.out.println(ontClass.toString()); 
-		}
-	}
+public class RDFBuilder extends RDFBase {
 	
 	public void addUser(User user) {
 		Resource resource = ResourceFactory.createResource("https://twitter.com/" + user.getScreenName());
@@ -200,7 +152,7 @@ public class RDFBuilder {
 		try {
 			out = new FileWriter(Config.TRIPLE_STORE_PATH);
 			this.statementsModel.write(out, "RDF/XML");
-			this.statementsModel.write(System.out, "RDF/XML");
+			System.out.println("RDF updated!");
 		} 
 		catch (IOException e) {
 			e.printStackTrace();
