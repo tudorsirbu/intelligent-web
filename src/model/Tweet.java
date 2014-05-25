@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
+import twitter4j.Status;
 import util.Remover;
 import util.StoplistBuilder;
 
@@ -15,6 +16,12 @@ public class Tweet {
 		this.userId = userId;
 		this.text = tweet;
 		this.date = date;
+	}
+	
+	public Tweet(Status status){
+		this.userId = String.valueOf(status.getUser().getId());
+		this.text = status.getText();
+		this.date = status.getCreatedAt();
 	}
 	
 	public String getTweet(){ return this.text;}
