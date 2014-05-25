@@ -69,13 +69,9 @@ public class TrackingServlet extends HttpServlet {
 		RDFBuilder rdfBuilder = new RDFBuilder();
 		rdfBuilder.addTweets(statuses);
 		rdfBuilder.save();
-		
-		for (MiniStatus t:miniStatuses) {
-			System.out.println(t.getText()+" "+t.getId());
-		}
-		
+				
 		/* Create the response JSON */
-		String json = gson.toJson(statuses);
+		String json = gson.toJson(miniStatuses);
 		response.getWriter().write(json.toString());
 	}
 
