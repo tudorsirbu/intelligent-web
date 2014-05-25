@@ -42,6 +42,24 @@ $(document).ready(function() {
 		event.preventDefault();
 	});
 	
+	$("#searchVisitedVenue").submit(function(event){
+		var obj = {};
+		obj.venue_name = $("#visited_venue").val();
+
+		var data = JSON.stringify(obj);
+		
+		$.ajax({
+			type: "post",
+			dataType: "json",
+			url: "VisitedVenueServlet",
+			data: data,
+			success: function(venues) {
+				console.log(venues);
+			}
+		});
+		event.preventDefault();
+	});
+	
 	$("#searchNearby").submit(function(event){
 		var obj = {};
 		obj.venues_list = $("#venues_list").val();
