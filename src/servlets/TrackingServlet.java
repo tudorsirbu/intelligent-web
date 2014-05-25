@@ -71,7 +71,7 @@ public class TrackingServlet extends HttpServlet {
 		rdfBuilder.save();
 				
 		/* Create the response JSON */
-		String json = gson.toJson(statuses);
+		String json = gson.toJson(miniStatuses);
 		response.getWriter().write(json.toString());
 	}
 

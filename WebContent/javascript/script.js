@@ -296,7 +296,6 @@ $(document).ready(function() {
 function displayTweets(data) {
 	$("#results").show(0);
 	$("#results").empty();
-	
 	$.each(data, function( key, tweet ) {
 		var div = "<div class='tweet'>";
 		div += "<img src='"+ tweet.profileImageUrl +"' />";
@@ -309,6 +308,7 @@ function displayTweets(data) {
 		div += "<div style='clear:both;'></div>";
 		div += "</div>";
 		
+		console.log('Here!');
 		
 		$.each(tweet.extendedUrls, function( index, url ) {
 			  if(url.indexOf('instagram.com/p') != -1) {

@@ -8,4 +8,5 @@ build
 build/
 src/model/Test.java
 src/api/Test.java
-src/model/DatabaseConnect.java
+src/model/DatabaseConnection.java
+triplestore.rdf
