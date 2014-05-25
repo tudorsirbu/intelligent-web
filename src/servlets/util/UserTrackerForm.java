@@ -8,7 +8,7 @@ public class UserTrackerForm {
 	/* Form fields */
 	
 	// the ids of the users
-	private String screenNames;
+	private String userIds;
 	
 	// number of most frequent keywords
 	private int keywords;
@@ -16,12 +16,12 @@ public class UserTrackerForm {
 	// number of days
 	private int daysSince;
 
-	public String getScreenNames() {
-		return screenNames;
+	public String getUserIds() {
+		return userIds;
 	}
 
-	public void setScreenNames(String screenNames) {
-		this.screenNames = screenNames;
+	public void setUserIds(String screenNames) {
+		this.userIds = screenNames;
 	}
 
 	public int getKeywords() {
