@@ -4,15 +4,18 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
-import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.User;
 
+import com.hp.hpl.jena.datatypes.xsd.XSDDateTime;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
+import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
@@ -44,8 +47,8 @@ public class RDFBuilder {
 		
 		/* Reading and parsing the ontology file */
 		try { 
-			this.model.read(new FileInputStream(Config.ONTOLOGY_PATH), "");
-			this.statementsModel.read(new FileInputStream(Config.TRIPLE_STORE_PATH), "");
+			this.model.read(new FileInputStream(Config.ONTOLOGY_PATH), Config.NS);
+			this.statementsModel.read(new FileInputStream(Config.TRIPLE_STORE_PATH), Config.NS);
 		} catch (Exception e) { 
 			e.printStackTrace();
 		}
@@ -77,7 +80,7 @@ public class RDFBuilder {
 	}
 	
 	public void addUser(User user) {
-		Resource resource = ResourceFactory.createResource(Config.NS + "https://twitter.com/" + user.getScreenName());
+		Resource resource = ResourceFactory.createResource("https://twitter.com/" + user.getScreenName());
 
 		Property name = this.model.createProperty(Config.FOAF_NS + "name");
 		Property screenName = this.model.getOntProperty(Config.NS + "screenName");
@@ -149,12 +152,16 @@ public class RDFBuilder {
 		Property createdAt = this.model.getOntProperty(Config.NS + "createdAt");
 		Property retweetedBy = this.model.getOntProperty(Config.NS + "retweetedBy");
 		
+		Calendar myCal = new GregorianCalendar();
+		myCal.setTime(tweet.getCreatedAt());
+		
 		List<Statement> statements = new ArrayList<Statement>();
+		XSDDateTime dateTimeLiteral = new XSDDateTime(myCal);
 		
 		Resource userResource = ResourceFactory.createResource("https://twitter.com/" + tweet.getUser().getScreenName());
 		statements.add(this.statementsModel.createStatement(tweetResource, user, userResource));
 		statements.add(this.statementsModel.createStatement(tweetResource, text, tweet.getText()));
-		statements.add(this.statementsModel.createLiteralStatement(tweetResource, createdAt, tweet.getCreatedAt()));
+		statements.add(this.statementsModel.createLiteralStatement(tweetResource, createdAt, dateTimeLiteral));
 		
 		this.addStatementsToModel(statements);
 	}
