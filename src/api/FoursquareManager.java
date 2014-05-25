@@ -23,6 +23,18 @@ import fi.foyt.foursquare.api.entities.Location;
 import fi.foyt.foursquare.api.entities.VenueGroup;
 import fi.foyt.foursquare.api.entities.VenuesSearchResult;
 
+/**
+ * This class consists of methods that use the Foursquare API in order to get different information that is 
+ * related to venues/locations.
+ *  
+ * Can only be instantiated as a Singleton.
+ * 
+ * 
+ * @author Tudor-Daniel Sirbu
+ * @author Claudiu Tarta
+ * @author Florin-Cristian Gavrila
+ * 
+ */
 public class FoursquareManager {
 	/**
 	 * Initialises the foursquare api connection with the necessary credentials.

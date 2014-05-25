@@ -9,6 +9,17 @@ import twitter4j.UserList;
 import twitter4j.UserStreamListener;
 import api.TwitterManager;
 
+/**
+ * This class consists of methods that use the Twitter Streaming API in order to listen for statuses 
+ * that contain a Foursquare check-in, and store the venues from the check-ins. 
+ * The class works in tight connection with TwitterManager.
+ * 
+ * 
+ * @author Tudor-Daniel Sirbu
+ * @author Claudiu Tarta
+ * @author Florin-Cristian Gavrila
+ * 
+ */
 public class TwitterUserListener implements UserStreamListener {
 
 	@Override

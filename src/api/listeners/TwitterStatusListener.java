@@ -5,7 +5,17 @@ import twitter4j.Status;
 import twitter4j.StatusDeletionNotice;
 import twitter4j.StatusListener;
 import api.TwitterManager;
-
+/**
+ * This class consists of methods that use the Twitter Streaming API in order to listen for statuses 
+ * that contain a Foursquare check-in, and store the status. 
+ * The class works in tight connection with TwitterManager.
+ * 
+ * 
+ * @author Tudor-Daniel Sirbu
+ * @author Claudiu Tarta
+ * @author Florin-Cristian Gavrila
+ * 
+ */
 public class TwitterStatusListener implements StatusListener {
 
 	@Override
