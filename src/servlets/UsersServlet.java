@@ -17,7 +17,11 @@ import servlets.util.Template;
 import servlets.util.Util;
 import twitter4j.ResponseList;
 import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import util.RDFService;
 import api.DiscussionsTracker;
+import api.TwitterManager;
 
 import com.google.gson.Gson;
 
@@ -43,9 +47,30 @@ public class UsersServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();	
 
 		String userId = request.getParameter("user_id");
+	
+		// convert the user's screen name to id
+		TwitterManager twitterManager = TwitterManager.getInstance();
+		// create a connection to twitter
+		Twitter twitterConnection = null;
+		try {
+			twitterConnection = twitterManager.init();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
-		UserService us = new UserService(new DatabaseConnection().getConnection());
-		model.User user = us.getUser(userId);
+		// get the user's id
+		long userID = 0;
+		try {
+			userID =twitterConnection.getUserTimeline(userId).get(0).getUser().getId();
+			
+		} catch (TwitterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		RDFService rdf = new RDFService();
+		rdf.getUser(userID);
 
 		String content = "";
 

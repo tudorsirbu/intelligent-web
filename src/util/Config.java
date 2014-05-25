@@ -14,7 +14,7 @@ public class Config {
 	public final String FOURSQR_ACCESS_TOKEN = "5PJGTZWVP2QR1BK3LJHVLDYPQVFURSTUA1GGN0V3ZI2NBXIT";
 	
 	/* RDF stuff */
-	public final static String NS = "file:///home/cristi/workspace/intelligent-web/#";
+	public final static String NS = "http://www.smartweb.com/data/#";
 	public final static String FOAF_NS = "http://xmlns.com/foaf/0.1/#";
 	public final static String GEO_NS = "http://www.w3.org/2003/01/geo/wgs84_pos#";
 	public final static String ONTOLOGY_PATH = "ontology.owl";
