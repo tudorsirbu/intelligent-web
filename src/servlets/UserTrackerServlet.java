@@ -7,9 +7,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -18,16 +16,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.DatabaseConnection;
-import model.InvertedIndexService;
 import model.Keyword;
 import model.Tweet;
 import model.User;
-import servlets.util.TrackingForm;
 import servlets.util.UserTrackerForm;
-import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
+import util.RDFService;
 import api.DiscussionsTracker;
 import api.TwitterManager;
 
@@ -90,8 +85,8 @@ public class UserTrackerServlet extends HttpServlet {
 		RDFService rdfService = new RDFService();
 		
 		// get the tweets for the given user names
-		ArrayList<User> users = rdfService.getUsers(ids, form.getDaysSince());
-		
+		rdfService.getUsers(ids);
+		ArrayList<User> users = null;
 		// create inverted index for the given users' tweets
 		HashMap<String,ArrayList<Keyword>> keywords = new HashMap<String,ArrayList<Keyword>>();
 		
