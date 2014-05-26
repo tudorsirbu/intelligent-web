@@ -54,6 +54,7 @@ public class Template {
 		page += this.head;
 		page += "<//head>";
 		page += "<body>";
+		page += "<a href=\"queryInterface.html\" id=\"back_to_query_interface\">Back to Query Interface</a>";
 		page += this.content;
 		page += "<//body>";
 		page += "</html>";

@@ -60,7 +60,7 @@ function displayUserRDFa(user) {
 				entry +="<img property=\"foaf:depiction\" src=\""+user.profilePicURL+"\"/>";
 				entry +="<h3 property=\"dc:description\">" +user.description+"</h3>";
 				$.each(user.visited, function(key,value){
-					entry +="<h3 property=\"dc:visited\">" +value+"</h3>";
+					entry +="<h3 property=\"dc:visited\">" +value.name+"</h3>";
 				});
 				
 		entry += "</div>";
