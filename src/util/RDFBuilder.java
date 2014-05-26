@@ -4,12 +4,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 import twitter4j.Status;
+import twitter4j.Twitter;
 import twitter4j.User;
+import api.TwitterManager;
 
 import com.hp.hpl.jena.datatypes.xsd.XSDDateTime;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -115,34 +116,68 @@ public class RDFBuilder extends RDFBase {
 	 */
 	public void addTweet(Status tweet) {
 		
-		this.addUser(tweet.getUser());
+		User tweetUser = tweet.getUser();
 		
-		Resource tweetResource = ResourceFactory.createResource("https://twitter.com/" + tweet.getUser().getScreenName() + "/status/" + tweet.getId());
-		Resource tweetType = model.createResource(Config.NS + "Tweet");
+		List<Object> tweets = new ArrayList<Object>();
+		tweets.add(tweet);
+		if(tweet.isRetweeted()) {
+			TwitterManager tm = TwitterManager.getInstance();
+			Twitter twitterConnection = null;
+			
+			try {
+				twitterConnection = tm.init();
+				tweets.addAll(twitterConnection.getRetweets(tweet.getId()));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		if(tweet.isRetweet()) {
+			tweets.add(tweet.getRetweetedStatus());
+		}
 		
-		Calendar myCal = new GregorianCalendar();
-		myCal.setTime(tweet.getCreatedAt());
+		for(Object aTweet:tweets) {
+			Status currentTweet = (Status) aTweet;
+			User currentUser = currentTweet.getUser();
+			
+			if(currentUser.getId() != tweetUser.getId())
+				this.addInContactWith(currentUser, tweetUser);
+			
+			Resource tweetResource = ResourceFactory.createResource("https://twitter.com/" + currentTweet.getUser().getScreenName() + "/status/" + currentTweet.getId());
+			Resource tweetType = model.createResource(Config.NS + "Tweet");
+			
+			Calendar myCal = new GregorianCalendar();
+			myCal.setTime(currentTweet.getCreatedAt());
+			
+			List<Statement> statements = new ArrayList<Statement>();
+			XSDDateTime dateTimeLiteral = new XSDDateTime(myCal);
+			
+			Resource userResource = ResourceFactory.createResource("https://twitter.com/" + currentTweet.getUser().getScreenName());
+			statements.add(this.statementsModel.createStatement(tweetResource, RDF.type, tweetType));
+			statements.add(this.statementsModel.createStatement(tweetResource, user, userResource));
+			statements.add(this.statementsModel.createStatement(tweetResource, text, currentTweet.getText()));
+			statements.add(this.statementsModel.createLiteralStatement(tweetResource, createdAt, dateTimeLiteral));
+			
+			this.addStatementsToModel(statements);
+		}
 		
-		List<Statement> statements = new ArrayList<Statement>();
-		XSDDateTime dateTimeLiteral = new XSDDateTime(myCal);
-		
-		Resource userResource = ResourceFactory.createResource("https://twitter.com/" + tweet.getUser().getScreenName());
-		statements.add(this.statementsModel.createStatement(tweetResource, RDF.type, tweetType));
-		statements.add(this.statementsModel.createStatement(tweetResource, user, userResource));
-		statements.add(this.statementsModel.createStatement(tweetResource, text, tweet.getText()));
-		statements.add(this.statementsModel.createLiteralStatement(tweetResource, createdAt, dateTimeLiteral));
-		
-		this.addStatementsToModel(statements);
 	}
 	
-	/**
-	 * Adds the v
-	 * 
-	 * @param user
-	 * @param venue
-	 * @param date
-	 * @return
-	 */
+	public void addInContactWith(User firstUser, User secondUser) {
+		
+		Resource firstUserResource = this.addUser(firstUser);
+		Resource secondUserResource = this.addUser(secondUser);
+		
+		List<Statement> statements = new ArrayList<Statement>();
+		
+		statements.add(this.statementsModel.createStatement(firstUserResource, this.inContactWith, secondUserResource));
+		statements.add(this.statementsModel.createStatement(secondUserResource, this.inContactWith, firstUserResource));
+
+		
+		this.addStatementsToModel(statements);
+		
+	}
+
 	public void addVisitsForUser(User user, List<CompleteVenue> venues) {
 		
 		Resource userResource = this.addUser(user);
