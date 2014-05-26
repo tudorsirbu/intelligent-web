@@ -56,11 +56,11 @@ public class VisitedByServlet extends HttpServlet {
 		entry +="<div id=\"user_results\"xmlns:sweb=\"http://www.smartweb.com/data/#\" xmlns:foaf=\"http://xmlns.com/foaf/0.1/\" xmls:xs=\"http://www.w3.org/2001/XMLSchema#\">";
 		for(User user:users) {
 			System.out.println(venueName);
-			entry += "<div class='user' about=\"https://www.twitter.com/"+ user.getUsername() +"\"" + "typeof=\"foaf:Agent\">";
-			entry +="<a href=\"UsersServlet?user_id=\"" +user.getId()+"\" class =\"title\"  property=\"foaf:name\">" + user.getName() + "</a><span class=\"screen_name\" property=\"sweb:screenName\">@"+ user.getUsername() +"</span>";
-			entry +="<h3 property=\"sweb:id\" datatype=\"xs:integer\">" + user.getId() + "</h3>";
-			entry +="<h3 property=\"sweb:locationName\">"+ user.getLocation() + "</h3>";
+			entry += "<div class=\"user\" about=\"https://www.twitter.com/"+ user.getUsername() +"\"" + "typeof=\"foaf:Agent\">";
 			entry +="<img property=\"foaf:depiction\" src=\""+user.getProfilePicURL()+"\" />";
+			entry +="<h3 class =\"title\"  property=\"foaf:name\">" + user.getName() + "</h3><span class=\"screen_name\" property=\"sweb:screenName\">@"+ user.getUsername() +"</span>";
+			entry +="<h3 property=\"sweb:id\" datatype=\"xs:integer\">" +"Id: "+ user.getId() + "</h3>";
+			entry +="<h3 property=\"sweb:locationName\">"+ user.getLocation() + "</h3>";
 			entry +="<h3 property=\"sweb:description\">" +user.getDescription()+"</h3>";
 			if (user.getVisited() != null) {
 				for(Venue venue:user.getVisited()) {
