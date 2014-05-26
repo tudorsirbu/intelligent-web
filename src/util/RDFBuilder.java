@@ -71,7 +71,19 @@ public class RDFBuilder extends RDFBase {
 		statements.add(this.statementsModel.createStatement(venueResource, RDF.type, spatialThingType));
 		
 		statements.add(this.statementsModel.createStatement(venueResource, this.name, venue.getName()));
-		
+		statements.add(this.statementsModel.createStatement(venueResource, this.venueId, venue.getId()));
+		if(venue.getDescription() != null)
+			statements.add(this.statementsModel.createStatement(venueResource, this.venueDescription, venue.getDescription()));
+		else
+			statements.add(this.statementsModel.createStatement(venueResource, this.venueDescription, "Description not available"));
+		if(venue.getLocation().getAddress() != null || venue.getLocation() != null)
+			statements.add(this.statementsModel.createStatement(venueResource, this.address, venue.getLocation().getAddress()));
+		else
+			statements.add(this.statementsModel.createStatement(venueResource, this.address, "Address not available"));
+		if(venue.getUrl() != null)
+			statements.add(this.statementsModel.createStatement(venueResource, this.URL, venue.getUrl()));
+		else
+			statements.add(this.statementsModel.createStatement(venueResource, this.URL, "URL not available"));
 		for(String photoURL:this.venuePhotosURL(venue)) {
 			statements.add(this.statementsModel.createStatement(venueResource, this.hasPhoto, photoURL));
 		}

@@ -36,12 +36,12 @@ public class RDFBase {
 	/**
 	 * List of properties for the swb:FoursquareVenue class 
 	 */
-	Property name, hasPhoto, category, location, latitude, longitude, visitedBy, venueDescription, address, categories, URL;
+	Property venueId, name, hasPhoto, category, location, latitude, longitude, visitedBy, venueDescription, address, categories, URL;
 	
 	/**
 	 * List of properties for the swb:Tweet class
 	 */
-	Property venueId, user, text, createdAt, retweetedBy;
+	Property user, text, createdAt, retweetedBy;
 	
 	public RDFBase() {
 		org.apache.log4j.BasicConfigurator.configure();

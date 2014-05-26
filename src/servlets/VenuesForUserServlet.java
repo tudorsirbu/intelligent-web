@@ -66,8 +66,8 @@ public class VenuesForUserServlet extends HttpServlet {
 		JsonElement jElement = new JsonParser().parse(sb.toString());
 		JsonObject jObject = jElement.getAsJsonObject();
 		System.out.println(jObject.get("userId").toString());
-		String userIdentifier = jObject.get("userId").toString().replace("\"", "");
-
+		String userIdentifier = jObject.get("userId").toString().replace("\"", "").replace("\\", "");
+		System.out.println(userIdentifier);
 		// try to convert a screen name into an id
 		boolean isScreenName = false;
 		long id = 0;
@@ -76,7 +76,7 @@ public class VenuesForUserServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			isScreenName=true;
 		}
-
+		System.out.println("@##$" + id);
 		if(isScreenName){
 			TwitterManager twitterManager = TwitterManager.getInstance();
 			// create a connection to twitter
@@ -90,6 +90,7 @@ public class VenuesForUserServlet extends HttpServlet {
 
 			// get the user's id
 			try {
+				System.out.println("@#@#@@#" + userIdentifier);
 				id =twitterConnection.getUserTimeline(userIdentifier).get(0).getUser().getId();
 			} catch (TwitterException e) {
 				// TODO Auto-generated catch block

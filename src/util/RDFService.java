@@ -269,8 +269,6 @@ public class RDFService extends RDFBase {
 	    QueryExecution qe = QueryExecutionFactory.create(query, this.model);
 	    ResultSet results =  qe.execSelect();
 	    
-	    ResultSetFormatter.out(results);
-	    
 	    while(results.hasNext()) {
 	    	QuerySolution solution = results.nextSolution() ;
 	        Resource currentResource = solution.getResource("venue");
@@ -288,6 +286,7 @@ public class RDFService extends RDFBase {
 	 * @return a Venue object
 	 */
 	private Venue buildVenueFromResource(Resource resource) {
+		System.out.println(resource.getProperty(this.venueId));
 		return new Venue(
 				resource.getProperty(this.venueId).getString(),
 				resource.getProperty(this.name).getString(),
