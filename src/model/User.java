@@ -12,6 +12,15 @@ public class User {
 	private String location;
 	private String description;
 	private String profilePicURL;
+	private ArrayList<Venue> visited;
+	
+	public ArrayList<Venue> getVisited() {
+		return visited;
+	}
+	public void setVisited(ArrayList<Venue> visited) {
+		this.visited = visited;
+	}
+
 	private ArrayList<User> friends;
 	private ArrayList<Keyword> keywords;
 	private ArrayList<Tweet> tweets;

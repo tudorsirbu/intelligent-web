@@ -58,7 +58,7 @@ public class VisitedByServlet extends HttpServlet {
 		// get the venue with that name
 		RDFService rdfService = new RDFService();
 		ArrayList<User> users = rdfService.getUsersVisitingVenueByName(venueName);
-		
+		rdfService.getVenuesVisitedByUserId(18540628);
 		// conver the venue in json 
 		String usersAsJson = gson.toJson(users);
 		

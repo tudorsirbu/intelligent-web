@@ -66,6 +66,8 @@ public class RDFService extends RDFBase {
 	        user.setTweets(this.getTweetsByUserId(id));
 	    }
 	    
+	    user.setVisited(this.getVenuesVisitedByUserId(id));
+	    
 	    return user;
 	}
 
@@ -218,6 +220,49 @@ public class RDFService extends RDFBase {
 	    return users;
 	}
 	
+
+	public ArrayList<Venue> getVenuesVisitedByUserId(long id){
+
+		ArrayList<Venue> venues = new ArrayList<Venue>();
+		
+		String queryString =        
+			      "PREFIX sweb: <" + Config.NS + "> " +
+			      "select ?venue " +
+			      "where { " +
+			      	"?user sweb:visited ?venue." +
+			      	"?user sweb:id "+ id +"." +
+			      "} \n ";
+		System.out.println(queryString);
+	    Query query = QueryFactory.create(queryString);
+	    
+	    QueryExecution qe = QueryExecutionFactory.create(query, this.model);
+	    ResultSet results =  qe.execSelect();
+	    
+	    ResultSetFormatter.out(results);
+	    
+	    while(results.hasNext()) {
+	    	QuerySolution solution = results.nextSolution() ;
+	        Resource currentResource = solution.getResource("venue");
+
+	        venues.add(this.buildVenueFromResource(currentResource));
+	    }
+	    
+	    return venues;
+	}
+	
+	
+	private Venue buildVenueFromResource(Resource resource) {
+		return new Venue(
+				resource.getProperty(this.venueId).getString(),
+				resource.getProperty(this.name).getString(),
+				resource.getProperty(this.venueDescription).getString(),
+				resource.getProperty(this.address).getString(),
+				resource.getProperty(this.hasPhoto).getString(),
+				resource.getProperty(this.category).getString(),
+				resource.getProperty(this.URL).getString()
+        		);
+	}
+
 	private User buildUserFromResource(Resource resource) {
 		return new User(
 				resource.getProperty(this.id).getString(),
