@@ -266,6 +266,8 @@ $(document).ready(function() {
 			url: "VenuesForUserServlet",
 			data: data,
 			success: function(data) {
+				initMapResEmpty();
+				initMapRes(data);
 				console.log(data);
 			}
 		});
