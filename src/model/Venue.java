@@ -11,17 +11,37 @@ public class Venue {
 	// the properties of a venue
 	private String id;
 	private String name;
+	private String description;
+	private String address;
+	private String photo;
 	private ArrayList<User> visitedBy;
+	private String category;
 	private String location;
+	private String URL;
 	
-	public Venue(String id, String name, ArrayList<User> visitedBy,
-			String location) {
+	public Venue(String id, String name, ArrayList<User> visitedBy,	String location) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.visitedBy = visitedBy;
 		this.location = location;
 	}
+
+	public Venue(String id, String name, String description, String address,
+			String photo,
+			String location, String URL, String category) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.address = address;
+		this.photo = photo;
+		this.category = category;
+		this.location = location;
+		this.URL = URL;
+	}
+
+
 
 	public String getId() {
 		return id;
@@ -51,7 +71,47 @@ public class Venue {
 		return location;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getURL() {
+		return URL;
+	}
+
+	public void setURL(String uRL) {
+		URL = uRL;
+	}
+
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	} 
 }
