@@ -117,55 +117,97 @@ public class User {
 	/* 
 	 * Getters and setters for each detail stored for the user
 	 */
-	
+	/**
+	 * The method adds a keyword used by the user to 
+	 * their list of keywords
+	 * @param k a keyword used by this user
+	 */
 	public void addKeyword(Keyword k){
 		keywords.add(k);
 	}
-
+	/**
+	 * 
+	 * @return returns the user's id as string
+	 */
 	public String getId() {
 		return id;
 	}
-
+	/**
+	 * Sets the user's id	
+	 * @param id the user's id
+	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 
+	/**
+	 * Returns the user's name
+	 * @return user's name
+	 */
 	public String getName() {
 		return name;
 	}
-
+	/** 
+	 * Sets the user's name
+	 * @param name the user's name (eg. Christian)
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	/**
+	 * The method returns the user's screen name
+	 * @return the user's scree name
+	 */
 	public String getUsername() {
 		return username;
 	}
-
+	/**
+	 * The method changes the user's screen name
+	 * @param username the user's screen name
+	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
+	/** 
+	 * The method returns the user's location
+	 * @return the user's location which was posted on Twitter (if available)
+	 */
 	public String getLocation() {
 		return location;
 	}
-
+	/**
+	 * The method sets the user's location, if available
+	 * @param location
+	 */
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
+	/**
+	 * The method returns any description the user might
+	 * have added about themselves.
+	 * @return the user's description
+	 */
 	public String getDescription() {
 		return description;
 	}
-
+	/**
+	 * The method sets the user's description 
+	 * @param description the user's description
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	/**
+	 * The method returns the URL to the user's profile picture
+	 * @return the URL to the user's profile picture
+	 */
 	public String getProfilePicURL() {
 		return profilePicURL;
 	}
-
+	/**
+	 * The method sets the user's profile picture URL
+	 * @param profilePicURL
+	 */
 	public void setProfilePicURL(String profilePicURL) {
 		this.profilePicURL = profilePicURL;
 	}
@@ -177,21 +219,34 @@ public class User {
 	public void setInContact(ArrayList<User> inContact) {
 		this.inContact = inContact;
 	}
-
+	/**
+	 * Returns the keywords used by the user
+	 * @return the list of keywords used by the user of an empty list
+	 */
 	public ArrayList<Keyword> getKeywords() {
 		if(this.keywords != null)
 			return keywords;
 		else
 			return new ArrayList<Keyword>();
 	}
-
+	/**
+	 * Sets the list of keywords
+	 * @param a list of keywords used by the user
+	 */
 	public void setKeywords(ArrayList<Keyword> keywords) {
 		this.keywords = keywords;
 	}
-
+	/**
+	 * Returns the tweets posted by the user
+	 * @return a list of tweets posted by this user
+	 */
 	public ArrayList<Tweet> getTweets() {
 		return tweets;
 	}
+	/**
+	 * The method changes the list of tweets posted by this user
+	 * @param tweets a list of tweets that were psoted by this user
+	 */
 	public void setTweets(ArrayList<Tweet> tweets) {
 		this.tweets = tweets;
 	}
@@ -202,7 +257,10 @@ public class User {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
+	/**
+	 * The method allows this type of object to be 
+	 * checked if it is the same as another object like this.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

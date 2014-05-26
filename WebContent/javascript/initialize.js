@@ -188,8 +188,25 @@ $(document).ready(function() {
 	$('#searchUser').submit(function(event){
 		if(!$("#screen_name").val()){
 			markInputAsError($("#screen_name"));
-			event.preventDefault();
 		}
+		
+		var obj = {};
+		obj.keywords = $("#screen_name").val();
+
+
+		var data = JSON.stringify(obj);
+		console.log(data);
+		$.ajax({
+			type: "post",
+			dataType: "json",
+			url: "VenuesForUserServlet",
+			data: data,
+			success: function(data) {
+				
+			}
+		});
+		
+		event.preventDefault();
 	});
 	$('#searchVisitedVenue').submit(function(event){
 		if(!$("#screen_name").val()){
