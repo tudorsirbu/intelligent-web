@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.User;
+import model.Venue;
+import servlets.util.Template;
 import servlets.util.Util;
 import util.RDFService;
 
@@ -38,8 +41,40 @@ public class VisitedByServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// process it as a post
-		this.doPost(request, response);
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();	
+		
+		String venueName = request.getParameter("visited_venue");
+		
+		System.out.println(venueName);
+		
+		// get the venue with that name
+		RDFService rdfService = new RDFService();
+		ArrayList<User> users = rdfService.getUsersVisitingVenueByName(venueName);
+
+		String entry = "";	
+		entry +="<div id=\"user_results\"xmlns:sweb=\"http://www.smartweb.com/data/#\" xmlns:foaf=\"http://xmlns.com/foaf/0.1/\" xmls:xs=\"http://www.w3.org/2001/XMLSchema#\">";
+		for(User user:users) {
+			System.out.println(venueName);
+			entry += "<div class='user' about=\"https://www.twitter.com/"+ user.getUsername() +"\"" + "typeof=\"foaf:Agent\">";
+			entry +="<a href=\"UsersServlet?user_id=\"" +user.getId()+"\" class =\"title\"  property=\"foaf:name\">" + user.getName() + "</a><span class=\"screen_name\" property=\"sweb:screenName\">@"+ user.getUsername() +"</span>";
+			entry +="<h3 property=\"sweb:id\" datatype=\"xs:integer\">" + user.getId() + "</h3>";
+			entry +="<h3 property=\"sweb:locationName\">"+ user.getLocation() + "</h3>";
+			entry +="<img property=\"foaf:depiction\" src=\""+user.getProfilePicURL()+"\" />";
+			entry +="<h3 property=\"sweb:description\">" +user.getDescription()+"</h3>";
+			if (user.getVisited() != null) {
+				for(Venue venue:user.getVisited()) {
+					entry +="<h3 property=\"sweb:visited\">" + venue.getName() +"</h3>";
+				}				
+			}
+			entry += "</div>";
+		}
+		entry += "</div>";	
+		
+		Template page = new Template(entry, "Users results.");
+		page.setDoctype(Template.Doctype.XHTML);
+		out.write(page.getPage());
+		out.close();
 	}
 
 	/**
@@ -58,7 +93,7 @@ public class VisitedByServlet extends HttpServlet {
 		// get the venue with that name
 		RDFService rdfService = new RDFService();
 		ArrayList<User> users = rdfService.getUsersVisitingVenueByName(venueName);
-		rdfService.getVenuesVisitedByUserId(18540628);
+
 		// conver the venue in json 
 		String usersAsJson = gson.toJson(users);
 		

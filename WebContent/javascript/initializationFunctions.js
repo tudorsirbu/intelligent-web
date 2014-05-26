@@ -53,17 +53,16 @@ function populateSelectVenues(data){
 function displayUserRDFa(user) {
 	var entry = "";
 	entry +="<div xmlns:dc=\"http://www.smartweb.com/data/#\" xmlns:foaf=\"http://xmlns.com/foaf/0.1/\" xmls:xs=\"http://www.w3.org/2001/XMLSchema#\">";
-		entry += "<div class='user' about=\"#"+ user.username +"\"" + "typeof=\"foaf:Agent\">";
-				entry +="<a href=\"UsersServlet?user_id=\"" +user.id+"\" class =\"title\"  property=\"foaf:name\">" + user.name + "</a>";
-				entry +="<h3 property=\"dc:id\" datatype=\"xs:integer\">" + user.id + "</h3>";
-				entry +="<h3 property=\"dc:locationName\">"+ user.location + "</h3>";
-				entry +="<img property=\"foaf:depiction\" src=\""+user.profilePicURL+"\"/>";
-				entry +="<h3 property=\"dc:description\">" +user.description+"</h3>";
-				$.each(user.visited, function(key,value){
-					entry +="<h3 property=\"dc:visited\">" +value.name+"</h3>";
-				});
-				
-		entry += "</div>";
+	entry += "<div class='user' about=\"#"+ user.username +"\"" + "typeof=\"foaf:Agent\">";
+	entry +="<a href=\"UsersServlet?user_id=\"" +user.id+"\" class =\"title\"  property=\"foaf:name\">" + user.name + "</a>";
+	entry +="<h3 property=\"dc:id\" datatype=\"xs:integer\">" + user.id + "</h3>";
+	entry +="<h3 property=\"dc:locationName\">"+ user.location + "</h3>";
+	entry +="<img property=\"foaf:depiction\" src=\""+user.profilePicURL+"\"/>";
+	entry +="<h3 property=\"dc:description\">" +user.description+"</h3>";
+	$.each(user.visited, function(key,value){
+		entry +="<h3 property=\"dc:visited\">" +value.name+"</h3>";
+	});
+	entry += "</div>";
 	entry += "</div>";
 	return entry;
 }

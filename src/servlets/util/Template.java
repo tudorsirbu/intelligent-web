@@ -7,7 +7,7 @@ public class Template {
 	private String head;
 	private Doctype doctype;
 	
-	private enum Doctype {
+	public enum Doctype {
 		HTML,
 		XHTML
 	}
@@ -19,6 +19,13 @@ public class Template {
 		this.initHead();
 	}
 
+	public Template(String content, String title, Doctype doctype) {
+		this.content = content;
+		this.title = title;
+		this.doctype = doctype;
+		this.initHead();
+	}
+	
 	public void initHead() {
 		this.head += "<title>" + this.title + "</title>";
 		this.head += "<link rel=\"stylesheet\" type=\"text/css\" href=\"CSS/reset.css\">";
@@ -52,11 +59,11 @@ public class Template {
 		}
 		
 		page += this.head;
-		page += "<//head>";
+		page += "</head>";
 		page += "<body>";
 		page += "<a href=\"queryInterface.html\" id=\"back_to_query_interface\">Back to Query Interface</a>";
 		page += this.content;
-		page += "<//body>";
+		page += "</body>";
 		page += "</html>";
 		
 		return page;
