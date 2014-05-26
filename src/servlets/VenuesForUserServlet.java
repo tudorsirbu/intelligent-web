@@ -18,6 +18,9 @@ import util.RDFService;
 import api.TwitterManager;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * Servlet implementation class VenuesForUserServlet
@@ -60,9 +63,11 @@ public class VenuesForUserServlet extends HttpServlet {
 			reader.close();
 		}
 
-		/* Parse the JSON object it got from the request */
-		String userIdentifier = gson.fromJson(sb.toString(), String.class);
-		System.out.println("######## " + userIdentifier );
+		JsonElement jElement = new JsonParser().parse(sb.toString());
+		JsonObject jObject = jElement.getAsJsonObject();
+		System.out.println(jObject.get("userId").toString());
+		String userIdentifier = jObject.get("userId").toString().replace("\"", "");
+
 		// try to convert a screen name into an id
 		boolean isScreenName = false;
 		long id = 0;

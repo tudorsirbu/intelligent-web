@@ -62,6 +62,7 @@ public class Template {
 		page += "</head>";
 		page += "<body>";
 		page += "<a href=\"queryInterface.html\" id=\"back_to_query_interface\">Back to Query Interface</a>";
+		page +="<div id=\"mapResults\"></div>";
 		page += this.content;
 		page += "</body>";
 		page += "</html>";

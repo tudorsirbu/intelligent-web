@@ -188,25 +188,10 @@ $(document).ready(function() {
 	$('#searchUser').submit(function(event){
 		if(!$("#screen_name").val()){
 			markInputAsError($("#screen_name"));
+			event.preventDefault();
 		}
 		
-		var obj = {};
-		obj.keywords = $("#screen_name").val();
-
-
-		var data = JSON.stringify(obj);
-		console.log(data);
-		$.ajax({
-			type: "post",
-			dataType: "json",
-			url: "VenuesForUserServlet",
-			data: data,
-			success: function(data) {
-				
-			}
-		});
 		
-		event.preventDefault();
 	});
 	$('#searchVisitedVenue').submit(function(event){
 		if(!$("#screen_name").val()){
@@ -262,6 +247,29 @@ $(document).ready(function() {
 		});
 	});
 
+	$(".showMap").click(function(event) {
+		event.preventDefault();
+
+		var data = JSON.stringify($(this).attr("data-href"));
+		console.log(data.replace("\"","").replace("\"",""));
+		
+
+		var obj = {};
+		obj.userId = data;
+		
+
+		var data = JSON.stringify(obj);
+		console.log(data);
+		$.ajax({
+			type: "post",
+			dataType: "json",
+			url: "VenuesForUserServlet",
+			data: data,
+			success: function(data) {
+				console.log(data);
+			}
+		});
+	});
 	$("#byVenueForm").submit(function( event ) {
 		event.preventDefault();
 
