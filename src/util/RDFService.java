@@ -246,7 +246,12 @@ public class RDFService extends RDFBase {
 	    return users;
 	}
 	
-
+	/**
+	 * Returns a list of venues visited by a certain user, given its id.
+	 * 
+	 * @param id the id of the twitter user
+	 * @return a list of venues
+	 */
 	public ArrayList<Venue> getVenuesVisitedByUserId(long id){
 
 		ArrayList<Venue> venues = new ArrayList<Venue>();
@@ -276,7 +281,12 @@ public class RDFService extends RDFBase {
 	    return venues;
 	}
 	
-	
+	/**
+	 * Returns a Venue object from a resource.
+	 * 
+	 * @param resource 
+	 * @return a Venue object
+	 */
 	private Venue buildVenueFromResource(Resource resource) {
 		return new Venue(
 				resource.getProperty(this.venueId).getString(),
@@ -289,6 +299,12 @@ public class RDFService extends RDFBase {
         		);
 	}
 
+	/**
+	 * Returns a User object from a resource.
+	 * 
+	 * @param resource 
+	 * @return a User object
+	 */
 	private User buildUserFromResource(Resource resource) {
 		return new User(
 				resource.getProperty(this.id).getString(),
