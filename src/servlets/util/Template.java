@@ -39,7 +39,6 @@ public class Template {
 		this.head += "<script src=\"javascript/validation.js\"></script>";
 		this.head += "<script src=\"javascript/initializationFunctions.js\"></script>";
 		this.head += "<script src=\"javascript/initialize.js\"></script>";
-		this.head += "<script src =\"javascript/mapForRdfaPages.js\"></script>";
 	}
 	
 	public String getPage() {
