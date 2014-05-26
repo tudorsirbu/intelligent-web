@@ -62,7 +62,6 @@ function displayUserRDFa(user) {
 				$.each(user.visited, function(key,value){
 					entry +="<h3 property=\"dc:visited\">" +value.name+"</h3>";
 				});
-				
 		entry += "</div>";
 	entry += "</div>";
 	return entry;
