@@ -3,7 +3,9 @@ package model;
 import java.util.ArrayList;
 
 /**
- * The class represents a venue object
+ * The class represents a venue object by storing its
+ * id, name, description, address, photo, a list of users
+ * that visited it, its category, url and lat&long.
  * @author tudorsirbu
  *
  */
@@ -16,18 +18,27 @@ public class Venue {
 	private String photo;
 	private ArrayList<User> visitedBy;
 	private String category;
+	/**
+	 * Returns the latitude of this venue's location
+	 * @return the lat of this venue
+	 */
 	public String getLatitude() {
 		return latitude;
 	}
-
+	/**
+	 * Sets the venue's latitude
+	 * @param latitude String
+	 */
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
-
+	/**
+	 * Returns the longitude of this method
+	 * @return String
+	 */
 	public String getLongitude() {
 		return longitude;
 	}
-
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
@@ -35,14 +46,29 @@ public class Venue {
 	private String URL;
 	private String latitude;
 	private String longitude;
-	
+	/**
+	 * Constructor
+	 * @param id the id of the venue
+	 * @param name the name of the venue
+	 * @param visitedBy a list of users who visited this venue
+	 * @param location the location of this venue
+	 */
 	public Venue(String id, String name, ArrayList<User> visitedBy,	String location) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.visitedBy = visitedBy;
 	}
-
+	/**
+	 * Construct
+	 * @param id the id of the venue
+	 * @param name venue's name
+	 * @param description venue's description
+	 * @param address venues' address
+	 * @param photo venue's photo
+	 * @param URL venue's url
+	 * @param category venue's category
+	 */
 	public Venue(String id, String name, String description, String address,
 			String photo, String URL, String category) {
 		super();

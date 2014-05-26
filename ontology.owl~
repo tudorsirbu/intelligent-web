@@ -33,9 +33,16 @@
 			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
 		</rdfs:comment> 
 		<rdfs:domain rdf:resource="#TwitterUser"/> 
-		<rdfs:range rdf:resource="Literal"/>
+		<rdfs:range rdf:resource="#FoursquareVenue"/>
 	</rdf:Property>
-
+	
+	<rdf:Property rdf:ID="inContactWith"> 
+		<rdfs:comment> 
+			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+		</rdfs:comment> 
+		<rdfs:domain rdf:resource="#TwitterUser"/> 
+		<rdfs:range rdf:resource="#TwitterUser"/>
+	</rdf:Property>
 	
 	<rdf:Property rdf:ID="locationName"> 
 		<rdfs:comment> 
