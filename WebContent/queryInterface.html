@@ -10,21 +10,22 @@
 <script src="javascript/jquery-1.11.0.js"></script>
 <script src="javascript/jquery-ui-1.10.4.custom.min.js"></script>
 <script	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgU59vjkXnSzHlfrR1iaZ6zottGl35Ys&sensor=false"></script>
-<script src="javascript/script.js"></script>
-
+<script src="javascript/validation.js"></script>
+<script src="javascript/initializationFunctions.js"></script>
+<script src="javascript/initialize.js"></script>
 <title>Query interface</title>
 </head>
 <body>
 
 <div id="tabs">
 	<ul>
-		<li><a href="#tabs-1">Discussions tracking</a></li>
-		<li><a href="#tabs-2">Frequent keywords</a></li>
-		<li><a href="#tabs-3">Venues for user</a></li>
-		<li><a href="#tabs-4">Get users by venue</a></li>
-		<li><a href="#tabs-5">Find nearby venues</a></li>
-		<li><a href="#tabs-6">Find a user</a></li>
-		<li><a href="#tabs-7">Who visited?</a></li>
+		<li><a href="#tabs-1" onclick="hideExistingResults();">Discussions tracking</a></li>
+		<li><a href="#tabs-2" onclick="hideExistingResults();">Frequent keywords</a></li>
+		<li><a href="#tabs-3" onclick="hideExistingResults();">Venues for user</a></li>
+		<li><a href="#tabs-4" onclick="hideExistingResults();">Get users by venue</a></li>
+		<li><a href="#tabs-5" onclick="hideExistingResults();">Find nearby venues</a></li>
+		<li><a href="#tabs-6" onclick="hideExistingResults();">Find a user</a></li>
+		<li><a href="#tabs-7" onclick="hideExistingResults();">Who visited?</a></li>
 	</ul>
 	<div id="tabs-1">
 		<form action="TrackingServlet" method="get" id="trackingForm">
@@ -76,7 +77,7 @@
 		</form>
 	</div>
 	<div id="tabs-3">
-		<form action="UserVenuesServlet" method="get" id="userVenuesForm">
+		<form action="UserVenuesServlet" method="post" id="userVenuesForm">
 		    <div>
 		        <label for="user_id">User ID:</label>
 		        <input name="user_id" type="text" id="user_id" class="nms" placeholder="The id of the user..." />

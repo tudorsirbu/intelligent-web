@@ -500,8 +500,8 @@ public class TwitterManager {
 	 * @param days how many days in the past to look for visited venues
 	 * @return a list of CompleteVenues and CompactVenues
 	 */
-	public ArrayList<Object> getVenuesSince(Long userId, Integer days) {
-		ArrayList<Object> venues = new ArrayList<Object>();
+	public ArrayList<CompleteVenue> getVenuesSince(Long userId, Integer days) {
+		ArrayList<CompleteVenue> venues = new ArrayList<CompleteVenue>();
 
 		/* Connect to twitter. */
 		Twitter twitterC = null;	
@@ -522,7 +522,6 @@ public class TwitterManager {
 			statuses = twitterC.getUserTimeline(userId, new Paging(1,100));
 		} catch (TwitterException e) {
 			System.out.println("Could not retrieve user's (" + userId + ") timeline.");
-			venues.add("");
 			return venues;
 		}
 		if(statuses!=null){
