@@ -184,6 +184,19 @@ $(document).ready(function() {
 			
 		event.preventDefault();
 	});
+	
+	$('#searchUser').submit(function(event){
+		if(!$("#screen_name").val()){
+			markInputAsError($("#screen_name"));
+			event.preventDefault();
+		}
+	});
+	$('#searchVisitedVenue').submit(function(event){
+		if(!$("#screen_name").val()){
+			markInputAsError($("#visited_venue"));
+			event.preventDefault();
+		}
+	});
 
 	$("#discussionsTrackerForm").submit(function( event ) {
 		event.preventDefault();
