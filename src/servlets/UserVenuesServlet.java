@@ -1,10 +1,7 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,23 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.DatabaseConnection;
-import model.UserService;
-import servlets.util.MiniStatus;
-import servlets.util.TrackingForm;
 import servlets.util.UserVenuesForm;
 import servlets.util.Util;
-import twitter4j.Status;
 import twitter4j.Twitter;
-import twitter4j.TwitterException;
 import twitter4j.User;
+import util.RDFBuilder;
+import api.TwitterManager;
 
 import com.google.gson.Gson;
 
-import fi.foyt.foursquare.api.Result;
-import fi.foyt.foursquare.api.entities.CompactVenue;
 import fi.foyt.foursquare.api.entities.CompleteVenue;
-import api.TwitterManager;
 
 /**
  * Servlet implementation class UserVenuesServlet
@@ -63,6 +53,8 @@ public class UserVenuesServlet extends HttpServlet {
 		/* Build the string containing the JSON object so that it can be parsed by gson */
 		StringBuilder sb = Util.jsonRequestToString(request);
 		
+		ArrayList<CompleteVenue> venuesStreamed=null;
+		RDFBuilder rdfBuilder = new RDFBuilder();
 		UserVenuesForm uvf = gson.fromJson(sb.toString(), UserVenuesForm.class);
 		
 		// try to convert user ids into screen names
@@ -77,50 +69,38 @@ public class UserVenuesServlet extends HttpServlet {
 		/* Parse the JSON object it got from the request */
 		try {
 			long[] idList = new long[1];
-			Long userID = (long) 0;
+			Long userID = 0l;
 			
 			/* Get tweets according to the query parameters */
 			TwitterManager tm = TwitterManager.getInstance();
+			
+			// create a connection to twitter
+			Twitter twitterConnection = tm.init();
 			
 			// if the parameter is a screen name
 			if(isScreenName){
 				
 				idList = new long[1];
-				userID = (long) 0;
-			
-				// convert the user's screen name to id
-				TwitterManager twitterManager = TwitterManager.getInstance();
-				// create a connection to twitter
-				Twitter twitterConnection = null;
-				try {
-					twitterConnection = twitterManager.init();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				userID = 0l;
 				
-				// get the user's id
-				try {
-					userID =twitterConnection.getUserTimeline(uvf.getUserId()).get(0).getUser().getId();
-					idList[0] = userID;
-					
-				} catch (TwitterException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				userID = twitterConnection.getUserTimeline(uvf.getUserId()).get(0).getUser().getId();
+				idList[0] = userID;
+			
 			} else {
 				idList = new long[1];
 				userID = id;
 			}
 			
+			User user = twitterConnection.getUserTimeline(userID).get(0).getUser();
+			rdfBuilder.addUser(user);
+			rdfBuilder.save();
+			
 			int days = uvf.getDays();
 			
-			
-			
-			ArrayList<CompleteVenue> venuesStreamed=null;
-			System.out.println(days);
-			if(days!=0){
-				ArrayList<Object> venues= tm.getVenuesSince(userID, days);
+			if(days != 0) {
+				ArrayList<CompleteVenue> venues = tm.getVenuesSince(userID, days);
+				rdfBuilder.addVenues(venues);
+				
 				String json = gson.toJson(venues);
 				tm.clearVenues();
 				response.getWriter().write(json);
@@ -129,6 +109,7 @@ public class UserVenuesServlet extends HttpServlet {
 				if(tm.userExists(idList[0])==true){
 					tm.initConfiguration(idList);
 					 venuesStreamed = tm.getVenues();
+					 rdfBuilder.addVenues(venuesStreamed);
 					 String json = gson.toJson(venuesStreamed);
 					 tm.clearVenues();
 					 response.getWriter().write(json);
@@ -140,9 +121,8 @@ public class UserVenuesServlet extends HttpServlet {
 				}
 				
 			}
-				
-			/* Create the response JSON */
 			
+			rdfBuilder.save();
 			
 		} catch (Exception e) {
 			System.out.println("No input yet.");
