@@ -101,4 +101,9 @@ public class RDFBase {
 //		}
 	}
 	
+	public void close(){
+		this.model.close();
+		this.statementsModel.close();
+	}
+	
 }
