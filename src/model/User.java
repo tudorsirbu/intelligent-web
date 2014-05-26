@@ -20,7 +20,7 @@ public class User {
 	private String description;
 	private String profilePicURL;
 	private ArrayList<Venue> visited;
-	private ArrayList<User> friends;
+	private ArrayList<User> inContact;
 	private ArrayList<Keyword> keywords;
 	private ArrayList<Tweet> tweets;
 	
@@ -49,14 +49,14 @@ public class User {
 	 * @param friends a list of people the user has been in contact with
 	 */
 	public User(String id, String name, String username, String location, String description,
-			String profilePicURL, ArrayList<User> friends) {
+			String profilePicURL, ArrayList<User> inContact) {
 		this.id = id;
 		this.name = name;
 		this.username = username;
 		this.location = location;
 		this.description = description;
 		this.profilePicURL = profilePicURL;
-		this.friends = friends;
+		this.inContact = inContact;
 		this.keywords = new ArrayList<Keyword>();
 	}
 	/**
@@ -69,14 +69,14 @@ public class User {
 	 * @param keywords a list of keywords associated to this user
 	 */
 	public User(String id, String name, String username, String location, String description,
-			String profilePicURL, ArrayList<User> friends, ArrayList<Tweet> tweets) {
+			String profilePicURL, ArrayList<User> inContact, ArrayList<Tweet> tweets) {
 		this.id = id;
 		this.name = name;
 		this.username = username;
 		this.location = location;
 		this.description = description;
 		this.profilePicURL = profilePicURL;
-		this.friends = friends;
+		this.inContact = inContact;
 		this.tweets = tweets;
 		this.keywords = new ArrayList<Keyword>();
 	}
@@ -170,12 +170,12 @@ public class User {
 		this.profilePicURL = profilePicURL;
 	}
 
-	public ArrayList<User> getFriends() {
-		return friends;
+	public ArrayList<User> getInContact() {
+		return inContact;
 	}
 
-	public void setFriends(ArrayList<User> friends) {
-		this.friends = friends;
+	public void setInContact(ArrayList<User> inContact) {
+		this.inContact = inContact;
 	}
 
 	public ArrayList<Keyword> getKeywords() {
@@ -224,7 +224,7 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", username=" + username
 				+ ", location=" + location + ", description=" + description
-				+ ", profilePicURL=" + profilePicURL + ", friends=" + friends
+				+ ", profilePicURL=" + profilePicURL + ", friends=" + inContact
 				+ ", keywords=" + keywords + ", tweets=" + tweets + "]";
 	}	
 	

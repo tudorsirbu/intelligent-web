@@ -175,7 +175,6 @@ public class RDFBuilder extends RDFBase {
 
 		
 		this.addStatementsToModel(statements);
-		
 	}
 
 	public void addVisitsForUser(User user, List<CompleteVenue> venues) {
