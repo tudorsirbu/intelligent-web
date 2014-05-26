@@ -23,7 +23,9 @@ public class Template {
 		this.head += "<script src=\"javascript/jquery-1.11.0.js\"></script>";
 		this.head += "<script src=\"javascript/jquery-ui-1.10.4.custom.min.js\"></script>";
 		this.head += "<script src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgU59vjkXnSzHlfrR1iaZ6zottGl35Ys&sensor=false\"></script>";
-		this.head += "<script src=\"javascript/script.js\"></script>";
+		this.head += "<script src=\"javascript/validation.js\"></script>";
+		this.head += "<script src=\"javascript/initializationFunctions.js\"></script>";
+		this.head += "<script src=\"javascript/initialize.js\"></script>";
 	}
 	
 	public String getPage() {
