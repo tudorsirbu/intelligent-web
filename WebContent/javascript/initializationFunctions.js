@@ -273,7 +273,8 @@ function displayTweets(data) {
 						url: "http://api.instagram.com/oembed?url=" + url,
 						dataType: 'jsonp',
 						success: function(media) {
-							if(media.url.indexOf("video") < 0){
+							console.log(media);
+							if(media.url.indexOf("video") < 0 && media.url.indexOf(".mp4") < 0){
 								var tweetId = "#" + tweet.id;  
 								var $instagramPic = $(tweetId).parent().parent();
 								$(tweetId).attr("src",media.url);
