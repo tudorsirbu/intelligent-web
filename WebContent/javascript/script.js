@@ -724,11 +724,15 @@ function displayUser(user) {
 function displayUserRDFa(user) {
 	var entry = "";
 	entry += "<div class='user'>";
-	entry += "<img src='"+ user.profilePicURL +"' />";
-	entry += "<a href='UsersServlet?user_id="+ user.id +"' class='title'>" + user.name + "</a>";
-	entry += "<span class='screen_name'> @" + user.username + "</span>";
-	entry += "<h3>" + user.description + "</h3>";
-	entry += "<h3>" + user.location + "</h3>";
+		entry +="<div xmlns:dc=\"http://www.smartweb.com/data/#\" xmlns:foaf=\"http://xmlns.com/foaf/0.1/\" xmls:xs=\"http://www.w3.org/2001/XMLSchema#\">";
+			entry += "<p about=\"#"+ user.username +"\"" + "typeof=\"foaf:Agent\">";
+				entry +="<b property=\"foaf:name\">" +"Has name: "+ user.name + "</b>";
+				entry +="<span property=\"dc:id\" datatype=\"xs:integer\">" +"Has id:"+ user.id + "</span>";
+				entry +="<span property=\"dc:locationName\">"+"Live at (Only shown if available):"+ user.location + "</span>";
+				entry +="<span property=\"foaf:depiction\">"+"Has profile picture:" +"<img src=\""+user.profilePicURL+"\"/></span>";
+				entry +="<span property=\"dc:description\">" +"Has description:" +user.description+"</span>";
+			entry +="</p>";	
+		entry += "</div>";
 	entry += "</div>";
 	return entry;
 }
