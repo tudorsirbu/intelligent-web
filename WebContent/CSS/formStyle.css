@@ -30,6 +30,23 @@ button[type=submit] {
 	-moz-border-radius: 10px;
 }
 
+.buttonMap{
+	widith:100px;
+	background: #0084B4;
+	padding: 8px 30px;
+	color: #FFF;
+	border: 0;
+	margin: 10px 0 0 0;
+	font-size: 12px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	padding-left: 25px;
+}
+
+.buttonMap:hover {
+	cursor: pointer;
+}
+
 button[type=submit]:hover {
 	cursor: pointer;
 }
