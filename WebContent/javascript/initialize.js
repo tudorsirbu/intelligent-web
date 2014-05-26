@@ -52,27 +52,15 @@ $(document).ready(function() {
 		$.ajax({
 			type: "post",
 			dataType: "json",
-			url: "UserVenueServlet",
+			url: "VisitedByServlet",
 			data: data,
-			success: function(venues) {
-				var div = "";
+			success: function(users) {
+				console.log(users);
+				displayUsers(users);
 				
-				if(venues != null){
-					if(venues.visitedBy.length !=0){
-						$.each(venues.visitedBy, function(key, v){
-							console.log(v);
-							div += displayUserRDFa(v);
-						});
-					} else {
-						div += "<div class='user'>The venue was not visited by any users.</div>";
-					}
-				} else {
-					div += "<div class='user'>The venue could not be found.</div>";
-				}
-				
-				$("#results").empty();
-				$("#results").append(div);
-				$("#results").show(0);
+//				$("#results").empty();
+//				$("#results").append(div);
+//				$("#results").show(0);
 				
 			}
 		});

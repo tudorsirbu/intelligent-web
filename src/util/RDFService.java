@@ -23,8 +23,22 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Resource;
 
+/**
+ * Deals with retrieving triples from the RDF triple store and returns them as objects.
+ * 
+ * @author Tudor-Daniel Sirbu
+ * @author Claudiu Tarta
+ * @author Florin-Cristian Gavrila
+ * 
+ */
 public class RDFService extends RDFBase {
 	
+	/**
+	 * Retrieves an user given its id on Twitter.
+	 * 
+	 * @param id the twitter user id
+	 * @return a User object
+	 */
 	public User getUser(long id) {
 		User user = null;
 		
@@ -47,21 +61,22 @@ public class RDFService extends RDFBase {
 	    	QuerySolution solution = results.nextSolution() ;
 	        Resource currentResource = solution.getResource("user");
 
-	        user = new User(
-	        		currentResource.getProperty(this.id).getString(),
-	        		currentResource.getProperty(this.foaf_name).getString(),
-	        		currentResource.getProperty(this.screenName).getString(),
-	        		currentResource.getProperty(this.locationName).getString(),
-	        		currentResource.getProperty(this.description).getString(),
-	        		currentResource.getProperty(this.depiction).getString()
-	        );	
+	        user = this.buildUserFromResource(currentResource);
 	        
 	        user.setTweets(this.getTweetsByUserId(id));
 	    }
 	    
+	    user.setVisited(this.getVenuesVisitedByUserId(id));
+	    
 	    return user;
 	}
-	
+
+	/**
+	 * Retrieves a list of users given an array of user ids.
+	 * 
+	 * @param ids an array of twitter user ids.
+	 * @return a list of User objects
+	 */
 	public List<User> getUsers(long[] ids) {
 		
 		List<User> users = new ArrayList<User>();
@@ -72,6 +87,12 @@ public class RDFService extends RDFBase {
 		return users;
 	}
 		
+	/**
+	 * Fetches all the tweets stored in the RDF store for a twitter user id.
+	 * 
+	 * @param id a twitter user id
+	 * @return a list of Tweet objects
+	 */
 	public ArrayList<Tweet> getTweetsByUserId(long id) {
 		Tweet tweet = null;
 		
@@ -124,6 +145,7 @@ public class RDFService extends RDFBase {
 	
 	/**
 	 * The method queries the RDF for a venue using the provided venue name.
+	 * 
 	 * @param name The name of the venue to be looked up.
 	 * @return Venue the venue with that name or null
 	 */
@@ -165,17 +187,50 @@ public class RDFService extends RDFBase {
 	    return venue;
 	}
 	
-	public List<User> getUsersVisitingVenueById(long venueId){
-		List<User> users = null;
+	/**
+	 * Retrieves a list of users that visited a certain venue from the RDF store given the Foursquare venue id.
+	 * 
+	 * @param venueId a Foursquare Venue id
+	 * @return the list of users that visited the venue
+	 */
+	public ArrayList<User> getUsersVisitingVenueByName(String venueName){
+		ArrayList<User> users = new ArrayList<User>();
 		
 		String queryString =        
 			      "PREFIX sweb: <" + Config.NS + "> " +
-			      "select ?id " +
+			      "select ?user " +
 			      "where { " +
-			      	"?visit sweb:venue ?venue." +
-			      	"?venue sweb:venueId " + venueId + "." +
-			      	"?visit sweb:twitterUser ?user." +
-			      	"?user sweb:id ?id." +
+			      	"?user sweb:visited ?venue." +
+			      	"?venue sweb:name ?name." +
+			      	"FILTER regex(?name, \""+ venueName +"\", \"i\" )" +
+			      "} \n ";
+		System.out.println(queryString);
+	    Query query = QueryFactory.create(queryString);
+	    
+	    QueryExecution qe = QueryExecutionFactory.create(query, this.model);
+	    ResultSet results =  qe.execSelect();
+	    
+	    while(results.hasNext()) {
+	    	QuerySolution solution = results.nextSolution() ;
+	        Resource currentResource = solution.getResource("user");
+
+	        users.add(this.buildUserFromResource(currentResource));
+	    }
+	    
+	    return users;
+	}
+	
+
+	public ArrayList<Venue> getVenuesVisitedByUserId(long id){
+
+		ArrayList<Venue> venues = new ArrayList<Venue>();
+		
+		String queryString =        
+			      "PREFIX sweb: <" + Config.NS + "> " +
+			      "select ?venue " +
+			      "where { " +
+			      	"?user sweb:visited ?venue." +
+			      	"?user sweb:id "+ id +"." +
 			      "} \n ";
 		System.out.println(queryString);
 	    Query query = QueryFactory.create(queryString);
@@ -187,11 +242,35 @@ public class RDFService extends RDFBase {
 	    
 	    while(results.hasNext()) {
 	    	QuerySolution solution = results.nextSolution() ;
-	        Resource currentResource = solution.getResource("Visit");
+	        Resource currentResource = solution.getResource("venue");
 
-	        
+	        venues.add(this.buildVenueFromResource(currentResource));
 	    }
 	    
-	    return users;
+	    return venues;
+	}
+	
+	
+	private Venue buildVenueFromResource(Resource resource) {
+		return new Venue(
+				resource.getProperty(this.venueId).getString(),
+				resource.getProperty(this.name).getString(),
+				resource.getProperty(this.venueDescription).getString(),
+				resource.getProperty(this.address).getString(),
+				resource.getProperty(this.hasPhoto).getString(),
+				resource.getProperty(this.category).getString(),
+				resource.getProperty(this.URL).getString()
+        		);
+	}
+
+	private User buildUserFromResource(Resource resource) {
+		return new User(
+				resource.getProperty(this.id).getString(),
+				resource.getProperty(this.foaf_name).getString(),
+				resource.getProperty(this.screenName).getString(),
+				resource.getProperty(this.locationName).getString(),
+				resource.getProperty(this.description).getString(),
+				resource.getProperty(this.depiction).getString()
+        );	
 	}
 }

@@ -1,13 +1,14 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Venue;
+import model.User;
 import servlets.util.Util;
 import util.RDFService;
 
@@ -55,15 +56,15 @@ public class VisitedByServlet extends HttpServlet {
 		String venueName = jSon.get("venue_name").getAsString();
 		
 		// get the venue with that name
-		RDFService rdf = new RDFService();
-		Venue venue = rdf.getVenue(venueName);
-		
+		RDFService rdfService = new RDFService();
+		ArrayList<User> users = rdfService.getUsersVisitingVenueByName(venueName);
+		rdfService.getVenuesVisitedByUserId(18540628);
 		// conver the venue in json 
-		String venueAsJson = gson.toJson(venue);
+		String usersAsJson = gson.toJson(users);
 		
 		// display the venue as json
-		System.out.println(venueAsJson);
-		response.getWriter().write(venueAsJson);
+		System.out.println(usersAsJson);
+		response.getWriter().write(usersAsJson);
 	}
 
 }
