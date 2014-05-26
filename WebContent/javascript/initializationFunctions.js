@@ -553,3 +553,7 @@ function hideExistingResults(){
 	// remove any previous results displayed
 	$("#results").empty();
 }
+
+function displayResultsOnMap(data) {
+	google.maps.event.addDomListener(window, 'load', initMap(data));
+}
