@@ -59,7 +59,10 @@ function displayUserRDFa(user) {
 				entry +="<h3 property=\"dc:locationName\">"+ user.location + "</h3>";
 				entry +="<img property=\"foaf:depiction\" src=\""+user.profilePicURL+"\"/>";
 				entry +="<h3 property=\"dc:description\">" +user.description+"</h3>";
-				entry +="<h3 property=\"dc:visited\">" +user.visited+"</h3>";
+				$.each(user.visited, function(key,value){
+					entry +="<h3 property=\"dc:visited\">" +value+"</h3>";
+				});
+				
 		entry += "</div>";
 	entry += "</div>";
 	return entry;
