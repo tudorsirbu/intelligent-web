@@ -227,7 +227,7 @@ $(document).ready(function() {
 			data: data,
 			success: function(tweets) {
 				console.log(tweets);
-				displayTweets(tweets);
+				displayRDFaTweets(tweets);
 			}
 		});
 	});

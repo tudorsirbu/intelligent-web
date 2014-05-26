@@ -322,6 +322,81 @@ function displayTweets(data) {
 	});
 }
 
+function displayRDFaTweets(data) {
+	$("#results").show(0);
+	$("#results").empty();
+	var div = "";
+	div +="<div id=\"user_results\"xmlns:sweb=\"http://www.smartweb.com/data/#\" xmlns:foaf=\"http://xmlns.com/foaf/0.1/\" xmls:xs=\"http://www.w3.org/2001/XMLSchema#\">";
+	$.each(data, function( key, tweet ) {
+		div += "<div class='tweet'  about=\"https://www.twitter.com/"+ tweet.name +"/status/"+ tweet.id +" typeof=\"sweb:Tweet\">";
+		div += "<img src='"+ tweet.profileImageUrl +"' />";
+		div += "<a href='UsersServlet?user_id="+ tweet.user_id +"' class='title'>" + tweet.name + "</a>";
+		div += "<span class='screen_name'> @" + tweet.screenName + "</span>";
+		div += "<p class='text' property='sweb:text'>" + tweet.text + "</p>";
+		div += "<p class='text' property='sweb:createdAt'>" + tweet.createdAt + "</p>";
+		div += "<a href='" + tweet.id + "' class='get_retweets'>" + tweet.retweetCount + " retweets</a>";
+		div += "<div class='instagramPic' style='display:none;'><a class='instagramUser' target='_blank' style='display:block;'></a>";
+		div	+= "<a href='#' class='imgURL' target='_blank'><img id='"+tweet.id +"' /></a></div>";
+		div += "<div style='clear:both;'></div>";
+		div += "</div>";
+		
+		
+		$.each(tweet.extendedUrls, function( index, url ) {
+			  if(url.indexOf('instagram.com/p') != -1) {
+				  $.ajax({
+						url: "http://api.instagram.com/oembed?url=" + url,
+						dataType: 'jsonp',
+						success: function(media) {
+							console.log(media);
+							var tweetId = "#" + tweet.id;  
+							var $instagramPic = $(tweetId).parent().parent();
+							$(tweetId).attr("src",media.url);
+							$instagramPic.show();
+							$instagramPic.find(".instagramUser").attr("href", "http://www.instagram.com/"+media.author_name);
+							$instagramPic.find(".instagramUser").text(media.author_name);
+							$(tweetId).parent().attr("href",url);
+						}
+					});
+			  }
+		});
+
+		$("#results").append(div);
+	});
+	div += "</div>";
+	
+	$(".get_retweets").click(function(event) {
+		event.preventDefault();
+
+		var data = JSON.stringify($(this).attr("href"));
+		console.log(data);
+
+		var $this = $(this).parent();
+
+		$this.css('background-color', '#ffffff');
+
+		$.ajax({
+			type: "post",
+			dataType: "json",
+			url: "RetweetsServlet",
+			data: data,
+			success: function(data) {
+				console.log(data);
+				$.each(data, function(_, retweet) {
+					var div = "<div class='retweet'>";
+					div += "<img src='"+ retweet.profileImageUrl +"' />";
+					div += "<a href='UsersServlet?user_id="+ retweet.user_id +"' class='title'>" + retweet.name + "</a>";
+					div += "<span class='screen_name'> @" + retweet.screenName + "</span>";
+					div += "<p class='text'>" + retweet.text + "</p>";
+					div += "</div>";	
+					console.log(div);
+					$this.append(div);
+				});
+			}
+		});
+
+	});
+}
+
 function getUserVenuesFormErrors() {
 	$('#userVenuesForm :input').change(function() {
 	    getDiscussionTrackerFormErrors();
