@@ -427,7 +427,6 @@ function getUserVenuesFormErrors() {
 		}
     });
 }
-
 function displayVenueStream(data) {
 	google.maps.event.addDomListener(window, 'load', initMap(data));
 	
