@@ -10,12 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.DatabaseConnection;
-import model.UserService;
 import servlets.util.MiniStatus;
 import servlets.util.Util;
 import twitter4j.Status;
 import twitter4j.User;
+import util.RDFBuilder;
 import api.TwitterManager;
 
 import com.google.gson.Gson;
@@ -71,9 +70,12 @@ public class RetweetsServlet extends HttpServlet {
 		
 		List<MiniStatus> processedRetweets = new ArrayList<MiniStatus>();
 		for (Status retweet:retweets) {
-			UserService us = new UserService(new DatabaseConnection().getConnection());
+			// save data in the rdf
+			RDFBuilder rdfBuilder = new RDFBuilder();
 			User user = retweet.getUser();
-			us.insertUser(new model.User(String.valueOf(user.getId()), user.getName(), user.getScreenName(), user.getLocation(), user.getDescription(), user.getProfileImageURL(), null));
+			rdfBuilder.addUser(user);
+			rdfBuilder.save();
+			rdfBuilder.close();
 			
 			processedRetweets.add(new MiniStatus(retweet));
 		}
