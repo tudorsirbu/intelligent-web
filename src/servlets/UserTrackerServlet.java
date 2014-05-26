@@ -94,8 +94,8 @@ public class UserTrackerServlet extends HttpServlet {
 		RDFService rdfService = new RDFService();
 		
 		// get the tweets for the given user names
-		rdfService.getUsers(ids);
-		ArrayList<User> users = null;
+		ArrayList<User> users = (ArrayList<User>) rdfService.getUsers(ids);
+		
 		// create inverted index for the given users' tweets
 		HashMap<String,ArrayList<Keyword>> keywords = new HashMap<String,ArrayList<Keyword>>();
 		
@@ -110,6 +110,7 @@ public class UserTrackerServlet extends HttpServlet {
 			
 			// loop through the user's tweets and create an inverted index on those that are after the lastTweetDate
 			ArrayList<Keyword> userKeywords = new ArrayList<Keyword>();
+			
 			for(Tweet t:tweets){
 				if(t.getDate().after(lastTweetDate)){
 					// add the current tweet's keyword to the user's list of keywords
@@ -130,7 +131,6 @@ public class UserTrackerServlet extends HttpServlet {
  					ArrayList<Keyword> similarKeywords = new ArrayList<Keyword>();
  					similarKeywords.add(k);
  					keywords.put(k.getKeyword(), similarKeywords);
- 					
  				}
 			}
 		}
@@ -140,7 +140,6 @@ public class UserTrackerServlet extends HttpServlet {
 		Iterator it = keywords.entrySet().iterator();
 	    while (it.hasNext()) {
 	        Map.Entry pairs = (Map.Entry)it.next();
-	        System.out.println(pairs.getKey() + " = " + pairs.getValue());
 	        
 	        ArrayList<Keyword> similarKeywords = (ArrayList<Keyword>) pairs.getValue();
 	        // the number of times this keyword has shown up for all users
@@ -150,21 +149,48 @@ public class UserTrackerServlet extends HttpServlet {
 	        }
 	        
 	        top.add((new Keyword((String) pairs.getKey(), count)));
+	        
 	    }
 	    
 	    // sort the top
 	    Collections.sort(top);
-		
-	    for(int i=0; i<form.getKeywords(); i++){
+	    System.out.println("SIZE! "+ top.size());
+	    for(Keyword k: top){
+	    	System.out.println(k.getKeyword()+ "-" + k.getCount());
+	    }
+		System.out.println("BEFORE!");
+		int topLength;
+		if(top.size() > form.getKeywords()){
+			topLength = form.getKeywords();
+		} else {
+			topLength = top.size();
+		}
+	    for(int i=0; i<topLength; i++){
 	    	// get the list with how many times the keyword has been used by each user
 	    	ArrayList<Keyword> allUserCounts = keywords.get(top.get(i).getKeyword());
 	    	
 	    	for(User u:users){
-	    		HashMap<String, Integer> userKeywords = u.getKeywords();
 	    		// add the current keyword to the user's hashmap
-	    		for(Keyword k:allUserCounts)
-	    			if(k.getUserId() == u.getId())
-	    				userKeywords.put(top.get(i).getKeyword(), k.getCount());
+	    		for(Keyword k:allUserCounts){
+	    			if(k.getUserId().equals(u.getId())){
+	    				u.addKeyword(new  Keyword(top.get(i).getKeyword(), k.getCount()));
+	    				System.out.println(u.getName() + "-" + (top.get(i).getKeyword() + " = " + k.getCount()));
+	    			}
+	    		}
+	    	}
+	    }
+	    System.out.println("AFTER!");
+	    for(User u:users){
+	    	// get the user's keywords and add up the same one eg home-1, home-3 => home-4
+	    	ArrayList<Keyword> userKeywords = u.getKeywords();
+	    	
+	    	for(int i=0; i<userKeywords.size(); i++){
+	    		for(int j=i+1; j<userKeywords.size(); j++){
+	    			if(userKeywords.get(i).getKeyword().equals(userKeywords.get(j).getKeyword())){
+	    				userKeywords.get(i).setCount(userKeywords.get(i).getCount() + userKeywords.get(j).getCount());
+	    				userKeywords.remove(j);
+	    			}
+	    		}
 	    	}
 	    }
 	    

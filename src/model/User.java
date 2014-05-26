@@ -13,7 +13,7 @@ public class User {
 	private String description;
 	private String profilePicURL;
 	private ArrayList<User> friends;
-	private HashMap<String,Integer> keywords;
+	private ArrayList<Keyword> keywords;
 	private ArrayList<Tweet> tweets;
 	
 	/**
@@ -34,7 +34,7 @@ public class User {
 		this.description = description;
 		this.profilePicURL = profilePicURL;
 		this.friends = friends;
-		this.keywords = new HashMap<String,Integer>();
+		this.keywords = new ArrayList<Keyword>();
 	}
 	/**
 	 * 
@@ -55,6 +55,7 @@ public class User {
 		this.profilePicURL = profilePicURL;
 		this.friends = friends;
 		this.tweets = tweets;
+		this.keywords = new ArrayList<Keyword>();
 	}
 	
 	/**
@@ -72,6 +73,7 @@ public class User {
 		this.location = location;
 		this.description = description;
 		this.profilePicURL = profilePicURL;
+		this.keywords = new ArrayList<Keyword>();
 	}
 	
 	/**
@@ -86,11 +88,16 @@ public class User {
 			twitterUser.getDescription(), 
 			twitterUser.getProfileImageURL(), 
 			null);
+		this.keywords = new ArrayList<Keyword>();
 	}
 	
 	/* 
 	 * Getters and setters for each detail stored for the user
 	 */
+	
+	public void addKeyword(Keyword k){
+		keywords.add(k);
+	}
 
 	public String getId() {
 		return id;
@@ -148,11 +155,14 @@ public class User {
 		this.friends = friends;
 	}
 
-	public HashMap<String, Integer> getKeywords() {
-		return keywords;
+	public ArrayList<Keyword> getKeywords() {
+		if(this.keywords != null)
+			return keywords;
+		else
+			return new ArrayList<Keyword>();
 	}
 
-	public void setKeywords(HashMap<String, Integer> keywords) {
+	public void setKeywords(ArrayList<Keyword> keywords) {
 		this.keywords = keywords;
 	}
 
@@ -192,7 +202,7 @@ public class User {
 		return "User [id=" + id + ", name=" + name + ", username=" + username
 				+ ", location=" + location + ", description=" + description
 				+ ", profilePicURL=" + profilePicURL + ", friends=" + friends
-				+ "]";
+				+ ", keywords=" + keywords + ", tweets=" + tweets + "]";
 	}	
 	
 }

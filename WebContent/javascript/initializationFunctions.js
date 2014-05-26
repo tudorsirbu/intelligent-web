@@ -9,6 +9,35 @@ function initMapEmpty(){
 	  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 }
 
+var activeWindow = new google.maps.InfoWindow();
+function initMap(data){
+
+	  $.each(data, function(key,venue){
+		  var contentString = "No address";
+		  var myLatlng = new google.maps.LatLng(venue.location.lat,venue.location.lng);
+		  if(venue.location.address!=null)
+			  contentString = venue.location.address; 
+		  var infowindow = new google.maps.InfoWindow({
+		      content: contentString
+		  });
+	
+		  var marker = new google.maps.Marker({
+		      position: myLatlng,
+		      map: map,
+		      title: venue.name
+		  });
+		  markersArray.push(marker);
+		  google.maps.event.addListener(marker, 'click', function() {
+			  if(activeWindow!=null)	  
+				  activeWindow.close();  
+		    infowindow.open(map,marker);
+		    activeWindow= infowindow;
+		  });
+		
+	});
+
+}
+
 function populateSelectVenues(data){
 	$("#venues_list").empty();
 	$.each(data, function(key,value){
@@ -493,4 +522,10 @@ function getMedia(url){
 	});
 	console.log(result);
 	return result;
+}
+
+function hideExistingResults(){
+	$("#results").hide(0);
+	// remove any previous results displayed
+	$("#results").empty();
 }

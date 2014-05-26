@@ -63,6 +63,7 @@ public class UsersServlet extends HttpServlet {
 		} catch (NumberFormatException e){
 			isScreenName = true;
 		}
+		User user = null;
 		
 		if(isScreenName){
 		
@@ -82,17 +83,17 @@ public class UsersServlet extends HttpServlet {
 			try {
 				userID =twitterConnection.getUserTimeline(userId).get(0).getUser().getId();
 				RDFService rdf = new RDFService();
-				rdf.getUser(userID);
+				user = rdf.getUser(userID);
 			} catch (TwitterException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else { 
 			RDFService rdf = new RDFService();
-			rdf.getUser(id);
+			user = rdf.getUser(id);
 		}
 		
-		User user = null;
+		
 
 		String content = "";
 

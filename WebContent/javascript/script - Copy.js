@@ -665,7 +665,7 @@ function displayKeywords(data){
 	var header = "<tr class=\"header\">";
 	header += "<th>Twitter username</th>";
 	$.each(keywords, function(key,value){
-		header += "<th>" + key + "</th>";
+		header += "<th>" + value.keyword + "</th>";
 	}); 
 	header += "<th>Total</th>";
 	header += "</tr>";
@@ -679,8 +679,8 @@ function displayKeywords(data){
 			row += "<td><a href=\"UsersServlet?user_id=" + value.id + "\" >" + value.username + "</a></td>";
 			var total = 0;
 			$.each(value.keywords, function(key,value){
-				total += value;
-				row += "<td>" + value + "</td>";
+				total += value.count;
+				row += "<td>" + value.count + "</td>";
 			});
 			row += "<td>" + total + "</td>";
 			row += "</tr>";

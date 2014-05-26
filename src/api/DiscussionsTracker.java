@@ -45,18 +45,16 @@ public class DiscussionsTracker {
 	 * @param ids the ids of the users that are being queried 
 	 */
 	public void usersQuery(long[] ids){
+		RDFBuilder rdfBuilder = new RDFBuilder();
 		// for each user id
 		for(long id : ids){
 			// get the user's statuses 
 			ResponseList<Status> statuses = getTweets(id);
 
 			// add the statuses to the RDF
-			RDFBuilder rdfBuilder = new RDFBuilder();
 			rdfBuilder.addTweets(statuses);
-			
-			// add the user to the RDF
-			rdfBuilder.addUser(statuses.get(0).getUser());
 		}
+		rdfBuilder.save();
 	}
 
 	/**

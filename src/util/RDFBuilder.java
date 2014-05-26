@@ -150,7 +150,6 @@ public class RDFBuilder extends RDFBase {
 	
 	private void addStatementsToModel(List<Statement> statements) {
 		for(Statement s:statements) {
-			System.out.println(s);
 			this.statementsModel.add(s);			
 		}
 	}
