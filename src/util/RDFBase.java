@@ -20,10 +20,13 @@ public class RDFBase {
 	Property foaf_name, screenName, id, locationName, depiction, description;
 	
 	/* List of properties for the swb:FoursquareVenue class */
-	Property name, hasPhoto, category, location, latitude, longitude, hasBeenVisitedBy;
+	Property name, hasPhoto, category, location, latitude, longitude, visitedBy, venueDescription, address, categories, URL;
 	
 	/* List of properties for the swb:Tweet class */
-	Property user, text, createdAt, retweetedBy;
+	Property venueId, user, text, createdAt, retweetedBy;
+	
+	/* List of properties for the swb:Visit class */
+	Property twitterUser, venue, date;
 	
 	public RDFBase() {
 		org.apache.log4j.BasicConfigurator.configure();
@@ -67,18 +70,28 @@ public class RDFBase {
 		this.location = this.model.getOntProperty(Config.NS + "location");
 		this.latitude  = this.model.createProperty(Config.GEO_NS + "lat");
 		this.longitude = this.model.createProperty(Config.GEO_NS + "long");
-		this.hasBeenVisitedBy =this.model.getOntProperty(Config.NS + "hasBeenVisitedBy");
+		this.visitedBy =this.model.getOntProperty(Config.NS + "visitedBy");
+		this.venueId = this.model.getOntProperty(Config.NS + "venueId");
 		this.user = this.model.getOntProperty(Config.NS + "user");
 		this.text = this.model.getOntProperty(Config.NS + "text");
 		this.createdAt = this.model.getOntProperty(Config.NS + "createdAt");
 		this.retweetedBy = this.model.getOntProperty(Config.NS + "retweetedBy");
+		this.venueDescription = this.model.getOntProperty(Config.NS + "venueDescription");
+		this.address = this.model.getOntProperty(Config.NS + "address");
+		this.category = this.model.getOntProperty(Config.NS + "category");
+		this.URL = this.model.getOntProperty(Config.NS + "URL");
+		
+		/* For visit*/
+		this.twitterUser = this.model.getOntProperty(Config.NS + "twitterUser");
+		this.venue = this.model.getOntProperty(Config.NS + "venue");
+		this.date = this.model.getOntProperty(Config.NS + "date");
 		
 		/* Lists all classes */
-		ExtendedIterator<OntClass> classIterator = model.listClasses(); 
-		while (classIterator.hasNext()) { 
-			OntClass ontClass = classIterator.next(); 
-			System.out.println(ontClass.toString()); 
-		}
+//		ExtendedIterator<OntClass> classIterator = model.listClasses(); 
+//		while (classIterator.hasNext()) { 
+//			OntClass ontClass = classIterator.next(); 
+//			System.out.println(ontClass.toString()); 
+//		}
 //			
 //		Property hasName = this.model.getOntProperty(Config.NS + "name");
 //		ExtendedIterator<Resource> iter = this.model.listResourcesWithProperty(hasName);

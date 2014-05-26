@@ -99,4 +99,14 @@
     <servlet-name>UserVenueServlet</servlet-name>
     <url-pattern>/UserVenueServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>VisitedByServlet</display-name>
+    <servlet-name>VisitedByServlet</servlet-name>
+    <servlet-class>servlets.VisitedByServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VisitedByServlet</servlet-name>
+    <url-pattern>/VisitedByServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

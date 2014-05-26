@@ -1,10 +1,10 @@
 package util;
 
-import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -12,17 +12,9 @@ import twitter4j.Status;
 import twitter4j.User;
 
 import com.hp.hpl.jena.datatypes.xsd.XSDDateTime;
-import com.hp.hpl.jena.ontology.OntClass;
-import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.hp.hpl.jena.rdf.model.Literal;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.rdf.model.Statement;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.vocabulary.RDF;
 
 import fi.foyt.foursquare.api.entities.Category;
@@ -32,7 +24,7 @@ import fi.foyt.foursquare.api.entities.PhotoGroup;
 
 public class RDFBuilder extends RDFBase {
 	
-	public void addUser(User user) {
+	public Resource addUser(User user) {
 		Resource resource = ResourceFactory.createResource("https://twitter.com/" + user.getScreenName());
 		Resource twitterUserType = model.createResource(Config.NS + "TwitterUser");
 		
@@ -43,13 +35,15 @@ public class RDFBuilder extends RDFBase {
 		statements.add(this.statementsModel.createStatement(resource, this.screenName, user.getScreenName()));
 		statements.add(this.statementsModel.createLiteralStatement(resource, this.id, user.getId()));
 		statements.add(this.statementsModel.createStatement(resource, this.locationName, user.getLocation()));
-		statements.add(this.statementsModel.createStatement(resource, this.depiction, user.getProfileBackgroundImageURL()));
+		statements.add(this.statementsModel.createStatement(resource, this.depiction, user.getProfileImageURL()));
 		statements.add(this.statementsModel.createStatement(resource, this.description, user.getDescription()));
 		
 		this.addStatementsToModel(statements);
+		
+		return resource;
 	}
 	
-	public void addVenue(CompleteVenue venue){
+	public Resource addVenue(CompleteVenue venue){
 		Resource venueResource = ResourceFactory.createResource(venue.getUrl());
 		Resource venueType = model.createResource(Config.NS + "FoursquareVenue");
 		
@@ -57,7 +51,6 @@ public class RDFBuilder extends RDFBase {
 		statements.add(this.statementsModel.createStatement(venueResource, RDF.type, venueType));
 		
 		statements.add(this.statementsModel.createStatement(venueResource, this.name, venue.getName()));
-		
 		
 		for(String photoURL:this.venuePhotosURL(venue)) {
 			statements.add(this.statementsModel.createStatement(venueResource, this.hasPhoto, photoURL));
@@ -73,6 +66,8 @@ public class RDFBuilder extends RDFBase {
 		statements.add(this.statementsModel.createStatement(venueResource, this.location, locationResource));
 
 		this.addStatementsToModel(statements);
+		
+		return venueResource;
 	}
 	
 	public void addTweets(List<Status> tweets) {
@@ -101,6 +96,29 @@ public class RDFBuilder extends RDFBase {
 		statements.add(this.statementsModel.createLiteralStatement(tweetResource, createdAt, dateTimeLiteral));
 		
 		this.addStatementsToModel(statements);
+	}
+	
+	public Resource addVisit(User user, CompleteVenue venue, Date date) {
+		
+		Resource userResource = this.addUser(user);
+		Resource venueResource = this.addVenue(venue);
+		Resource visitResource = ResourceFactory.createResource();
+		Resource visitType = model.createResource(Config.NS + "Visit");
+		
+		Calendar myCal = new GregorianCalendar();
+		myCal.setTime(date);
+		XSDDateTime dateTimeLiteral = new XSDDateTime(myCal);
+		
+		List<Statement> statements = new ArrayList<Statement>();
+
+		statements.add(this.statementsModel.createStatement(visitResource, RDF.type, visitType));
+		statements.add(this.statementsModel.createStatement(visitResource, this.twitterUser, userResource));
+		statements.add(this.statementsModel.createStatement(visitResource, this.venue, venueResource));
+		statements.add(this.statementsModel.createLiteralStatement(visitResource, this.date, dateTimeLiteral));
+		
+		this.addStatementsToModel(statements);
+		
+		return visitResource;
 	}
 	
 	public List<String> venuePhotosURL (CompleteVenue venue){

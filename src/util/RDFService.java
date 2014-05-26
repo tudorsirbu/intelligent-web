@@ -20,6 +20,7 @@ import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Resource;
 
 public class RDFService extends RDFBase {
@@ -121,35 +122,76 @@ public class RDFService extends RDFBase {
 	    return tweets;
 	}
 	
-	// simulator
 	/**
-	 * The method queries the RDF for a a venue using the provided venue name.
+	 * The method queries the RDF for a venue using the provided venue name.
 	 * @param name The name of the venue to be looked up.
 	 * @return Venue the venue with that name or null
 	 */
 	public Venue getVenue(String name){
-		ArrayList<User> users  = new ArrayList<User>();
+		Venue venue = null;
 		
-		TwitterManager twitterManager = TwitterManager.getInstance();
-		// create a connection to twitter
-		Twitter twitterConnection = null;
-		try {
-			twitterConnection = twitterManager.init();
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		// get the user's id
-		try {
-			users.add(new User(twitterConnection.getUserTimeline("studor").get(0).getUser()));
-			users.add(new User(twitterConnection.getUserTimeline("cristi_gavrila").get(0).getUser()));
-		} catch (TwitterException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return new Venue("1", name, users, "In cur cu satelitul");
+		String queryString =        
+			      "PREFIX sweb: <" + Config.NS + "> " +
+			      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
+			      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> " +
+			      "PREFIX foaf: <http://xmlns.com/foaf/0.1/>" +
+			      "select * " +
+			      "where { " +
+			      	"?venue sweb:name <" + name + ">." +
+			      "} \n ";
+		System.out.println(queryString);
+	    Query query = QueryFactory.create(queryString);
+	    
+	    QueryExecution qe = QueryExecutionFactory.create(query, this.model);
+	    ResultSet results =  qe.execSelect();
+	    
+	    ResultSetFormatter.out(results);
+	    
+	    while(results.hasNext()) {
+	    	QuerySolution solution = results.nextSolution() ;
+	        Resource currentResource = solution.getResource("FoursquareVenue");
+
+	        venue = new Venue(
+	        		currentResource.getProperty(this.venueId).getString(),
+	        		currentResource.getProperty(this.name).getString(),
+	        		currentResource.getProperty(this.venueDescription).getString(),
+	        		currentResource.getProperty(this.address).getString(),
+	        		currentResource.getProperty(this.hasPhoto).getString(),
+	        		currentResource.getProperty(this.category).getString(),
+	        		currentResource.getProperty(this.URL).getString()
+	        		);	
+	    }
+	    
+	    return venue;
 	}
 	
+	public List<User> getUsersVisitingVenueById(long venueId){
+		List<User> users = null;
+		
+		String queryString =        
+			      "PREFIX sweb: <" + Config.NS + "> " +
+			      "select ?id " +
+			      "where { " +
+			      	"?visit sweb:venue ?venue." +
+			      	"?venue sweb:venueId " + venueId + "." +
+			      	"?visit sweb:twitterUser ?user." +
+			      	"?user sweb:id ?id." +
+			      "} \n ";
+		System.out.println(queryString);
+	    Query query = QueryFactory.create(queryString);
+	    
+	    QueryExecution qe = QueryExecutionFactory.create(query, this.model);
+	    ResultSet results =  qe.execSelect();
+	    
+	    ResultSetFormatter.out(results);
+	    
+	    while(results.hasNext()) {
+	    	QuerySolution solution = results.nextSolution() ;
+	        Resource currentResource = solution.getResource("Visit");
+
+	        
+	    }
+	    
+	    return users;
+	}
 }
