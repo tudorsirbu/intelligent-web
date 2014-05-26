@@ -525,6 +525,8 @@ function getMedia(url){
 }
 
 function hideExistingResults(){
+	$("#map-canvas").hide(0);
+	$("#map-canvas").empty();
 	$("#results").hide(0);
 	// remove any previous results displayed
 	$("#results").empty();
