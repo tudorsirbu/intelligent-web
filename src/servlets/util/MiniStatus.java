@@ -1,5 +1,6 @@
 package servlets.util;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import twitter4j.Status;
@@ -14,6 +15,7 @@ public class MiniStatus {
 	private User user;
 	private String retweetCount;
 	private List<String> extendedUrls;
+	private Date createdAt; 
 	
 	public User getUser() {
 		return user;
@@ -49,6 +51,8 @@ public class MiniStatus {
 			this.retweetCount = String.valueOf(status.getRetweetCount());
 		else 
 			this.retweetCount = "0";
+		
+		this.createdAt = status.getCreatedAt();
 	}
 	/**
 	 * Constructor	

@@ -53,6 +53,7 @@ function populateSelectVenues(data){
 function displayUserRDFa(user) {
 	var entry = "";
 	entry +="<div xmlns:dc=\"http://www.smartweb.com/data/#\" xmlns:foaf=\"http://xmlns.com/foaf/0.1/\" xmls:xs=\"http://www.w3.org/2001/XMLSchema#\">";
+<<<<<<< HEAD
 	entry += "<div class='user' about=\"#"+ user.username +"\"" + "typeof=\"foaf:Agent\">";
 	entry +="<a href=\"UsersServlet?user_id=\"" +user.id+"\" class =\"title\"  property=\"foaf:name\">" + user.name + "</a>";
 	entry +="<h3 property=\"dc:id\" datatype=\"xs:integer\">" + user.id + "</h3>";
@@ -63,6 +64,18 @@ function displayUserRDFa(user) {
 		entry +="<h3 property=\"dc:visited\">" +value.name+"</h3>";
 	});
 	entry += "</div>";
+=======
+		entry += "<div class='user' about=\"#"+ user.username +"\"" + "typeof=\"foaf:Agent\">";
+				entry +="<a href=\"UsersServlet?user_id=\"" +user.id+"\" class =\"title\"  property=\"foaf:name\">" + user.name + "</a>";
+				entry +="<h3 property=\"dc:id\" datatype=\"xs:integer\">" + user.id + "</h3>";
+				entry +="<h3 property=\"dc:locationName\">"+ user.location + "</h3>";
+				entry +="<img property=\"foaf:depiction\" src=\""+user.profilePicURL+"\"/>";
+				entry +="<h3 property=\"dc:description\">" +user.description+"</h3>";
+				$.each(user.visited, function(key,value){
+					entry +="<h3 property=\"dc:visited\">" +value.name+"</h3>";
+				});
+		entry += "</div>";
+>>>>>>> 6d6bc7b1969592397c573641d2159a2f0a4805a4
 	entry += "</div>";
 	return entry;
 }
@@ -81,7 +94,7 @@ function displayVenues(data){
 				if(venue.location.address)
 				div += "<h class='title'>Address:  </h><span class='venues_name'>"+ venue.location.address + "</span><br/>";
 				if(venue.shortUrl)
-				div += "<h class='title'>Url:  </h><a href='url'>"+ venue.shortUrl + "</a><br/><br/>";
+				div += "<h class='title'>Url:  </h><a href='"+venue.shortUrl+"'>"+ venue.shortUrl + "</a><br/><br/>";
 				if(photoGroups.length>1)
 					if(photoGroups[1].length!=0)
 						$.each(photoGroups[1].items,function(key,value){
@@ -259,6 +272,7 @@ function displayTweets(data) {
 		div += "<a href='UsersServlet?user_id="+ tweet.user_id +"' class='title'>" + tweet.name + "</a>";
 		div += "<span class='screen_name'> @" + tweet.screenName + "</span>";
 		div += "<p class='text'>" + tweet.text + "</p>";
+		div += "<p class='text'>" + tweet.createdAt + "</p>";
 		div += "<a href='" + tweet.id + "' class='get_retweets'>" + tweet.retweetCount + " retweets</a>";
 		div += "<div class='instagramPic' style='display:none;'><a class='instagramUser' target='_blank' style='display:block;'></a>";
 		div	+= "<a href='#' class='imgURL' target='_blank'><img id='"+tweet.id +"' /></a></div>";
@@ -333,7 +347,7 @@ function getUserVenuesFormErrors() {
 
         switch($this.attr('name')) {
 			case "user_id":
-				validatePositiveLong($this, true);
+				validateEmpty($this, true);
 				break;
 			case "days_last_visited":
 				validatePositiveInteger($this, true);
