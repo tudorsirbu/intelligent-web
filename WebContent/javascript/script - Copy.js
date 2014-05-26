@@ -674,7 +674,6 @@ function displayKeywords(data){
 	$("#keywordsTable").prepend(header);
 	$.each(data,function(key, value){
 		if(data){
-			console.log(value.username);
 			var row = "<tr>";
 			row += "<td><a href=\"UsersServlet?user_id=" + value.id + "\" >" + value.username + "</a></td>";
 			var total = 0;

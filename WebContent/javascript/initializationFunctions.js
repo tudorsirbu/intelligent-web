@@ -397,7 +397,7 @@ function getDiscussionTrackerFormErrors() {
 
         switch($this.attr('name')) {
 			case "user_ids":
-				validatePositiveLong($this, true);
+				validateEmpty($this, true);
 				break;
 			case "no_keywords":
 				validatePositiveInteger($this, true);
@@ -417,28 +417,38 @@ function displayKeywords(data){
 	$("#results").prepend("<table id=\"keywordsTable\">");
 
 	// create table header
-	var keywords = data[0].keywords;
+	console.log(data);
 	var header = "<tr class=\"header\">";
 	header += "<th>Twitter username</th>";
-	$.each(keywords, function(key,value){
-		header += "<th>" + key + "</th>";
+	$.each(data[1], function(key,value){
+		header += "<th>" + value + "</th>";
 	}); 
 	header += "<th>Total</th>";
 	header += "</tr>";
 
 	// add table head
 	$("#keywordsTable").prepend(header);
-	$.each(data,function(key, value){
-		if(data){
-			console.log(value.username);
+	$.each(data[0],function(key, user){
+		if(data[0]){
 			var row = "<tr>";
-			row += "<td><a href=\"UsersServlet?user_id=" + value.id + "\" >" + value.username + "</a></td>";
+			row += "<td><a href=\"UsersServlet?user_id=" + user.id + "\" >" + user.username + "</a></td>";
 			var total = 0;
-			$.each(value.keywords, function(key,value){
-				total += value;
-				row += "<td>" + value + "</td>";
+			$.each(data[1], function(k, word){
+				var found = false;
+				$.each(user.keywords, function(key,value){
+					if(value.keyword === word){
+						console.log("Am intrat aici pt " + value.keyword);
+						found = true;
+						total += value.count;
+						row += "<td>" + value.count + "</td>";
+					}
+				});
+				if(!found){
+					row += "<td>0</td>";
+				}
 			});
-			row += "<td>" + total + "</td>";
+			console.log(total);
+			row += "<td>"+total+"</td>";
 			row += "</tr>";
 			$("#keywordsTable").append(row);
 		};
