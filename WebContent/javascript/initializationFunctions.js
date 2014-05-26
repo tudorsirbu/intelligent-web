@@ -52,15 +52,13 @@ function populateSelectVenues(data){
 
 function displayUserRDFa(user) {
 	var entry = "";
-	entry += "<div class='user'>";
-		entry +="<div xmlns:dc=\"http://www.smartweb.com/data/#\" xmlns:foaf=\"http://xmlns.com/foaf/0.1/\" xmls:xs=\"http://www.w3.org/2001/XMLSchema#\">";
-			entry += "<p about=\"#"+ user.username +"\"" + "typeof=\"foaf:Agent\">";
-				entry +="<b property=\"foaf:name\">" +"Has name: "+ user.name + "</b>";
-				entry +="<span property=\"dc:id\" datatype=\"xs:integer\">" +"Has id:"+ user.id + "</span>";
-				entry +="<span property=\"dc:locationName\">"+"Live at (Only shown if available):"+ user.location + "</span>";
-				entry +="<span property=\"foaf:depiction\">"+"Has profile picture:" +"<img src=\""+user.profilePicURL+"\"/></span>";
-				entry +="<span property=\"dc:description\">" +"Has description:" +user.description+"</span>";
-			entry +="</p>";	
+	entry +="<div xmlns:dc=\"http://www.smartweb.com/data/#\" xmlns:foaf=\"http://xmlns.com/foaf/0.1/\" xmls:xs=\"http://www.w3.org/2001/XMLSchema#\">";
+		entry += "<div class='user' about=\"#"+ user.username +"\"" + "typeof=\"foaf:Agent\">";
+				entry +="<a href=\"UsersServlet?user_id=\"" +user.id+"\" class =\"title\"  property=\"foaf:name\">" + user.name + "</a>";
+				entry +="<h3 property=\"dc:id\" datatype=\"xs:integer\">" + user.id + "</h3>";
+				entry +="<h3 property=\"dc:locationName\">"+ user.location + "</h3>";
+				entry +="<img property=\"foaf:depiction\" src=\""+user.profilePicURL+"\"/>";
+				entry +="<h3 property=\"dc:description\">" +user.description+"</h3>";
 		entry += "</div>";
 	entry += "</div>";
 	return entry;
@@ -525,6 +523,8 @@ function getMedia(url){
 }
 
 function hideExistingResults(){
+	$("#map-canvas").hide(0);
+	$("#map-canvas").empty();
 	$("#results").hide(0);
 	// remove any previous results displayed
 	$("#results").empty();
