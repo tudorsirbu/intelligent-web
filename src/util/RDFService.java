@@ -61,14 +61,7 @@ public class RDFService extends RDFBase {
 	    	QuerySolution solution = results.nextSolution() ;
 	        Resource currentResource = solution.getResource("user");
 
-	        user = new User(
-	        		currentResource.getProperty(this.id).getString(),
-	        		currentResource.getProperty(this.foaf_name).getString(),
-	        		currentResource.getProperty(this.screenName).getString(),
-	        		currentResource.getProperty(this.locationName).getString(),
-	        		currentResource.getProperty(this.description).getString(),
-	        		currentResource.getProperty(this.depiction).getString()
-	        );	
+	        user = this.buildUserFromResource(currentResource);
 	        
 	        user.setTweets(this.getTweetsByUserId(id));
 	    }
@@ -198,14 +191,16 @@ public class RDFService extends RDFBase {
 	 * @param venueId a Foursquare Venue id
 	 * @return the list of users that visited the venue
 	 */
-	public List<User> getUsersVisitingVenueByName(String venueName){
-		List<User> users = null;
+	public ArrayList<User> getUsersVisitingVenueByName(String venueName){
+		ArrayList<User> users = new ArrayList<User>();
 		
 		String queryString =        
 			      "PREFIX sweb: <" + Config.NS + "> " +
-			      "select * " +
+			      "select ?user " +
 			      "where { " +
 			      	"?user sweb:visited ?venue." +
+			      	"?venue sweb:name ?name." +
+			      	"FILTER regex(?name, \""+ venueName +"\", \"i\" )" +
 			      "} \n ";
 		System.out.println(queryString);
 	    Query query = QueryFactory.create(queryString);
@@ -213,15 +208,24 @@ public class RDFService extends RDFBase {
 	    QueryExecution qe = QueryExecutionFactory.create(query, this.model);
 	    ResultSet results =  qe.execSelect();
 	    
-	    ResultSetFormatter.out(results);
-	    
 	    while(results.hasNext()) {
 	    	QuerySolution solution = results.nextSolution() ;
-	        Resource currentResource = solution.getResource("Visit");
+	        Resource currentResource = solution.getResource("user");
 
-	        
+	        users.add(this.buildUserFromResource(currentResource));
 	    }
 	    
 	    return users;
+	}
+	
+	private User buildUserFromResource(Resource resource) {
+		return new User(
+				resource.getProperty(this.id).getString(),
+				resource.getProperty(this.foaf_name).getString(),
+				resource.getProperty(this.screenName).getString(),
+				resource.getProperty(this.locationName).getString(),
+				resource.getProperty(this.description).getString(),
+				resource.getProperty(this.depiction).getString()
+        );	
 	}
 }
