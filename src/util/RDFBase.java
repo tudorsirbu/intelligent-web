@@ -31,7 +31,7 @@ public class RDFBase {
 	/**
 	 * List of properties for the sweb:TwitterUser class
 	 */
-	Property foaf_name, screenName, id, locationName, depiction, description, visited;
+	Property foaf_name, screenName, id, locationName, depiction, description, visited, inContactWith;
 	
 	/**
 	 * List of properties for the swb:FoursquareVenue class 
@@ -75,6 +75,7 @@ public class RDFBase {
 		/* Initialising the list of properties */
 		this.foaf_name = this.model.createProperty(Config.FOAF_NS + "name");
 		this.screenName = this.model.getOntProperty(Config.NS + "screenName");
+		this.inContactWith = this.model.getOntProperty(Config.NS + "inContactWith");
 		this.id = this.model.getOntProperty(Config.NS + "id");
 		this.locationName = this.model.getOntProperty(Config.NS + "locationName");
 		this.depiction = this.model.createProperty(Config.FOAF_NS + "depiction");
