@@ -1,20 +1,11 @@
 package api;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import model.DatabaseConnection;
-import model.InvertedIndexService;
-import model.UserService;
-import model.WordService;
-import twitter4j.*;
+import twitter4j.Paging;
+import twitter4j.ResponseList;
+import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
 import util.RDFBuilder;
-import util.Remover;
 
 /**
  * DiscussionsTracker is used to query Twitter for the statuses

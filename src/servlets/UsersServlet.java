@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.DatabaseConnection;
 import model.User;
-import model.UserService;
 import servlets.util.MiniStatus;
 import servlets.util.Template;
 import servlets.util.Util;

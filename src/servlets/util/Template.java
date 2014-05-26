@@ -5,6 +5,12 @@ public class Template {
 	private String content;
 	private String title;
 	private String head;
+	private Doctype doctype;
+	
+	private enum Doctype {
+		HTML,
+		XHTML
+	}
 	
 	public Template(String content, String title) {
 		this.content = content;
@@ -23,16 +29,32 @@ public class Template {
 		this.head += "<script src=\"javascript/jquery-1.11.0.js\"></script>";
 		this.head += "<script src=\"javascript/jquery-ui-1.10.4.custom.min.js\"></script>";
 		this.head += "<script src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgU59vjkXnSzHlfrR1iaZ6zottGl35Ys&sensor=false\"></script>";
-		this.head += "<script src=\"javascript/script.js\"></script>";
+		this.head += "<script src=\"javascript/validation.js\"></script>";
+		this.head += "<script src=\"javascript/initializationFunctions.js\"></script>";
+		this.head += "<script src=\"javascript/initialize.js\"></script>";
 	}
 	
 	public String getPage() {
-		String page = "<!doctype html>";
-		page += "<html lang=\"en\">";
+		String page = "";
+		if(this.doctype == Doctype.HTML) {
+			page += "<!doctype html>";
+			page += "<html lang=\"en\">";			
+		}
+		else  {			
+			page += "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">";
+			page += "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">";
+		}
+		
 		page += "<head>";
+		
+		if(this.doctype == Doctype.XHTML) {			
+			page += "<meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\"/>";
+		}
+		
 		page += this.head;
 		page += "<//head>";
 		page += "<body>";
+		page += "<a href=\"queryInterface.html\" id=\"back_to_query_interface\">Back to Query Interface</a>";
 		page += this.content;
 		page += "<//body>";
 		page += "</html>";
@@ -63,5 +85,16 @@ public class Template {
 	public void addToHead(String head) {
 		this.head += head;
 	}
-	
+	public Doctype getDoctype() {
+		return doctype;
+	}
+
+	public void setDoctype(Doctype doctype) {
+		this.doctype = doctype;
+	}
+
+	public void setHead(String head) {
+		this.head = head;
+	}
+
 }
