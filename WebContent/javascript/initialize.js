@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	
 	google.maps.event.addDomListener(window, 'load', initMapEmpty);
 	$("#results").hide();
 	$('#loader').hide();
