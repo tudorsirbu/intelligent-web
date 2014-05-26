@@ -7,31 +7,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
 import model.Venue;
-import servlets.util.TrackingForm;
 import servlets.util.Util;
 import util.RDFService;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 /**
  * Servlet implementation class that deals with finding all the users that have visited a specific venue.
- * 
- * 
  * 
  * @author Tudor-Daniel Sirbu
  * @author Claudiu Tarta
  * @author Florin-Cristian Gavrila
  * 
  */
-public class UserVenueServlet extends HttpServlet {
+public class VisitedByServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserVenueServlet() {
+    public VisitedByServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

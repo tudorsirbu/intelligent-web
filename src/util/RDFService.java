@@ -158,7 +158,6 @@ public class RDFService extends RDFBase {
 	        		currentResource.getProperty(this.address).getString(),
 	        		currentResource.getProperty(this.hasPhoto).getString(),
 	        		currentResource.getProperty(this.category).getString(),
-	        		currentResource.getProperty(this.location).getString(),
 	        		currentResource.getProperty(this.URL).getString()
 	        		);	
 	    }
@@ -166,15 +165,17 @@ public class RDFService extends RDFBase {
 	    return venue;
 	}
 	
-	public List<User> getUsersVisitingVenueById(long id){
+	public List<User> getUsersVisitingVenueById(long venueId){
 		List<User> users = null;
 		
 		String queryString =        
 			      "PREFIX sweb: <" + Config.NS + "> " +
-			      "select * " +
+			      "select ?id " +
 			      "where { " +
 			      	"?visit sweb:venue ?venue." +
-			      	"?venue sweb:venueId " + id + "." +
+			      	"?venue sweb:venueId " + venueId + "." +
+			      	"?visit sweb:twitterUser ?user." +
+			      	"?user sweb:id ?id." +
 			      "} \n ";
 		System.out.println(queryString);
 	    Query query = QueryFactory.create(queryString);
