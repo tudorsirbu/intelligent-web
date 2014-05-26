@@ -13,15 +13,6 @@
     <geo:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#double">53.38453351731824</geo:lat>
     <geo:long rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.4797296047989605</geo:long>
   </rdf:Description>
-  <rdf:Description rdf:about="https://twitter.com/cristi_gavrila">
-    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
-    <foaf:name>Cristi Gavrila</foaf:name>
-    <sweb:screenName>cristi_gavrila</sweb:screenName>
-    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1225017144</sweb:id>
-    <sweb:locationName></sweb:locationName>
-    <foaf:depiction>http://abs.twimg.com/sticky/default_profile_images/default_profile_1_normal.png</foaf:depiction>
-    <sweb:description></sweb:description>
-  </rdf:Description>
   <rdf:Description rdf:about="https://twitter.com/claudiutarta">
     <sweb:visited rdf:resource="https://foursquare.com/v/4b7d531ef964a5204cb82fe3"/>
     <sweb:visited rdf:resource="https://foursquare.com/v/50773b2ce4b02f07ed61012a"/>
