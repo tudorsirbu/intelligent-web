@@ -524,6 +524,8 @@ public class TwitterManager {
 		if(statuses!=null){
 			RDFBuilder rdf = new RDFBuilder();
 			rdf.addUser(statuses.get(0).getUser());
+			rdf.save();
+			rdf.close();
 		}
 
 		Calendar c = Calendar.getInstance();
