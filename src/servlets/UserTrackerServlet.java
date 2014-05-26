@@ -8,8 +8,10 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -89,12 +91,13 @@ public class UserTrackerServlet extends HttpServlet {
 		/* Get tweets according to the query parameters */
 		DiscussionsTracker d = new DiscussionsTracker();
 		d.usersQuery(ids);
-
+		
 		// get data from RDF
 		RDFService rdfService = new RDFService();
 		
 		// get the tweets for the given user names
 		ArrayList<User> users = (ArrayList<User>) rdfService.getUsers(ids);
+		rdfService.close();
 		
 		// create inverted index for the given users' tweets
 		HashMap<String,ArrayList<Keyword>> keywords = new HashMap<String,ArrayList<Keyword>>();
@@ -154,10 +157,6 @@ public class UserTrackerServlet extends HttpServlet {
 	    
 	    // sort the top
 	    Collections.sort(top);
-	    System.out.println("SIZE! "+ top.size());
-	    for(Keyword k: top){
-	    	System.out.println(k.getKeyword()+ "-" + k.getCount());
-	    }
 		System.out.println("BEFORE!");
 		int topLength;
 		if(top.size() > form.getKeywords()){
@@ -165,9 +164,15 @@ public class UserTrackerServlet extends HttpServlet {
 		} else {
 			topLength = top.size();
 		}
+		// create a list of all keywords
+		ArrayList<String> generalKeywords = new ArrayList<String>();
+				
 	    for(int i=0; i<topLength; i++){
 	    	// get the list with how many times the keyword has been used by each user
 	    	ArrayList<Keyword> allUserCounts = keywords.get(top.get(i).getKeyword());
+	    	
+	    	// add the keyword to the general list
+	    	generalKeywords.add(top.get(i).getKeyword());
 	    	
 	    	for(User u:users){
 	    		// add the current keyword to the user's hashmap
@@ -184,19 +189,33 @@ public class UserTrackerServlet extends HttpServlet {
 	    	// get the user's keywords and add up the same one eg home-1, home-3 => home-4
 	    	ArrayList<Keyword> userKeywords = u.getKeywords();
 	    	
-	    	for(int i=0; i<userKeywords.size(); i++){
-	    		for(int j=i+1; j<userKeywords.size(); j++){
-	    			if(userKeywords.get(i).getKeyword().equals(userKeywords.get(j).getKeyword())){
-	    				userKeywords.get(i).setCount(userKeywords.get(i).getCount() + userKeywords.get(j).getCount());
-	    				userKeywords.remove(j);
-	    			}
-	    		}
+	    	for(Keyword k:userKeywords){
+	    		System.out.println(k.getKeyword()+ " *-> " + k.getCount());
 	    	}
+	    	
+	    	Set<Keyword> keywordsSet = new HashSet<Keyword>(userKeywords);
+	    	
+	    	while(keywordsSet.size() != userKeywords.size()){
+		    	for(int i=0; i<userKeywords.size(); i++){
+		    		for(int j=i+1; j<userKeywords.size(); j++){
+		    			if(userKeywords.get(i).getKeyword().equals(userKeywords.get(j).getKeyword())){
+		    				userKeywords.get(i).setCount(userKeywords.get(i).getCount() + userKeywords.get(j).getCount());
+		    				userKeywords.remove(j);
+		    			}
+		    		}
+		    	}
+	    	}
+	    	System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&");
+	    	for(Keyword k:userKeywords){
+	    		System.out.println(k.getKeyword()+ " -> " + k.getCount());
+	    	}
+	    	u.setKeywords(userKeywords);
 	    }
 	    
 		/* Create the response JSON */
-		String json = gson.toJson(users);
-		response.getWriter().write(json.toString());
+		String usersJson = gson.toJson(users);
+		String keywordsJson = gson.toJson(generalKeywords);
+		response.getWriter().write("["+usersJson.toString()+","+keywordsJson.toString()+"]");
 	}
 	
 	private long[] toUserIdFromScreenName(String screenNames){

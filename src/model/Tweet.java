@@ -58,8 +58,6 @@ public class Tweet {
 		// split the string into words
 		String[] words = remover.getText().split(" ");
 		
-		System.out.println("INVERTED INDEX");
-		
 		// check if any words should be removed if they do not pass the stoplist test
 		ArrayList<String> stoplist = (new StoplistBuilder()).getStoplist();
 		for(String word:words){
@@ -68,7 +66,6 @@ public class Tweet {
 				addKeyword(keywords, word.toLowerCase());
 			}		
 		}
-		System.out.println("INVERTED INDEX");
 		return keywords;
 	}
 	

@@ -55,6 +55,7 @@ public class DiscussionsTracker {
 			rdfBuilder.addTweets(statuses);
 		}
 		rdfBuilder.save();
+		rdfBuilder.close();
 	}
 
 	/**
@@ -76,8 +77,6 @@ public class DiscussionsTracker {
 			System.out.println("Could not retrieve user's (" + id + ") timeline.");
 			e.printStackTrace();
 		}
-
 		return statuses;
 	}
-
 }
