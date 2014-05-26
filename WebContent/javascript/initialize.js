@@ -80,8 +80,6 @@ $(document).ready(function() {
 			url: "SearchNearby",
 			data: data,
 			success: function(venues) {
-				console.log(venues);
-				
 				displayVenues(venues);
 			}
 		});

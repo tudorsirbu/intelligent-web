@@ -325,7 +325,7 @@ public class TwitterManager {
 			/* Subtract the number of days so that only the queries in the last X days are taken into consideration. */
 			Calendar calendar = Calendar.getInstance();
 			calendar.add(Calendar.DAY_OF_MONTH, -daysNumber);
-			SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			query.setSince(format.format(calendar.getTime()));
 
 			/* Query twitter for results.

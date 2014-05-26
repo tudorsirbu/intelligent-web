@@ -82,7 +82,7 @@ function displayVenues(data){
 				if(venue.location.address)
 				div += "<h class='title'>Address:  </h><span class='venues_name'>"+ venue.location.address + "</span><br/>";
 				if(venue.shortUrl)
-				div += "<h class='title'>Url:  </h><a href='url'>"+ venue.shortUrl + "</a><br/><br/>";
+				div += "<h class='title'>Url:  </h><a href='"+venue.shortUrl+"'>"+ venue.shortUrl + "</a><br/><br/>";
 				if(photoGroups.length>1)
 					if(photoGroups[1].length!=0)
 						$.each(photoGroups[1].items,function(key,value){
