@@ -1,5 +1,11 @@
 package servlets.util;
-
+/**
+ * The class is used when displaying some of the pages to the user from Java.
+ * @author Tudor Sirbu
+ * @author Claudiu Tarta
+ * @author Cristi Gavrila
+ *
+ */
 public class Template {
 
 	private String content;
@@ -11,21 +17,32 @@ public class Template {
 		HTML,
 		XHTML
 	}
-	
+	/**
+	 * Constructor
+	 * @param content the content of the page
+	 * @param title the title of the page
+	 */
 	public Template(String content, String title) {
 		this.content = content;
 		this.title = title;
 		
 		this.initHead();
 	}
-
+	/**
+	 * Constructor
+	 * @param content the content of the page
+	 * @param title the title of the page
+	 * @param doctype the page's doc type if it's different from the default one.
+	 */
 	public Template(String content, String title, Doctype doctype) {
 		this.content = content;
 		this.title = title;
 		this.doctype = doctype;
 		this.initHead();
 	}
-	
+	/**
+	 * Add the head of the page
+	 */
 	public void initHead() {
 		this.head += "<title>" + this.title + "</title>";
 		this.head += "<link rel=\"stylesheet\" type=\"text/css\" href=\"CSS/reset.css\">";
@@ -40,7 +57,10 @@ public class Template {
 		this.head += "<script src=\"javascript/initializationFunctions.js\"></script>";
 		this.head += "<script src=\"javascript/initialize.js\"></script>";
 	}
-	
+	/**
+	 * Return the page
+	 * @return return the page as string
+	 */
 	public String getPage() {
 		String page = "";
 		if(this.doctype == Doctype.HTML) {

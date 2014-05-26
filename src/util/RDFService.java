@@ -51,7 +51,7 @@ public class RDFService extends RDFBase {
 			      "where { " +
 			      	"?user sweb:id " + id + "." +
 			      "} \n ";
-		System.out.println(queryString);
+
 	    Query query = QueryFactory.create(queryString);
 	    
 	    QueryExecution qe = QueryExecutionFactory.create(query, this.model);
@@ -64,11 +64,37 @@ public class RDFService extends RDFBase {
 	        user = this.buildUserFromResource(currentResource);
 	        
 	        user.setTweets(this.getTweetsByUserId(id));
+	        user.setVisited(this.getVenuesVisitedByUserId(id));
+	        user.setInContact(this.getInContactForUserId(id));
 	    }
 	    
-	    user.setVisited(this.getVenuesVisitedByUserId(id));
-	    
 	    return user;
+	}
+
+	private ArrayList<User> getInContactForUserId(long id) {
+		ArrayList<User> users = new ArrayList<User>();
+		
+		String queryString =        
+			      "PREFIX sweb: <" + Config.NS + "> " +
+			      "select ?contact " +
+			      "where { " +
+			      	"?user sweb:inContactWith ?contact." +
+			      	"?user sweb:id "+ id +"." +
+			      "} \n ";
+
+	    Query query = QueryFactory.create(queryString);
+	    
+	    QueryExecution qe = QueryExecutionFactory.create(query, this.model);
+	    ResultSet results =  qe.execSelect();
+	    
+	    while(results.hasNext()) {
+	    	QuerySolution solution = results.nextSolution() ;
+	        Resource currentResource = solution.getResource("contact");
+
+	        users.add(this.buildUserFromResource(currentResource));
+	    }
+	    
+	    return users;
 	}
 
 	/**
@@ -106,7 +132,7 @@ public class RDFService extends RDFBase {
 			      		"?user sweb:id " + id + "." +
 			      		"?tweet sweb:user ?user. " +
 			      "} \n ";
-		System.out.println(queryString);
+
 	    Query query = QueryFactory.create(queryString);
 	    
 	    QueryExecution qe = QueryExecutionFactory.create(query, this.model);
@@ -161,7 +187,7 @@ public class RDFService extends RDFBase {
 			      "where { " +
 			      	"?venue sweb:name <" + name + ">." +
 			      "} \n ";
-		System.out.println(queryString);
+
 	    Query query = QueryFactory.create(queryString);
 	    
 	    QueryExecution qe = QueryExecutionFactory.create(query, this.model);
@@ -204,7 +230,7 @@ public class RDFService extends RDFBase {
 			      	"?venue sweb:name ?name." +
 			      	"FILTER regex(?name, \""+ venueName +"\", \"i\" )" +
 			      "} \n ";
-		System.out.println(queryString);
+
 	    Query query = QueryFactory.create(queryString);
 	    
 	    QueryExecution qe = QueryExecutionFactory.create(query, this.model);
@@ -220,7 +246,12 @@ public class RDFService extends RDFBase {
 	    return users;
 	}
 	
-
+	/**
+	 * Returns a list of venues visited by a certain user, given its id.
+	 * 
+	 * @param id the id of the twitter user
+	 * @return a list of venues
+	 */
 	public ArrayList<Venue> getVenuesVisitedByUserId(long id){
 
 		ArrayList<Venue> venues = new ArrayList<Venue>();
@@ -232,7 +263,7 @@ public class RDFService extends RDFBase {
 			      	"?user sweb:visited ?venue." +
 			      	"?user sweb:id "+ id +"." +
 			      "} \n ";
-		System.out.println(queryString);
+
 	    Query query = QueryFactory.create(queryString);
 	    
 	    QueryExecution qe = QueryExecutionFactory.create(query, this.model);
@@ -250,7 +281,12 @@ public class RDFService extends RDFBase {
 	    return venues;
 	}
 	
-	
+	/**
+	 * Returns a Venue object from a resource.
+	 * 
+	 * @param resource 
+	 * @return a Venue object
+	 */
 	private Venue buildVenueFromResource(Resource resource) {
 		return new Venue(
 				resource.getProperty(this.venueId).getString(),
@@ -263,6 +299,12 @@ public class RDFService extends RDFBase {
         		);
 	}
 
+	/**
+	 * Returns a User object from a resource.
+	 * 
+	 * @param resource 
+	 * @return a User object
+	 */
 	private User buildUserFromResource(Resource resource) {
 		return new User(
 				resource.getProperty(this.id).getString(),

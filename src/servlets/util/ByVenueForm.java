@@ -1,5 +1,12 @@
 package servlets.util;
-
+/**
+ * The class is used when transforming JSON data received through
+ * a post request into Java recognizable data.
+ * @author Tudor Sirbu
+ * @author Claudiu Tarta
+ * @author Cristi Gavrila
+ *
+ */
 public class ByVenueForm {
 	
 	private String locationName;

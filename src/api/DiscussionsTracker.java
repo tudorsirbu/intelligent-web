@@ -64,9 +64,13 @@ public class DiscussionsTracker {
 		// get the user's timeline
 		try {
 			statuses = twitterConnection.getUserTimeline(id, new Paging(1,100));
+			
 		} catch (TwitterException e) {
 			System.out.println("Could not retrieve user's (" + id + ") timeline.");
 			e.printStackTrace();
+		}
+		finally {
+			twitterConnection.shutdown();
 		}
 		return statuses;
 	}

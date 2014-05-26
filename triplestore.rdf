@@ -3,6 +3,1480 @@
     xmlns:sweb="http://www.smartweb.com/data/#"
     xmlns:foaf="http://xmlns.com/foaf/0.1/#"
     xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" > 
+  <rdf:Description rdf:about="https://twitter.com/mandy_bors">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>Amanda Bors</foaf:name>
+    <sweb:screenName>mandy_bors</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">203995237</sweb:id>
+    <sweb:locationName></sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/454445731005218816/JQH8982Q_normal.jpeg</foaf:depiction>
+    <sweb:description>Integrative Health Coach. Holistic Entrepreneaur.</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/Arbonne_Canada"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/ErikHansen_IG/status/470942143176261633">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/ErikHansen_IG"/>
+    <sweb:text>RT @IGSverige: Webbseminarium ikväll kl 18.00 med Lars Hansson på Min Börs. Välkommen att anmäla dig. https://t.co/udL7t5DUQE</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:58:51Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Spinoff55/status/470999175564251137">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/Spinoff55"/>
+    <sweb:text>@dave_usmc @JBMaddawg @1740testore @MomsDemand repeal the BORs is a high hurdle - easier to keep guns out of hands of sickos - #gunsense</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T18:45:28Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/hanisibu/status/470898816074645504">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/hanisibu"/>
+    <sweb:text>#الشام بيان حاسم للشيخ المقدسي يدعو أفراد تنظيم الدولة إلى تركها والانحيازإلى جبهة النصرة ومبايعة قاداتها http://t.co/jE0C2msdDk</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T12:06:41Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446806583335723008">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:32:45Z</sweb:createdAt>
+    <sweb:text>I'm at Daz's Disco &amp; Strip Club http://t.co/oRPTIc4Wmv</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/wlscommunity/status/470884995306102784">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/wlscommunity"/>
+    <sweb:text>RT @AMIS_Services: Blog by Luc Bors: "ADF FIFA 2014 World Cup Challenge" http://t.co/1GdgJe9ruA</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T11:11:46Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/442381590375981057">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-08T19:29:24Z</sweb:createdAt>
+    <sweb:text>#IntelligentWebCOM3504 (@ Omnia) http://t.co/opPdb9t3cW</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Blair_Bors/status/470993175893798912">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/Blair_Bors"/>
+    <sweb:text>Life is perfect at the lake 😎</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T18:21:38Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Wizovic/status/470876675438555136">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/Wizovic"/>
+    <sweb:text>@MarieLynnnnn hahaha 3andena bensamih bors :D</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T10:38:42Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/121616281957957632">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-10-05T16:02:35Z</sweb:createdAt>
+    <sweb:text>@RoyalMail what does advised mean for this parcel CO995993533RO?</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446798636417298432">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:01:10Z</sweb:createdAt>
+    <sweb:text>I'm at Tesco Express - @uktescooffers (Sheffield, South Yorkshire) http://t.co/mEv3BJG7xs</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446442651001577472">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:26:37Z</sweb:createdAt>
+    <sweb:text>I'm at St Georges Church http://t.co/oZIpD60Tr3</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Just_Dilo/status/470939172128452608">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/Just_Dilo"/>
+    <sweb:text>Ema kanxane I didn't say that"@ThembiMagagula: Say no to hubbly!!! "@Just_Dilo: This shit will fvck up ur bors http://t.co/gjYQ9dPaam""</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:47:02Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/ane_bors/status/470938656854016000">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/ane_bors"/>
+    <sweb:text>@luisadoamaral baby, vê com o povo aí se eles tao vendendo ingresso di timbre no 3q or not</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:45:00Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446793427053977600">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T23:40:28Z</sweb:createdAt>
+    <sweb:text>I'm at Atlantic One http://t.co/MGJYm1zswR</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Mariamkhaled342/status/470926494727155712">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/Mariamkhaled342"/>
+    <sweb:text>Bhabek :p — 7bak bors brdu' xD xx http://t.co/GscJlQzZxv</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T13:56:40Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/AMIS_Services/status/470846188380753920">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/AMIS_Services"/>
+    <sweb:text>Blog by Luc Bors: "ADF FIFA 2014 World Cup Challenge" http://t.co/1GdgJe9ruA</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T08:37:33Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Bors_kssma/status/470915338498879490">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/Bors_kssma"/>
+    <sweb:text>っあー……戦いがねーとイライラして煙草の量増えちまうんだよなー。エヴェインに「身体に悪い」って叱られちまった。</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T13:12:20Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/470206765263753217">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-24T14:16:43Z</sweb:createdAt>
+    <sweb:text>I'm at The Arts Tower (Sheffield, South Yorkshire) http://t.co/JhOW2nTwPA</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/StonedRadio">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>-Stoned Radio-</foaf:name>
+    <sweb:screenName>StonedRadio</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">582934853</sweb:id>
+    <sweb:locationName>SURABAJAH</sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/3507712130/fbbc13a1d07c981e465e96247024744f_normal.jpeg</foaf:depiction>
+    <sweb:description>RADIO THAT MAKES YOU STONED&#xD;
+ link IPHONE http://t.co/FiIvTuAuhl | link BB http://t.co/NY1IxYXzsF | email: stonedradioID@gmail.com&#xD;
+ YOUR 24-hour NonStopStoned!</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/iqbaltwkkl"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/StoneBizID/status/470938905475182592">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/StoneBizID"/>
+    <sweb:text>#LiveStone At @blackbirdsby Kali ini @rendypandugo Lagi Ngebawain "Fix You" Nya Coldplay Uhhhhhh Gmn Bors :)))))</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:45:59Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/bors_fe_bot/status/470941206134792192">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/bors_fe_bot"/>
+    <sweb:text>リリーナさま　就寝の時間ですぞ　 勉学も身体にさわらぬ程度に…</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:55:07Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446807074992054272">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:34:42Z</sweb:createdAt>
+    <sweb:text>I'm at Tesco Express - @uktescooffers w/ @claudiutarta http://t.co/0pSx1Thr1q</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/447926445177077762">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-24T02:42:41Z</sweb:createdAt>
+    <sweb:text>I'm at The Arts Tower (Sheffield, South Yorkshire) http://t.co/vjQKu4BL9U</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446442813606342656">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:27:15Z</sweb:createdAt>
+    <sweb:text>I'm at @omniaspace (Sheffield) http://t.co/xj7aGDAbtK</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446806875695505408">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:33:55Z</sweb:createdAt>
+    <sweb:text>I'm at Endcliffe Student Village, The University Of Sheffield (Sheffield) http://t.co/R4aaaH3Gi9</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/niloykibar/status/470983014542221312">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/niloykibar"/>
+    <sweb:text>@Petittomm Başka :SDSA:D:A edayla engli bors sa:DSA:D:A yazamadım lan :Ddd</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T17:41:15Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/sprakpunkten/status/470963649180205056">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/sprakpunkten"/>
+    <sweb:text>#SvD Getinge rasade på stigande börs: Aktien i Getinge föll kraftigt på en i övrigt stigande bö... http://t.co/SStVOLHjsf #språkpunkten</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T16:24:18Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/WannQi/status/470930573599309824">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/WannQi"/>
+    <sweb:text>Those sampat zha bors in tuition could seriously make my head explode just by talking ==</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:12:52Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/twmohamed/status/470920854453649409">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/twmohamed"/>
+    <sweb:text>@fedo_fadi A7a how enta betraby erd Wla bors da feel yabnie :D</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T13:34:15Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Petittomm">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>Meloşş ❤️  </foaf:name>
+    <sweb:screenName>Petittomm</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">986348065</sweb:id>
+    <sweb:locationName></sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/462324132776927232/CGTR_ovQ_normal.jpeg</foaf:depiction>
+    <sweb:description>GALATASARAY ❤️</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/niloykibar"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/youssef_Agouz/status/470983786507669505">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/youssef_Agouz"/>
+    <sweb:text>@Rana_Naggar @youssefsabek @shehadehmohamed 7abo bors</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T17:44:19Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Arbonne_Canada/status/470949782828367872">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/Arbonne_Canada"/>
+    <sweb:text>Did you know that our Arbonne Essentials Daily Power Packs for Men and Women have 22 vitamins, macro minerals and... http://t.co/l1ph7q6BM7</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T15:29:12Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/IGSverige/status/470939748711038976">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/IGSverige"/>
+    <sweb:text>Webbseminarium ikväll kl 18.00 med Lars Hansson på Min Börs. Välkommen att anmäla dig. https://t.co/udL7t5DUQE</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:49:20Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/khansashafira2/status/470908473794777088">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/khansashafira2"/>
+    <sweb:text>@Prambors bors adain #onedirectiongoestojkt dongg,, kuis gtu nnti dapet hadiah tiket konser 1D yang festival A/B</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T12:45:03Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446805375808180224">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:27:57Z</sweb:createdAt>
+    <sweb:text>@cristi_gavrila baaa ce iaaaa???</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/289946582793715713">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-01-12T04:07:07Z</sweb:createdAt>
+    <sweb:text>@RoyalMail I have a parcel and when I tracked it on your website it said status: advised. What does that mean? http://t.co/9ciXRGcd</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Bors_marco/status/470987411519197184">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/Bors_marco"/>
+    <sweb:text>RT @fumettologica: Disegni originali di Tintin all’asta: un nuovo record http://t.co/Vz6yOTzuWh</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T17:58:44Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/447827128076476418">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-23T20:08:02Z</sweb:createdAt>
+    <sweb:text>I'm at @omniaspace (Sheffield) http://t.co/fYI2Qme3Hm</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446431947154534400">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T23:44:05Z</sweb:createdAt>
+    <sweb:text>StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/447099519311020032">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T19:56:46Z</sweb:createdAt>
+    <sweb:text>Just posted a photo @ Tesco Express http://t.co/TixrV0Uxvp</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/443890881855508480">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-12T23:26:47Z</sweb:createdAt>
+    <sweb:text>RT http://t.co/n5Ailr1vLR #IntelligentWebCOM3504 @cristi_gavrila cristi-florin...</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/maflibadesos/status/470951426609274881">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/maflibadesos"/>
+    <sweb:text>Listening to bors' voice messages mka oj jud sya XD loooool</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T15:35:44Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/466817684597129216">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-15T05:49:43Z</sweb:createdAt>
+    <sweb:text>at Manchester Airport http://t.co/PC6MM9GPqy</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/fumettologica/status/470976401500536832">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/fumettologica"/>
+    <sweb:text>Disegni originali di Tintin all’asta: un nuovo record http://t.co/Vz6yOTzuWh</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T17:14:59Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/153047413861531648">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-12-31T09:38:41Z</sweb:createdAt>
+    <sweb:text>@MihaelaGherghe Oooo bun venit! :D</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446420437732696064">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T22:58:21Z</sweb:createdAt>
+    <sweb:text>#IntelligentWebCOM3504 was my life lIfE liFe Life for the past week :(</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/NShirokikh/status/470927487841861633">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/NShirokikh"/>
+    <sweb:text>@kirill_bors зачем? оо</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:00:37Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/NURHAN_SALAH/status/470921465056223232">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/NURHAN_SALAH"/>
+    <sweb:text>RT @salma_Elshrief: @NURHAN_SALAH  7bo bors w 10 5ors w 2 3omy w 4 torsh :D aa da :D!!  .. Gato darba fe albo *b3d el shar* :D</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T13:36:41Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor">
+    <sweb:visited rdf:resource="https://foursquare.com/v/4b7d531ef964a5204cb82fe3"/>
+    <sweb:inContactWith rdf:resource="https://twitter.com/claudiutarta"/>
+    <foaf:name>Tudor</foaf:name>
+    <sweb:description>CompSci@Shef #IntelligentWeb</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/AmberRegis"/>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/2426707282/fcvyspgou9rolgg8zgc2_normal.jpeg</foaf:depiction>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">18540628</sweb:id>
+    <sweb:locationName>Sheffield, UK</sweb:locationName>
+    <sweb:screenName>studor</sweb:screenName>
+    <sweb:inContactWith rdf:resource="https://twitter.com/cristi_gavrila"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <sweb:visited rdf:resource="https://foursquare.com/v/4bf13d57f45ec928f594943c"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/iqbaltwkkl/status/470940390694981632">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/iqbaltwkkl"/>
+    <sweb:text>RT @StonedRadio: #LiveStone At @blackbirdsby Kali ini @rendypandugo Lagi Ngebawain "Fix You" Nya Coldplay Uhhhhhh Gmn Bors :)))))</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:51:53Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Arbonne_Canada">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>Arbonne Canada </foaf:name>
+    <sweb:screenName>Arbonne_Canada</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">373446533</sweb:id>
+    <sweb:locationName>Mississauga, Ontario</sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/3087842065/f708ed9d2d8a7adc52075d2472c67eb8_normal.jpeg</foaf:depiction>
+    <sweb:description>Arbonne Canada's product line includes both inner and outer health and beauty products that are unparalleled in quality, safety, value, benefits and results.</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/mandy_bors"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446785831853117441">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T23:10:17Z</sweb:createdAt>
+    <sweb:text>I'm at Tesco Express - @uktescooffers (Sheffield, South Yorkshire) http://t.co/bwu5vZCVQQ</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/bors_e/status/470942755544649728">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/bors_e"/>
+    <sweb:text>The decision of picking between a Kings of Leon, The Killers, or Franz Ferdinand CD.</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T15:01:17Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446437339167195136">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:05:30Z</sweb:createdAt>
+    <sweb:text>I'm at Omnia (Sheffield, England) http://t.co/MJo9MuArT7</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/bors_29">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>austin bors</foaf:name>
+    <sweb:screenName>bors_29</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1586873054</sweb:id>
+    <sweb:locationName></sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/378800000597496581/3c4944358ba43457d36225afd06e1489_normal.jpeg</foaf:depiction>
+    <sweb:description>Freshman at CHS football#29 
+i can do anything through christ who strengthens me=phil 4:13</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/TheRealDemontez"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/tsuyoiko_Bors/status/470876191809757184">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/tsuyoiko_Bors"/>
+    <sweb:text>なっ！ば、バロミデス？ＶかＲに他のＧ３があれば私と同等の働きをする……だと？　つまり、Ｒに登場すれば（ｶﾞﾀｶﾞﾀ、私の（prpr、働きを常にできるという事か！？私はCBを消費するのに！！！そんなバカな!</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T10:36:47Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/444591373740953600">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-14T21:50:18Z</sweb:createdAt>
+    <sweb:text>testing for #IntelligentWebCOM3504 @cristi_gavrila http://t.co/n5Ailr1vLR @claudiutarta  start working! :))</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/wlscommunity">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>WebLogic Community</foaf:name>
+    <sweb:screenName>wlscommunity</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">354427443</sweb:id>
+    <sweb:locationName></sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/3228827570/6ed07da94e579f6ef7a190efce9c9f91_normal.jpeg</foaf:depiction>
+    <sweb:description>Hey there! WebLogic Community is using Twitter. Join us network &amp; exchange with the community! What’s happening? Start sharing @wlscommunity #WebogicCommunity</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/AMIS_Services"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/salma_Elshrief">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>*ام الغمازة*</foaf:name>
+    <sweb:screenName>salma_Elshrief</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">2472703725</sweb:id>
+    <sweb:locationName>Aswan , Egypt</sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/466110923963641856/hU11Cdz8_normal.jpeg</foaf:depiction>
+    <sweb:description>#mama #pizza #chocolates #Real_madrid #Elahly #facebook #twitter #instagram  #Frindz #single  Follow=Follow back .. check my favourites =D ❤</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/NURHAN_SALAH"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/471023147903623169">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>RT @claudiutarta: Bors bors bors un sus cazut in jos facut maioneza din lapte praf :(</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T20:20:44Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/120900493693288448">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-10-03T16:38:18Z</sweb:createdAt>
+    <sweb:text>@RoyalMail Ok. That means that it isn't in UK yet, right?</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/bors_x/status/471018155767132160">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/bors_x"/>
+    <sweb:text>@minnano_tommy うん！（笑）（笑）</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T20:00:54Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/hanisibu/status/470895557675085824">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/hanisibu"/>
+    <sweb:text>#مصر تم ترقية سيسي من نبي إلى إله! صحفية من عبابيد البيادة تخشى أن تقف أمام السيسي يوم القيامة فيعاتبها! عودة أوزوريس وعجل إبليس</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T11:53:44Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/440451137335218176">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-03T11:38:28Z</sweb:createdAt>
+    <sweb:text>The Tribez is a great game! Try to become a tribal leader! http://t.co/84YHbMrFYw #android, #androidgames, #gameinsight</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/julia_bors/status/471006321664598016">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/julia_bors"/>
+    <sweb:text>She's so cuteeeee. http://t.co/5sjDmxdXtu</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T19:13:52Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446432040398123008">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T23:44:27Z</sweb:createdAt>
+    <sweb:text>StoiaUngur StoiaUngurStoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUng</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446393094783901696">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T21:09:42Z</sweb:createdAt>
+    <sweb:text>love love love love love #IntelligentWebCOM3504</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/niloykibar">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>YÜZSÜZ NİLAY :DD </foaf:name>
+    <sweb:screenName>niloykibar</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">2478839726</sweb:id>
+    <sweb:locationName></sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/470234167263776769/I8YNzOVA_normal.jpeg</foaf:depiction>
+    <sweb:description>KANARYA,KOVA,BURSA,ÇİKOLATA, KARDEŞLİK,UYKU,TANISANIZ SEVERSİNİZ ASLINDA,ARTVİN HOPA, KEDİLERDEN NEFRET EDERİM, HEMŞİNLİ,BURSA;TEK AŞK FENERBAHÇE</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/Petittomm"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446443507197427712">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:30:01Z</sweb:createdAt>
+    <sweb:text>I'm at Fagan's (Sheffield, South Yorks) http://t.co/Ojx4ctkrlg</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Yassienhossam/status/469974884433813504">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-23T22:55:18Z</sweb:createdAt>
+    <sweb:text>Msawaraly bors w katbaly colourful lizard a7aa</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/Yassienhossam"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/TheRealDemontez/status/470932789345275904">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/TheRealDemontez"/>
+    <sweb:text>Happy Memorial Day 🇺🇸 Show your respect and retweet 🇺🇸 http://t.co/2W3iX6EBdU</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:21:41Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/ThembiMagagula/status/470936414474240001">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/ThembiMagagula"/>
+    <sweb:text>Say no to hubbly!!! "@Just_Dilo: This shit will fvck up ur bors http://t.co/v6hnG90LJh"</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:36:05Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/447838240566169600">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-23T20:52:11Z</sweb:createdAt>
+    <sweb:text>I'm at Omnia (Sheffield, England) http://t.co/8xIaJzlZSu</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/447846252034940928">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-23T21:24:01Z</sweb:createdAt>
+    <sweb:text>I'm at @omniaspace (Sheffield) http://t.co/QCBg7G86Vo</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/iqbaltwkkl">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>iqbal tawakkal</foaf:name>
+    <sweb:screenName>iqbaltwkkl</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">81162916</sweb:id>
+    <sweb:locationName>suroboyo</sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/448112793464479744/UvY8RmfS_normal.jpeg</foaf:depiction>
+    <sweb:description>who am i? | i am gundala putra petir| | ride hard play hard| | voice over of 89.3 FM @PramborsSby | @Stonedradio | Murah senyum |</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/StonedRadio"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/119175884291833856">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-09-28T22:25:19Z</sweb:createdAt>
+    <sweb:text>@SU_Give_it_a_Go what does the price for the trip to Cambridge from 15th Oct include? thanks</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Mariamkhaled342/status/470905371809554432">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/Mariamkhaled342"/>
+    <sweb:text>Bahebakkk &lt;3 — 7abk bors :D xx http://t.co/Ecg6bRpx0N</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T12:32:44Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/StonedRadio/status/470939474914861056">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/StonedRadio"/>
+    <sweb:text>#LiveStone At @blackbirdsby Kali ini @rendypandugo Lagi Ngebawain "Fix You" Nya Coldplay Uhhhhhh Gmn Bors :)))))</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:48:15Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/tsuyoiko_Bors/status/470928943638261760">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/tsuyoiko_Bors"/>
+    <sweb:text>なんで、出しちゃったかなぁ。Rに居座るだけで１３ｋになるカード。私はVでRにG3がなくても効果起動ができる代わりに、CB1？そういう問題ですか?ブシロードさん。</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:06:24Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446798688707694592">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:01:23Z</sweb:createdAt>
+    <sweb:text>I'm at iQ Sheffield Brocco Student Accommodation (Sheffield, South Yorkshire) http://t.co/imUBsdXTwo</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/tsuyoiko_Bors/status/470989302805975040">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/tsuyoiko_Bors"/>
+    <sweb:text>私の名はボールス。「断罪の騎士」と名高い、ロイヤルパラディンの騎士さ。黎明期はそれはもうあらゆるデッキに出張したものだよ。</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T18:06:15Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/447834983361949696">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-23T20:39:15Z</sweb:createdAt>
+    <sweb:text>I'm at Tesco Express - @uktescooffers (Sheffield, South Yorkshire) http://t.co/blumAZ9Ba2</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/_LuciianaSousa/status/470963656440942593">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/_LuciianaSousa"/>
+    <sweb:text>Bors estudiar ...</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T16:24:20Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/ErikHansen_IG">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>Erik Hansén</foaf:name>
+    <sweb:screenName>ErikHansen_IG</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">473794771</sweb:id>
+    <sweb:locationName>Stockholm</sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/416738963651436544/U7Gsj5Qp_normal.jpeg</foaf:depiction>
+    <sweb:description>Marknadsanalytiker @IGSverige och grundare av @tradingportalen. Skriver om de dagliga svängningarna på börsen. Åsikterna är mina egna.</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/IGSverige"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446793361375391745">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T23:40:13Z</sweb:createdAt>
+    <sweb:text>I'm at Ashton Point (Sheffield, England) http://t.co/StgP6cU2HQ</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/210165104321376256">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-06-06T00:24:00Z</sweb:createdAt>
+    <sweb:text>My year at @sheffieldsu: Me Loves Awesome Amazing Best Sheffield Societies Friend Year Students' Union #SUYearbook</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Elias_Brochero/status/471022871100522497">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/Elias_Brochero"/>
+    <sweb:text>El prese tiene un bors uesa.</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T20:19:38Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Just_Dilo/status/470933950454452224">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/Just_Dilo"/>
+    <sweb:text>This shit will fvck up ur bors http://t.co/loRVOIuu1X</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:26:17Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/444266490276356096">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-14T00:19:20Z</sweb:createdAt>
+    <sweb:text>#IntelligentWebCOM3504 (@ Sheffield International College - @sicsheffield) http://t.co/nLnUcxkryJ</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/443470290438586370">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-11T19:35:31Z</sweb:createdAt>
+    <sweb:text>RT @cristi_gavrila: #IntelligentWebCOM3504 testing</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446401727877885953">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T21:44:00Z</sweb:createdAt>
+    <sweb:text>I'm at Winter Gardens (Sheffield, South Yorkshire) http://t.co/rR82sj38LU</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/KidKid330/status/470944709175566337">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/KidKid330"/>
+    <sweb:text>@bors_e The Killers would be my choice.</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T15:09:03Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/samknight1/status/471014620162187265">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/samknight1"/>
+    <sweb:text>@MattBors stop making your replies to better than my tweets matt bors you don't see me drawing good shit in response to your comics</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T19:46:51Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/bsLaternaMagica/status/471026292759232512">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/bsLaternaMagica"/>
+    <sweb:text>Zeker lezen, herlezen en voorleven @gbiesta Geert Bors:‘School, laat de maatschappij buiten. Haal de wereld binnen’ - http://t.co/nqet1HBc2k</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T20:33:14Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446794856816734208">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T23:46:09Z</sweb:createdAt>
+    <sweb:text>I'm at Rockingham House (Sheffield, England) http://t.co/zGkc3DMCE0</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/NathaliaLudwig/status/470970411048771585">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/NathaliaLudwig"/>
+    <sweb:text>Eiii matinho sentada nas grama lagartiando !!!! Q sonho  bom , bors workia</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T16:51:10Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/443910195568472064">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-13T00:43:32Z</sweb:createdAt>
+    <sweb:text>Shopping (@ Tesco Express - @uktescooffers) http://t.co/totGuxrkvi</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/470233756759240704">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-24T16:03:58Z</sweb:createdAt>
+    <sweb:text>I'm at The Arts Tower (Sheffield, South Yorkshire) w/ 2 others http://t.co/VTpUPnT2nB</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/466791234645028864">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-15T04:04:37Z</sweb:createdAt>
+    <sweb:text>traveling to Manchester Airport from Sheffield station http://t.co/p2Qg7JZWy5</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/ekkalundin/status/470940082959294464">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/ekkalundin"/>
+    <sweb:text>RT @IGSverige: Webbseminarium ikväll kl 18.00 med Lars Hansson på Min Börs. Välkommen att anmäla dig. https://t.co/udL7t5DUQE</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:50:40Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/veckansaffarer/status/470879593982074880">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/veckansaffarer"/>
+    <sweb:text>Aktietips: Fyra köpvärda aktier och tre man ska avvakta med.
+http://t.co/QmPC9itoQ4</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T10:50:18Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/hanisibu">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>دكتور هاني السباعي</foaf:name>
+    <sweb:screenName>hanisibu</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">865437098</sweb:id>
+    <sweb:locationName></sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/454383167718170624/9gIkJ2P2_normal.jpeg</foaf:depiction>
+    <sweb:description>مدير مركز المقريزي للدراسات التاريخية بلندن&#xD;
+&#xD;
+http://t.co/LXnY4EzbgD&#xD;
+&#xD;
+https://t.co/ohi6DTvNgg</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/bors_a"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/1001ptsSE/status/470967206273368064">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/1001ptsSE"/>
+    <sweb:text>Getinge rasade på stigande börs (hd.se) http://t.co/GKRCl2dT79</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T16:38:26Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/451757347246182400">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-04-03T16:25:19Z</sweb:createdAt>
+    <sweb:text>I'm at The Arts Tower (Sheffield, South Yorkshire) http://t.co/1K6k8Jw3Cy</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446798936054185985">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:02:22Z</sweb:createdAt>
+    <sweb:text>I'm at Sheffield International College - @sicsheffield (Sheffield) http://t.co/iTHSAe2mjS</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/cristi_gavrila">
+    <sweb:inContactWith rdf:resource="https://twitter.com/studor"/>
+    <sweb:description></sweb:description>
+    <foaf:depiction>http://abs.twimg.com/sticky/default_profile_images/default_profile_1_normal.png</foaf:depiction>
+    <sweb:locationName></sweb:locationName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1225017144</sweb:id>
+    <sweb:screenName>cristi_gavrila</sweb:screenName>
+    <foaf:name>Cristi Gavrila</foaf:name>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/ane_bors/status/470938149708136448">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/ane_bors"/>
+    <sweb:text>@thuruga me daaaaaqqqw</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:42:59Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446394160426524672">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T21:13:56Z</sweb:createdAt>
+    <sweb:text>I'm at Hell (Sheffield) http://t.co/DRYNyxRCbL</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/bors_fe_bot/status/470929321356304384">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/bors_fe_bot"/>
+    <sweb:text>家族を食べさせることも 立派な目的だ　 そのために 一心に おのれをきたえるのだ　 そうすれば きっと強くなれる</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:07:54Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/_urannoying/status/470929405590904834">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/_urannoying"/>
+    <sweb:text>@kirill_bors можешь после окончания школы учиться в Китае, там и освоишь китайский👌 потом в Россию приедешь и здесь все как по маслу будет)</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:08:14Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/451757769952342016">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-04-03T16:27:00Z</sweb:createdAt>
+    <sweb:text>RT @AmberRegis: The #fog has stolen the Arts Tower!  #Sheffield http://t.co/7QhM53aE8l</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446738621841014784">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T20:02:42Z</sweb:createdAt>
+    <sweb:text>I'm at @omniaspace (Sheffield) http://t.co/yH5wGZGQ5h</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446402096381054977">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T21:45:28Z</sweb:createdAt>
+    <sweb:text>I'm at Weston Park (Sheffield, South Yorkshire) http://t.co/pVzHALAEKa</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/470869362883428352">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T10:09:39Z</sweb:createdAt>
+    <sweb:text>test #IntelligentWebCOM3504 Monday Monday Bank Holiday</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/vale_bors/status/470918677374971904">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/vale_bors"/>
+    <sweb:text>Gli artisti si confrontano sulla co-autorialità dell'opera. La condivisione della sensibilità è stata parte del lavoro.
+#artedifferenza2</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T13:25:36Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/AMIS_Services">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>AMIS, Oracle &amp; Java</foaf:name>
+    <sweb:screenName>AMIS_Services</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">87159119</sweb:id>
+    <sweb:locationName>Nieuwegein</sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/3401024156/ef3a12a6eac37004fef55706911e7f6d_normal.jpeg</foaf:depiction>
+    <sweb:description>Oracle Java specialist. IT Modernization. SOA, BPEL, ADF, OSB and BPM Solutions. Agile and Scrum projects. IT Training. http://t.co/y4FH8l7CP0</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/wlscommunity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/466881046014078976">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-15T10:01:30Z</sweb:createdAt>
+    <sweb:text>at Zürich Airport http://t.co/qDVE5Nw48M</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Spinoff55/status/471001261253201920">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/Spinoff55"/>
+    <sweb:text>@dave_usmc - one org or one person is not how this will go down. BORs are too precious to us. Control is the answer.</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T18:53:46Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/bors_x/status/470954162654429184">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/bors_x"/>
+    <sweb:text>ごめんとたくさんのありがとう（＾＿＾）☆</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T15:46:36Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/AmberRegis">
+    <sweb:inContactWith rdf:resource="https://twitter.com/studor"/>
+    <sweb:description>Lecturer in Nineteenth-Century Literature at @sheffielduni. @Arts_Enterprise Project Lead: @Sheffield1914. MOOC Educator: #FLHouseLit. Tweets Own.</sweb:description>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/470212098119569408/NyoKZPs3_normal.jpeg</foaf:depiction>
+    <sweb:locationName>Sheffield, UK</sweb:locationName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">41795428</sweb:id>
+    <sweb:screenName>AmberRegis</sweb:screenName>
+    <foaf:name>Dr Amber Regis</foaf:name>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/joao_jm/status/470946325287411712">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/joao_jm"/>
+    <sweb:text>@thuruga @ane_bors af</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T15:15:28Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/443886148088516608">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-12T23:07:59Z</sweb:createdAt>
+    <sweb:text>#IntelligentWebCOM3504 twitter =/ stupid &amp;</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446807302797275136">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:35:36Z</sweb:createdAt>
+    <sweb:text>I'm at ELTC http://t.co/tpppkbcpHg</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/TheRealDemontez">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>Demontez ™</foaf:name>
+    <sweb:screenName>TheRealDemontez</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1050571602</sweb:id>
+    <sweb:locationName>Detroit MI</sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/467778027574009856/Yjba0rIn_normal.jpeg</foaf:depiction>
+    <sweb:description>Add my facebook: Demontez Loyal. Famous for being to dam real. Instagram @TheRealDemontez_. kik demotez333 2nd account @DemontezTrill</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/bors_29"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Kelly_Bors/status/470924697799237632">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/Kelly_Bors"/>
+    <sweb:text>@MadoreAlyssa @DeJesusShyanne ahhhhh yes!! I miss you too! We can make sangrias bc they're delicious 🍷</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T13:49:31Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/444206523640999936">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-13T20:21:02Z</sweb:createdAt>
+    <sweb:text>I'm at Momentum Gym (Sheffield) http://t.co/nDxl0AbwJ5</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446442584379252736">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:26:21Z</sweb:createdAt>
+    <sweb:text>I'm at Engineering:You're Hired! HUB K (Sheffield) http://t.co/Hp2itezz08</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Niigar03/status/470981655507652608">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/Niigar03"/>
+    <sweb:text>borş istəyirəəəmmmm.:(</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T17:35:51Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/IGSverige">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>IG Sverige</foaf:name>
+    <sweb:screenName>IGSverige</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">204352120</sweb:id>
+    <sweb:locationName>Sweden</sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/438709210562310144/1tVxA6Xe_normal.png</foaf:depiction>
+    <sweb:description>IGs marknadsanalytiker Erik Hansén twittrar om börsmarknaden.</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/ErikHansen_IG"/>
+    <sweb:inContactWith rdf:resource="https://twitter.com/ekkalundin"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/444262156293636097">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-14T00:02:06Z</sweb:createdAt>
+    <sweb:text>#IntelligentWebCOM3504 (@ Ashton Point) http://t.co/RtYQaHFdMa</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/470869220025446400">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T10:09:05Z</sweb:createdAt>
+    <sweb:text>Test #IntelligentWebCOM3504 test test test test test test test</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/mandy_bors/status/470983926367145984">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/mandy_bors"/>
+    <sweb:text>RT @Arbonne_Canada: Did you know that our Arbonne Essentials Daily Power Packs for Men and Women have 22 vitamins, macro minerals and... ht…</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T17:44:53Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://foursquare.com/v/4b7d531ef964a5204cb82fe3">
+    <sweb:hasPhoto>https://irs3.4sqi.net/img/general/original/1127079_H2w9IcBus0xTPhSfDiJvq6-uzggi5YxAu4eo7o_BQOU.jpg</sweb:hasPhoto>
+    <sweb:name>The Arts Tower</sweb:name>
+    <sweb:category>College Academic Building</sweb:category>
+    <geo:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#double">53.38268185123829</geo:lat>
+    <sweb:category>College Arts Building</sweb:category>
+    <sweb:hasPhoto>https://irs3.4sqi.net/img/general/original/16725832_oKqSpr_OSbjciSLXSNlZWsKMljdYJBwJo5Fbgvd2LJk.jpg</sweb:hasPhoto>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#FoursquareVenue"/>
+    <sweb:hasPhoto>https://irs1.4sqi.net/img/general/original/31034152_rUwI2uf3A8oIcgpMBzfTenD9v5TJODxIcfC7qb6hzks.jpg</sweb:hasPhoto>
+    <sweb:hasPhoto>https://irs2.4sqi.net/img/general/original/31034152_9pgVBFV4bWBOLzCaTL4aK69DphI92GQYyH59wuhPLyc.jpg</sweb:hasPhoto>
+    <geo:long rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.4872133595062658</geo:long>
+    <rdf:type rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
+    <sweb:hasPhoto>https://irs1.4sqi.net/img/general/original/31034152_HkvPI6IQ2NuiFgE9lXWq_BXMUDVesnORm2Oj5NOCJF0.jpg</sweb:hasPhoto>
+    <sweb:hasPhoto>https://irs1.4sqi.net/img/general/original/31034152_QrCAzhZf3SBYT5K6jB1FJHbg44nMciRdSocpZY06rLA.jpg</sweb:hasPhoto>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/444652091458748416">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-15T01:51:34Z</sweb:createdAt>
+    <sweb:text>love #IntelligentWebCOM3504</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/KidKid330/status/470943460774526976">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/KidKid330"/>
+    <sweb:text>@bors_e the killers 👌</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T15:04:05Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/119176337008234496">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-09-28T22:27:07Z</sweb:createdAt>
+    <sweb:text>@anil_e_ yeahhh :)) that's probably the safest thing to do</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Inhibitor_Bors/status/471012979777867776">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/Inhibitor_Bors"/>
+    <sweb:text>Knob is nice today http://t.co/M0RDtiiJ5F</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T19:40:20Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/gandrabur/status/470970486604570625">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/gandrabur"/>
+    <sweb:text>Vitea stie ca este prieten cu Vlad Filat? :)))
+
+"A mâncat borș la mine și suntem neamuri" http://t.co/5SJ5Aast5v</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T16:51:28Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/news24hswe/status/470968231746732035">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/news24hswe"/>
+    <sweb:text>Getinge rasade på stigande börs: Börserna i London och New York var stängda på grund av helgdag. http://t.co/SGVHsSjfo6</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T16:42:31Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Bors_marco">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>Marco_B</foaf:name>
+    <sweb:screenName>Bors_marco</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">392186718</sweb:id>
+    <sweb:locationName>Florence, Italy</sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/464444466426699776/XPxNEYET_normal.jpeg</foaf:depiction>
+    <sweb:description>Freelance #editor and #web content manager. A bit nerdy, graphic #novels enthusiast, wannabe #globetrotter. I still read children's #books.</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/fumettologica"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/tsuyoiko_Bors/status/471019534313193472">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/tsuyoiko_Bors"/>
+    <sweb:text>……昔はよかった。私を手に入れるために、ファイターはお金を出して4枚集めてくれたものだ。ＴＤに１枚の限定カードだったからな。</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T20:06:22Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/470993455548612609">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T18:22:45Z</sweb:createdAt>
+    <sweb:text>Just posted a video http://t.co/tOqMqlt7ob</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/bors_fe_bot/status/470884050526167040">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/bors_fe_bot"/>
+    <sweb:text>な…ヒマとは…今は戦いの最中ではないですか</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T11:08:00Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/470960596595539968">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <sweb:text>Bors bors bors un sus cazut in jos facut maioneza din lapte praf :(</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T16:12:10Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/ervinguth/status/470984397131620352">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/ervinguth"/>
+    <sweb:text>Photo: Kicsit túlfőtt, de legalább olasz! (Amúgy spenót, fokhagyma, aszalt paradicsom, parmezán, só és bors... http://t.co/p1xoVHmkbB</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T17:46:45Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446403543894065152">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T21:51:13Z</sweb:createdAt>
+    <sweb:text>I'm at The Arts Tower (Sheffield, South Yorkshire) http://t.co/DuMjYT4M2I</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/bors_29/status/470940877712396289">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/bors_29"/>
+    <sweb:text>RT @TheRealDemontez: Happy Memorial Day 🇺🇸 Show your respect and retweet 🇺🇸 http://t.co/2W3iX6EBdU</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:53:49Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/QueLadillaEsto/status/470888136713961472">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/QueLadillaEsto"/>
+    <sweb:text>ela bors RT @inessinger Los odio a todos menos a manuel a el
+no.</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T11:24:15Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446785041491066880">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T23:07:09Z</sweb:createdAt>
+    <sweb:text>I'm at The Arts Tower (Sheffield, South Yorkshire) w/ 2 others http://t.co/4lmeY9L4sW</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/434490531767681024">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-02-15T00:53:09Z</sweb:createdAt>
+    <sweb:text>La multi ani Andreeeeiii! Happy birthday Andreeei! :D #outatspace</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/AmberRegis/status/451626126327447552">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-04-03T07:43:53Z</sweb:createdAt>
+    <sweb:text>The #fog has stolen the Arts Tower!  #Sheffield http://t.co/7QhM53aE8l</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/AmberRegis"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446431981556228096">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T23:44:13Z</sweb:createdAt>
+    <sweb:text>StoiaUngur StoiaUngurStoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/444263790381903873">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-14T00:08:36Z</sweb:createdAt>
+    <sweb:text>I'm at Ashton Point (Sheffield, England) http://t.co/Uo3Bt09Zr4</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/466905982367698944">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-15T11:40:35Z</sweb:createdAt>
+    <sweb:text>in Arbon, Switzerland http://t.co/JbiU7pXzXy</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Jahd_bmalk">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>جاهد بمالك - </foaf:name>
+    <sweb:screenName>Jahd_bmalk</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">2153900147</sweb:id>
+    <sweb:locationName>كفى خذلانا لحمص</sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/469937336667873280/OApUA8xI_normal.jpeg</foaf:depiction>
+    <sweb:description>حملة #جاهد_بمالك بإشراف الشيخ دعبدالله المحيسني المباشر تبرعك بـ : السهم الذهبي = 8قذائف هاون السهم الفضي = 50طلقة قناص
+حالياً ندعم جبهات حلب وندعم جبهات الساحل</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/bors_a"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/alex_bors/status/470979298405679105">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/alex_bors"/>
+    <sweb:text>@rudeejay domenica bagno primavera rosolina mare!!! #primafila #solo #rudeejay #go #mashup</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T17:26:29Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446442775706624002">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:27:06Z</sweb:createdAt>
+    <sweb:text>I'm at South Yorkshire Police Training Centre (Sheffield, South Yorks) http://t.co/Li2MeEhTBD</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/sir_bors/status/470938216300679168">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/sir_bors"/>
+    <sweb:text>ｻﾄｼﾝ勝ってて草</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:43:15Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/tsuyoiko_Bors/status/470959108246355968">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/tsuyoiko_Bors"/>
+    <sweb:text>新米ファイター「何このカード強そう！」ボールス（このファイター良い目を持っている！）古参ファイター「ああ、こいつあれだよ。G3のサグラモール」新米「ああ、ただの汎用ですか。なーんだ。」ボールス（ｼｮﾎﾞｰﾝ）</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T16:06:16Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/EmelinEmelinnn/status/470931080900382720">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/EmelinEmelinnn"/>
+    <sweb:text>@WannQi HAHAHAHAHA "zha bors" 😂 damn you're bad.</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:14:53Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/vale_bors/status/470910678669459457">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/vale_bors"/>
+    <sweb:text>#artedifferenza2 è il momento delle coppie di artisti che raccontano la loro esperienza. http://t.co/1bZGJP33wK</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T12:53:49Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446784951028310017">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T23:06:47Z</sweb:createdAt>
+    <sweb:text>I'm at Momentum Gym (Sheffield) http://t.co/Ae9WfECW4D</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Petittomm/status/470983153687859200">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/Petittomm"/>
+    <sweb:text>RT @niloykibar: @Petittomm Başka :SDSA:D:A edayla engli bors sa:DSA:D:A yazamadım lan :Ddd</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T17:41:48Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446402972210442241">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T21:48:57Z</sweb:createdAt>
+    <sweb:text>I'm at Weston Park (Sheffield, South Yorkshire) http://t.co/u1BPDOfA9E</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/dagfinnf/status/470919761979654144">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/dagfinnf"/>
+    <sweb:text>Ikke hver dag dette skjer. "Software Innovation børsnoteres" http://t.co/Jm3QWseQcC via @Hegnar_no</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T13:29:55Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/444262301827604480">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-14T00:02:41Z</sweb:createdAt>
+    <sweb:text>#IntelligentWebCOM3504 (@ Atlantic One) http://t.co/sSFrBPVyEf</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/tsuyoiko_Bors/status/470981831462879232">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/tsuyoiko_Bors"/>
+    <sweb:text>昔「このカードつよ！マロンでBTするだけで、オバロに１５ｋ要求できんじゃん！」今「ボールス？おま、どうせなら金掛けてでもノーコスで同じ働きするバロミにしろって」ボールス（私はV単独でも１３ｋに……まぁ、最近はLBとか言って１５ｋで殴りに行ける人達ばっかか（自嘲</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T17:36:33Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/AAMIRSbcc/status/470898208948748289">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/AAMIRSbcc"/>
+    <sweb:text>@MaryamNSharif @imiisyed abey yea janwar hai deengi bors..</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T12:04:16Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Jahd_bmalk/status/470896370136915968">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/Jahd_bmalk"/>
+    <sweb:text>وصل لحملة #جاهد_بمالك5 
+مبلغ 20.000ألف ريال
+من الأخ ابو محمد #السعودية 
+بارك الله له في ماله وأهله 
+للتواصل 
+📱👇 http://t.co/OxzMDVCjgr</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T11:56:58Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446793512391290880">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T23:40:49Z</sweb:createdAt>
+    <sweb:text>I'm at Omnia (Sheffield, England) http://t.co/P2NYKmQWTk</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446090938478526464">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T01:09:02Z</sweb:createdAt>
+    <sweb:text>#IntelligentWebCOM3504 hello hello hello blah</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/442366517435703296">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-08T18:29:31Z</sweb:createdAt>
+    <sweb:text>Hello @cristi_gavrila &amp; @claudiutarta #IntelligentWebCOM3504</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/fumettologica">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>Fumettologica</foaf:name>
+    <sweb:screenName>fumettologica</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1857736771</sweb:id>
+    <sweb:locationName></sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/441960130746134528/PoFdAurS_normal.jpeg</foaf:depiction>
+    <sweb:description>Magazine di informazione e cultura del fumetto. Splonk.</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/Bors_marco"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/444263845276975104">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-14T00:08:49Z</sweb:createdAt>
+    <sweb:text>I'm at Rockingham House (Sheffield, England) http://t.co/NPVRd49eMw</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446404090835525634">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T21:53:23Z</sweb:createdAt>
+    <sweb:text>I'm at Sheffield University Students' Union - @sheffieldsu (Sheffield, South Yorkshire) http://t.co/Vg97dPPeEP</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/sir_bors/status/470894320782807040">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/sir_bors"/>
+    <sweb:text>NHKにようこそ！とか4TEENとか。
+
+教養ある皆様からすればそもそも読むに値しないんだろうが、それでも面白かったんだよなぁ。</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T11:48:49Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/thuruga/status/470945374291898368">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/thuruga"/>
+    <sweb:text>@ane_bors @joao_jm descobri que ganhei um só</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T15:11:41Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/bors_a">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>تأبط شرا</foaf:name>
+    <sweb:screenName>bors_a</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">451830060</sweb:id>
+    <sweb:locationName></sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/437697480629956609/mZNNOe0__normal.jpeg</foaf:depiction>
+    <sweb:description>هدف سياسي --- راي حر</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/hanisibu"/>
+    <sweb:inContactWith rdf:resource="https://twitter.com/Jahd_bmalk"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/glyssabeee/status/470973522840653824">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/glyssabeee"/>
+    <sweb:text>Oyyy mga bors, naa naman jud tang tanan sa butuan, rak na ??? — Rak na kaau! Ga sugod na gani ganiha. http://t.co/3Otfq0FTOk</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T17:03:32Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446443471566807040">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:29:52Z</sweb:createdAt>
+    <sweb:text>I'm at NHS Walk-in Centre (Sheffield) http://t.co/SoMfFyFmzG</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/tsuyoiko_Bors/status/470936588168347649">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/tsuyoiko_Bors"/>
+    <sweb:text>http://t.co/VoQ5HY93PY　ヴァンガードwikiでの私のページだ。こいつを見てどう思う？</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:36:46Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/tsuyoiko_Bors/status/470891252875939840">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/tsuyoiko_Bors"/>
+    <sweb:text>ある少年ファイターへ。私の効果は自動効果だ。起動効果ではないのだよ？CB5で25ｋにはならない。わかったかい？私は、私はそれだけの存在（ｳｯ、なんだ、よ ﾟ･｡(｡/□＼｡)｡･ﾟ ﾊﾞｧｧｧ</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T11:36:38Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/443476194424803330">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-11T19:58:58Z</sweb:createdAt>
+    <sweb:text>#IntelligentWeb3504 bla bla testing testing testing testing testing testing testing testing testing testing testing testing testing testin</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/123007076971720704">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-10-09T12:09:07Z</sweb:createdAt>
+    <sweb:text>@SF_England Although I got the payment schedule my status on my loan is "to be completed". is that how it's supposed to be? thanks</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/bors_a/status/470918163920474112">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/bors_a"/>
+    <sweb:text>RT @hanisibu: #مصر تم ترقية سيسي من نبي إلى إله! صحفية من عبابيد البيادة تخشى أن تقف أمام السيسي يوم القيامة فيعاتبها! عودة أوزوريس وعجل إب…</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T13:23:34Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/470993925386543104">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T18:24:37Z</sweb:createdAt>
+    <sweb:text>#IntelligentWebCOM3504 http://t.co/XX4LsjnjXG</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446806750277435392">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:33:25Z</sweb:createdAt>
+    <sweb:text>I'm at Omnia (Sheffield, England) http://t.co/PITntt3HMc</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/averi_nicole_/status/470933346566930433">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/averi_nicole_"/>
+    <sweb:text>my hair stained my pillow hahahahhaha nice one avz..do what @gyveriellexx and @KATyperrabuya did at bors</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:23:54Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/bors_e/status/470944370112610304">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/bors_e"/>
+    <sweb:text>@KidKid330 or the strokes...</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T15:07:42Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/AlissiaAlly/status/470956639131287552">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/AlissiaAlly"/>
+    <sweb:text>@SamaraKlly @mishacollins Its the extreme bors only fans :/ after recent events the fandom is going crazy, people are being bullied ect.</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T15:56:27Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/Bors_kssma/status/470885151111520257">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/Bors_kssma"/>
+    <sweb:text>…………。ん？　ごめん、今ちょっと賢者モードだった。</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T11:12:23Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://foursquare.com/v/4bf13d57f45ec928f594943c">
+    <geo:long rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.4797296047989605</geo:long>
+    <geo:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#double">53.38453351731824</geo:lat>
+    <sweb:category>Grocery Store</sweb:category>
+    <sweb:hasPhoto>https://irs2.4sqi.net/img/general/original/IyOKeMLixf1SBRTJ13WFqShuMKku-TkvYLziOd2eNt8.jpg</sweb:hasPhoto>
+    <sweb:hasPhoto>https://irs2.4sqi.net/img/general/original/0CyJgtj0YJnCE3aWEAx6nx80iYUezZWj8dc7CJrNBt0.jpg</sweb:hasPhoto>
+    <sweb:name>Tesco</sweb:name>
+    <rdf:type rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#FoursquareVenue"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446122354578837504">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T03:13:52Z</sweb:createdAt>
+    <sweb:text>testing testing testing #IntelligentWebCOM3504</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/466604243932413954">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-14T15:41:35Z</sweb:createdAt>
+    <sweb:text>Done, the bloody dissertation is finally done! — at Las Iguanas Sheffield http://t.co/8NoXKvRoue</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/NURHAN_SALAH">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>NURHAN</foaf:name>
+    <sweb:screenName>NURHAN_SALAH</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1407769244</sweb:id>
+    <sweb:locationName></sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/467702268549009408/OCxLhn8K_normal.jpeg</foaf:depiction>
+    <sweb:description>#pizza #mama #chocolates #single #ask #face #kik #twitter #instagram #frindz #this_is_life #my_life http://t.co/PxXOUtXYFD follow me on instegram</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/salma_Elshrief"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/vale_bors/status/470902961229824000">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/vale_bors"/>
+    <sweb:text>Pomeriggio di lavori al convegno "L'arte di fare la differenza". Apre Pecci descrivendo i lavori esposti a Palazzo Barolo.
+#artedifferenza2</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T12:23:09Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/ane_bors/status/470939514341695488">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/ane_bors"/>
+    <sweb:text>@luisadoamaral obri, lu</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:48:24Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/444246670705172481">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-13T23:00:34Z</sweb:createdAt>
+    <sweb:text>#IntelligentWebCOM3504 (@ Sir Frederick Mappin Building) http://t.co/8Ox5TdQzlH</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/bors_a/status/470918246883794945">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/bors_a"/>
+    <sweb:text>RT @Jahd_bmalk: وصل لحملة #جاهد_بمالك5 
+مبلغ 20.000ألف ريال
+من الأخ ابو محمد #السعودية 
+بارك الله له في ماله وأهله 
+للتواصل 
+📱👇 http://t.co…</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T13:23:53Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/LaraM_x/status/470996011511738368">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/LaraM_x"/>
+    <sweb:text>بحبك :( — 7bik/ak bors ☻ http://t.co/AvCvUV1p8R</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T18:32:54Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446089332773101568">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T01:02:39Z</sweb:createdAt>
+    <sweb:text>bors bors bors  bors bors bors  bors bors bors bors bors bors bors bors bors bors bors bors bors bors bors bors bors bors</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/cristi_gavrila/status/443468435637682176">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-11T19:28:08Z</sweb:createdAt>
+    <sweb:text>#IntelligentWebCOM3504 testing</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/cristi_gavrila"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/tsuyoiko_Bors/status/470906355574784000">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/tsuyoiko_Bors"/>
+    <sweb:text>昔は使い勝手のよい、デッキ必須カードと謳われた私だ。</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T12:36:38Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/rudeejay/status/470981530958192640">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/rudeejay"/>
+    <sweb:text>@alex_bors Civediamolì!!!</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T17:35:22Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/444260220613951488">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-13T23:54:25Z</sweb:createdAt>
+    <sweb:text>Testing #IntelligentWebCOM3504</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446804964439236608">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:26:19Z</sweb:createdAt>
+    <sweb:text>@cristi_gavrila bis bald!</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/467967113601482752">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-18T09:57:08Z</sweb:createdAt>
+    <sweb:text>at Abbey of Saint Gall http://t.co/WXXX3FKdFb</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/bors_a/status/470970117665218560">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/bors_a"/>
+    <sweb:text>RT @hanisibu: #الشام بيان حاسم للشيخ المقدسي يدعو أفراد تنظيم الدولة إلى تركها والانحيازإلى جبهة النصرة ومبايعة قاداتها http://t.co/jE0C2ms…</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T16:50:00Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446806791884902400">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:33:35Z</sweb:createdAt>
+    <sweb:text>I'm at iQ Sheffield Brocco Student Accommodation (Sheffield, South Yorkshire) http://t.co/rN6kV6K4Un</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/447854714995343360">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-23T21:57:39Z</sweb:createdAt>
+    <sweb:text>I'm at Coca Cola Enterprises Ltd (Wakefield, UK) http://t.co/8KVIiRICCp</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/tsuyoiko_Bors/status/470966742554910721">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/tsuyoiko_Bors"/>
+    <sweb:text>ボールス「私もずいぶん安くなったもんだ。」コスモ「初めは高かったそうじゃないすか。」ダンガリー「私なんてRRRなのに100円スタートですよ？」ブロケード「ホントだよ。なんでRRRなのに出てたら舌打ちされないといけないんだよ！」ボールス「皆、辛い思いをしてるんだなぁ…一杯やるか？」</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T16:36:36Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/bors_e/status/470927722282500096">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/bors_e"/>
+    <sweb:text>I'm already done with this week</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:01:33Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/iulia7popescu/status/471018299623751680">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/iulia7popescu"/>
+    <sweb:text>Va prezint proiectul: Borș cu sfecla 
+Initiatorul proiectului: Cristian Olarean
+Executanta proiectului: Iulia... http://t.co/CsyggyUC6G</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T20:01:28Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/442365016130740224">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-08T18:23:33Z</sweb:createdAt>
+    <sweb:text>#IntelligentWebCOM3504 FTW</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/minnano_tommy/status/470962999918743553">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/minnano_tommy"/>
+    <sweb:text>@bors_x まさか！？</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T16:21:43Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446798866646855680">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:02:05Z</sweb:createdAt>
+    <sweb:text>I'm at Atlantic One http://t.co/2TLph7R2VM</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446442446940303360">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:25:48Z</sweb:createdAt>
+    <sweb:text>I'm at Omnia (Sheffield, England) http://t.co/9w0Sjfxplo</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/HKCorn/status/470968963829366785">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/HKCorn"/>
+    <sweb:text>@YoussefAbdalla heya el 7areem el gamda naik dee bet7ebb el bors da lih :D kossom el 7eneya elly naykahom f afkarhom dee :D</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T16:45:25Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446442617937883138">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:26:29Z</sweb:createdAt>
+    <sweb:text>I'm at iQ Sheffield Brocco Student Accommodation (Sheffield, South Yorkshire) http://t.co/O9vL2kU57s</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/sir_bors/status/470938061564424193">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/sir_bors"/>
+    <sweb:text>シケプリ作成がちっとも捗らない
+たかがノート8ページ分、ぜんぜん進まぬ</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:42:38Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/luisadoamaral/status/470939361694199809">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/luisadoamaral"/>
+    <sweb:text>@ane_bors a partir das 15h</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:47:48Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/470936851680067584">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:37:49Z</sweb:createdAt>
+    <sweb:text>I'm at Tesco - @uktescooffers (Sheffield) http://t.co/Br3F3OgKI9</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
   <rdf:Description rdf:about="https://twitter.com/claudiutarta">
     <sweb:description></sweb:description>
     <foaf:depiction>http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png</foaf:depiction>
@@ -11,20 +1485,79 @@
     <sweb:screenName>claudiutarta</sweb:screenName>
     <foaf:name>Claudiu Tarta</foaf:name>
     <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <sweb:inContactWith rdf:resource="https://twitter.com/studor"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://twitter.com/studor">
-    <sweb:description>CompSci@Shef #IntelligentWeb</sweb:description>
-    <foaf:depiction>http://pbs.twimg.com/profile_images/2426707282/fcvyspgou9rolgg8zgc2_normal.jpeg</foaf:depiction>
-    <sweb:locationName>Sheffield, UK</sweb:locationName>
-    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">18540628</sweb:id>
-    <sweb:screenName>studor</sweb:screenName>
-    <foaf:name>Tudor</foaf:name>
-    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://twitter.com/Yassienhossam/status/469974884433813504">
-    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-23T22:55:18Z</sweb:createdAt>
-    <sweb:text>Msawaraly bors w katbaly colourful lizard a7aa</sweb:text>
-    <sweb:user rdf:resource="https://twitter.com/Yassienhossam"/>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/132987875548602368">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-11-06T01:09:14Z</sweb:createdAt>
+    <sweb:text>@anil_e_ only 6 weeks till we go home :D</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
     <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/salma_Elshrief/status/470920556372852737">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/salma_Elshrief"/>
+    <sweb:text>@NURHAN_SALAH  7bo bors w 10 5ors w 2 3omy w 4 torsh :D aa da :D!!  .. Gato darba fe albo *b3d el shar* :D</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T13:33:04Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/174911267125997570">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-02-29T17:37:50Z</sweb:createdAt>
+    <sweb:text>@SF_England In my account it says that my application forms(returning student) were sent on 6Feb.However,I didn't get them.What should I do?</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/133020897362714624">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-11-06T03:20:27Z</sweb:createdAt>
+    <sweb:text>@anil_e_ pfff tell me about it. :D when are you leaving? I'm leaving on 16th</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/vale_bors/status/470910960497360897">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/vale_bors"/>
+    <sweb:text>La prima riflessione parte dall'oggetto: la scelta ha influenzato l'opera o è stato il contrario. Gli oggetti sono l'opera?
+#artedifferenza2</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T12:54:56Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/120892803629858816">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-10-03T16:07:45Z</sweb:createdAt>
+    <sweb:text>@RoyalMail Hi! Could I get some info about RN963640340RO? Thanks!</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/470937165325934592">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:39:04Z</sweb:createdAt>
+    <sweb:text>money #IntelligentWebCOM3504</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/108645447630979073">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-08-30T21:01:07Z</sweb:createdAt>
+    <sweb:text>@avramseby Cica sunt in vacanta. :(</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/ekkalundin">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>Ekka Lundin</foaf:name>
+    <sweb:screenName>ekkalundin</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">217540848</sweb:id>
+    <sweb:locationName></sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/469178032104562688/WDwh-muX_normal.jpeg</foaf:depiction>
+    <sweb:description>http://t.co/NYLHapv6YE
+#börsen #intradag #trading</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/IGSverige"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/sir_bors/status/470893861384900608">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/sir_bors"/>
+    <sweb:text>若いときに何度も読んだ本をもう一度読みたいんだが、もはや若い感性が失われてしまっていることでつまらんと思ってしまう可能性を考えると躊躇してしまう</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T11:47:00Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/bors_x/status/471019585102041089">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/bors_x"/>
+    <sweb:text>『ないしょじゃない』←ドラえもんみたいなしゃべにな方！
+なんちゅう寝言だ、、、（笑）</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T20:06:34Z</sweb:createdAt>
   </rdf:Description>
 </rdf:RDF>
