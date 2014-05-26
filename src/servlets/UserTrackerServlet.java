@@ -65,7 +65,6 @@ public class UserTrackerServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		Gson gson = new Gson();
@@ -157,7 +156,6 @@ public class UserTrackerServlet extends HttpServlet {
 	    
 	    // sort the top
 	    Collections.sort(top);
-		System.out.println("BEFORE!");
 		int topLength;
 		if(top.size() > form.getKeywords()){
 			topLength = form.getKeywords();
@@ -184,7 +182,7 @@ public class UserTrackerServlet extends HttpServlet {
 	    		}
 	    	}
 	    }
-	    System.out.println("AFTER!");
+
 	    for(User u:users){
 	    	// get the user's keywords and add up the same one eg home-1, home-3 => home-4
 	    	ArrayList<Keyword> userKeywords = u.getKeywords();
@@ -205,10 +203,7 @@ public class UserTrackerServlet extends HttpServlet {
 		    		}
 		    	}
 	    	}
-	    	System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&");
-	    	for(Keyword k:userKeywords){
-	    		System.out.println(k.getKeyword()+ " -> " + k.getCount());
-	    	}
+
 	    	u.setKeywords(userKeywords);
 	    }
 	    
