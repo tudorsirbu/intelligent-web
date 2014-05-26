@@ -21,7 +21,9 @@ import com.google.gson.Gson;
 import fi.foyt.foursquare.api.entities.CompleteVenue;
 
 /**
- * Servlet implementation class UserVenuesServlet
+ * Servlet implementation class UserVenuesServlet returns as json 
+ * either the locations where the user has been in the past X days
+ * or it creates a Stream and listens for any user checkins.
  */
 @WebServlet("/UserVenuesServlet")
 public class UserVenuesServlet extends HttpServlet {
