@@ -18,6 +18,9 @@ import util.RDFService;
 import api.TwitterManager;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * Servlet implementation class VenuesForUserServlet
@@ -60,9 +63,11 @@ public class VenuesForUserServlet extends HttpServlet {
 			reader.close();
 		}
 
-		/* Parse the JSON object it got from the request */
-		String userIdentifier = gson.fromJson(sb.toString(), String.class);
-		System.out.println("######## " + userIdentifier );
+		JsonElement jElement = new JsonParser().parse(sb.toString());
+		JsonObject jObject = jElement.getAsJsonObject();
+		System.out.println(jObject.get("userId").toString());
+		String userIdentifier = jObject.get("userId").toString().replace("\"", "").replace("\\", "");
+		System.out.println(userIdentifier);
 		// try to convert a screen name into an id
 		boolean isScreenName = false;
 		long id = 0;
@@ -71,7 +76,7 @@ public class VenuesForUserServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			isScreenName=true;
 		}
-
+		System.out.println("@##$" + id);
 		if(isScreenName){
 			TwitterManager twitterManager = TwitterManager.getInstance();
 			// create a connection to twitter
@@ -85,6 +90,7 @@ public class VenuesForUserServlet extends HttpServlet {
 
 			// get the user's id
 			try {
+				System.out.println("@#@#@@#" + userIdentifier);
 				id =twitterConnection.getUserTimeline(userIdentifier).get(0).getUser().getId();
 			} catch (TwitterException e) {
 				// TODO Auto-generated catch block

@@ -71,7 +71,19 @@ public class RDFBuilder extends RDFBase {
 		statements.add(this.statementsModel.createStatement(venueResource, RDF.type, spatialThingType));
 		
 		statements.add(this.statementsModel.createStatement(venueResource, this.name, venue.getName()));
-		
+		statements.add(this.statementsModel.createStatement(venueResource, this.venueId, venue.getId()));
+		if(venue.getDescription() != null)
+			statements.add(this.statementsModel.createStatement(venueResource, this.venueDescription, venue.getDescription()));
+		else
+			statements.add(this.statementsModel.createStatement(venueResource, this.venueDescription, "Description not available"));
+		if(venue.getLocation().getAddress() != null || venue.getLocation() != null)
+			statements.add(this.statementsModel.createStatement(venueResource, this.address, venue.getLocation().getAddress()));
+		else
+			statements.add(this.statementsModel.createStatement(venueResource, this.address, "Address not available"));
+		if(venue.getUrl() != null)
+			statements.add(this.statementsModel.createStatement(venueResource, this.URL, venue.getUrl()));
+		else
+			statements.add(this.statementsModel.createStatement(venueResource, this.URL, "URL not available"));
 		for(String photoURL:this.venuePhotosURL(venue)) {
 			statements.add(this.statementsModel.createStatement(venueResource, this.hasPhoto, photoURL));
 		}
@@ -163,6 +175,13 @@ public class RDFBuilder extends RDFBase {
 		
 	}
 	
+	/**
+	 * Creates the connection between two separate users which have been in contact on Twitter. 
+	 * Typically, the two users will be different.
+	 * 
+	 * @param firstUser one of the users, type User.
+	 * @param secondUser the other user, type User.
+	 */
 	public void addInContactWith(User firstUser, User secondUser) {
 		
 		Resource firstUserResource = this.addUser(firstUser);
@@ -177,6 +196,12 @@ public class RDFBuilder extends RDFBase {
 		this.addStatementsToModel(statements);
 	}
 
+	/**
+	 * Adds a list of visits to a user in the triple store.
+	 * 
+	 * @param user The user for which to add the venues
+	 * @param venues The list of venues to add
+	 */
 	public void addVisitsForUser(User user, List<CompleteVenue> venues) {
 		
 		Resource userResource = this.addUser(user);
@@ -193,6 +218,12 @@ public class RDFBuilder extends RDFBase {
 		
 	}
 	
+	/**
+	 * Extracts all the photos from a complete venue as strings.
+	 * 
+	 * @param venue a CompleteVenue from Foursquare.
+	 * @return a list of Strings
+	 */
 	public List<String> venuePhotosURL (CompleteVenue venue){
 		List<String> photoURLs = new ArrayList<String>();
 		
@@ -205,6 +236,12 @@ public class RDFBuilder extends RDFBase {
 		return photoURLs;
 	}
 	
+	/**
+	 * Extracts all the categories from a CompleteVenue as strings.
+	 * 
+	 * @param venue a CompleteVenue from Foursquare.
+	 * @return a list of Strings with the categories
+	 */
 	public List<String> venueCategories(CompleteVenue venue){
 		List<String> categories = new ArrayList<String>();
 		
@@ -215,12 +252,20 @@ public class RDFBuilder extends RDFBase {
 		return categories;
 	}
 	
+	/**
+	 * Adds all the statements provided into the model.
+	 * 
+	 * @param statements a list of statements.
+	 */
 	private void addStatementsToModel(List<Statement> statements) {
 		for(Statement s:statements) {
 			this.statementsModel.add(s);			
 		}
 	}
 	
+	/**
+	 * Saves all the statements provided into the RDF statements model.
+	 */
 	public void save() {
 		FileWriter out = null;
 		try {

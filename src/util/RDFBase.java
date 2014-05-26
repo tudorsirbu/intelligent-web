@@ -36,18 +36,19 @@ public class RDFBase {
 	/**
 	 * List of properties for the swb:FoursquareVenue class 
 	 */
-	Property name, hasPhoto, category, location, latitude, longitude, visitedBy, venueDescription, address, categories, URL;
+	Property venueId, name, hasPhoto, category, location, latitude, longitude, visitedBy, venueDescription, address, categories, URL;
 	
 	/**
 	 * List of properties for the swb:Tweet class
 	 */
-	Property venueId, user, text, createdAt, retweetedBy;
+	Property user, text, createdAt, retweetedBy;
 	
 	public RDFBase() {
 		org.apache.log4j.BasicConfigurator.configure();
 		this.model = ModelFactory.createOntologyModel(OntModelSpec.RDFS_MEM); 
 		this.statementsModel = ModelFactory.createDefaultModel();
 		
+		/* Creates a union of the ontology and the statements model. */
 		this.model.addSubModel(this.statementsModel);
 		
 		/* Outputs the relative path to the files. No longer useful */
@@ -72,7 +73,7 @@ public class RDFBase {
 		this.statementsModel.setNsPrefix("foaf", Config.FOAF_NS);
 		this.statementsModel.setNsPrefix("geo", Config.GEO_NS);
 		
-		/* Initialising the list of properties */
+		/* Initialising the list of properties for all the RDF classes */
 		this.foaf_name = this.model.createProperty(Config.FOAF_NS + "name");
 		this.screenName = this.model.getOntProperty(Config.NS + "screenName");
 		this.inContactWith = this.model.getOntProperty(Config.NS + "inContactWith");
@@ -97,22 +98,11 @@ public class RDFBase {
 		this.address = this.model.getOntProperty(Config.NS + "address");
 		this.category = this.model.getOntProperty(Config.NS + "category");
 		this.URL = this.model.getOntProperty(Config.NS + "URL");
-		
-		/* Lists all classes */
-//		ExtendedIterator<OntClass> classIterator = model.listClasses(); 
-//		while (classIterator.hasNext()) { 
-//			OntClass ontClass = classIterator.next(); 
-//			System.out.println(ontClass.toString()); 
-//		}
-//			
-//		Property hasName = this.model.getOntProperty(Config.NS + "name");
-//		ExtendedIterator<Resource> iter = this.model.listResourcesWithProperty(hasName);
-//		while (iter.hasNext()) { 
-//			Resource ontClass = iter.next();
-//			System.out.println(ontClass.toString()); 
-//		}
 	}
 	
+	/**
+	 * Closes the connection to the two models.
+	 */
 	public void close(){
 		this.model.close();
 		this.statementsModel.close();

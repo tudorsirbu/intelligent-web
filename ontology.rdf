@@ -16,13 +16,13 @@
 	<rdfs:Class rdf:ID="TwitterUser"> 
 		<rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Agent" />
 		<rdfs:comment> 
-			The class of users.
+			The class of users, subclassing foaf:Agent. Uses foaf:name and foaf:depiction from its superclass.
 		</rdfs:comment>  
 	</rdfs:Class>
 
 	<rdf:Property rdf:ID="screenName"> 
 		<rdfs:comment> 
-			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+			Represents the username of user from Twitter.
 		</rdfs:comment> 
 		<rdfs:domain rdf:resource="#TwitterUser"/> 
 		<rdfs:range rdf:resource="Literal"/>
@@ -30,7 +30,7 @@
 	
 	<rdf:Property rdf:ID="locationName"> 
 		<rdfs:comment> 
-			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+			The name of the location found on the Twitter user which it represents.
 		</rdfs:comment> 
 		<rdfs:domain rdf:resource="#TwitterUser"/> 
 		<rdfs:range rdf:resource="Literal"/>
@@ -38,7 +38,7 @@
 
 	<rdf:Property rdf:ID="id"> 
 		<rdfs:comment> 
-			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+			The numerical id of the Twitter user.
 		</rdfs:comment> 
 		<rdfs:domain rdf:resource="#TwitterUser"/> 
 		<rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
@@ -54,7 +54,7 @@
 
 	<rdf:Property rdf:ID="visited"> 
 		<rdfs:comment> 
-			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+			Maps the user to a FoursquareVenue which it has visited.
 		</rdfs:comment> 
 		<rdfs:domain rdf:resource="#TwitterUser"/> 
 		<rdfs:range rdf:resource="#FoursquareVenue"/>
@@ -62,7 +62,7 @@
 
 	<rdf:Property rdf:ID="inContactWith"> 
 		<rdfs:comment> 
-			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+			Maps from TwitterUser to another TwitterUser with which the user has been in contact.
 		</rdfs:comment> 
 		<rdfs:domain rdf:resource="#TwitterUser"/> 
 		<rdfs:range rdf:resource="#TwitterUser"/>
@@ -70,29 +70,37 @@
 
 	<rdf:Property rdf:ID="tweeted"> 
 		<rdfs:comment> 
-			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+			A tweet that the user has tweeted.
 		</rdfs:comment> 
 		<rdfs:domain rdf:resource="#TwitterUser"/> 
-		<rdfs:range rdf:resource="#tweet"/>
+		<rdfs:range rdf:resource="#Tweet"/>
 	</rdf:Property>
 
 	<rdfs:Class rdf:ID="FoursquareVenue"> 
 		<rdfs:comment> 
-			The class of lecturers. All lecturers are academic staff members. 
+			A Venue which can be found on foursquare.com.
 		</rdfs:comment>  
 	</rdfs:Class>
 	
 	<rdf:Property rdf:ID="venueId"> 
 		<rdfs:comment> 
-			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+			The id of a FoursquareVenue.
 		</rdfs:comment> 
 		<rdfs:domain rdf:resource="#FoursquareVenue" /> 
 		<rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
 	</rdf:Property>
 	
+	<rdf:Property rdf:ID="address"> 
+		<rdfs:comment> 
+			The address of a FoursquareVenue.
+		</rdfs:comment> 
+		<rdfs:domain rdf:resource="#FoursquareVenue" /> 
+		<rdfs:range rdf:resource="Literal" />
+	</rdf:Property>
+	
 	<rdf:Property rdf:ID="venueDescription"> 
 		<rdfs:comment> 
-			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+			The description of a FoursquareVenue.
 		</rdfs:comment> 
 		<rdfs:domain rdf:resource="#FoursquareVenue" /> 
 		<rdfs:range rdf:resource="Literal" />
@@ -100,7 +108,7 @@
 
 	<rdf:Property rdf:ID="name"> 
 		<rdfs:comment> 
-			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+			The name of a Foursquare Venue.
 		</rdfs:comment> 
 		<rdfs:domain rdf:resource="#FoursquareVenue"/> 
 		<rdfs:range rdf:resource="Literal"/>
@@ -108,7 +116,7 @@
 
 	<rdf:Property rdf:ID="hasPhoto"> 
 		<rdfs:comment> 
-			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+			Photos of the FoursquareVenue.
 		</rdfs:comment> 
 		<rdfs:domain rdf:resource="#FoursquareVenue"/> 
 		<rdfs:range rdf:resource="Literal"/>
@@ -116,7 +124,7 @@
 
 	<rdf:Property rdf:ID="category"> 
 		<rdfs:comment> 
-			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+			Categories of the FoursquareVenue.
 		</rdfs:comment> 
 		<rdfs:domain rdf:resource="#FoursquareVenue"/> 
 		<rdfs:range rdf:resource="Literal"/>
@@ -124,7 +132,7 @@
 
 	<rdf:Property rdf:ID="location"> 
 		<rdfs:comment> 
-			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+			The GPS coordinates of the location, the range is a W3 SpatialThing.
 		</rdfs:comment> 
 		<rdfs:domain rdf:resource="#FoursquareVenue"/> 
 		<rdfs:range rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
@@ -132,7 +140,7 @@
 
 	<rdf:Property rdf:ID="visitedBy"> 
 		<rdfs:comment> 
-			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+			Maps the domain (FoursquareVenue) to the TwitterUsers which visited it.
 		</rdfs:comment>
 		<rdfs:domain rdf:resource="#FoursquareVenue"/> 
 		<rdfs:range rdf:resource="#TwitterUser"/> 
@@ -140,7 +148,7 @@
 
 	<rdf:Property rdf:ID="URL"> 
 		<rdfs:comment> 
-			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+			The URL of the FoursquareVenue, usually a foursquare.com URL.
 		</rdfs:comment>
 		<rdfs:domain rdf:resource="#FoursquareVenue"/> 
 		<rdfs:range rdf:resource="Literal"/> 
@@ -148,13 +156,13 @@
 
 	<rdfs:Class rdf:ID="Tweet"> 
 		<rdfs:comment> 
-			The class of lecturers. All lecturers are academic staff members. 
+			The class of tweets, as found on twitter.com.
 		</rdfs:comment>  
 	</rdfs:Class>
 
 	<rdf:Property rdf:ID="user"> 
 		<rdfs:comment> 
-			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+			The user (#TwitterUser) of a tweet.
 		</rdfs:comment>
 		<rdfs:domain rdf:resource="#Tweet"/> 
 		<rdfs:range rdf:resource="#TwitterUser"/> 
@@ -162,7 +170,7 @@
 
 	<rdf:Property rdf:ID="text"> 
 		<rdfs:comment> 
-			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+			The content of a tweet.
 		</rdfs:comment>
 		<rdfs:domain rdf:resource="#Tweet"/> 
 		<rdfs:range rdf:resource="Literal"/> 
@@ -170,7 +178,7 @@
 
 	<rdf:Property rdf:ID="retweetedBy"> 
 		<rdfs:comment> 
-			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+			The users who have retweeted the current tweet.
 		</rdfs:comment>
 		<rdfs:domain rdf:resource="#Tweet"/> 
 		<rdfs:range rdf:resource="#TweeterUser"/> 
@@ -178,7 +186,7 @@
 
 	<rdf:Property rdf:ID="createdAt"> 
 		<rdfs:comment> 
-			Inherits its domain ("course") and range ("lecturer") from its superproperty "involves" 
+			The datetime at which the Tweet was created on twitter.com.
 		</rdfs:comment>
 		<rdfs:domain rdf:resource="#Tweet"/> 
 		<rdfs:range rdf:resource="http://www.w3.org/TR/xmlschema11-2/#dateTime"/> 
