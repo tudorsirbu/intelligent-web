@@ -43,10 +43,22 @@ public class Tweet {
 		this.text = status.getText();
 		this.date = status.getCreatedAt();
 	}
-	
+	/**
+	 * Returns the text of the tweet stored by this type of object
+	 * @return the text of the tweet
+	 */
 	public String getTweet(){ return this.text;}
+	
+	/**
+	 * Returns the date when this tweet has been posted
+	 * @return the date of the posted tweet
+	 */
 	public Date getDate(){ return this.date;}
 	
+	/**
+	 * The method creates an inverted index for the current tweet.
+	 * @return a list of Keyword objects that were found in this tweet
+	 */
 	public ArrayList<Keyword> getInvertedIndex(){
 		// the keywords and their count for this tweet
 		ArrayList<Keyword> keywords = new ArrayList<Keyword>();
@@ -68,7 +80,12 @@ public class Tweet {
 		}
 		return keywords;
 	}
-	
+	/**
+	 * The method either adds a keyword to a list of keywords or it 
+	 * increments it if it is already in the list
+	 * @param keywords the list of Keywords where the keyword needs to be inserted
+	 * @param keyword the keyword to be inserted.
+	 */
 	private void addKeyword(ArrayList<Keyword> keywords, String keyword){
 		// assume the keyword isn't already in the list of keywords
 		boolean exists = false;

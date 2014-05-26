@@ -2,7 +2,14 @@ package model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+/**
+ * This is a local model where user details can be stored. The class
+ * stores the user's id, name, username, location, description, profile picture url, 
+ * the venues where the user checked in, any other users they came in contact with and 
+ * a list of keyword they used.
+ * @author tudorsirbu
+ *
+ */
 public class User {
 	
 	// details stored for each user when a query has been performed
@@ -13,17 +20,24 @@ public class User {
 	private String description;
 	private String profilePicURL;
 	private ArrayList<Venue> visited;
-	
-	public ArrayList<Venue> getVisited() {
-		return visited;
-	}
-	public void setVisited(ArrayList<Venue> visited) {
-		this.visited = visited;
-	}
-
 	private ArrayList<User> friends;
 	private ArrayList<Keyword> keywords;
 	private ArrayList<Tweet> tweets;
+	
+	/**
+	 * The method returns the venues visited by the user
+	 * @return a list ov Venues where the user has been
+	 */
+	public ArrayList<Venue> getVisited() {
+		return visited;
+	}
+	/**
+	 * The method sets visited venues by this user
+	 * @param visited a list of Venues where the use has checked in.
+	 */
+	public void setVisited(ArrayList<Venue> visited) {
+		this.visited = visited;
+	}
 	
 	/**
 	 * Constructor
