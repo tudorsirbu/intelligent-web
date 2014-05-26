@@ -1,6 +1,43 @@
+<?xml version="1.0" encoding="MacRoman"?>
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:sweb="http://www.smartweb.com/data/#"
     xmlns:foaf="http://xmlns.com/foaf/0.1/#"
     xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" > 
+  <rdf:Description rdf:about="https://foursquare.com/v/4bf13d57f45ec928f594943c">
+    <geo:long rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.4797296047989605</geo:long>
+    <geo:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#double">53.38453351731824</geo:lat>
+    <sweb:category>Grocery Store</sweb:category>
+    <sweb:hasPhoto>https://irs2.4sqi.net/img/general/original/IyOKeMLixf1SBRTJ13WFqShuMKku-TkvYLziOd2eNt8.jpg</sweb:hasPhoto>
+    <sweb:hasPhoto>https://irs2.4sqi.net/img/general/original/0CyJgtj0YJnCE3aWEAx6nx80iYUezZWj8dc7CJrNBt0.jpg</sweb:hasPhoto>
+    <sweb:name>Tesco</sweb:name>
+    <rdf:type rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#FoursquareVenue"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor">
+    <sweb:visited rdf:resource="https://foursquare.com/v/4b7d531ef964a5204cb82fe3"/>
+    <sweb:visited rdf:resource="https://foursquare.com/v/4bf13d57f45ec928f594943c"/>
+    <sweb:description>CompSci@Shef #IntelligentWeb</sweb:description>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/2426707282/fcvyspgou9rolgg8zgc2_normal.jpeg</foaf:depiction>
+    <sweb:locationName>Sheffield, UK</sweb:locationName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">18540628</sweb:id>
+    <sweb:screenName>studor</sweb:screenName>
+    <foaf:name>Tudor</foaf:name>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://foursquare.com/v/4b7d531ef964a5204cb82fe3">
+    <sweb:hasPhoto>https://irs3.4sqi.net/img/general/original/1127079_H2w9IcBus0xTPhSfDiJvq6-uzggi5YxAu4eo7o_BQOU.jpg</sweb:hasPhoto>
+    <sweb:name>The Arts Tower</sweb:name>
+    <sweb:category>College Academic Building</sweb:category>
+    <geo:lat rdf:datatype="http://www.w3.org/2001/XMLSchema#double">53.38268185123829</geo:lat>
+    <sweb:category>College Arts Building</sweb:category>
+    <sweb:hasPhoto>https://irs3.4sqi.net/img/general/original/16725832_oKqSpr_OSbjciSLXSNlZWsKMljdYJBwJo5Fbgvd2LJk.jpg</sweb:hasPhoto>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#FoursquareVenue"/>
+    <sweb:hasPhoto>https://irs1.4sqi.net/img/general/original/31034152_rUwI2uf3A8oIcgpMBzfTenD9v5TJODxIcfC7qb6hzks.jpg</sweb:hasPhoto>
+    <sweb:hasPhoto>https://irs2.4sqi.net/img/general/original/31034152_9pgVBFV4bWBOLzCaTL4aK69DphI92GQYyH59wuhPLyc.jpg</sweb:hasPhoto>
+    <geo:long rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.4872133595062658</geo:long>
+    <rdf:type rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
+    <sweb:hasPhoto>https://irs1.4sqi.net/img/general/original/31034152_HkvPI6IQ2NuiFgE9lXWq_BXMUDVesnORm2Oj5NOCJF0.jpg</sweb:hasPhoto>
+    <sweb:hasPhoto>https://irs1.4sqi.net/img/general/original/31034152_QrCAzhZf3SBYT5K6jB1FJHbg44nMciRdSocpZY06rLA.jpg</sweb:hasPhoto>
+  </rdf:Description>
 </rdf:RDF>

@@ -333,7 +333,7 @@ function getUserVenuesFormErrors() {
 
         switch($this.attr('name')) {
 			case "user_id":
-				validatePositiveLong($this, true);
+				validateEmpty($this, true);
 				break;
 			case "days_last_visited":
 				validatePositiveInteger($this, true);
