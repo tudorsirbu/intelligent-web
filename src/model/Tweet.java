@@ -58,15 +58,17 @@ public class Tweet {
 		// split the string into words
 		String[] words = remover.getText().split(" ");
 		
+		System.out.println("INVERTED INDEX");
+		
 		// check if any words should be removed if they do not pass the stoplist test
 		ArrayList<String> stoplist = (new StoplistBuilder()).getStoplist();
 		for(String word:words){
 			if(!stoplist.contains(word.toLowerCase()) && !word.isEmpty()){
 				// add the word to the list of keywords or increment its count
-				addKeyword(keywords, word);
+				addKeyword(keywords, word.toLowerCase());
 			}		
 		}
-		
+		System.out.println("INVERTED INDEX");
 		return keywords;
 	}
 	
@@ -77,7 +79,7 @@ public class Tweet {
 		// loop through the list of keywords
 		for(Keyword k : keywords){
 			// if the keyword is in the current list
-			if(k.getKeyword().equals(keyword)){
+			if(k.getKeyword().toLowerCase().equals(keyword.toLowerCase())){
 				// increment its count
 				k.setCount(k.getCount()+1);
 				
@@ -87,7 +89,9 @@ public class Tweet {
 		}
 		
 		// if the keyword is not already in the list add it
-		Keyword k = new Keyword(this.userId, keyword, 1, this.date);
-		keywords.add(k);
+		if(!exists){
+			Keyword k = new Keyword(this.userId, keyword.toLowerCase(), 1, this.date);
+			keywords.add(k);
+		}
 	}
 }

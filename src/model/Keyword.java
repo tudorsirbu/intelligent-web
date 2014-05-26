@@ -61,11 +61,11 @@ public class Keyword implements Comparable<Keyword>{
 	@Override
 	public int compareTo(Keyword k) {
 		if(this.count > k.getCount())
-			return 1;
+			return -1;
 		else if(this.count == k.getCount())
 			return 0;
 		else 
-			return -1;
+			return 1;
 	}
 
 	
