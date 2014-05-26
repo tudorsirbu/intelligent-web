@@ -2,7 +2,13 @@ package model;
 import java.util.Date;
 
 import twitter4j.User;
-
+/**
+ * The class stores a keyword found in a user's status by 
+ * storing the actual keyword, the user id of the person who 
+ * used it, how many times it was used an when.
+ * @author tudorsirbu
+ *
+ */
 public class Keyword implements Comparable<Keyword>{
 	// the user to whom this keyword belongs
 	private String userId;
