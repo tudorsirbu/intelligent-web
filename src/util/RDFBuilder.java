@@ -22,8 +22,19 @@ import fi.foyt.foursquare.api.entities.CompleteVenue;
 import fi.foyt.foursquare.api.entities.Photo;
 import fi.foyt.foursquare.api.entities.PhotoGroup;
 
+/**
+ * Deals with storing Java objects into an RDF triple store. 	 
+ * 
+ * @author Florin-Cristian Gavrila, Tudor Sirbu, Claudiu Tarta
+ */
 public class RDFBuilder extends RDFBase {
 	
+	/**
+	 * Adds a user to the RDF triple store.
+	 * 
+	 * @param user a User object which will be stored in the store
+	 * @return the Resource it created when building the triple
+	 */
 	public Resource addUser(User user) {
 		Resource resource = ResourceFactory.createResource("https://twitter.com/" + user.getScreenName());
 		Resource twitterUserType = model.createResource(Config.NS + "TwitterUser");
@@ -42,7 +53,13 @@ public class RDFBuilder extends RDFBase {
 		
 		return resource;
 	}
-	
+
+	/**
+	 * Adds a venue to the RDF triple store.
+	 * 
+	 * @param venue a Venue object which will be stored in the store
+	 * @return the Resource it created when building the triple
+	 */
 	public Resource addVenue(CompleteVenue venue){
 		Resource venueResource = ResourceFactory.createResource("https://foursquare.com/v/"+ venue.getId());
 		Resource venueType = ResourceFactory.createResource(Config.NS + "FoursquareVenue");
@@ -70,17 +87,32 @@ public class RDFBuilder extends RDFBase {
 		return venueResource;
 	}
 	
+	/**
+	 * Adds a list of Venues in the RDF triple store.
+	 * 
+	 * @param venues a list of Foursquare's CompleteVenues
+	 */
 	public void addVenues(List<CompleteVenue> venues) {
 		for(CompleteVenue venue:venues) 
 			this.addVenue(venue);
 	}
 	
+	/**
+	 * Adds a list of Tweet objects in the RDF triple store.
+	 * 
+	 * @param venues a list of Twitters's Status objects
+	 */
 	public void addTweets(List<Status> tweets) {
 		for(Status tweet:tweets) {
 			this.addTweet(tweet);
 		}
 	}
 
+	/**
+	 * Adds a Tweet in the RDF triple store.
+	 * 
+	 * @param tweet a Twitter Status which will be added to the store
+	 */
 	public void addTweet(Status tweet) {
 		
 		this.addUser(tweet.getUser());
@@ -103,27 +135,28 @@ public class RDFBuilder extends RDFBase {
 		this.addStatementsToModel(statements);
 	}
 	
-	public Resource addVisit(User user, CompleteVenue venue, Date date) {
+	/**
+	 * Adds the v
+	 * 
+	 * @param user
+	 * @param venue
+	 * @param date
+	 * @return
+	 */
+	public void addVisitsForUser(User user, List<CompleteVenue> venues) {
 		
 		Resource userResource = this.addUser(user);
-		Resource venueResource = this.addVenue(venue);
-		Resource visitResource = ResourceFactory.createResource();
-		Resource visitType = model.createResource(Config.NS + "Visit");
-		
-		Calendar myCal = new GregorianCalendar();
-		myCal.setTime(date);
-		XSDDateTime dateTimeLiteral = new XSDDateTime(myCal);
-		
+		Resource venueResource;
 		List<Statement> statements = new ArrayList<Statement>();
 
-		statements.add(this.statementsModel.createStatement(visitResource, RDF.type, visitType));
-		statements.add(this.statementsModel.createStatement(visitResource, this.twitterUser, userResource));
-		statements.add(this.statementsModel.createStatement(visitResource, this.venue, venueResource));
-		statements.add(this.statementsModel.createLiteralStatement(visitResource, this.date, dateTimeLiteral));
+		for(CompleteVenue venue:venues) {
+			venueResource = this.addVenue(venue);
+			
+			statements.add(this.statementsModel.createStatement(userResource, this.visited, venueResource));
+		}
 		
 		this.addStatementsToModel(statements);
 		
-		return visitResource;
 	}
 	
 	public List<String> venuePhotosURL (CompleteVenue venue){

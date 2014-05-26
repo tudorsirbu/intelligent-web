@@ -11,22 +11,37 @@ import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
+/**
+ * This class initializes the models and properties of the ontology.
+ * 
+ * @author Florin-Cristian Gavrila, Tudor Sirbu, Claudiu Tarta
+ */
 public class RDFBase {
-
+	
+	/**
+	 * The RDF model which contains the ontology.
+	 */
 	public OntModel model;
+	
+	/**
+	 * The RDF model which contains the statements.
+	 */
 	public Model statementsModel;
 	
-	/* List of properties for the sweb:TwitterUser class */
-	Property foaf_name, screenName, id, locationName, depiction, description;
+	/**
+	 * List of properties for the sweb:TwitterUser class
+	 */
+	Property foaf_name, screenName, id, locationName, depiction, description, visited;
 	
-	/* List of properties for the swb:FoursquareVenue class */
+	/**
+	 * List of properties for the swb:FoursquareVenue class 
+	 */
 	Property name, hasPhoto, category, location, latitude, longitude, visitedBy, venueDescription, address, categories, URL;
 	
-	/* List of properties for the swb:Tweet class */
+	/**
+	 * List of properties for the swb:Tweet class
+	 */
 	Property venueId, user, text, createdAt, retweetedBy;
-	
-	/* List of properties for the swb:Visit class */
-	Property twitterUser, venue, date;
 	
 	public RDFBase() {
 		org.apache.log4j.BasicConfigurator.configure();
@@ -64,6 +79,7 @@ public class RDFBase {
 		this.locationName = this.model.getOntProperty(Config.NS + "locationName");
 		this.depiction = this.model.createProperty(Config.FOAF_NS + "depiction");
 		this.description = this.model.getOntProperty(Config.NS + "description");
+		this.visited = this.model.getOntProperty(Config.NS + "visited");
 		this.name = this.model.getOntProperty(Config.NS + "name");
 		this.hasPhoto = this.model.getOntProperty(Config.NS + "hasPhoto");
 		this.category = this.model.getOntProperty(Config.NS + "category");
@@ -80,11 +96,6 @@ public class RDFBase {
 		this.address = this.model.getOntProperty(Config.NS + "address");
 		this.category = this.model.getOntProperty(Config.NS + "category");
 		this.URL = this.model.getOntProperty(Config.NS + "URL");
-		
-		/* For visit*/
-		this.twitterUser = this.model.getOntProperty(Config.NS + "twitterUser");
-		this.venue = this.model.getOntProperty(Config.NS + "venue");
-		this.date = this.model.getOntProperty(Config.NS + "date");
 		
 		/* Lists all classes */
 //		ExtendedIterator<OntClass> classIterator = model.listClasses(); 

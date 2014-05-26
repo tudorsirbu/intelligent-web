@@ -54,6 +54,7 @@ public class UserVenuesServlet extends HttpServlet {
 		StringBuilder sb = Util.jsonRequestToString(request);
 		
 		ArrayList<CompleteVenue> venuesStreamed=null;
+		ArrayList<CompleteVenue> venues = null;
 		RDFBuilder rdfBuilder = new RDFBuilder();
 		UserVenuesForm uvf = gson.fromJson(sb.toString(), UserVenuesForm.class);
 		
@@ -98,7 +99,7 @@ public class UserVenuesServlet extends HttpServlet {
 			int days = uvf.getDays();
 			
 			if(days != 0) {
-				ArrayList<CompleteVenue> venues = tm.getVenuesSince(userID, days);
+				venues = tm.getVenuesSince(userID, days);
 				rdfBuilder.addVenues(venues);
 				
 				String json = gson.toJson(venues);
@@ -108,9 +109,9 @@ public class UserVenuesServlet extends HttpServlet {
 			else{
 				if(tm.userExists(idList[0])==true){
 					tm.initConfiguration(idList);
-					 venuesStreamed = tm.getVenues();
-					 rdfBuilder.addVenues(venuesStreamed);
-					 String json = gson.toJson(venuesStreamed);
+					 venues = tm.getVenues();
+					 rdfBuilder.addVenues(venues);
+					 String json = gson.toJson(venues);
 					 tm.clearVenues();
 					 response.getWriter().write(json);
 				}
@@ -121,7 +122,7 @@ public class UserVenuesServlet extends HttpServlet {
 				}
 				
 			}
-			
+			rdfBuilder.addVisitsForUser(user, venues);
 			rdfBuilder.save();
 			
 		} catch (Exception e) {

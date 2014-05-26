@@ -55,11 +55,11 @@ public class VisitedByServlet extends HttpServlet {
 		String venueName = jSon.get("venue_name").getAsString();
 		
 		// get the venue with that name
-		RDFService rdf = new RDFService();
-		Venue venue = rdf.getVenue(venueName);
+		RDFService rdfService = new RDFService();
+		rdfService.getUsersVisitingVenueByName(venueName);
 		
 		// conver the venue in json 
-		String venueAsJson = gson.toJson(venue);
+		String venueAsJson = gson.toJson(null);
 		
 		// display the venue as json
 		System.out.println(venueAsJson);

@@ -52,7 +52,7 @@ $(document).ready(function() {
 		$.ajax({
 			type: "post",
 			dataType: "json",
-			url: "UserVenueServlet",
+			url: "VisitedByServlet",
 			data: data,
 			success: function(venues) {
 				var div = "";
