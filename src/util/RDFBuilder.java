@@ -44,11 +44,13 @@ public class RDFBuilder extends RDFBase {
 	}
 	
 	public Resource addVenue(CompleteVenue venue){
-		Resource venueResource = ResourceFactory.createResource(venue.getUrl());
-		Resource venueType = model.createResource(Config.NS + "FoursquareVenue");
+		Resource venueResource = ResourceFactory.createResource("https://foursquare.com/v/"+ venue.getId());
+		Resource venueType = ResourceFactory.createResource(Config.NS + "FoursquareVenue");
+		Resource spatialThingType = ResourceFactory.createResource(Config.GEO_NS + "SpatialThing");
 		
 		List<Statement> statements = new ArrayList<Statement>();
 		statements.add(this.statementsModel.createStatement(venueResource, RDF.type, venueType));
+		statements.add(this.statementsModel.createStatement(venueResource, RDF.type, spatialThingType));
 		
 		statements.add(this.statementsModel.createStatement(venueResource, this.name, venue.getName()));
 		
@@ -60,14 +62,17 @@ public class RDFBuilder extends RDFBase {
 			statements.add(this.statementsModel.createStatement(venueResource, this.category, categoryName));
 		}
 		
-		Resource locationResource = ResourceFactory.createResource(Config.GEO_NS + "Point");
-		locationResource.addLiteral(latitude, venue.getLocation().getLat());
-		locationResource.addLiteral(longitude, venue.getLocation().getLng());
-		statements.add(this.statementsModel.createStatement(venueResource, this.location, locationResource));
-
+		statements.add(this.statementsModel.createLiteralStatement(venueResource, this.latitude, venue.getLocation().getLat()));
+		statements.add(this.statementsModel.createLiteralStatement(venueResource, this.longitude, venue.getLocation().getLng()));
+		
 		this.addStatementsToModel(statements);
 		
 		return venueResource;
+	}
+	
+	public void addVenues(List<CompleteVenue> venues) {
+		for(CompleteVenue venue:venues) 
+			this.addVenue(venue);
 	}
 	
 	public void addTweets(List<Status> tweets) {
