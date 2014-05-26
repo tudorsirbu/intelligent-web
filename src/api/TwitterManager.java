@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import model.DatabaseConnection;
-import model.UserService;
 import servlets.util.MiniStatus;
 import twitter4j.FilterQuery;
 import twitter4j.GeoLocation;
@@ -26,7 +24,6 @@ import twitter4j.TwitterStreamFactory;
 import twitter4j.User;
 import twitter4j.auth.AccessToken;
 import twitter4j.conf.ConfigurationBuilder;
-import util.ApiUtil;
 import util.Config;
 import util.RDFBuilder;
 import api.listeners.TwitterStatusListener;
