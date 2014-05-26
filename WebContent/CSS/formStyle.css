@@ -621,7 +621,7 @@ transform: translateY(-21px);
 
 #user_results {
 	width: 960px;
-	margin-top: 60px;
+	margin-top: 0px;
 	margin-left:auto;
 	margin-right:auto;
 }
