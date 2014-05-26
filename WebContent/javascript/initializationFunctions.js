@@ -274,13 +274,23 @@ function displayTweets(data) {
 						dataType: 'jsonp',
 						success: function(media) {
 							console.log(media);
-							var tweetId = "#" + tweet.id;  
-							var $instagramPic = $(tweetId).parent().parent();
-							$(tweetId).attr("src",media.url);
-							$instagramPic.show();
-							$instagramPic.find(".instagramUser").attr("href", "http://www.instagram.com/"+media.author_name);
-							$instagramPic.find(".instagramUser").text(media.author_name);
-							$(tweetId).parent().attr("href",url);
+							if(media.url.indexOf("video") < 0 && media.url.indexOf(".mp4") < 0){
+								var tweetId = "#" + tweet.id;  
+								var $instagramPic = $(tweetId).parent().parent();
+								$(tweetId).attr("src",media.url);
+								$instagramPic.show();
+								$instagramPic.find(".instagramUser").attr("href", "http://www.instagram.com/"+media.author_name);
+								$instagramPic.find(".instagramUser").text(media.author_name);
+								$(tweetId).parent().attr("href",url);
+							} else {
+								var tweetId = "#" + tweet.id;  
+								var $instagramPic = $(tweetId).parent().parent();
+								$(tweetId).remove();
+								$instagramPic.show();
+								$instagramPic.find(".instagramUser").attr("href", "http://www.instagram.com/"+media.author_name);
+								$instagramPic.find(".instagramUser").text("Instagram profile: " + media.author_name);
+								$(tweetId).parent().attr("href",url);
+							}
 						}
 					});
 			  }
