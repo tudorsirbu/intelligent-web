@@ -76,7 +76,7 @@ public class RDFBuilder extends RDFBase {
 			statements.add(this.statementsModel.createStatement(venueResource, this.venueDescription, venue.getDescription()));
 		else
 			statements.add(this.statementsModel.createStatement(venueResource, this.venueDescription, "Description not available"));
-		if(venue.getLocation().getAddress() != null || venue.getLocation() != null)
+		if(venue.getLocation().getAddress() != null && venue.getLocation() != null)
 			statements.add(this.statementsModel.createStatement(venueResource, this.address, venue.getLocation().getAddress()));
 		else
 			statements.add(this.statementsModel.createStatement(venueResource, this.address, "Address not available"));
