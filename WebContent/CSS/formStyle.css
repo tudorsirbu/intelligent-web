@@ -31,7 +31,7 @@ button[type=submit] {
 }
 
 .buttonMap{
-	widith:100px;
+	width:180px;
 	background: #0084B4;
 	padding: 8px 30px;
 	color: #FFF;
@@ -442,11 +442,11 @@ button {
 
 #user button{
 	background: #0084B4;
-	width: 120px;
+	width: 140px;
 	height: 30px;
 	color: #FFF;
 	border: 0;
-	margin: 10px 0 0 0;
+	margin: 10px 10px 0 0;
 	font-size: 12px;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
