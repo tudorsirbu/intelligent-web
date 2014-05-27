@@ -408,11 +408,10 @@ function displayRDFaTweets(data) {
 					});
 			  }
 		});
-
-		$("#results").append(div);
 	});
 	div += "</div>";
 	
+	$("#results").append(div);
 	$(".get_retweets").click(function(event) {
 		event.preventDefault();
 
