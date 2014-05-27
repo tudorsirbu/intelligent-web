@@ -109,7 +109,8 @@ public class UsersServlet extends HttpServlet {
 				}
 				entry += "<div style=\"clear:both;\"></div>";
 				entry += "<button data-href=\""+user.getId()+"\" class=\"get_tweets\"> Get tweets </button>";
-				entry += "<button data-href=\""+user.getId()+"\" class=\"showMap\"> Show Map </button>";
+				entry += "<button data-href=\""+user.getId()+"\" class=\"showMap\"> Show Visited Venues </button>";
+				entry +="<div id=\"mapRes\"></div>";
 				entry += "</div>";
 			entry += "</div>";	
 			entry += "<div id=\"results\"></div>";

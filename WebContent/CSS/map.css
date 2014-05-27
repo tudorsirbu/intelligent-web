@@ -41,7 +41,7 @@ margin-bottom: 100px;
 
 
 #mapGetUsersByVenue {
-	height: 320px;
+	height: 400px;
 	width: 100%;
 margin-left: auto;
 margin-right: auto;
@@ -54,4 +54,20 @@ border-radius: 10px;
 background: #FFF;
 display:none;
 margin-bottom: 100px;
+}
+
+#mapRes {
+	height: 400px;
+	width: 100%;
+margin-left: auto;
+margin-right: auto;
+border: 1px solid #e1e8ed;
+border-botton: 0;
+margin-top: 20px;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+background: #FFF;
+display:none;
+margin-bottom: 40px;
 }
