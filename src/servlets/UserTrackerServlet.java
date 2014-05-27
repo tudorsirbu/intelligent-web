@@ -108,8 +108,6 @@ public class UserTrackerServlet extends HttpServlet {
 			Date lastTweetDate = new Date(currentDate.getTimeInMillis());
 			
 			// get the current user's tweets
-			if(user == null )
-				System.out.println("STOIA E NULL!" + user);
 			ArrayList<Tweet> tweets  = user.getTweets();
 			
 			// loop through the user's tweets and create an inverted index on those that are after the lastTweetDate
@@ -179,7 +177,6 @@ public class UserTrackerServlet extends HttpServlet {
 	    		for(Keyword k:allUserCounts){
 	    			if(k.getUserId().equals(u.getId())){
 	    				u.addKeyword(new  Keyword(top.get(i).getKeyword(), k.getCount()));
-	    				System.out.println(u.getName() + "-" + (top.get(i).getKeyword() + " = " + k.getCount()));
 	    			}
 	    		}
 	    	}
@@ -188,10 +185,6 @@ public class UserTrackerServlet extends HttpServlet {
 	    for(User u:users){
 	    	// get the user's keywords and add up the same one eg home-1, home-3 => home-4
 	    	ArrayList<Keyword> userKeywords = u.getKeywords();
-	    	
-	    	for(Keyword k:userKeywords){
-	    		System.out.println(k.getKeyword()+ " *-> " + k.getCount());
-	    	}
 	    	
 	    	Set<Keyword> keywordsSet = new HashSet<Keyword>(userKeywords);
 	    	
