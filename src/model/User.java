@@ -22,7 +22,7 @@ public class User {
 	private ArrayList<Venue> visited;
 	private ArrayList<User> inContact;
 	private ArrayList<Keyword> keywords;
-	private ArrayList<Tweet> tweets;
+	private ArrayList<Tweet> tweets = new ArrayList<Tweet>();
 	
 	/**
 	 * The method returns the venues visited by the user

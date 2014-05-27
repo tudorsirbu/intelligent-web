@@ -53,9 +53,10 @@ function initMapRes(data){
 
 	  $.each(data, function(key,venue){
 		  var contentString = "No address";
-		  var myLatlng = new google.maps.LatLng(venue.location.lat,venue.location.lng);
-		  if(venue.location.address!=null)
-			  contentString = venue.location.address; 
+		  console.log(venue);
+		  var myLatlng = new google.maps.LatLng(venue.latitude,venue.longitude);
+		  if(venue.address!=null)
+			  contentString = venue.address; 
 		  var infowindow = new google.maps.InfoWindow({
 		      content: contentString
 		  });

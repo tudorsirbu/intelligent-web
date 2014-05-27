@@ -286,16 +286,24 @@ public class RDFService extends RDFBase {
 	 * @return a Venue object
 	 */
 	private Venue buildVenueFromResource(Resource resource) {
-		System.out.println(resource.getProperty(this.venueId));
-		return new Venue(
+		String hasPhoto = null;
+		if(resource.getProperty(this.hasPhoto) != null){
+			hasPhoto = resource.getProperty(this.hasPhoto).getString();
+		}
+		Venue venue = new Venue(
 				resource.getProperty(this.venueId).getString(),
 				resource.getProperty(this.name).getString(),
 				resource.getProperty(this.venueDescription).getString(),
 				resource.getProperty(this.address).getString(),
-				resource.getProperty(this.hasPhoto).getString(),
+				hasPhoto,
 				resource.getProperty(this.category).getString(),
 				resource.getProperty(this.URL).getString()
         		);
+		
+		venue.setLatitude(resource.getProperty(this.latitude).getString());
+		venue.setLongitude(resource.getProperty(this.longitude).getString());
+		
+		return venue;
 	}
 
 	/**

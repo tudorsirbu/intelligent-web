@@ -92,6 +92,7 @@ public class UserVenuesServlet extends HttpServlet {
 			} else {
 				idList = new long[1];
 				userID = id;
+				idList[0] = id;
 			}
 			
 			User user = twitterConnection.getUserTimeline(userID).get(0).getUser();
@@ -107,17 +108,16 @@ public class UserVenuesServlet extends HttpServlet {
 				String json = gson.toJson(venues);
 				tm.clearVenues();
 				response.getWriter().write(json);
-			} 
-			else{
-				if(tm.userExists(idList[0])==true){
+			} else {
+				System.out.println("SUNT PROST! " + idList[0] + tm.userExists(idList[0]));
+				if(tm.userExists(idList[0])){
 					tm.initConfiguration(idList);
 					 venues = tm.getVenues();
 					 rdfBuilder.addVenues(venues);
 					 String json = gson.toJson(venues);
 					 tm.clearVenues();
 					 response.getWriter().write(json);
-				}
-				else{
+				}else{
 					 String json = gson.toJson("");
 					 tm.clearVenues();
 					 response.getWriter().write(json);

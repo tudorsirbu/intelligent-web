@@ -44,7 +44,7 @@ public class RDFBase {
 	Property user, text, createdAt, retweetedBy;
 	
 	public RDFBase() {
-		org.apache.log4j.BasicConfigurator.configure();
+//		org.apache.log4j.BasicConfigurator.configure();
 		this.model = ModelFactory.createOntologyModel(OntModelSpec.RDFS_MEM); 
 		this.statementsModel = ModelFactory.createDefaultModel();
 		

@@ -108,6 +108,8 @@ public class UserTrackerServlet extends HttpServlet {
 			Date lastTweetDate = new Date(currentDate.getTimeInMillis());
 			
 			// get the current user's tweets
+			if(user == null )
+				System.out.println("STOIA E NULL!" + user);
 			ArrayList<Tweet> tweets  = user.getTweets();
 			
 			// loop through the user's tweets and create an inverted index on those that are after the lastTweetDate

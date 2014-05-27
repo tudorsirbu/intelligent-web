@@ -110,7 +110,7 @@ public class TwitterManager {
 			.setOAuthConsumerSecret(config.CONSUMER_SECRET);
 			
 			TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
-			this.twitterStream = twitterStreamFactory.getInstance(new AccessToken("1225017144-1l22gHEw6SpxoQQac1PmT5a3FjQnexJrMQmiFra", "WR2I8lHSBlqVKHV1a3t3CDElHKe0sHkVl1TCLyrVnrkLS"));
+			this.twitterStream = twitterStreamFactory.getInstance(new AccessToken(config.ACCESS_TOKEN, config.ACCESS_TOKEN_SECRET));
 			this.twitterStream.addListener(new TwitterUserListener());
 			
 			FilterQuery fq = new FilterQuery();
@@ -139,7 +139,7 @@ public class TwitterManager {
 			.setOAuthConsumerSecret(config.CONSUMER_SECRET);
 			
 			TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
-			this.twitterStream = twitterStreamFactory.getInstance(new AccessToken("1225017144-1l22gHEw6SpxoQQac1PmT5a3FjQnexJrMQmiFra", "WR2I8lHSBlqVKHV1a3t3CDElHKe0sHkVl1TCLyrVnrkLS"));
+			this.twitterStream = twitterStreamFactory.getInstance(new AccessToken(config.ACCESS_TOKEN, config.ACCESS_TOKEN_SECRET));
 		}
 		return this.twitterStream;
 	}
@@ -168,7 +168,7 @@ public class TwitterManager {
 	private Twitter initTwitter(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) 	
 			throws Exception {	
 		ConfigurationBuilder cb = new ConfigurationBuilder();
-		cb.setDebugEnabled(true)	
+		cb.setDebugEnabled(false)	
 		.setOAuthConsumerKey(consumerKey)	
 		.setOAuthConsumerSecret(consumerSecret)	
 		.setOAuthAccessToken(accessToken)	
@@ -199,7 +199,7 @@ public class TwitterManager {
 
 		// get the user's timeline
 		try {
-			statuses = twitterConnection.getUserTimeline(userId, new Paging(1,100));
+			statuses = twitterConnection.getUserTimeline(userId, new Paging(1,2));
 		} catch (TwitterException e) {
 			System.out.println("Could not retrieve user's (" + userId + ") timeline.");
 			return false;
