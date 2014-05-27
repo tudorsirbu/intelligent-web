@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="CSS/reset.css">
+<link rel="stylesheet" type="text/css" href="CSS/formStyle.css">
+<link rel="stylesheet" type="text/css" href="CSS/jquery-ui-1.10.4.custom.min.css">
+<link rel="stylesheet" type="text/css" href="CSS/map.css">
+
+<script src="javascript/jquery-1.11.0.js"></script>
+<script src="javascript/jquery-ui-1.10.4.custom.min.js"></script>
+<script	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgU59vjkXnSzHlfrR1iaZ6zottGl35Ys&sensor=false"></script>
+<script src="javascript/validation.js"></script>
+<script src="javascript/initializationFunctions.js"></script>
+<script src="javascript/initialize.js"></script>
+<title>Query interface</title>
+</head>
+<body>
+
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1" onclick="hideExistingResults();">Discussions tracking</a></li>
+		<li><a href="#tabs-2" onclick="hideExistingResults();">Frequent keywords</a></li>
+		<li><a href="#tabs-3" onclick="hideExistingResults();">Venues for user</a></li>
+		<li><a href="#tabs-4" onclick="hideExistingResults();">Users by venue</a></li>
+		<li><a href="#tabs-5" onclick="hideExistingResults();">Nearby venues</a></li>
+		<li><a href="#tabs-6" onclick="hideExistingResults();">Users</a></li>
+		<li><a href="#tabs-7" onclick="hideExistingResults();">Who visited?</a></li>
+	</ul>
+	<div id="tabs-1">
+		<form action="TrackingServlet" method="get" id="trackingForm">
+		    <div>
+		        <label for="keywords">Keywords/hashtags: *</label>
+		        <input data-name="Keywords/hashtags" name="keywords" type="text" id="keywords" class="nms keywords_input" placeholder="e.g. #starbucks coffee london" />
+		    </div>
+		    <div>
+		    	<label for="region_lat">Latitude:</label>
+		        <input data-name="Latitude" name="region_lat" type="text" id="region_lat" class="geo" placeholder="e.g. 53.3892" />
+		    </div>
+		    <div>
+		        <label for="region_long">Longitude:</label>
+		        <input data-name="Longitude" name="region_long" type="text" id="region_long" class="geo"  placeholder="e.g. -1.4832" />
+		    </div>  
+		   
+		    <div>
+		    	<label for="radius">Radius:</label>
+		        <input data-name="Radius" name="radius" type="text" id="radius" class="geo" placeholder="e.g. 3" />
+		    </div>
+		    <div class="button">
+		        <button name="submit" type="submit">Search for results!</button>
+		    </div>
+		</form> 
+		 <div><button class="buttonMap" onclick="displayMapDiscussionsTracker()">Show Map</button></div>
+		 	<div id="hideMapDiscussionsTracker"  style="display:none"><button class="buttonMap"  onclick="hideMapDiscussionsTracker()">Hide Map</button></div>
+		    <div id="mapDiscussionsTracker"></div>
+		 	
+		 	
+	</div>
+	
+	<div id="tabs-2">
+		<form action="" method="get" id="discussionsTrackerForm">
+			<div>
+			    <label for="user_ids">User ids or screen names:</label>
+			    <textarea name="user_ids" rows="10" cols="1" id="user_ids" placeholder="Twitter ids/screen name sparated by commas..."></textarea>
+			</div>
+			<div>
+				<label for="no_keywords">No. of keywords:</label>
+				<input name="no_keywords" type="number" id="no_keywords" class="nmb" placeholder="e.g. 5" />   
+			</div>
+			<div>
+			    <label for="days_since">Last days:</label>
+			    <input name="days_since" type="number" id="days_since" class="nmb" placeholder="e.g. 5" />
+			</div>  
+			<div class="button">
+			    <button name="submit" type="submit">Search for results!</button>
+			</div>
+		</form>
+	</div>
+	<div id="tabs-3">
+		<form action="UserVenuesServlet" method="post" id="userVenuesForm">
+		    <div>
+		        <label for="user_id">User ID or screen name:</label>
+		        <input name="user_id" type="text" id="user_id" class="nms" placeholder="The id of the user..." />
+		    </div>
+		    <div>
+		    	<label for="days_last_visited">Points of interest the user has visited in the last days:</label> 
+		    	<input name="days_last_visited" type="number" id="days_last_visited" class="nmb" placeholder="e.g. 3"/>   
+		    </div> 
+		    <div class="button">
+		        <button name="submit" type="submit">Search for results!</button>
+		    </div>
+		</form>
+	</div>
+	<div id="tabs-4">
+		<form action="" method="get" id="byVenueForm">
+			<div>
+				<label for="location_name">Name of location:</label> 
+				<input name="location_name" type="text" id="location_name" class="nms" value="" placeholder="e.g. The Arts Tower" />
+			</div>
+			<div>
+				<label for="location_lat">Latitude:</label> 
+				<input name="location_lat" type="text" id="location_lat" class="geo" placeholder="e.g. 53.3892" />
+			</div>
+			<div>
+				<label for="location_long">Longitude:</label> 
+				<input name="location_long" type="text" id="location_long" class="geo" placeholder="e.g. -1.4832" />
+			</div>
+			
+	        
+			<div>
+				<label for="venue_days_since"> In the last days: </label> 
+				<input name="venue_days_since" type="number" id="venue_days_since" class="nmb" placeholder="e.g. 4" />
+			</div>
+			<div class="button">
+	        	<button name="submit" type="submit">Search for results!</button>
+	    	</div>	
+	    </form>
+	    <div><button class="buttonMap" onclick="displayMapGetUsersByVenue()">Show Map</button></div>
+	        <div id="hideMapGetUsersByVenue" style="display:none"><button class="buttonMap" onclick="hideMapGetUsersByVenue()">Hide Map</button></div>
+			<div id="mapGetUsersByVenue" ></div>
+	</div>
+	<div id="tabs-5">
+		<form action="SearchVenue" method="post" id="searchVenue">
+			<div>
+				<label for="venue_name">Name of venue:</label> <input type="text"
+					id="venue_name" class="nms" value="" name="venue_name" placeholder="e.g. Arts Tower" />
+			</div>
+			<div>
+				<label for="venue_city">City of venue:</label> <input
+					name="venue_city" type="text" id="venue_city" class="nms" placeholder="e.g. Sheffield" />
+			</div>
+			<div class="button">
+				<button name="submit" type="submit">Search for a venue</button>
+			</div>
+		</form>
+		<form action="SearchNearby" method="post" id="searchNearby">
+			<div>
+				<label for="venues_list">Venue:</label> <select name="venues_list"
+					id="venues_list">
+					<option value="0">Search for a venue first</option>
+				</select>
+			</div>
+			<div>
+				<label for="nearby_radius">Radius (meters):</label> <input
+					name="nearby_radius" type="number" id="nearby_radius" class="geo"
+					placeholder="e.g. 500" />
+			</div>
+			<div class="button">
+				<button name="submit" type="submit">Find nearby venues</button>
+			</div>
+		</form>
+	</div>
+	<div id="tabs-6">
+		<form action="UsersServlet" method="get" id="searchUser">
+			<div>
+				<label for="screen_name">User screen name or user id:</label> <input type="text"
+					id="screen_name" class="nms" value="" name="user_id" placeholder="e.g. studor" />
+			</div>
+			<div class="button">
+				<button name="submit" type="submit">Find the user</button>
+			</div>
+		</form>
+	</div>
+	<div id="tabs-7">
+		<form action="VisitedByServlet" method="get" id="searchVisitedVenue">
+			<div>
+				<label for="visited_venue">Venue name:</label> <input type="text"
+					id="visited_venue" class="nms" value="" name="visited_venue" placeholder="e.g. The Arts Tower" />
+			</div>
+			<div class="button">
+				<button name="submit" type="submit">Find users who visited this location</button>
+			</div>
+		</form>
+	</div>
+</div>
+<div id="map-canvas"></div>
+<div id="loader" class="bubblingG">
+	<span id="bubblingG_1"> </span> 
+	<span id="bubblingG_2"> </span> 
+	<span id="bubblingG_3"> </span>
+</div>
+<div id="results"></div>
+
+
+
+</body>
+</html>
