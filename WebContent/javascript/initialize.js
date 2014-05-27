@@ -123,7 +123,6 @@ $(document).ready(function() {
 					data: data,
 					async: false,
 					success: function(data){
-						
 						if(data==""){
 							console.log(data);
 							isUser = false; 
@@ -176,6 +175,7 @@ $(document).ready(function() {
 						google.maps.event.trigger(map,'resize');
 						initMapEmpty();
 						displayVenues(data);
+						console.log(data)
 					}
 				});
 
