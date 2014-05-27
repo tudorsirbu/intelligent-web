@@ -17,7 +17,7 @@ function initMapResEmpty(){
 	    center: myLatlng
 	  };
 	  
-	  map = new google.maps.Map(document.getElementById('mapRes'), mapOptions);
+	  mapRes = new google.maps.Map(document.getElementById('mapRes'), mapOptions);
 }
 
 var activeWindow = new google.maps.InfoWindow();
@@ -50,7 +50,7 @@ function initMap(data){
 }
 var activeWindowRes = new google.maps.InfoWindow();
 function initMapRes(data){
-
+	  document.getElementById('mapRes').style.display="block";
 	  $.each(data, function(key,venue){
 		  var contentString = "No address";
 		  console.log(venue);
