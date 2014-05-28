@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="windows-1252"?>
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -14,3 +15,12 @@
     <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
   </rdf:Description>
 </rdf:RDF>
+=======
+<?xml version="1.0" encoding="windows-1252"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:sweb="http://www.smartweb.com/data/#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/#"
+    xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" > 
+</rdf:RDF>
+>>>>>>> branch 'master' of ssh://git@github.com/tudorsirbu/intelligent-web.git

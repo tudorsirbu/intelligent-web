@@ -109,9 +109,9 @@ public class UsersServlet extends HttpServlet {
 					}				
 				}
 				if(user.getInContact() != null && !user.getInContact().isEmpty()){
-					entry += "<p><b>This user came in contact with: </b>";
+					entry += "<p><b>This user came in contact with: </b> - ";
 					for(User u:user.getInContact()) {
-						entry += "<a href=\"UsersServlet?user_id="+u.getId()+"\" class=\"title\"  property=\"foaf:name\">" + u.getName() + "</a> ";
+						entry += "<a href=\"UsersServlet?user_id="+u.getId()+"\" class=\"title\"  property=\"foaf:name\">" + u.getName() + "</a> <span class=\"screen_name\">@"+u.getUsername()+"</span> - ";
 					}
 					entry += "</p>";
 				}

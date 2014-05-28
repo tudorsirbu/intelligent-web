@@ -114,57 +114,43 @@ $(document).ready(function() {
 			var data = JSON.stringify(obj);
 			console.log(data);
 			var connectionEstablished = false;
-			var isUser = true;
-			if(obj.days==0){
+			
+			if(obj.days == 0) {
+				console.log('Streaming started.');
 				$.ajax({
 					type: "post",
 					dataType: "json",
 					url: "UserVenuesServlet",
 					data: data,
-					async: false,
 					success: function(data){
-						if(data==""){
-							console.log(data);
-							isUser = false; 
-						}else{
-							console.log(data);
-							connectionEstablished = true;
-							
-						}
-						
+						console.log(data);
+						connectionEstablished = true;
 					}
 				});
-				if(isUser==true){
-					setInterval(function() {	
-						if(connectionEstablished == true) {
-							$.ajax({
-								global: false,
-								type: "post",
-								dataType: "json",
-								url: "UserVenuesServlet",
-								data: data,
-								success: function(data){
-									if(data.length!=0){
-										$("#map-canvas").show();
-										google.maps.event.trigger(map,'resize');
-										initMapEmpty();
-										displayVenueStream(data);
-									}else
-										displayVenueStream(data);
-										
-									
+				setInterval(function() {	
+					if(connectionEstablished == true) {
+						$.ajax({
+							global: false,
+							type: "post",
+							dataType: "json",
+							url: "UserVenuesServlet",
+							data: data,
+							success: function(data){
+								console.log(data);
+								if(data.length != 0){
+									$("#map-canvas").show();
+									google.maps.event.trigger(map,'resize');
+									initMapEmpty();
+									displayVenueStream(data);
+								} else {
+ 									displayVenueStream(data);				
 								}
-							});
-						}
-					}, 5000);
-				}else{
-					userDoesNotExist();
-				}
-					
-				
-				
-
-			}else{
+							}
+						});
+					}
+				}, 5000);
+			} 
+			else {
 				$.ajax({
 					type: "post",
 					dataType: "json",

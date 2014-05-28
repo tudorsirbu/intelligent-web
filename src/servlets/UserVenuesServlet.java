@@ -109,18 +109,21 @@ public class UserVenuesServlet extends HttpServlet {
 				String json = gson.toJson(venues);
 				tm.clearVenues();
 				response.getWriter().write(json);
-			} else {
-					tm.initConfiguration(idList);
-					 venues = tm.getVenues();
-					 System.out.println(venues.isEmpty());
-					 if(venues.size()!=0){
-						 System.out.println("CACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-						 rdfBuilder.addVenues(venues);
-						 String json = gson.toJson(venues);
-						 tm.clearVenues();
-						 response.getWriter().write(json);
-				}
+
+			} else if(tm.userExists(idList[0])) {
+				tm.initConfiguration(idList);
 				
+				/* Get the venues */
+				venues = tm.getVenues();
+				tm.clearVenues();
+			
+				/* Add to the RDF only if there are venues. */
+				if(venues.size() > 0)
+					rdfBuilder.addVenues(venues);
+				
+				/* Send results */
+				String json = gson.toJson(venues);
+				response.getWriter().write(json);			
 			}
 			rdfBuilder.addVisitsForUser(user, venues);
 			rdfBuilder.save();
