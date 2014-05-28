@@ -373,15 +373,16 @@ button {
 	padding: 5px 10px;
 }
 
-.tweet > a.title, .retweet > a.title, .user > a.title {
+.tweet > a.title, .retweet > a.title, .user > a.title, a.title {
 	margin-top: 5px;
 	font-weight: bold;
 	color: #292f33;
 	display: inline-block;
 	font-size: 14px;
+	text-decoration: none;
 }
 
-.tweet > .screen_name, .retweet > .screen_name, .user > .screen_name {
+.tweet > .screen_name, .retweet > .screen_name, .user > .screen_name, span.screen_name {
 	color: #999;	
 	font-size: 13px;
 }
