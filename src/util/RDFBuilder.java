@@ -129,6 +129,7 @@ public class RDFBuilder extends RDFBase {
 	public void addTweet(Status tweet) {
 		
 		User tweetUser = tweet.getUser();
+		this.addUser(tweetUser);
 		
 		List<Object> tweets = new ArrayList<Object>();
 		tweets.add(tweet);
