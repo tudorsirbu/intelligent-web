@@ -184,7 +184,7 @@ public class RDFBuilder extends RDFBase {
 	 * @param secondUser the other user, type User.
 	 */
 	public void addInContactWith(User firstUser, User secondUser) {
-		
+		System.out.println("HEEELOOOORRF$!");
 		Resource firstUserResource = this.addUser(firstUser);
 		Resource secondUserResource = this.addUser(secondUser);
 		

@@ -4,37 +4,1258 @@
     xmlns:sweb="http://www.smartweb.com/data/#"
     xmlns:foaf="http://xmlns.com/foaf/0.1/#"
     xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" > 
-  <rdf:Description rdf:about="https://twitter.com/studor/status/470993925386543104">
-    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T18:24:37Z</sweb:createdAt>
-    <sweb:text>#IntelligentWebCOM3504 http://t.co/XX4LsjnjXG</sweb:text>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/471446757352931328">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-28T00:24:00Z</sweb:createdAt>
+    <sweb:text>I'm at Aspect3 http://t.co/H9a6TmeuKG</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446448006356008960">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:47:53Z</sweb:createdAt>
+    <sweb:text>I'm at Omnia (Sheffield, England) http://t.co/PFXM9pqM4p</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446806583335723008">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
     <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Daz's Disco &amp; Strip Club http://t.co/oRPTIc4Wmv</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:32:45Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446884263305412608">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T05:41:25Z</sweb:createdAt>
+    <sweb:text>I'm at Red House (Sheffield, South Yorkshire) http://t.co/8EBLVE5mc8</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446439484440477696">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:14:02Z</sweb:createdAt>
+    <sweb:text>I'm at Omnia w/ @studor http://t.co/J41tOSb8q3</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446450439958298626">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:57:34Z</sweb:createdAt>
+    <sweb:text>I'm at @omniaspace (Sheffield) http://t.co/s39H6CJzwF</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/442381590375981057">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>#IntelligentWebCOM3504 (@ Omnia) http://t.co/opPdb9t3cW</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-08T19:29:24Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/121616281957957632">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>@RoyalMail what does advised mean for this parcel CO995993533RO?</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-10-05T16:02:35Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446457467401412608">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T01:25:29Z</sweb:createdAt>
+    <sweb:text>I'm at Omnia (Sheffield, England) [pic]: http://t.co/HpGjMOTtTJ http://t.co/ZYt3Deu9yO</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446798636417298432">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Tesco Express - @uktescooffers (Sheffield, South Yorkshire) http://t.co/mEv3BJG7xs</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:01:10Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446442651001577472">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at St Georges Church http://t.co/oZIpD60Tr3</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:26:37Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446880561458839552">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T05:26:43Z</sweb:createdAt>
+    <sweb:text>I'm at The Arts Tower (Sheffield, South Yorkshire) http://t.co/yT7xL5PvY8</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446793427053977600">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Atlantic One http://t.co/MGJYm1zswR</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T23:40:28Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446462312237780992">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T01:44:44Z</sweb:createdAt>
+    <sweb:text>I'm at The Arts Tower (Sheffield, South Yorkshire) http://t.co/UuU5wXK6xQ</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446439756311040000">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:15:07Z</sweb:createdAt>
+    <sweb:text>I'm at Tesco Express - @uktescooffers (Sheffield, South Yorkshire) http://t.co/PbXzQoAEWJ</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/470206765263753217">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at The Arts Tower (Sheffield, South Yorkshire) http://t.co/JhOW2nTwPA</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-24T14:16:43Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446448279682052096">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:48:59Z</sweb:createdAt>
+    <sweb:text>I'm at Winter Gardens (Sheffield, South Yorkshire) http://t.co/4EafZRv5uS</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/471448013207244800">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-28T00:29:00Z</sweb:createdAt>
+    <sweb:text>I'm at Momentum Gym (Sheffield) http://t.co/ZM1dcqtFpg</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446453950414610433">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T01:11:31Z</sweb:createdAt>
+    <sweb:text>I'm at Ashton Point (Sheffield, England) http://t.co/3PdDHDA9B5</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446807074992054272">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Tesco Express - @uktescooffers w/ @claudiutarta http://t.co/0pSx1Thr1q</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:34:42Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/447926445177077762">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at The Arts Tower (Sheffield, South Yorkshire) http://t.co/vjQKu4BL9U</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-24T02:42:41Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446442813606342656">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at @omniaspace (Sheffield) http://t.co/xj7aGDAbtK</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:27:15Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446806875695505408">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Endcliffe Student Village, The University Of Sheffield (Sheffield) http://t.co/R4aaaH3Gi9</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:33:55Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/471453109127225344">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-28T00:49:15Z</sweb:createdAt>
+    <sweb:text>I'm at St George LT14 http://t.co/78rtcyk1Xr</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/471451486560722945">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-28T00:42:48Z</sweb:createdAt>
+    <sweb:text>I'm at Red House (Sheffield, South Yorkshire) http://t.co/QZOaGPPV3b</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/447089003586912256">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T19:14:59Z</sweb:createdAt>
+    <sweb:text>I'm at Omnia Brearley (Sheffield, South Yorkshire) http://t.co/JCA11ftLo5</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446805375808180224">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>@cristi_gavrila baaa ce iaaaa???</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:27:57Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/289946582793715713">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>@RoyalMail I have a parcel and when I tracked it on your website it said status: advised. What does that mean? http://t.co/9ciXRGcd</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-01-12T04:07:07Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446406206685736960">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T22:01:48Z</sweb:createdAt>
+    <sweb:text>I'm at The Arts Tower w/ @studor http://t.co/tLcLqZniX6</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/447827128076476418">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at @omniaspace (Sheffield) http://t.co/fYI2Qme3Hm</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-23T20:08:02Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446460409881845761">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T01:37:11Z</sweb:createdAt>
+    <sweb:text>I'm at The Arts Tower (Sheffield, South Yorkshire) http://t.co/Lig8Irr88F</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446431947154534400">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T23:44:05Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/471447685351096320">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-28T00:27:41Z</sweb:createdAt>
+    <sweb:text>I'm at Atlantic One http://t.co/uLI39YGC2q</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/447099519311020032">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>Just posted a photo @ Tesco Express http://t.co/TixrV0Uxvp</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T19:56:46Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/443890881855508480">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>RT http://t.co/n5Ailr1vLR #IntelligentWebCOM3504 @cristi_gavrila cristi-florin...</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-12T23:26:47Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/466817684597129216">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>at Manchester Airport http://t.co/PC6MM9GPqy</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-15T05:49:43Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446448077189431296">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:48:10Z</sweb:createdAt>
+    <sweb:text>I'm at Aspect3 http://t.co/D10Vj0dxhG</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446455305531322368">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T01:16:54Z</sweb:createdAt>
+    <sweb:text>I'm at @omniaspace (Sheffield) http://t.co/XuBRQMSs1l</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/471447950062026752">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-28T00:28:45Z</sweb:createdAt>
+    <sweb:text>I'm at Sheffield International College - @sicsheffield (Sheffield) http://t.co/aPrtaV9dhZ</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/153047413861531648">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>@MihaelaGherghe Oooo bun venit! :D</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-12-31T09:38:41Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/471448086880198658">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-28T00:29:17Z</sweb:createdAt>
+    <sweb:text>I'm at Winter Gardens (Sheffield, South Yorkshire) http://t.co/lYvaMsaIH4</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446420437732696064">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>#IntelligentWebCOM3504 was my life lIfE liFe Life for the past week :(</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T22:58:21Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446457184336220161">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T01:24:22Z</sweb:createdAt>
+    <sweb:text>I'm at Red House (Sheffield, South Yorkshire) http://t.co/uUExkqOStJ</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446440734452105217">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:19:00Z</sweb:createdAt>
+    <sweb:text>I'm at Hoyle Street (Sheffield, UK) http://t.co/BVQklL6Avd</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
     <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://twitter.com/studor">
-    <sweb:description>CompSci@Shef #IntelligentWeb</sweb:description>
-    <foaf:depiction>http://pbs.twimg.com/profile_images/2426707282/fcvyspgou9rolgg8zgc2_normal.jpeg</foaf:depiction>
-    <sweb:locationName>Sheffield, UK</sweb:locationName>
-    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">18540628</sweb:id>
-    <sweb:screenName>studor</sweb:screenName>
+    <sweb:inContactWith rdf:resource="https://twitter.com/claudiutarta"/>
     <foaf:name>Tudor</foaf:name>
+    <sweb:description>CompSci@Shef #IntelligentWeb</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/AmberRegis"/>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/2426707282/fcvyspgou9rolgg8zgc2_normal.jpeg</foaf:depiction>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">18540628</sweb:id>
+    <sweb:locationName>Sheffield, UK</sweb:locationName>
+    <sweb:screenName>studor</sweb:screenName>
+    <sweb:inContactWith rdf:resource="https://twitter.com/cristi_gavrila"/>
     <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://twitter.com/studor/status/470937165325934592">
-    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:39:04Z</sweb:createdAt>
-    <sweb:text>money #IntelligentWebCOM3504</sweb:text>
-    <sweb:user rdf:resource="https://twitter.com/studor"/>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446879998432264192">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T05:24:28Z</sweb:createdAt>
+    <sweb:text>I'm at Weston Park (Sheffield, South Yorkshire) http://t.co/vHdZsHPvX8</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
     <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://twitter.com/studor/status/470869362883428352">
-    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T10:09:39Z</sweb:createdAt>
-    <sweb:text>test #IntelligentWebCOM3504 Monday Monday Bank Holiday</sweb:text>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446302252735934464">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T15:08:43Z</sweb:createdAt>
+    <sweb:text>I'm at @omniaspace (Sheffield) http://t.co/y5COznpr7k</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446785831853117441">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
     <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Tesco Express - @uktescooffers (Sheffield, South Yorkshire) http://t.co/bwu5vZCVQQ</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T23:10:17Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446437339167195136">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Omnia (Sheffield, England) http://t.co/MJo9MuArT7</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:05:30Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/444591373740953600">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>testing for #IntelligentWebCOM3504 @cristi_gavrila http://t.co/n5Ailr1vLR @claudiutarta  start working! :))</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-14T21:50:18Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/471023147903623169">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>RT @claudiutarta: Bors bors bors un sus cazut in jos facut maioneza din lapte praf :(</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T20:20:44Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446878503217426432">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T05:18:32Z</sweb:createdAt>
+    <sweb:text>I'm at Red House (Sheffield, South Yorkshire) http://t.co/Lu5JiY0bX2</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446457052312117249">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T01:23:50Z</sweb:createdAt>
+    <sweb:text>I'm at Omnia (Sheffield, England) http://t.co/0MadL2WL9z</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/471445487581954048">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-28T00:18:57Z</sweb:createdAt>
+    <sweb:text>I'm at Ashton Point (Sheffield, England) http://t.co/uoJWfHKB1e</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/120900493693288448">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>@RoyalMail Ok. That means that it isn't in UK yet, right?</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-10-03T16:38:18Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/440451137335218176">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>The Tribez is a great game! Try to become a tribal leader! http://t.co/84YHbMrFYw #android, #androidgames, #gameinsight</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-03T11:38:28Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446432040398123008">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>StoiaUngur StoiaUngurStoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUng</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T23:44:27Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446393094783901696">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>love love love love love #IntelligentWebCOM3504</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T21:09:42Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446443507197427712">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Fagan's (Sheffield, South Yorks) http://t.co/Ojx4ctkrlg</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:30:01Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/470235174257827840">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-24T16:09:36Z</sweb:createdAt>
+    <sweb:text>I'm at The Arts Tower w/ @studor http://t.co/oRYt3PXSV1</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/471437311436402688">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-27T23:46:28Z</sweb:createdAt>
+    <sweb:text>I'm at The Arts Tower w/ @studor http://t.co/1M3MUyaVbD</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446441507261014016">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:22:04Z</sweb:createdAt>
+    <sweb:text>I'm at The Arts Tower (Sheffield, South Yorkshire) http://t.co/ZmR6B5iHt3</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/447838240566169600">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Omnia (Sheffield, England) http://t.co/8xIaJzlZSu</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-23T20:52:11Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/447846252034940928">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at @omniaspace (Sheffield) http://t.co/QCBg7G86Vo</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-23T21:24:01Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446440326392467457">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:17:22Z</sweb:createdAt>
+    <sweb:text>I'm at Red House (Sheffield, South Yorkshire) http://t.co/az3iM2pW2G</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446798688707694592">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at iQ Sheffield Brocco Student Accommodation (Sheffield, South Yorkshire) http://t.co/imUBsdXTwo</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:01:23Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/447834983361949696">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Tesco Express - @uktescooffers (Sheffield, South Yorkshire) http://t.co/blumAZ9Ba2</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-23T20:39:15Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446894330415177728">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T06:21:25Z</sweb:createdAt>
+    <sweb:text>I'm at Shell (Sheffield, South Yorkshire) http://t.co/xVilu8MZdP</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/470903616447193089">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T12:25:45Z</sweb:createdAt>
+    <sweb:text>Testing Tudor's whatever!</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446453076783022080">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T01:08:02Z</sweb:createdAt>
+    <sweb:text>I'm at @omniaspace (Sheffield) http://t.co/eBzJJ6Vjkh</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446456493760839680">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T01:21:37Z</sweb:createdAt>
+    <sweb:text>I'm at @omniaspace (Sheffield) http://t.co/gh7I6pvKU9</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446793361375391745">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Ashton Point (Sheffield, England) http://t.co/StgP6cU2HQ</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T23:40:13Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/210165104321376256">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>My year at @sheffieldsu: Me Loves Awesome Amazing Best Sheffield Societies Friend Year Students' Union #SUYearbook</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-06-06T00:24:00Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446301185734356992">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T15:04:29Z</sweb:createdAt>
+    <sweb:text>I'm at Momentum Gym (Sheffield) http://t.co/P1C17ufxfW</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/444266490276356096">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>#IntelligentWebCOM3504 (@ Sheffield International College - @sicsheffield) http://t.co/nLnUcxkryJ</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-14T00:19:20Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/443470290438586370">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>RT @cristi_gavrila: #IntelligentWebCOM3504 testing</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-11T19:35:31Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/447101380483108864">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T20:04:10Z</sweb:createdAt>
+    <sweb:text>I'm at St Vincents (Sheffield, South Yorkshire) http://t.co/YUVvlD3mdT</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446440446945140736">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:17:51Z</sweb:createdAt>
+    <sweb:text>I'm at Domino's Pizza - @dominos_uk (Sheffield) http://t.co/vKmaIeDSIf</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446401727877885953">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Winter Gardens (Sheffield, South Yorkshire) http://t.co/rR82sj38LU</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T21:44:00Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446458080877101056">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T01:27:55Z</sweb:createdAt>
+    <sweb:text>I'm at @omniaspace (Sheffield) [pic]: http://t.co/aFrZ6wUCgG http://t.co/kSitUhsPVg</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446794856816734208">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Rockingham House (Sheffield, England) http://t.co/zGkc3DMCE0</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T23:46:09Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/443910195568472064">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>Shopping (@ Tesco Express - @uktescooffers) http://t.co/totGuxrkvi</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-13T00:43:32Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/470233756759240704">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at The Arts Tower (Sheffield, South Yorkshire) w/ 2 others http://t.co/VTpUPnT2nB</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-24T16:03:58Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/466791234645028864">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>traveling to Manchester Airport from Sheffield station http://t.co/p2Qg7JZWy5</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-15T04:04:37Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446440590100942848">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:18:25Z</sweb:createdAt>
+    <sweb:text>I'm at St George LT14 http://t.co/GLVwyUrkLp</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446454570966077440">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T01:13:59Z</sweb:createdAt>
+    <sweb:text>I'm at @omniaspace (Sheffield) http://t.co/0Jx4rfNcB8</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/471448640410886145">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-28T00:31:29Z</sweb:createdAt>
+    <sweb:text>I'm at Hoyle Street (Sheffield, UK) http://t.co/NRc4ZmgOJv</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/471446147803119617">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-28T00:21:35Z</sweb:createdAt>
+    <sweb:text>I'm at @omniaspace (Sheffield) http://t.co/kPKQ7SWxGh</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/471446050348498944">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-28T00:21:12Z</sweb:createdAt>
+    <sweb:text>I'm at Ashton Point (Sheffield, England) http://t.co/VQ6Xk1L6MC</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446879724305141760">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T05:23:23Z</sweb:createdAt>
+    <sweb:text>I'm at Red House (Sheffield, South Yorkshire) http://t.co/WAHCLyzGJE</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/451757347246182400">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at The Arts Tower (Sheffield, South Yorkshire) http://t.co/1K6k8Jw3Cy</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-04-03T16:25:19Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446377916302368768">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T20:09:23Z</sweb:createdAt>
+    <sweb:text>I'm at Winter Gardens (Sheffield, South Yorkshire) http://t.co/jrOkjbTBLQ</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446798936054185985">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Sheffield International College - @sicsheffield (Sheffield) http://t.co/iTHSAe2mjS</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:02:22Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/cristi_gavrila">
+    <sweb:description></sweb:description>
+    <foaf:depiction>http://abs.twimg.com/sticky/default_profile_images/default_profile_1_normal.png</foaf:depiction>
+    <sweb:locationName></sweb:locationName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1225017144</sweb:id>
+    <sweb:screenName>cristi_gavrila</sweb:screenName>
+    <foaf:name>Cristi Gavrila</foaf:name>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <sweb:inContactWith rdf:resource="https://twitter.com/studor"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446394160426524672">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Hell (Sheffield) http://t.co/DRYNyxRCbL</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T21:13:56Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/451757769952342016">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>RT @AmberRegis: The #fog has stolen the Arts Tower!  #Sheffield http://t.co/7QhM53aE8l</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-04-03T16:27:00Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446738621841014784">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at @omniaspace (Sheffield) http://t.co/yH5wGZGQ5h</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T20:02:42Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446402096381054977">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Weston Park (Sheffield, South Yorkshire) http://t.co/pVzHALAEKa</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T21:45:28Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/470869362883428352">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>test #IntelligentWebCOM3504 Monday Monday Bank Holiday</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T10:09:39Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/466881046014078976">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>at ZŸrich Airport http://t.co/qDVE5Nw48M</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-15T10:01:30Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/AmberRegis">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>Dr Amber Regis</foaf:name>
+    <sweb:screenName>AmberRegis</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">41795428</sweb:id>
+    <sweb:locationName>Sheffield, UK</sweb:locationName>
+    <foaf:depiction>http://pbs.twimg.com/profile_images/470212098119569408/NyoKZPs3_normal.jpeg</foaf:depiction>
+    <sweb:description>Lecturer in Nineteenth-Century Literature at @sheffielduni. @Arts_Enterprise Project Lead: @Sheffield1914. MOOC Educator: #FLHouseLit. Tweets Own.</sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/studor"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/443886148088516608">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>#IntelligentWebCOM3504 twitter =/ stupid &amp;</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-12T23:07:59Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446807302797275136">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at ELTC http://t.co/tpppkbcpHg</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:35:36Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446448405435654145">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:49:29Z</sweb:createdAt>
+    <sweb:text>I'm at Engineering:You're Hired! HUB K (Sheffield) http://t.co/8nx4qZ8pV3</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446400498158301184">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T21:39:07Z</sweb:createdAt>
+    <sweb:text>Not buying weed (@ Netherthorpe Road Tram Stop w/ @studor) http://t.co/IEodozuJIk</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446438934726602752">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:11:51Z</sweb:createdAt>
+    <sweb:text>I'm at Pam Liversidge Building http://t.co/5HF4bag8Tp</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/447107821965148160">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T20:29:46Z</sweb:createdAt>
+    <sweb:text>I'm at St Vincents (Sheffield, South Yorkshire) http://t.co/33RW7zE2Cj</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/471433139370610688">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-27T23:29:53Z</sweb:createdAt>
+    <sweb:text>I'm at The Arts Tower (Sheffield, South Yorkshire) http://t.co/f2TgtohlyO</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446451527046406145">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T01:01:53Z</sweb:createdAt>
+    <sweb:text>I'm at @omniaspace (Sheffield) http://t.co/QEHQXkBnxz</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/444206523640999936">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Momentum Gym (Sheffield) http://t.co/nDxl0AbwJ5</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-13T20:21:02Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/471446281731469312">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-28T00:22:07Z</sweb:createdAt>
+    <sweb:text>I'm at Ashton Point (Sheffield, England) http://t.co/D2fvfpFgFQ</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446442584379252736">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Engineering:You're Hired! HUB K (Sheffield) http://t.co/Hp2itezz08</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:26:21Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446438751318081536">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:11:07Z</sweb:createdAt>
+    <sweb:text>I'm at Netherthorpe Road Tram Stop (Sheffield, South Yorkshire) http://t.co/C51exeGodu</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/444262156293636097">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>#IntelligentWebCOM3504 (@ Ashton Point) http://t.co/RtYQaHFdMa</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-14T00:02:06Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/447141204220968960">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T22:42:25Z</sweb:createdAt>
+    <sweb:text>I'm at Tesco Express - @uktescooffers (Sheffield, South Yorkshire) http://t.co/pyLG19L09t</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446439064523522049">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:12:22Z</sweb:createdAt>
+    <sweb:text>I'm at Primark (Sheffield) http://t.co/PhyuUxmcbY</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446457314850398208">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T01:24:53Z</sweb:createdAt>
+    <sweb:text>I'm at Kroto Nanoscience and Technology Centre http://t.co/v848raCaLm</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
     <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://twitter.com/studor/status/470869220025446400">
-    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T10:09:05Z</sweb:createdAt>
-    <sweb:text>Test #IntelligentWebCOM3504 test test test test test test test</sweb:text>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
     <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>Test #IntelligentWebCOM3504 test test test test test test test</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T10:09:05Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446441563049451520">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:22:17Z</sweb:createdAt>
+    <sweb:text>I'm at Red House (Sheffield, South Yorkshire) http://t.co/6GhLhPqT0q</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/444652091458748416">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>love #IntelligentWebCOM3504</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-15T01:51:34Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/119176337008234496">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>@anil_e_ yeahhh :)) that's probably the safest thing to do</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-09-28T22:27:07Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/471448443735785472">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-28T00:30:42Z</sweb:createdAt>
+    <sweb:text>I'm at @Bloo88Sheffield (Sheffield) http://t.co/rpcJZFwLiP</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/470993455548612609">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>Just posted a video http://t.co/tOqMqlt7ob</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T18:22:45Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446441739906449412">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:22:59Z</sweb:createdAt>
+    <sweb:text>I'm at Aspect3 http://t.co/dEz9lXnVlI</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/471435004699222017">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at The Arts Tower w/ @claudiutarta http://t.co/H7aypbCBbQ</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-27T23:37:18Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/470960596595539968">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <sweb:text>Bors bors bors un sus cazut in jos facut maioneza din lapte praf :(</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T16:12:10Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446403543894065152">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at The Arts Tower (Sheffield, South Yorkshire) http://t.co/DuMjYT4M2I</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T21:51:13Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446785041491066880">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at The Arts Tower (Sheffield, South Yorkshire) w/ 2 others http://t.co/4lmeY9L4sW</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T23:07:09Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/434490531767681024">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>La multi ani Andreeeeiii! Happy birthday Andreeei! :D #outatspace</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-02-15T00:53:09Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/AmberRegis/status/451626126327447552">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/AmberRegis"/>
+    <sweb:text>The #fog has stolen the Arts Tower!  #Sheffield http://t.co/7QhM53aE8l</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-04-03T07:43:53Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446431981556228096">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>StoiaUngur StoiaUngurStoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur StoiaUngur</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T23:44:13Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446302200630099968">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T15:08:31Z</sweb:createdAt>
+    <sweb:text>I'm at Winter Gardens (Sheffield, South Yorkshire) http://t.co/YHW4BiVGQH</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/444263790381903873">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Ashton Point (Sheffield, England) http://t.co/Uo3Bt09Zr4</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-14T00:08:36Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446439860715683840">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:15:31Z</sweb:createdAt>
+    <sweb:text>I'm at Shell (Sheffield, South Yorkshire) http://t.co/F6to7jXxZp</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/466905982367698944">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>in Arbon, Switzerland http://t.co/JbiU7pXzXy</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-15T11:40:35Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446453871691714560">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T01:11:12Z</sweb:createdAt>
+    <sweb:text>I'm at Tesco Express - @uktescooffers (Sheffield, South Yorkshire) http://t.co/M2YautDpS9</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446438085103194112">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:08:28Z</sweb:createdAt>
+    <sweb:text>I'm at Omnia w/ @studor http://t.co/b5wPjRYONu</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446442775706624002">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at South Yorkshire Police Training Centre (Sheffield, South Yorks) http://t.co/Li2MeEhTBD</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:27:06Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446438624998211584">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:10:37Z</sweb:createdAt>
+    <sweb:text>I'm at Omnia w/ @studor http://t.co/Sawj3oOrdk</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446874121142812672">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T05:01:07Z</sweb:createdAt>
+    <sweb:text>I'm at Red House (Sheffield, South Yorkshire) http://t.co/7gyqQBNCWw</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446880251109724160">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T05:25:29Z</sweb:createdAt>
+    <sweb:text>I'm at Royal Hallamshire Hospital (Fulwood, Sheffield) http://t.co/BHlVwuYEuL</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/470903820797894656">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T12:26:34Z</sweb:createdAt>
+    <sweb:text>Test</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446441642602815488">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:22:36Z</sweb:createdAt>
+    <sweb:text>I'm at Pam Liversidge Building http://t.co/ixCxd7aN6M</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446404852613410816">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T21:56:25Z</sweb:createdAt>
+    <sweb:text>I'm at The Arts Tower w/ @studor http://t.co/2Ci5gfMavs</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/471448595246645248">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-28T00:31:18Z</sweb:createdAt>
+    <sweb:text>I'm at Shell (Sheffield, South Yorkshire) http://t.co/wCoB6vVGwC</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446784951028310017">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Momentum Gym (Sheffield) http://t.co/Ae9WfECW4D</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T23:06:47Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446402972210442241">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Weston Park (Sheffield, South Yorkshire) http://t.co/u1BPDOfA9E</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T21:48:57Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/444262301827604480">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>#IntelligentWebCOM3504 (@ Atlantic One) http://t.co/sSFrBPVyEf</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-14T00:02:41Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/450342231321608192">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-30T18:42:09Z</sweb:createdAt>
+    <sweb:text>After a heated AGM, a well deserved meal :) (at @NandosUk w/ @studor) http://t.co/7ZUpTC4h23</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446386266100486144">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T20:42:33Z</sweb:createdAt>
+    <sweb:text>I'm at Winter Gardens (Sheffield, South Yorkshire) http://t.co/DkkIDkxbXX</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446454124281098240">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T01:12:12Z</sweb:createdAt>
+    <sweb:text>I'm at Hoyle Street (Sheffield, UK) http://t.co/W0UpbATH7d</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/442366517435703296">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>Hello @cristi_gavrila &amp; @claudiutarta #IntelligentWebCOM3504</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-08T18:29:31Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446090938478526464">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>#IntelligentWebCOM3504 hello hello hello blah</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T01:09:02Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446793512391290880">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Omnia (Sheffield, England) http://t.co/P2NYKmQWTk</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T23:40:49Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446453794571042817">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T01:10:54Z</sweb:createdAt>
+    <sweb:text>I'm at @omniaspace (Sheffield) http://t.co/lsEMiYL7jR</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446376596463964162">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T20:04:08Z</sweb:createdAt>
+    <sweb:text>I'm at Winter Gardens (Sheffield, South Yorkshire) http://t.co/cTRdHEjgIK</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/444263845276975104">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Rockingham House (Sheffield, England) http://t.co/NPVRd49eMw</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-14T00:08:49Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446404090835525634">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Sheffield University Students' Union - @sheffieldsu (Sheffield, South Yorkshire) http://t.co/Vg97dPPeEP</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T21:53:23Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446443471566807040">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at NHS Walk-in Centre (Sheffield) http://t.co/SoMfFyFmzG</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:29:52Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446396193879625728">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T21:22:00Z</sweb:createdAt>
+    <sweb:text>I'm at Netherthorpe Road Tram Stop (Sheffield, South Yorkshire) http://t.co/hgcIVlE0Ur</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/123007076971720704">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>@SF_England Although I got the payment schedule my status on my loan is "to be completed". is that how it's supposed to be? thanks</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-10-09T12:09:07Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/443476194424803330">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>#IntelligentWeb3504 bla bla testing testing testing testing testing testing testing testing testing testing testing testing testing testin</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-11T19:58:58Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446438807450431488">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:11:20Z</sweb:createdAt>
+    <sweb:text>I'm at Sheffield International College - @sicsheffield (Sheffield) http://t.co/pGQHaArDBB</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/470993925386543104">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>#IntelligentWebCOM3504 http://t.co/XX4LsjnjXG</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T18:24:37Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446806750277435392">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Omnia (Sheffield, England) http://t.co/PITntt3HMc</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:33:25Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446448166171582464">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:48:32Z</sweb:createdAt>
+    <sweb:text>I'm at The Arts Tower (Sheffield, South Yorkshire) http://t.co/fKO37VEsIm</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446461245022277634">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T01:40:30Z</sweb:createdAt>
+    <sweb:text>I'm at The Arts Tower (Sheffield, South Yorkshire) http://t.co/ba5hCSo09H</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446122354578837504">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>testing testing testing #IntelligentWebCOM3504</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T03:13:52Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/466604243932413954">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>Done, the bloody dissertation is finally done! Ñ at Las Iguanas Sheffield http://t.co/8NoXKvRoue</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-14T15:41:35Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446440373544845312">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:17:34Z</sweb:createdAt>
+    <sweb:text>I'm at Momentum Gym (Sheffield) http://t.co/iOuKBNZxLa</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/444246670705172481">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>#IntelligentWebCOM3504 (@ Sir Frederick Mappin Building) http://t.co/8Ox5TdQzlH</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-13T23:00:34Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/447101182075731968">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T20:03:23Z</sweb:createdAt>
+    <sweb:text>I'm at Red House (Sheffield, South Yorkshire) http://t.co/GVFabwT7De</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/471454959725473792">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-28T00:56:36Z</sweb:createdAt>
+    <sweb:text>I'm at Omnia (Sheffield, England) http://t.co/THTJVAt0GW</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446089332773101568">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>bors bors bors  bors bors bors  bors bors bors bors bors bors bors bors bors bors bors bors bors bors bors bors bors bors</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T01:02:39Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446439764892598272">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:15:09Z</sweb:createdAt>
+    <sweb:text>I'm at Ashton Point (Sheffield, England) http://t.co/LieHoji73G</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/471434505388302336">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at iQ Sheffield Brocco Student Accommodation (Sheffield, South Yorkshire) http://t.co/GwXagil6kt</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-27T23:35:19Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/cristi_gavrila/status/443468435637682176">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/cristi_gavrila"/>
+    <sweb:text>#IntelligentWebCOM3504 testing</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-11T19:28:08Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446300785522270208">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T15:02:53Z</sweb:createdAt>
+    <sweb:text>I'm at Regent Court (Sheffield, South Yorkshire) http://t.co/QnMaJ2C9TW</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/444260220613951488">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>Testing #IntelligentWebCOM3504</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-13T23:54:25Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446804964439236608">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>@cristi_gavrila bis bald!</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:26:19Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/467967113601482752">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>at Abbey of Saint Gall http://t.co/WXXX3FKdFb</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-18T09:57:08Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446806791884902400">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at iQ Sheffield Brocco Student Accommodation (Sheffield, South Yorkshire) http://t.co/rN6kV6K4Un</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:33:35Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/447854714995343360">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Coca Cola Enterprises Ltd (Wakefield, UK) http://t.co/8KVIiRICCp</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-23T21:57:39Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446879640670720000">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T05:23:03Z</sweb:createdAt>
+    <sweb:text>I'm at Momentum Gym (Sheffield) http://t.co/HN3s9HlyDV</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/447107651760316416">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T20:29:05Z</sweb:createdAt>
+    <sweb:text>I'm at Red House (Sheffield, South Yorkshire) http://t.co/gv2vjXPQV1</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/442365016130740224">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>#IntelligentWebCOM3504 FTW</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-08T18:23:33Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446445673215696896">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:38:37Z</sweb:createdAt>
+    <sweb:text>I'm at Omnia (Sheffield, England) http://t.co/CPSc1GBPjv</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/470235288598745088">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-24T16:10:04Z</sweb:createdAt>
+    <sweb:text>I'm at Ashton Point (Sheffield, England) http://t.co/wIjI9MFkHN</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446798866646855680">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Atlantic One http://t.co/2TLph7R2VM</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T00:02:05Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446442446940303360">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Omnia (Sheffield, England) http://t.co/9w0Sjfxplo</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:25:48Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/446442617937883138">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at iQ Sheffield Brocco Student Accommodation (Sheffield, South Yorkshire) http://t.co/O9vL2kU57s</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:26:29Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446300684695375872">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T15:02:29Z</sweb:createdAt>
+    <sweb:text>I'm at Winter Gardens (Sheffield, South Yorkshire) http://t.co/guap7tDZ4q</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446438872848019456">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:11:36Z</sweb:createdAt>
+    <sweb:text>I'm at Omnia w/ @studor http://t.co/TcUORyFY19</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/470936851680067584">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>I'm at Tesco - @uktescooffers (Sheffield) http://t.co/Br3F3OgKI9</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:37:49Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#TwitterUser"/>
+    <foaf:name>Claudiu Tarta</foaf:name>
+    <sweb:screenName>claudiutarta</sweb:screenName>
+    <sweb:id rdf:datatype="http://www.w3.org/2001/XMLSchema#long">2379054998</sweb:id>
+    <sweb:locationName></sweb:locationName>
+    <foaf:depiction>http://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png</foaf:depiction>
+    <sweb:description></sweb:description>
+    <sweb:inContactWith rdf:resource="https://twitter.com/studor"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/132987875548602368">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>@anil_e_ only 6 weeks till we go home :D</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-11-06T01:09:14Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446440841851441153">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:19:25Z</sweb:createdAt>
+    <sweb:text>I'm at ELTC http://t.co/sQ4Pde732i</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446894219303866368">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T06:20:59Z</sweb:createdAt>
+    <sweb:text>I'm at Winter Gardens (Sheffield, South Yorkshire) http://t.co/Q63xrWbZYk</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446300920331395072">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T15:03:25Z</sweb:createdAt>
+    <sweb:text>I'm at Weston Park (Sheffield, South Yorkshire) http://t.co/L2sDtPbgxL</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446432023851585540">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-19T23:44:23Z</sweb:createdAt>
+    <sweb:text>StoiaUngur</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/174911267125997570">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>@SF_England In my account it says that my application forms(returning student) were sent on 6Feb.However,I didn't get them.What should I do?</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-02-29T17:37:50Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/133020897362714624">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>@anil_e_ pfff tell me about it. :D when are you leaving? I'm leaving on 16th</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-11-06T03:20:27Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/120892803629858816">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>@RoyalMail Hi! Could I get some info about RN963640340RO? Thanks!</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-10-03T16:07:45Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/studor/status/470937165325934592">
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+    <sweb:user rdf:resource="https://twitter.com/studor"/>
+    <sweb:text>money #IntelligentWebCOM3504</sweb:text>
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-05-26T14:39:04Z</sweb:createdAt>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446440681230569472">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-20T00:18:47Z</sweb:createdAt>
+    <sweb:text>I'm at The Arts Tower (Sheffield, South Yorkshire) http://t.co/JkP9dNYApC</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
+    <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://twitter.com/claudiutarta/status/446874307608981504">
+    <sweb:createdAt rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-03-21T05:01:52Z</sweb:createdAt>
+    <sweb:text>I'm at Aspect3 http://t.co/UdqgnCskss</sweb:text>
+    <sweb:user rdf:resource="https://twitter.com/claudiutarta"/>
     <rdf:type rdf:resource="http://www.smartweb.com/data/#Tweet"/>
   </rdf:Description>
 </rdf:RDF>
