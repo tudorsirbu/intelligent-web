@@ -101,6 +101,7 @@ public class UserVenuesServlet extends HttpServlet {
 			
 			int days = uvf.getDays();
 			
+			if(tm.userExists(idList[0])){
 			if(days != 0) {
 				venues = tm.getVenuesSince(userID, days);
 				rdfBuilder.addVenues(venues);
@@ -108,25 +109,25 @@ public class UserVenuesServlet extends HttpServlet {
 				String json = gson.toJson(venues);
 				tm.clearVenues();
 				response.getWriter().write(json);
-			} else {
-				System.out.println("SUNT PROST! " + idList[0] + tm.userExists(idList[0]));
-				if(tm.userExists(idList[0])){
-					tm.initConfiguration(idList);
-					 venues = tm.getVenues();
-					 rdfBuilder.addVenues(venues);
-					 String json = gson.toJson(venues);
-					 tm.clearVenues();
-					 response.getWriter().write(json);
-				}else{
-					 String json = gson.toJson("");
-					 tm.clearVenues();
-					 response.getWriter().write(json);
-				}
+
+			} else if(tm.userExists(idList[0])) {
+				tm.initConfiguration(idList);
 				
+				/* Get the venues */
+				venues = tm.getVenues();
+				tm.clearVenues();
+			
+				/* Add to the RDF only if there are venues. */
+				if(venues.size() > 0)
+					rdfBuilder.addVenues(venues);
+				
+				/* Send results */
+				String json = gson.toJson(venues);
+				response.getWriter().write(json);			
 			}
 			rdfBuilder.addVisitsForUser(user, venues);
 			rdfBuilder.save();
-			
+			}
 		} catch (Exception e) {
 			System.out.println("No input yet.");
 			e.printStackTrace();
