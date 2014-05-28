@@ -19,6 +19,7 @@ import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
+import util.RDFBuilder;
 import util.RDFService;
 import api.DiscussionsTracker;
 import api.TwitterManager;
@@ -98,7 +99,7 @@ public class UsersServlet extends HttpServlet {
 			entry +="<div id=\"user_results\"xmlns:sweb=\"http://www.smartweb.com/data/#\" xmlns:foaf=\"http://xmlns.com/foaf/0.1/\" xmls:xs=\"http://www.w3.org/2001/XMLSchema#\">";
 				entry += "<div id='user' about=\"https://www.twitter.com/"+ user.getUsername() +"\"" + "typeof=\"foaf:Agent\">";
 				entry +="<img property=\"foaf:depiction\" src=\""+user.getProfilePicURL()+"\" />";
-				entry +="<a href=\"UsersServlet?user_id="+user.getId()+" class=\"title\"  property=\"foaf:name\">" + user.getName() + "</a><span class=\"screen_name\" property=\"sweb:screenName\">@"+ user.getUsername() +"</span>";
+				entry +="<a href=\"UsersServlet?user_id="+user.getId()+"\" class=\"title\"  property=\"foaf:name\">" + user.getName() + "</a> <span class=\"screen_name\" property=\"sweb:screenName\">@"+ user.getUsername() +"</span>";
 				entry +="<h3 property=\"sweb:id\" datatype=\"xs:integer\">" + user.getId() + "</h3>";
 				entry +="<h3 property=\"sweb:locationName\">"+ user.getLocation() + "</h3>";
 				entry +="<h3 property=\"sweb:description\">" +user.getDescription()+"</h3>";
@@ -106,6 +107,13 @@ public class UsersServlet extends HttpServlet {
 					for(Venue venue:user.getVisited()) {
 						entry +="<h3 property=\"sweb:visited\">" + venue.getName() +"</h3>";
 					}				
+				}
+				if(user.getInContact() != null && !user.getInContact().isEmpty()){
+					entry += "<p><b>This user came in contact with: </b>";
+					for(User u:user.getInContact()) {
+						entry += "<a href=\"UsersServlet?user_id="+u.getId()+"\" class=\"title\"  property=\"foaf:name\">" + u.getName() + "</a> ";
+					}
+					entry += "</p>";
 				}
 				entry += "<div style=\"clear:both;\"></div>";
 				entry += "<button data-href=\""+user.getId()+"\" class=\"get_tweets\"> Get tweets </button>";
@@ -142,6 +150,11 @@ public class UsersServlet extends HttpServlet {
 		/* Get tweets according to the query parameters */
 		DiscussionsTracker dt = new DiscussionsTracker();
 		ResponseList<Status> tweets = dt.getTweets(ids);
+		
+		RDFBuilder rdf = new RDFBuilder();
+		rdf.addTweets(tweets);
+		rdf.save();
+		rdf.close();
 		
 		List<MiniStatus> processedTweets = new ArrayList<MiniStatus>();
 		for (Status tweet:tweets) {
